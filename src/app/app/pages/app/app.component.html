@@ -1,0 +1,43 @@
+<body class="h-100 d-flex flex-column">
+    <!-- NAVIGATION -->
+    <nav id="home" class="navbar navbar-expand-md navbar-light bg-white sticky-top shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href=""><img src="assets/images/logo.jpg" width="100"></a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbar-content">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.martynaklewinowska.pl/">Strona główna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.martynaklewinowska.pl/kontakt/">Kontakt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://www.martynaklewinowska.pl/blog/">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid d-flex flex-grow-1">
+        <router-outlet></router-outlet>
+    </main> 
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="container-fluid bg-dark text-light pt-4 mt-5">
+            <div class="row p-3 text-center">
+                <div class="col-md-8 text-md-left">
+                    <a class="text-light text-decoration-none" href="https://sklep.martynaklewinowska.pl/resource/sklep.regulamin.pdf">Regulamin</a> |
+                    <a class="text-light text-decoration-none" href="https://sklep.martynaklewinowska.pl/resource/sklep.polityka.prywatnosci.pdf">Polityka prywatności</a>
+                </div>
+                <div class="col-md-4 text-md-right">
+                    <a class="text-light text-decoration-none" href="mailto:info@martynaklewinowska.pl">Copyright © martynaklewinowska.pl 2020</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>

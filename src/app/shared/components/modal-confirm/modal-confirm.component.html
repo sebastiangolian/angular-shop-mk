@@ -1,0 +1,12 @@
+<div class="modal-body clearfix">
+    <div class="modal-icon">
+      <i class="fa fa-question-circle"></i>
+    </div>
+    <div class="modal-text">
+      <div [innerHtml]="content"></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" (click)="action(false)">Back</button>
+    <button class="btn btn-primary right" (click)="action(true)">Yes</button>
+  </div>
