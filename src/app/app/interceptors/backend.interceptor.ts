@@ -38,6 +38,28 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idEvent: 3, name: "Bieg City Trail" },
                     { idEvent: 4, name: "Wesele Marii i Nikodema" },
                 ],
+                "photo": [
+                    { idPhoto: 1, url: "https://picsum.photos/id/101/300/200" },
+                    { idPhoto: 2, url: "https://picsum.photos/id/102/300/200" },
+                    { idPhoto: 3, url: "https://picsum.photos/id/103/300/200" },
+                    { idPhoto: 4, url: "https://picsum.photos/id/104/300/200" },
+                    { idPhoto: 5, url: "https://picsum.photos/id/113/300/200" },
+                    { idPhoto: 6, url: "https://picsum.photos/id/106/300/200" },
+                    { idPhoto: 7, url: "https://picsum.photos/id/107/300/200" },
+                    { idPhoto: 8, url: "https://picsum.photos/id/108/300/200" },
+                    { idPhoto: 9, url: "https://picsum.photos/id/109/300/200" },
+                    { idPhoto: 10, url: "https://picsum.photos/id/110/300/200" },
+                    { idPhoto: 11, url: "https://picsum.photos/id/111/300/200" },
+                    { idPhoto: 12, url: "https://picsum.photos/id/112/300/200" },
+                    { idPhoto: 14, url: "https://picsum.photos/id/114/300/200" },
+                    { idPhoto: 15, url: "https://picsum.photos/id/115/300/200" },
+                    { idPhoto: 16, url: "https://picsum.photos/id/116/300/200" },
+                    { idPhoto: 17, url: "https://picsum.photos/id/117/300/200" },
+                    { idPhoto: 18, url: "https://picsum.photos/id/118/300/200" },
+                    { idPhoto: 19, url: "https://picsum.photos/id/119/300/200" },
+                    { idPhoto: 20, url: "https://picsum.photos/id/120/300/200" },
+                    { idPhoto: 21, url: "https://picsum.photos/id/121/300/200" },
+                ],
             }
 
             db = loadStorage(db)
@@ -70,6 +92,11 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'GET' && url.includes("/api/event/list")): {
                     const response = getAll(url, db.event)
+                    return response200(response);
+                }
+
+                case (method === 'GET' && url.includes("/api/photo/list")): {
+                    const response = getAll(url, db.photo)
                     return response200(response);
                 }
 

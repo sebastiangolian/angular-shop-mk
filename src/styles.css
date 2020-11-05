@@ -16,6 +16,14 @@
     border-color:#459e87!important;
     color: #459e87!important;
 }
+.list-group-item:hover {
+    background-color: white;
+    border-color:#459e87!important;
+    color: #459e87!important;
+}
 .hand {
     cursor: pointer;
+}
+.border-2 {
+    border-width: 2px;
 }

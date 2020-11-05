@@ -1,16 +1,16 @@
 {
-    "files.exclude": {
-        "dist": true,
-        "node_modules/": true,
-        "src/main.ts": true,
-        "src/polyfills.ts": true,
-        "src/test.ts": true,
-        ".editorconfig": true,
-        ".gitignore": true,
-        "browserslist": true,
-        "tsconfig.json": true,
-        "tsconfig.app.json": true,
-        "tsconfig.spec.json": true,
-        "tslint.json": true,
-      }
+  "files.exclude": {
+    "dist": true,
+    "node_modules/": true,
+    "src/main.ts": true,
+    "src/polyfills.ts": true,
+    "src/test.ts": true,
+    ".editorconfig": true,
+    ".gitignore": true,
+    "browserslist": true,
+    "tsconfig.json": true,
+    "tsconfig.app.json": true,
+    "tsconfig.spec.json": true,
+    "tslint.json": true
+  }
 }

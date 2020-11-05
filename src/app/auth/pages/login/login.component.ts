@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Subscription } from 'rxjs/internal/Subscription';
 import { Router } from '@angular/router';
 import { Auth } from '../../interfaces/auth.interface';
 import { AuthModel } from '../../models/login.model';
 import { MessageService } from 'src/app/shared/services/message.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './login.component.html',

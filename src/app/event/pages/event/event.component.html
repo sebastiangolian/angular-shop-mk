@@ -1,5 +1,8 @@
 <div class="row">
-    <div class="col-12 col-md-4 col-xl-3">
-        <event-list [events]="events" (itemSelected)="onItemSelected($event)"></event-list>
+    <div class="text-center text-md-left col-12 col-md-3 col-xl-2">
+        <event-list [events]="events | async" (itemSelected)="onItemSelected($event)"></event-list>
+    </div>
+    <div class="col-12 col-md-9 col-xl-10">
+        <photo-list [photos]="photos | async"></photo-list>
     </div>
 </div>
