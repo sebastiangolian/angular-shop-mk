@@ -8,6 +8,7 @@ export const environment = {
   loggingBackendRequestHeaders: false,
   loggingBackendRequest: false,
   loggingBackendResponse: false,
-  apiEndpoint: '',
+  apiEndpoint: '/api',
+  authEndpoint: '/auth',
   messageDismissible: false
 };

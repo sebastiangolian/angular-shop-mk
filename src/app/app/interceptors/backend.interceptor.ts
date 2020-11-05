@@ -30,40 +30,8 @@ export class BackendInterceptor implements HttpInterceptor {
 
             let db = {
                 "user": [
-                    { id: 1, email: 'jan.kowalski@example.pl', zipCode: '11-111', created: '2020-04-01 12:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 2, email: 'anna.nowak@example.pl', zipCode: '22-222', created: '2020-04-01 13:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 3, email: 'henryk.kuczynski@example.pl', zipCode: '33-333', created: '2020-04-01 14:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 4, email: 'zdzislaw.kowalski@example.pl', zipCode: '44-444', created: '2020-04-01 15:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 5, email: 'cezary.kowal@example.pl', zipCode: '55-555', created: '2020-04-01 16:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 6, email: 'jerzy.tusk@example.pl', zipCode: '66-666', created: '2020-04-02 12:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 7, email: 'wojciech.walewski@example.pl', zipCode: '77-777', created: '2020-04-02 13:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 8, email: 'andrzej.nowaczek@example.pl', zipCode: '88-888', created: '2020-04-02 14:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 9, email: 'krystian.kowalewski@example.pl', zipCode: '99-999', created: '2020-04-02 15:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 10, email: 'michal.adamczuk@example.pl', zipCode: '00-111', created: '2020-04-02 16:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
-                    { id: 11, email: 'adam.adamowicz@example.pl', zipCode: '00-222', created: '2020-04-02 17:02:28', active: false, documentLink: getPdfUrl(), idRole: 1},
+                    { idUser: 1, login: "kowalskijan", password: "12345", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU" },
                 ],
-                "role": [
-                    { id: 1, name: "admin" },
-                    { id: 2, name: "editor" },
-                    { id: 3, name: "standard" }
-                ],
-                "car": [
-                    { id: 1, name: "leon", brand: "seat" },
-                    { id: 2, name: "golf", brand: "volkswagen" },
-                    { id: 3, name: "A3", brand: "audi" }
-                ],
-                "hero": [
-                    { id: 1, name: 'Rocky' },
-                    { id: 2, name: 'Terminator' },
-                    { id: 3, name: 'Rambo' },
-                    { id: 4, name: 'Superman' },
-                    { id: 5, name: 'Batman' },
-                    { id: 6, name: 'Spiderman' },
-                    { id: 7, name: 'Superwoman' },
-                    { id: 8, name: 'Hulk' },
-                    { id: 9, name: 'Ironman' },
-                    { id: 10, name: 'Antman' }
-                ]
             }
 
             db = loadStorage(db)
@@ -74,116 +42,23 @@ export class BackendInterceptor implements HttpInterceptor {
             // }
 
             switch (true) {
-                case (method === 'GET' && url.includes("/user/list")): {
-                    const response = getAll(url, db.user)
-                    return response200(response);
+
+                case (method === 'POST' && url.includes("/auth/login")): {
+                    if (body.login == db.user[0].login && body.password == db.user[0].password) {
+                        sessionStorage.setItem('token', db.user[0].token)
+                        return response200({ "item": db.user[0] });
+                    }
+                    else {
+                        return responseError(401, "Musisz podać prawidłowy login i hasło.")
+                    }
                 }
 
-                case (method === 'GET' && url.includes("/user/")): {
-                    let item = db.user.find(user => user.id.toString() == getIdFromUrl())
-                    return response200({ "item": item });
+                case (method === 'GET' && url.includes("/api/user")): {
+                    return response200({ "item": db.user[0] });
                 }
 
-                case (method === 'POST' && url.includes("/user")): {
-                    body.id = db.user.length + 1
-                    body.documentLink = getPdfUrl()
-                    body.created = new Date().toJSON().slice(0, 10) + ' ' + new Date().toLocaleTimeString()
-                    db.user.push(body)
-                    saveStorage(db)
-                    return response200({ "item": body });
-                }
-
-                case (method === 'PUT' && url.includes("/user")): {
-                    let index = db.user.findIndex(user => user.id.toString() === getIdFromUrl())
-                    body.id = db.user[index].id;
-                    db.user[index] = body
-                    saveStorage(db)
-                    return response200({ "item": body });
-                }
-
-                case (method === 'DELETE' && url.includes("/user")): {
-                    db.user = db.user.filter(user => user.id.toString() !== getIdFromUrl())
-                    saveStorage(db)
-                    return response200();
-                    //return responseError(400, "Nie masz uprawnień, żeby usuwać użytkowników.")
-                }
-
-                case (method === 'GET' && url.includes("/role/list")): {
-                    const response = getAll(url, db.role)
-                    return response200(response);
-                }
-
-                case (method === 'PATCH' && url.includes("/user")): {
-                    let index = db.user.findIndex(user => user.id.toString() == getIdFromUrl())
-                    db.user[index].idRole = body.idRole
-                    saveStorage(db)
-                    return response200({ "item": body });
-                }
-
-                case (method === 'GET' && url.includes("/car/list")): {
-                    const response = getAll(url, db.car)
-                    return response200(response);
-                }
-
-                case (method === 'GET' && url.includes("/car/")): {
-                    let item = db.car.find(car => car.id.toString() == getIdFromUrl())
-                    return response200({ "item": item });
-                }
-
-                case (method === 'POST' && url.includes("/car")): {
-                    //body.id = db.car.length + 1
-                    db.car.push(body)
-                    saveStorage(db)
-                    return response200({ "item": body });
-                }
-
-                case (method === 'PUT' && url.includes("/car")): {
-                    let index = db.car.findIndex(car => car.id.toString() === getIdFromUrl())
-                    body.id = db.car[index].id;
-                    db.car[index] = body
-                    saveStorage(db)
-                    return response200({ "item": body });
-                }
-
-                case (method === 'DELETE' && url.includes("/car")): {
-                    db.car = db.car.filter(car => car.id.toString() !== getIdFromUrl())
-                    saveStorage(db)
-                    return response200();
-                }
-
-                case (method === 'GET' && url.includes("/hero/list")): {
-                    const response = getAll(url, db.hero)
-                    return response200(response);
-                }
-
-                case (method === 'GET' && url.includes("/hero/search/")): {
-                    let items = db.hero.filter(hero => hero.name.toLowerCase().includes(getIdFromUrl()))
-                    return response200(items);
-                }
-
-                case (method === 'GET' && url.includes("/hero/")): {
-                    let item = db.hero.find(hero => hero.id.toString() == getIdFromUrl())
-                    return response200({ "item": item });
-                }
-
-                case (method === 'POST' && url.includes("/hero")): {
-                    body.id = db.hero.length + 1
-                    db.hero.push(body)
-                    saveStorage(db)
-                    return response200({ "item": body });
-                }
-
-                case (method === 'PUT' && url.includes("/hero")): {
-                    let index = db.hero.findIndex(hero => hero.id.toString() === getIdFromUrl())
-                    body.id = db.hero[index].id;
-                    db.hero[index] = body
-                    saveStorage(db)
-                    return response200({ "item": body });
-                }
-
-                case (method === 'DELETE' && url.includes("/hero")): {
-                    db.hero = db.hero.filter(hero => hero.id.toString() !== getIdFromUrl())
-                    saveStorage(db)
+                case (method === 'GET' && url.includes("/auth/logout")): {
+                    sessionStorage.clear()
                     return response200();
                 }
 

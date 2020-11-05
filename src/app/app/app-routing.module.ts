@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { IsLoggedGuard } from '../auth/guards/is-logged.guard';
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: '*', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'home', component: HomeComponent, canActivate: [IsLoggedGuard] },
+  { path: 'login', loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule) },
 ];
 
 @NgModule({
