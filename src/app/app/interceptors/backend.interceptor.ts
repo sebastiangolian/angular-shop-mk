@@ -32,6 +32,12 @@ export class BackendInterceptor implements HttpInterceptor {
                 "user": [
                     { idUser: 1, login: "kowalskijan", password: "12345", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU" },
                 ],
+                "event": [
+                    { idEvent: 1, name: "Dzień dziecka" },
+                    { idEvent: 2, name: "Dzień niepodległości" },
+                    { idEvent: 3, name: "Bieg City Trail" },
+                    { idEvent: 4, name: "Wesele Marii i Nikodema" },
+                ],
             }
 
             db = loadStorage(db)
@@ -60,6 +66,11 @@ export class BackendInterceptor implements HttpInterceptor {
                 case (method === 'GET' && url.includes("/auth/logout")): {
                     sessionStorage.clear()
                     return response200();
+                }
+
+                case (method === 'GET' && url.includes("/api/event/list")): {
+                    const response = getAll(url, db.event)
+                    return response200(response);
                 }
 
                 default: ret = null;

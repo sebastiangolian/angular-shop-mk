@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '*', redirectTo: '/login', pathMatch: 'full'},
   { path: 'home', component: HomeComponent, canActivate: [IsLoggedGuard] },
   { path: 'login', loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule) },
+  { path: 'event', loadChildren: () => import('../event/event.module').then(m => m.EventModule),canActivate: [IsLoggedGuard]},
 ];
 
 @NgModule({

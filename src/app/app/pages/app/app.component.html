@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href=""><img src="assets/images/logo.jpg" width="100"></a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
-                (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-label="Toggle navigation">
+            (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div [class.collapse]="isCollapsed" class="navbar-collapse" id="navbar-content">
@@ -27,7 +27,7 @@
         </div>
     </nav>
 
-    <main class="ontainer-fluid p-0 position-relative flex-grow-1">
+    <main class="container px-0 pt-4 position-relative flex-grow-1">
         <app-messages></app-messages>
         <router-outlet></router-outlet>
     </main> 

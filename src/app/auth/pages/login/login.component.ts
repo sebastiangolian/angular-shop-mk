@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       {
         complete: () => {
           this.messageService.clearMessages()
-          this.router.navigate(['/home'])
+          this.router.navigate(['/event'])
         },
         error: error => this.messageService.sendMessage("Podany login lub hasło są nie prawidłowe, lub nie masz konta w aplikacji", "danger")
       }

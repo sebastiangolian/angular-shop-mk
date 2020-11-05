@@ -9,14 +9,12 @@ import { BackendInterceptor } from './interceptors/backend.interceptor';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '../shared/shared.module';
-import { PageConfirmComponent } from './pages/confirm/confirm.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PageConfirmComponent
   ],
   imports: [
     BrowserModule,
