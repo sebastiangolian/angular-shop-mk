@@ -15,6 +15,8 @@ import { InfoModalComponent } from './components/info-modal/info-modal.component
 import { AdblockDetectBannerComponent } from './components/adblock-detect-banner/adblock-detect-banner.component';
 import { IconBComponent } from './components/icon-b/icon-b.component';
 import { HtmlPipe } from './pipes/html.pipe';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+import { LazyLoadImageDirective } from './directives/lazy-load-image.directive';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { HtmlPipe } from './pipes/html.pipe';
     DatatableSearchComponent,
     MessagesComponent,
     InputFocusDirective,
+    LazyLoadImageDirective,
     BooleanPipe,
     ModalConfirmComponent,
     PadPipe,
@@ -29,7 +32,8 @@ import { HtmlPipe } from './pipes/html.pipe';
     InfoModalComponent,
     AdblockDetectBannerComponent,
     IconBComponent,
-    HtmlPipe
+    HtmlPipe,
+    ScrollToTopComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +52,9 @@ import { HtmlPipe } from './pipes/html.pipe';
     AdblockDetectComponent,
     InfoModalComponent,
     AdblockDetectBannerComponent,
-    IconBComponent
+    IconBComponent,
+    ScrollToTopComponent,
+    LazyLoadImageDirective
   ]
 })
 export class SharedModule { }

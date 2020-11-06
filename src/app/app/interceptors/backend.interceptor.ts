@@ -59,6 +59,16 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idPhoto: 19, url: "https://picsum.photos/id/119/300/200" },
                     { idPhoto: 20, url: "https://picsum.photos/id/120/300/200" },
                     { idPhoto: 21, url: "https://picsum.photos/id/121/300/200" },
+                    { idPhoto: 22, url: "https://picsum.photos/id/122/300/200" },
+                    { idPhoto: 23, url: "https://picsum.photos/id/123/300/200" },
+                    { idPhoto: 24, url: "https://picsum.photos/id/124/300/200" },
+                    { idPhoto: 25, url: "https://picsum.photos/id/125/300/200" },
+                    { idPhoto: 26, url: "https://picsum.photos/id/126/300/200" },
+                    { idPhoto: 27, url: "https://picsum.photos/id/127/300/200" },
+                    { idPhoto: 28, url: "https://picsum.photos/id/128/300/200" },
+                    { idPhoto: 29, url: "https://picsum.photos/id/129/300/200" },
+                    { idPhoto: 30, url: "https://picsum.photos/id/130/300/200" },
+                    { idPhoto: 31, url: "https://picsum.photos/id/131/300/200" },
                 ],
             }
 

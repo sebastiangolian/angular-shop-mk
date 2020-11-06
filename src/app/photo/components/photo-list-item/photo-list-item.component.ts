@@ -21,5 +21,9 @@ export class PhotoListItemComponent implements OnInit {
     this.itemSelected.emit(this.item)
   }
 
+  getUrl() {
+    return this.item.url;
+  } 
+
 
 }

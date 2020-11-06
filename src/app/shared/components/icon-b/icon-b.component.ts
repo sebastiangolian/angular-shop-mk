@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-icon-b',
+  selector: 'icon-b',
   templateUrl: './icon-b.component.html',
   styleUrls: ['./icon-b.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
