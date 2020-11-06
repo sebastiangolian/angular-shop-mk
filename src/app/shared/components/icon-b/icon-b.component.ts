@@ -14,7 +14,7 @@ export class IconBComponent implements OnInit {
   @Input() class: string = "icon-color";
   @Input() title: string = "";
 
-  href: string = "/assets/icons/"
+  href: string = "assets/icons/"
 
   constructor() { }
 
