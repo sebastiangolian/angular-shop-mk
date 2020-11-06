@@ -2,7 +2,7 @@
     <!-- NAVIGATION -->
     <nav id="home" class="navbar navbar-expand-md navbar-light bg-white sticky-top shadow">
         <div class="container-fluid">
-            <a class="navbar-brand" href=""><img src="assets/images/logo.jpg" width="100"></a>
+            <a class="navbar-brand" routerLink="event"><img src="assets/images/logo.jpg" width="100"></a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
             (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -10,13 +10,13 @@
             <div [class.collapse]="isCollapsed" class="navbar-collapse" id="navbar-content">
                 <ul class="navbar-nav mr-auto font-weight-bold">
                     <li class="nav-item">
-                        <a class="nav-link" href="http://www.martynaklewinowska.pl/">Strona główna</a>
+                        <a class="nav-link" [href]="'http://' + environments.host">Strona główna</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://www.martynaklewinowska.pl/kontakt/">Kontakt</a>
+                        <a class="nav-link" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://www.martynaklewinowska.pl/blog/">Blog</a>
+                        <a class="nav-link" [href]="'http://' + environments.host + '/blog/'">Blog</a>
                     </li>
                 </ul>
                 <ng-container *ngIf="(authService.currentUser | async) as currentUser">
@@ -37,11 +37,11 @@
         <div class="container-fluid bg-dark text-light">
             <div class="row p-3 text-center">
                 <div class="col-md-8 text-md-left">
-                    <a class="text-light text-decoration-none" href="https://sklep.martynaklewinowska.pl/resource/sklep.regulamin.pdf">Regulamin</a> |
-                    <a class="text-light text-decoration-none" href="https://sklep.martynaklewinowska.pl/resource/sklep.polityka.prywatnosci.pdf">Polityka prywatności</a>
+                    <a class="text-light text-decoration-none" [href]="'http://sklep.' + environments.host + '/resource/sklep.regulamin.pdf'">Regulamin</a> |
+                    <a class="text-light text-decoration-none" [href]="'http://sklep.' + environments.host + '/resource/sklep.polityka.prywatnosci.pdf'">Polityka prywatności</a>
                 </div>
                 <div class="col-md-4 text-md-right">
-                    <a class="text-light text-decoration-none" href="mailto:info@martynaklewinowska.pl">Copyright © martynaklewinowska.pl 2020</a>
+                    <a class="text-light text-decoration-none" [href]="'mailto:' + environments.email">Copyright © {{environments.host}} 2020</a>
                 </div>
             </div>
         </div>

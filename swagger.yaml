@@ -1,9 +1,9 @@
 swagger: "2.0"
 info:
-  description: "Sklep Marty Klewinowskiej"
+  description: "Sklep MK"
   version: "1.0.0"
-  title: "Sklep Marty Klewinowskiej"
-host: "sklep.martynaklewinowska.pl"
+  title: "Sklep MK"
+host: "mk.pl"
 basePath: "/api"
 schemes:
 - "https"

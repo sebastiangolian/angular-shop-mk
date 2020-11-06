@@ -1,5 +1,5 @@
 # angular-shop-mk
-Angular Martyna Klewinowska Shop
+Angular MK Shop
 
 ## Test app 
 [angular-shop-mk](https://sebastiangolian.github.io/angular-shop-mk)

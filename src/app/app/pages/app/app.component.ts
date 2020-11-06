@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class AppComponent {
   isCollapsed = true;
   title = 'angular-shop-mk';
+  environments: any = environment
 
   private _subscription: Subscription = new Subscription();
 
