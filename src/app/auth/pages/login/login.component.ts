@@ -12,9 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-
-  version: string
-  versionAPI: string
+  error: string | null = null
   model: Auth = new AuthModel();
   private _subscription: Subscription = new Subscription();
 
@@ -40,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.messageService.clearMessages()
           this.router.navigate(['/event'])
         },
-        error: error => this.messageService.sendMessage("Podany login lub hasło są nie prawidłowe, lub nie masz konta w aplikacji", "danger")
+        error: error => this.error = "Podany login lub hasło są nie prawidłowe, lub nie masz konta w aplikacji"
       }
     )
   }

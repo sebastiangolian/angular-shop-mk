@@ -1,4 +1,4 @@
-<img class="img-fluid img-thumbnail rounded" alt="image" [src]="item.url"
+<img *ngIf="item" class="img-fluid img-thumbnail rounded" alt="image" [src]="item.url"
 [class.shadow]="active" 
 [class.border-2]="active" 
 (mouseover)="active = true" 

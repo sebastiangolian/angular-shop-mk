@@ -1,7 +1,9 @@
 <!-- <img src="https://picsum.photos/seed/picsum/1900/1080" class="img-fluid opacity-3 mobile-100"> -->
 <div class="position-absolute mt-5 fixed-top">
-  <div class="col-8 col-sm-6 col-md-4 mx-auto bg-white rounded shadow p-5">
-    <form class="mt-5" name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm">
+  <div class="col-8 col-sm-6 col-md-5 mx-auto bg-white rounded shadow p-5">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm">
+
+      <div *ngIf="error" class="alert alert-danger" role="alert" [innerHTML]="error"></div>
       <!-- LOGIN -->
       <input type="text" class="form-control" name="login" [(ngModel)]="model.login" #login="ngModel"
         [class.is-invalid]="login.invalid && login.touched" placeholder="Login" minlength="3" maxlength="25"

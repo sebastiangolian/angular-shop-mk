@@ -27,3 +27,11 @@
 .border-2 {
     border-width: 2px;
 }
+.sticky-20 {
+    position: sticky;
+    top: 20px;
+}
+.sticky-100 {
+    position: sticky;
+    top: 100px;
+}
