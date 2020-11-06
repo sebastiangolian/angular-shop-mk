@@ -118,19 +118,19 @@ export class BackendInterceptor implements HttpInterceptor {
         }
 
         function loadStorage(db: any): any {
-            let localStorageDb = localStorage.getItem('angular-shop-martynaklewinowska')
+            let localStorageDb = localStorage.getItem('angular-shop-mk')
 
             if (localStorageDb != null) {
                 return JSON.parse(localStorageDb)
             }
             else {
-                localStorage.setItem('angular-shop-martynaklewinowska', JSON.stringify(db))
+                localStorage.setItem('angular-shop-mk', JSON.stringify(db))
                 return db
             }
         }
 
         function saveStorage(db) {
-            localStorage.setItem('angular-shop-martynaklewinowska', JSON.stringify(db))
+            localStorage.setItem('angular-shop-mk', JSON.stringify(db))
         }
 
         function getAll(url: string, items: any[]): any {

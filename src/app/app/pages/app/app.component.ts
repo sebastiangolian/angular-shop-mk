@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class AppComponent {
   isCollapsed = true;
-  title = 'angular-shop-martynaklewinowska';
+  title = 'angular-shop-mk';
 
   private _subscription: Subscription = new Subscription();
 

@@ -1,8 +1,8 @@
-# angular-shop-martynaklewinowska
+# angular-shop-mk
 Angular Martyna Klewinowska Shop
 
 ## Test app 
-[angular-shop-martynaklewinowska](https://sebastiangolian.github.io/angular-shop-martynaklewinowska)
+[angular-shop-mk](https://sebastiangolian.github.io/angular-shop-mk)
 
 ## Getting started
 ```bash

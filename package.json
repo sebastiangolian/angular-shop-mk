@@ -1,5 +1,5 @@
 {
-  "name": "angular-shop-martynaklewinowska",
+  "name": "angular-shop-mk",
   "version": "1.0.0",
   "browserslist": [
     "> 5%"
@@ -11,8 +11,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e --port=4201 --webdriverUpdate=true",
-    "predeploy": "ng build --prod --base-href=/angular-shop-martynaklewinowska/ --outputPath=dist/angular-shop-martynaklewinowska",
-    "deploy": "gh-pages -d dist/angular-shop-martynaklewinowska/",
+    "predeploy": "ng build --prod --base-href=/angular-shop-mk/ --outputPath=dist/angular-shop-mk",
+    "deploy": "gh-pages -d dist/angular-shop-mk/",
     "clear": "rmdir /q /s node_modules",
     "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer dist/stats.json"
   },

@@ -1,6 +1,6 @@
 export const environment = {
   name: 'prod',
-  title: 'angular-shop-martynaklewinowska',
+  title: 'angular-shop-mk',
   production: true,
   backendDelay: 0,
   httpRetry: 0,

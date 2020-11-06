@@ -9,7 +9,7 @@ describe('---------- app test -----------------', () => {
   });
 
   it('check title', () => {
-    expect(page.getPageTitle()).toEqual('angular-shop-martynaklewinowska');
+    expect(page.getPageTitle()).toEqual('angular-shop-mk');
   });
 
   afterEach(async () => {
