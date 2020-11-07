@@ -36,7 +36,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idEvent: 1, name: "Dzień dziecka" },
                     { idEvent: 2, name: "Dzień niepodległości" },
                     { idEvent: 3, name: "Bieg City Trail" },
-                    { idEvent: 4, name: "Wesele Marii i Nikodema" },
+                    { idEvent: 4, name: "Wesele Marii i Nikodema 2020-01-01" },
                 ],
                 "photo": [
                     { idPhoto: 1, idEvent: 1, url: "https://picsum.photos/id/101/600/400" },
@@ -84,7 +84,10 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idPhoto: 44, idEvent: 3, url: "https://picsum.photos/id/106/600/400" },
                     { idPhoto: 45, idEvent: 3, url: "https://picsum.photos/id/107/600/400" },
                     { idPhoto: 46, idEvent: 3, url: "https://picsum.photos/id/108/600/400" },
-                    { idPhoto: 47, idEvent: 3, url: "https://picsum.photos/id/109/600/400" },
+                    { idPhoto: 47, idEvent: 4, url: "https://picsum.photos/id/109/600/400" },
+                    { idPhoto: 48, idEvent: 4, url: "https://picsum.photos/id/107/600/400" },
+                    { idPhoto: 49, idEvent: 4, url: "https://picsum.photos/id/108/600/400" },
+                    { idPhoto: 50, idEvent: 4, url: "https://picsum.photos/id/109/600/400" },
                 ],
             }
 

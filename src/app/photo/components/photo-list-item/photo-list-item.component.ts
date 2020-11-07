@@ -24,6 +24,4 @@ export class PhotoListItemComponent implements OnInit {
   getUrl() {
     return this.item.url;
   } 
-
-
 }

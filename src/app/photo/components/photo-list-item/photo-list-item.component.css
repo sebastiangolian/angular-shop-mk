@@ -1,4 +1,4 @@
 img {
-    min-width: 300;
-    min-height: 200;
-  }
+  min-height: 200;
+  min-width: 100%;
+}

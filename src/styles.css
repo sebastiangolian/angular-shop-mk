@@ -1,3 +1,6 @@
+html {
+    overflow-y:scroll;
+}
 .btn-primary {
     background-color: #63C6AE!important;
     border-color: #63C6AE!important;
