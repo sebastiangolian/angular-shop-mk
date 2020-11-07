@@ -21,16 +21,11 @@ export class EventComponent implements OnInit, OnDestroy {
   constructor(private eventService: EventService, private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.onRefresh()
-  }
-
-  onRefresh() {
     this.events = this.getEvents()
-    this.photos = this.getPhotos()
   }
 
   onItemSelected(event: Event) {
-    console.log(event)
+    this.photos = this.getPhotos(event.idEvent)
   }
 
   private getEvents(): Observable<Event[]> {
@@ -39,8 +34,10 @@ export class EventComponent implements OnInit, OnDestroy {
     )
   }
 
-  private getPhotos(): Observable<Photo[]> {
-    return this.photoService.get().pipe(
+  private getPhotos(idEvent: string): Observable<Photo[]> {
+    let filters = {}
+    filters["idEvent"] = idEvent
+    return this.photoService.get(0,0,null,null,filters).pipe(
       map((photos: ApiList<Photo>) => photos.items)
     )
   }

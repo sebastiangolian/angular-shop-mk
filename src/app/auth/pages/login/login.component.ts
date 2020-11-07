@@ -6,12 +6,14 @@ import { Auth } from '../../interfaces/auth.interface';
 import { AuthModel } from '../../models/login.model';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  environments: any = environment
   error: string | null = null
   model: Auth = new AuthModel();
   private _subscription: Subscription = new Subscription();

@@ -9,7 +9,7 @@ export abstract class AbstractService<T> {
 
     constructor(protected http: HttpClient) { }
 
-    get(limit?: number, page?: number, sort?: string, order?: string, filters?: string): Observable<ApiList<T>> {
+    get(limit?: number, page?: number, sort?: string, order?: string, filters?: any): Observable<ApiList<T>> {
         let url = this.url + "/list"
         let parameters: string[] = [];
     
