@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core';
 import { Photo } from '../../interfaces/photo.interface';
 
 @Component({
@@ -10,9 +10,14 @@ import { Photo } from '../../interfaces/photo.interface';
 export class PhotoListComponent implements OnInit {
 
   @Input() photos: Photo[]
+  @Output() itemSelected: EventEmitter<Photo> = new EventEmitter<Photo>();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onItemSelected(photo: Photo) {
+    this.itemSelected.emit(photo)
   }
 
 }

@@ -1,8 +1,8 @@
 <div class="row mx-2">
     <div class="text-center text-md-left col-12 col-md-3 col-xl-2">
-        <event-list [events]="events | async" (itemSelected)="onItemSelected($event)"></event-list>
+        <event-list [events]="events | async" (itemSelected)="onEventSelected($event)"></event-list>
     </div>
     <div class="col-12 col-md-9 col-xl-10">
-        <photo-list class="row" [photos]="photos | async"></photo-list>
+        <photo-list class="row" [photos]="photos | async" (itemSelected)="onPhotoSelected($event)"></photo-list>
     </div>
 </div>

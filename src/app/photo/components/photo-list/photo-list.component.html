@@ -1,1 +1,6 @@
-<photo-list-item class="text-center text-md-left col-12 col-md-6 col-xl-4 mb-2 px-1" *ngFor="let photo of photos" [item]="photo"></photo-list-item>
+<photo-list-item 
+*ngFor="let photo of photos" 
+class="text-center text-md-left col-12 col-md-6 col-xl-4 mb-2 px-1" 
+[item]="photo" 
+(itemSelected)="onItemSelected($event)"
+></photo-list-item>

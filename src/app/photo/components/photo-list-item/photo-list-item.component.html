@@ -1,10 +1,11 @@
 <img 
 *ngIf="getUrl()" 
-[attr.data-class]="'img-fluid img-thumbnail rounded'"
+[attr.data-class]="'img-fluid img-thumbnail rounded hand'"
 [attr.data-src]="getUrl()"
 [class.shadow]="active" 
 [class.border-2]="active" 
 (mouseover)="active = true" 
 (mouseout)="active = false"
+(click)="onClick()"
 lazyLoadImage
 >
