@@ -3,7 +3,7 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../interfaces/event.interface';
 import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { PhotoService } from 'src/app/photo/services/photo.service';
 import { PhotoModalComponent } from 'src/app/photo/components/photo-modal/photo-modal.component';
@@ -16,18 +16,19 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 })
 export class EventComponent implements OnInit, OnDestroy {
 
-  events: Observable<Event[]>;
-  photos: Observable<Photo[]>;
+  events$: Observable<Event[]>
+  photos$: Observable<Photo[]>
+  photos: Photo[]
   private _subscription: Subscription = new Subscription();
 
   constructor(private eventService: EventService, private photoService: PhotoService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.events = this.getEvents()
+    this.events$ = this.getEvents()
   }
 
   onEventSelected(event: Event) {
-    this.photos = this.getPhotos(event.idEvent)
+    this.photos$ = this.getPhotos(event.idEvent)
   }
 
   onPhotoSelected(photo: Photo) {
@@ -44,7 +45,10 @@ export class EventComponent implements OnInit, OnDestroy {
     let filters = {}
     filters["idEvent"] = idEvent
     return this.photoService.get(0, 0, null, null, filters).pipe(
-      map((photos: ApiList<Photo>) => photos.items)
+      map((photos: ApiList<Photo>) => {
+        this.photos = photos.items
+        return photos.items
+      })
     )
   }
 
@@ -62,7 +66,9 @@ export class EventComponent implements OnInit, OnDestroy {
     const subject = new Subject<Photo>();
     this.modalService.show(PhotoModalComponent, {
       initialState: {
-        photo: photo
+        photo: photo,
+        photos: this.photos,
+        currentIndex: this.photos.findIndex(result => result.idPhoto == photo.idPhoto)
       },
       class: 'modal-xl',
       ignoreBackdropClick: true
