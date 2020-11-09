@@ -6,6 +6,7 @@ import { EventListComponent } from './components/event-list/event-list.component
 import { EventListItemComponent } from './components/event-list-item/event-list-item.component';
 import { PhotoModule } from '../photo/photo.module';
 import { SharedModule } from '../shared/shared.module';
+import { OfferModule } from '../offer/offer.module';
 
 @NgModule({
   declarations: [EventComponent, EventListComponent, EventListItemComponent],
@@ -13,7 +14,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     EventRoutingModule,
     SharedModule,
-    PhotoModule
+    PhotoModule,
+    OfferModule
   ]
 })
 export class EventModule { }

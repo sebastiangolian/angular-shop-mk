@@ -38,6 +38,37 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idEvent: 3, name: "Bieg City Trail" },
                     { idEvent: 4, name: "Wesele Marii i Nikodema 2020-01-01" },
                 ],
+                "offer": [
+                    { idOffer: 1, name: "Zdjęcie", products: [
+                        {idProduct:1, name: "Zdjęcie 10x15", price: 10.00},
+                        {idProduct:2, name: "Zdjęcie 13x18", price: 10.00},
+                        {idProduct:3, name: "Zdjęcie 15x21", price: 10.00},
+                        {idProduct:4, name: "Zdjęcie 18x25", price: 12.00},
+                        {idProduct:5, name: "Zdjęcie 21x30", price: 14.00},
+                        {idProduct:6, name: "Zdjęcie 25x38", price: 18.00},
+                        {idProduct:7, name: "Zdjęcie 30x40", price: 60.00},
+                        {idProduct:8, name: "Zdjęcie 40x50", price: 40.00},
+                        {idProduct:9, name: "Zdjęcie 50x70", price: 60.00},
+                        {idProduct:10, name: "Zdjęcie Legitymacyjne 4 szt", price: 10.00},
+                    ]},
+                    { idOffer: 2, name: "Fotomagnes", products: [
+                        {idProduct:11, name: "Fotomagnes 7,5x10", price: 10.00},
+                        {idProduct:12, name: "Fotomagnes 10x15", price: 16.00},
+                    ]},
+                    { idOffer: 3, name: "Kalendarz", products: [
+                        {idProduct:13, name: "Kalendarz A3", price: 30.00},
+                        {idProduct:14, name: "Kalendarz Z wsuwanym zdjęciem A4", price: 35.00},
+                        {idProduct:15, name: "Kalendarz Fotomagnes A4", price: 35.00},
+                    ]},
+                    { idOffer: 4, name: "Fotoobraz", products: [
+                        {idProduct:16, name: "Fotoobraz 20x30", price: 50.00},
+                        {idProduct:17, name: "Fotoobraz 30x45", price: 70.00},
+                        {idProduct:18, name: "Fotoobraz 50x70", price: 110.00},
+                    ]},
+                    { idOffer: 4, name: "Plik cyfrowy", products: [
+                        {idProduct:19, name: "Plik cyfrowy jpg", price: 30.00}
+                    ]},
+                ],
                 "photo": [
                     { idPhoto: 1, idEvent: 1, url: "https://picsum.photos/id/101/600/400" },
                     { idPhoto: 2, idEvent: 1, url: "https://picsum.photos/id/102/600/400" },
@@ -126,6 +157,11 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'GET' && url.includes("/api/photo/list")): {
                     const response = getAll(url, db.photo)
+                    return response200(response);
+                }
+
+                case (method === 'GET' && url.includes("/api/offer/list")): {
+                    const response = getAll(url, db.offer)
                     return response200(response);
                 }
 

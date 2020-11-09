@@ -1,11 +1,15 @@
 <div class="modal-body clearfix">
     <div class="modal-text p-3">
         <photo-modal-image [photo]="photo"></photo-modal-image>
+        <offer-list [offers]="offers$ | async"></offer-list>
     </div>
     <div class="modal-footer">
-        <!-- <button class="btn btn-primary" [disabled]="!f.valid || !f.value.name" (click)="onCreate()">{{title}}</button> -->
-        <button class="btn btn-primary" (click)="onPrev()">Poprzednie</button>
+        <button class="btn btn-primary" (click)="onPrev()">
+            <icon-b name="arrow-left"></icon-b>
+        </button>
         <button class="btn btn-primary" (click)="onCancel()">Zamknij</button>
-        <button class="btn btn-primary" (click)="onNext()">Następne</button>
+        <button class="btn btn-primary" (click)="onNext()">
+            <icon-b name="arrow-right"></icon-b>
+        </button>
     </div>
 </div>

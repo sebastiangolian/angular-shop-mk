@@ -7,6 +7,7 @@ import { PhotoListItemComponent } from './components/photo-list-item/photo-list-
 import { SharedModule } from '../shared/shared.module';
 import { PhotoModalComponent } from './components/photo-modal/photo-modal.component';
 import { PhotoModalImageComponent } from './components/photo-modal-image/photo-modal-image.component';
+import { OfferModule } from '../offer/offer.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { PhotoModalImageComponent } from './components/photo-modal-image/photo-m
   imports: [
     CommonModule,
     PhotoRoutingModule,
+    OfferModule,
     SharedModule
   ],
   exports: [

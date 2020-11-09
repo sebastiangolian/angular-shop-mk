@@ -1,6 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
+import { map } from 'rxjs/operators';
+import { Offer } from 'src/app/offer/interfaces/offer.interface';
+import { OfferService } from 'src/app/offer/services/offer.service';
+import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
 import { Photo } from '../../interfaces/photo.interface';
 
 @Component({
@@ -13,11 +18,16 @@ export class PhotoModalComponent implements OnInit {
   photo: Photo
   photos: Photo[]
   subject: Subject<Photo>
+  offers$: Observable<Offer[]>
   currentIndex: number
 
-  constructor(public bsModalRef: BsModalRef) { }
+  constructor(public bsModalRef: BsModalRef, public offerService: OfferService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.offers$ = this.offerService.get().pipe(
+      map((offers: ApiList<Offer>) => offers.items)
+    )
+  }
 
   onPrev() {
     if(this.currentIndex == 0) 
