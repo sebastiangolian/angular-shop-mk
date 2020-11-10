@@ -1,8 +1,9 @@
-<accordion-group [heading]="offer.name" (isOpenChange)="isOpenChange($event)">
+<accordion-group [heading]="offer.name | uppercase" (isOpenChange)="isOpenChange($event)" class="p-0">
     <icon-b 
     class="float-right pull-right"
     [classIcon]="iconClass" 
-    name="chevron-up" 
-    accordion-heading type="button"
+    name="chevron-up-white" 
+    accordion-heading 
     ></icon-b>
+    <product-list [products]="offer.products"></product-list>
 </accordion-group>

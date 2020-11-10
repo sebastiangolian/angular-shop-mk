@@ -1,0 +1,12 @@
+<table *ngIf="products" class="table p-0 m-0">
+    <tr>
+        <th class="border-0">Produkt</th>
+        <th class="border-0">Cena</th>
+        <th class="border-0">Ilość</th>
+    </tr>
+    <tr *ngFor="let product of products">
+        <td [innerHTML]="product.name"></td>
+        <td [innerHTML]="product.price"></td>
+        <td [innerHTML]="product.idProduct"></td>
+    </tr>
+</table>

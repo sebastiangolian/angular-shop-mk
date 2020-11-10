@@ -1,6 +1,9 @@
 html {
     overflow-y:scroll;
 }
+body {
+    font-family: 'PT Sans', sans-serif;
+}
 .btn-primary {
     background-color: #63C6AE!important;
     border-color: #63C6AE!important;
@@ -19,10 +22,17 @@ html {
     border-color:#459e87!important;
     color: #459e87!important;
 }
+.list-group-item {
+    border-color: #63C6AE!important;
+    color: #343a40!important
+}
 .list-group-item:hover {
     background-color: white;
     border-color:#459e87!important;
-    color: #459e87!important;
+    color: #343a40!important
+}
+.panel-heading {
+    background-color: #63C6AE!important
 }
 .hand {
     cursor: pointer;
@@ -40,15 +50,26 @@ html {
 }
 offer-list .card {
     margin-bottom: 1px;
+    font-size: 10px;
+}
+offer-list .card-body {
+    padding: 0;
+}
+offer-list .card-header{
+    border:0;
 }
 offer-list .card icon-b{
     margin-top: 5px;
     margin-right: 5px;
 }
 offer-list .btn-link, offer-list .btn-link:hover, offer-list .btn-link:focus{
-    color: black;
+    font-size: 14px;
+    color: white;
     text-decoration: none;
 }
 offer-list .panel-heading {
     padding: 5px;
+}
+offer-list td {
+    padding: 0.5rem!important;
 }
