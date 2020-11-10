@@ -1,15 +1,19 @@
 <div class="modal-body clearfix">
-    <div class="modal-text p-3">
-        <photo-modal-image [photo]="photo"></photo-modal-image>
-        <offer-list [offers]="offers$ | async"></offer-list>
+    <div class="modal-header border-0 p-0">
+        <icon-b class="close pull-right hand" aria-label="Close" name="x" (click)="onCancel()"></icon-b>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" (click)="onPrev()">
-            <icon-b name="arrow-left"></icon-b>
-        </button>
-        <button class="btn btn-primary" (click)="onCancel()">Zamknij</button>
-        <button class="btn btn-primary" (click)="onNext()">
-            <icon-b name="arrow-right"></icon-b>
-        </button>
+    <div class="modal-text p-3">
+        <div class="row">
+            <div class="col-12 col-lg-6 text-center mb-2">
+                <photo-modal-image [photo]="photo"></photo-modal-image>
+            </div>
+            <div class="col-12 col-lg-6">
+                <offer-list [offers]="offers$ | async"></offer-list>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between border-0 p-0">
+        <icon-b class="float-left d-block" name="arrow-left" (click)="onPrev()"></icon-b>
+        <icon-b class="float-right" name="arrow-right" (click)="onNext()"></icon-b>
     </div>
 </div>

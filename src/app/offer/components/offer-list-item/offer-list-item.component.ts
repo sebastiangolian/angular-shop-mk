@@ -10,17 +10,17 @@ import { Offer } from '../../interfaces/offer.interface';
 export class OfferListItemComponent implements OnInit {
 
   @Input() offer: Offer 
-  iconClass: string = 'float-right'
+  iconClass: string = ''
+  
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   isOpenChange(status: boolean) {
     if(status) {
-      this.iconClass = 'float-right rotate-180'
+      this.iconClass = 'rotate-180'
     } else {
-      this.iconClass = 'float-right'
+      this.iconClass = 'rotate-0'
     }
   }
 
