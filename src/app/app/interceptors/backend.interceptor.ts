@@ -33,10 +33,10 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idUser: 1, login: "kowalskijan", password: "12345", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU" },
                 ],
                 "event": [
-                    { idEvent: 1, name: "Dzień dziecka" },
-                    { idEvent: 2, name: "Dzień niepodległości" },
-                    { idEvent: 3, name: "Bieg City Trail" },
-                    { idEvent: 4, name: "Wesele Marii i Nikodema 2020-01-01" },
+                    { idEvent: 1, name: "Dzień dziecka", titlePhotoUrl: "https://picsum.photos/id/101/600/400" },
+                    { idEvent: 2, name: "Dzień niepodległości", titlePhotoUrl: "https://picsum.photos/id/125/600/400" },
+                    { idEvent: 3, name: "Bieg City Trail", titlePhotoUrl: "https://picsum.photos/id/101/600/400" },
+                    { idEvent: 4, name: "Wesele Marii i Nikodema 2020-01-01", titlePhotoUrl: "https://picsum.photos/id/109/600/400" },
                 ],
                 "offer": [
                     { idOffer: 1, name: "Zdjęcie", products: [

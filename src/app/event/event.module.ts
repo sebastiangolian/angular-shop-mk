@@ -7,9 +7,11 @@ import { EventListItemComponent } from './components/event-list-item/event-list-
 import { PhotoModule } from '../photo/photo.module';
 import { SharedModule } from '../shared/shared.module';
 import { OfferModule } from '../offer/offer.module';
+import { EventPhotoListComponent } from './components/event-photo-list/event-photo-list.component';
+import { EventPhotoListItemComponent } from './components/event-photo-list-item/event-photo-list-item.component';
 
 @NgModule({
-  declarations: [EventComponent, EventListComponent, EventListItemComponent],
+  declarations: [EventComponent, EventListComponent, EventListItemComponent, EventPhotoListComponent, EventPhotoListItemComponent],
   imports: [
     CommonModule,
     EventRoutingModule,

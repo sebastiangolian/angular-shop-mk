@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../interfaces/event.interface';
 import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
-import { map, tap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { PhotoService } from 'src/app/photo/services/photo.service';
 import { PhotoModalComponent } from 'src/app/photo/components/photo-modal/photo-modal.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-event',
@@ -21,9 +22,17 @@ export class EventComponent implements OnInit, OnDestroy {
   photos: Photo[]
   private _subscription: Subscription = new Subscription();
 
-  constructor(private eventService: EventService, private photoService: PhotoService, private modalService: BsModalService) { }
+  constructor(private eventService: EventService, private photoService: PhotoService, private modalService: BsModalService,
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if(id) {
+      this.photos$ = this.getPhotos(id)
+    } else {
+      this._subscription.add(this.getPhotosByRouterId())
+    }
+    
     this.events$ = this.getEvents()
   }
 
@@ -32,7 +41,7 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   onPhotoSelected(photo: Photo) {
-    this._subscription.add(this.postPhotoModal(photo))
+    this._subscription.add(this.openPhotoModal(photo))
   }
 
   private getEvents(): Observable<Event[]> {
@@ -52,7 +61,20 @@ export class EventComponent implements OnInit, OnDestroy {
     )
   }
 
-  private postPhotoModal(photo: Photo): Subscription {
+  private getPhotosByRouterId(): Subscription {
+    return this.router.events.pipe(
+      filter(event => event instanceof NavigationStart)
+    ).
+    subscribe(() => {
+      const id = this.route.snapshot.paramMap.get('id');
+      console.log(id)
+      if(id != null) {
+        this.photos$ = this.getPhotos(id)
+      }
+    })
+  }
+
+  private openPhotoModal(photo: Photo): Subscription {
     return this.photoModal(photo).subscribe({
       next: (photo: any) => {
         //if(role != null) this.postRole(role)

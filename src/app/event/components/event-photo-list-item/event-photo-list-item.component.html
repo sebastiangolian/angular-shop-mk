@@ -1,0 +1,7 @@
+<div class="card hand" [routerLink]="'/event/' + event.idEvent" (mouseover)="active = true"
+    [class.shadow]="active" (mouseout)="active = false" [class.border-2]="active">
+    <img *ngIf="getUrl()" [attr.data-class]="'card-img-top'" [attr.data-src]="getUrl()" lazyLoadImage>
+    <div class="card-body">
+        <p class="card-text text-center" [innerHTML]="event.name"></p>
+    </div>
+</div>

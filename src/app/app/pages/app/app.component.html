@@ -20,7 +20,7 @@
                     </li>
                 </ul>
                 <ng-container *ngIf="(authService.currentUser | async) as currentUser">
-                    <div class="navbar-nav px-3 text-dark">{{currentUser.login}}</div> 
+                    <div class="navbar-nav pr-3 text-dark">{{currentUser.login}}</div> 
                     <button *ngIf="currentUser" class="btn btn-outline-primary mr-2" type="button" (click)="onLogOut()">Wyloguj</button>
                 </ng-container>
             </div>
