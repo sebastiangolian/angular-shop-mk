@@ -11,7 +11,8 @@ export class EventListComponent implements OnInit {
 
   class: string = "list-group sticky-100"
   @Input() events: Event[]
-  @Output() itemSelected: EventEmitter<Event> = new EventEmitter<Event>();
+  @Input() activeIdEvent: string = null
+  
   constructor() { }
 
   ngOnInit(): void {}
@@ -25,9 +26,5 @@ export class EventListComponent implements OnInit {
       this.class = "list-group sticky-20"
     }
       
-  }
-
-  onItemSelected(event: Event) {
-    this.itemSelected.emit(event)
   }
 }

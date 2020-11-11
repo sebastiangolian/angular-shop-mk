@@ -1,3 +1,3 @@
 <ul [class]="class">
-  <event-list-item *ngFor="let event of events" [item]="event" (itemSelected)="onItemSelected($event)"></event-list-item>
+  <event-list-item *ngFor="let event of events" [activeIdEvent]="activeIdEvent" [event]="event"></event-list-item>
 </ul>

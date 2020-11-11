@@ -26,10 +26,15 @@ body {
     border-color: #63C6AE!important;
     color: #343a40!important
 }
-.list-group-item:hover {
+.list-group-item:hover, .list-group-item:focus {
     background-color: white;
     border-color:#459e87!important;
-    color: #343a40!important
+    color: #343a40!important;
+    outline:none;
+}
+.list-group-item.active {
+    background-color: #63C6AE!important;
+    color: white!important
 }
 .panel-heading {
     background-color: #63C6AE!important

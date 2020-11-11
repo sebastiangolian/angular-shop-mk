@@ -1,6 +1,6 @@
 <div class="row mx-2" *ngIf="(events$ | async) as events">
     <div class="text-center text-md-left col-12 col-md-3 col-xl-2">
-        <event-list [events]="events" (itemSelected)="onEventSelected($event)"></event-list>
+        <event-list [events]="events" [activeIdEvent]="idEvent" (itemSelected)="onEventSelected($event)"></event-list>
     </div>
     <div class="col-12 col-md-9 col-xl-10">
         <photo-list class="row" [photos]="photos$ | async" (itemSelected)="onPhotoSelected($event)"></photo-list>

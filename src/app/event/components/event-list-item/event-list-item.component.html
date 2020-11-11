@@ -1,4 +1,4 @@
-<li *ngIf="item" class="list-group-item p-1 mb-1 hand" [class.active]="active" 
-    (mouseover)="active = true" (mouseout)="active = false" (click)="onClick()">
-    {{ item.name }} 
+<li *ngIf="event" class="list-group-item p-1 mb-1 hand" [class.active]="activeIdEvent == event.idEvent"
+    [routerLink]="'/event/' + event.idEvent">
+    {{ event.name }}
 </li>
