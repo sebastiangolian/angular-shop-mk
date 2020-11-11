@@ -17,6 +17,7 @@ import { IconBComponent } from './components/icon-b/icon-b.component';
 import { HtmlPipe } from './pipes/html.pipe';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { LazyLoadImageDirective } from './directives/lazy-load-image.directive';
+import { NumberOfItemsComponent } from './components/number-of-items/number-of-items.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LazyLoadImageDirective } from './directives/lazy-load-image.directive';
     AdblockDetectBannerComponent,
     IconBComponent,
     HtmlPipe,
-    ScrollToTopComponent
+    ScrollToTopComponent,
+    NumberOfItemsComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,8 @@ import { LazyLoadImageDirective } from './directives/lazy-load-image.directive';
     AdblockDetectBannerComponent,
     IconBComponent,
     ScrollToTopComponent,
-    LazyLoadImageDirective
+    LazyLoadImageDirective,
+    NumberOfItemsComponent
   ]
 })
 export class SharedModule { }

@@ -5,8 +5,8 @@
         <th class="border-0">Ilość</th>
     </tr>
     <tr *ngFor="let product of products">
-        <td [innerHTML]="product.name"></td>
-        <td [innerHTML]="product.price | currency:'':''"></td> 
-        <td [innerHTML]="product.idProduct"></td>
+        <td class="align-middle" [innerHTML]="product.name"></td>
+        <td class="align-middle" [innerHTML]="product.price | currency:'':''"></td> 
+        <td class="align-middle"><number-of-items></number-of-items></td>
     </tr>
 </table>
