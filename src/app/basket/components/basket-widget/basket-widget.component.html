@@ -1,0 +1,5 @@
+<ng-container *ngIf="(basketSum$ | async) as sum">
+    <icon-b [classIcon]="'mb-1 mr-1'" [width]="32" [height]="32" [name]="'cart4'"></icon-b> 
+    <span *ngIf="sum > 0">{{sum | currency:'':''}} zł</span>
+    <span *ngIf="sum <= 0">0.00 zł</span>
+</ng-container>
