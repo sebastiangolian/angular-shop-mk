@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule) },
   { path: 'event', loadChildren: () => import('../event/event.module').then(m => m.EventModule),canActivate: [IsLoggedGuard]},
   { path: 'photo', loadChildren: () => import('../photo/photo.module').then(m => m.PhotoModule) },
+  { path: 'basket', loadChildren: () => import('../basket/basket.module').then(m => m.BasketModule) },
 ];
 
 @NgModule({
