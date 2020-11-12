@@ -1,6 +1,6 @@
 {
   "name": "angular-shop-mk",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "browserslist": [
     "> 5%"
   ],
@@ -44,6 +44,7 @@
     "@types/jasminewd2": "~2.0.8",
     "@types/node": "^12.12.50",
     "codelyzer": "^6.0.1",
+    "gh-pages": "^3.1.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
