@@ -133,7 +133,7 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'POST' && url.includes("/auth/login")): {
                     if (body.login == db.user[0].login && body.password == db.user[0].password) {
-                        sessionStorage.setItem('token', db.user[0].token)
+                        localStorage.setItem('token', db.user[0].token)
                         return response200({ "item": db.user[0] });
                     }
                     else {
@@ -146,7 +146,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'GET' && url.includes("/auth/logout")): {
-                    sessionStorage.clear()
+                    localStorage.clear()
                     return response200();
                 }
 

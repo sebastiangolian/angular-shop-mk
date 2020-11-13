@@ -21,7 +21,7 @@ export class AuthService {
   subject: BehaviorSubject<User> = new BehaviorSubject<User>(null)
   
   get token(): string { 
-    const sessionToken = sessionStorage.getItem('token')
+    const sessionToken = localStorage.getItem('token')
     if(!sessionToken)
       return this._token 
     else
@@ -34,7 +34,7 @@ export class AuthService {
     return this.http.post<Api<Token>>(this.url + "/login", auth).pipe(
       tap((auth:Api<Token>) => {
         this._token = auth.item.token
-        sessionStorage.setItem('token', auth.item.token)
+        localStorage.setItem('token', auth.item.token)
       })
     )
   }
@@ -71,7 +71,6 @@ export class AuthService {
     return this.logout().subscribe({
       complete: () => {
         localStorage.clear();
-        sessionStorage.clear();
         this.setToken(null)
         this.subject.next(null);
         this.router.navigate(['/login']); 

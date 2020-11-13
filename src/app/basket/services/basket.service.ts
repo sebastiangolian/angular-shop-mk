@@ -9,14 +9,13 @@ export class BasketService {
   subjectItems: BehaviorSubject<BasketItem[]> = new BehaviorSubject<BasketItem[]>([]);
   subjectSum: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   items: BasketItem[] = []
-  constructor() { 
-    this.subjectSum.next(-1)
+  constructor() {
     this.loadStorage()
   }
 
   update(item: BasketItem): void {
     let itemIndex: number = this.findIndex(item)
-    if(itemIndex > -1) {
+    if (itemIndex > -1) {
       this.items[itemIndex] = item
     } else {
       this.items.push(item)
@@ -28,14 +27,21 @@ export class BasketService {
 
   calculateSum(): number {
     let ret = 0
-    this.items.forEach((item)=> {
+    this.items.forEach((item) => {
       ret += item.amount * item.price
     })
     return ret
   }
 
+  clear(): void {
+    this.items = []
+    this.subjectItems.next([])
+    this.subjectSum.next(-1)
+    localStorage.removeItem('basket')
+  }
+
   private findIndex(item: BasketItem): number {
-    return this.items.findIndex((value)=> item.idProduct == value.idProduct && item.idPhoto == value.idPhoto)
+    return this.items.findIndex((value) => item.idProduct == value.idProduct && item.idPhoto == value.idPhoto)
   }
 
   private saveStorage(): void {
@@ -45,8 +51,11 @@ export class BasketService {
   private loadStorage(): void {
     let storageBasket = localStorage.getItem('basket')
     if (storageBasket != null) {
-        this.items = JSON.parse(storageBasket)
-        this.subjectSum.next(this.calculateSum())
+      this.items = JSON.parse(storageBasket)
+      this.subjectSum.next(this.calculateSum())
+    } else {
+      this.items = []
+      this.subjectSum.next(-1)
     }
-}
+  }
 }

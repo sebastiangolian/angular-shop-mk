@@ -25,7 +25,8 @@ export class ProductListComponent implements OnInit {
       idPhoto: this.photo.idPhoto,
       idProduct: product.idProduct,
       amount: amount,
-      price: product.price
+      price: product.price,
+      photo: this.photo
     }
     this.basketService.update(basketItem)
   }

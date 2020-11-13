@@ -53,6 +53,9 @@ body {
     position: sticky;
     top: 100px;
 }
+.no-outline {
+    outline:none;
+}
 offer-list .card {
     margin-bottom: 1px;
     font-size: 10px;
