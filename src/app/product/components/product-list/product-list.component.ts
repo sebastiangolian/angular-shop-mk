@@ -22,22 +22,21 @@ export class ProductListComponent implements OnInit {
 
   onChangeAmount(product: Product, amount: number): void {
     let basketItem: BasketItem = {
-      idPhoto: this.photo.idPhoto,
-      idProduct: product.idProduct,
       amount: amount,
       price: product.price,
-      photo: this.photo
+      photo: this.photo,
+      product: product
     }
     this.basketService.update(basketItem)
   }
 
   private updateProductsFromBasket(): void {
     const findBasketItems = this.basketService.items.filter(item =>
-      item.idPhoto == this.photo.idPhoto
+      item.photo.idPhoto == this.photo.idPhoto
     )
 
     findBasketItems.forEach(item => {
-      let index = this.products.findIndex(product => product.idProduct == item.idProduct)
+      let index = this.products.findIndex(product => product.idProduct == item.product.idProduct)
       if(index > -1) this.products[index].amount = item.amount
     })
     

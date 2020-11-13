@@ -41,7 +41,7 @@ export class BasketService {
   }
 
   private findIndex(item: BasketItem): number {
-    return this.items.findIndex((value) => item.idProduct == value.idProduct && item.idPhoto == value.idPhoto)
+    return this.items.findIndex((value) => item.product.idProduct == value.product.idProduct && item.photo.idPhoto == value.photo.idPhoto)
   }
 
   private saveStorage(): void {

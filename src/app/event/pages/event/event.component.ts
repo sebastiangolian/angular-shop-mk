@@ -36,7 +36,7 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   onPhotoSelected(photo: Photo) {
-    this._subscription.add(this.openPhotoModal(photo))
+    this._subscription.add(this.photoModal(photo).subscribe())
   }
 
   private getEvents(): Observable<Event[]> {
@@ -64,15 +64,6 @@ export class EventComponent implements OnInit, OnDestroy {
           this.photos$ = this.getPhotos(this.idEvent)
         }
       })
-  }
-
-  private openPhotoModal(photo: Photo): Subscription {
-    return this.photoModal(photo).subscribe({
-      next: (photo: any) => {
-        //if(role != null) this.postRole(role) 
-      },
-      error: (error) => console.error(error)
-    })
   }
 
   private photoModal(photo: Photo): Observable<Photo> {
