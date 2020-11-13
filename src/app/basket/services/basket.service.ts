@@ -11,6 +11,7 @@ export class BasketService {
   items: BasketItem[] = []
   constructor() { 
     this.subjectSum.next(-1)
+    this.loadStorage()
   }
 
   update(item: BasketItem): void {
@@ -22,6 +23,7 @@ export class BasketService {
     }
     this.subjectItems.next(this.items);
     this.subjectSum.next(this.calculateSum())
+    this.saveStorage()
   }
 
   calculateSum(): number {
@@ -35,4 +37,16 @@ export class BasketService {
   private findIndex(item: BasketItem): number {
     return this.items.findIndex((value)=> item.idProduct == value.idProduct && item.idPhoto == value.idPhoto)
   }
+
+  private saveStorage(): void {
+    localStorage.setItem('basket', JSON.stringify(this.items))
+  }
+
+  private loadStorage(): void {
+    let storageBasket = localStorage.getItem('basket')
+    if (storageBasket != null) {
+        this.items = JSON.parse(storageBasket)
+        this.subjectSum.next(this.calculateSum())
+    }
+}
 }
