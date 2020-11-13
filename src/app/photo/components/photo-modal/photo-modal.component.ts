@@ -35,6 +35,7 @@ export class PhotoModalComponent implements OnInit {
     else 
       this.currentIndex -= 1
     this.photo = this.photos[this.currentIndex]
+    this.ngOnInit()
   }
 
   onNext() {
@@ -43,6 +44,7 @@ export class PhotoModalComponent implements OnInit {
     else 
       this.currentIndex += 1
     this.photo = this.photos[this.currentIndex]
+    this.ngOnInit()
   }
 
   onCreate() {

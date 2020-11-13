@@ -20,8 +20,8 @@ export class BasketService {
     } else {
       this.items.push(item)
     }
-    this.subjectSum.next(this.calculateSum())
     this.subjectItems.next(this.items);
+    this.subjectSum.next(this.calculateSum())
   }
 
   calculateSum(): number {
@@ -33,6 +33,6 @@ export class BasketService {
   }
 
   private findIndex(item: BasketItem): number {
-    return this.items.findIndex((value)=> item.idProduct == value.idProduct)
+    return this.items.findIndex((value)=> item.idProduct == value.idProduct && item.idPhoto == value.idPhoto)
   }
 }

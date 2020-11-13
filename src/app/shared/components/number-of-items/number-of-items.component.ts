@@ -11,21 +11,25 @@ export class NumberOfItemsComponent implements OnInit {
   @Input() width: string = "16";
   @Input() height: string = "16";
   @Input() fontSize: string = "12";
-  @Input() count: number = 0
+  @Input() amount: number = 0
 
   @Output() plusClicked: EventEmitter<number> = new EventEmitter<number>()
   @Output() minusClicked: EventEmitter<number> = new EventEmitter<number>()
   constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.amount == null || this.amount == undefined) {
+      this.amount = 0
+    }
+  }
 
   onMinusClick() {
-    if(this.count > 0) this.count--
-    this.plusClicked.emit(this.count)
+    if(this.amount > 0) this.amount--
+    this.plusClicked.emit(this.amount)
   }
 
   onPlusClick() {
-    this.count++
-    this.plusClicked.emit(this.count)
+    this.amount++
+    this.plusClicked.emit(this.amount)
   }
 }

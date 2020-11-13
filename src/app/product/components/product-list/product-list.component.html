@@ -8,7 +8,7 @@
         <td class="align-middle" [innerHTML]="product.name"></td>
         <td class="align-middle" [innerHTML]="product.price | currency:'':''"></td>
         <td class="align-middle">
-            <number-of-items (plusClicked)="onChangeAmount(product,$event)"
+            <number-of-items [amount]="product.amount" (plusClicked)="onChangeAmount(product,$event)"
                 (minusClicked)="onChangeAmount(product,$event)"></number-of-items>
         </td>
     </tr>

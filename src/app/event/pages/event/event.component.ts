@@ -83,7 +83,7 @@ export class EventComponent implements OnInit, OnDestroy {
         photos: this.photos,
         currentIndex: this.photos.findIndex(result => result.idPhoto == photo.idPhoto)
       },
-      class: 'modal-xl',
+      class: 'modal-xl pt-4',
       ignoreBackdropClick: true
     }).content.subject = subject
     return subject

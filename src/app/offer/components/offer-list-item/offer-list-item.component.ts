@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { Offer } from '../../interfaces/offer.interface';
 
 @Component({
@@ -10,6 +11,7 @@ import { Offer } from '../../interfaces/offer.interface';
 export class OfferListItemComponent implements OnInit {
 
   @Input() offer: Offer 
+  @Input() photo: Photo 
   iconClass: string = ''
   
   constructor() { }
