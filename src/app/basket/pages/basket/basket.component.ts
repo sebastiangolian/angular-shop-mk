@@ -22,6 +22,10 @@ export class BasketComponent implements OnInit {
     this.events$ = this.getEvents()
   }
 
+  public getBasketItems(event: Event) {
+    return this.basketItems.filter((items) => items.photo.idEvent == event.idEvent)
+  }
+
   private getEvents(): Observable<Event[]> {
     return this.eventService.get().pipe(
       map((events: ApiList<Event>) => events.items),

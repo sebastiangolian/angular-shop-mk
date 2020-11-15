@@ -1,3 +1,6 @@
-{{basketItems | json}}
-
-{{events$ | async | json}}
+<basket-event 
+*ngFor="let event of events$ | async" 
+[event]="event" 
+[basketItems]="getBasketItems(event)" 
+[attr.class]="'d-block mb-3'">
+</basket-event>
