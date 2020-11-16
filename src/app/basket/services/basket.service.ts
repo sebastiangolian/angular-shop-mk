@@ -7,7 +7,8 @@ import { BasketItem } from '../interfaces/basket-item.interface';
 })
 export class BasketService {
   subjectItems: BehaviorSubject<BasketItem[]> = new BehaviorSubject<BasketItem[]>([]);
-  subjectSum: BehaviorSubject<number> = new BehaviorSubject<number>(null);
+  subjectSumPrice: BehaviorSubject<number> = new BehaviorSubject<number>(null);
+  subjectSumAmount: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   items: BasketItem[] = []
   constructor() {
     this.loadStorage()
@@ -21,11 +22,12 @@ export class BasketService {
       this.items.push(item)
     }
     this.subjectItems.next(this.items);
-    this.subjectSum.next(this.calculateSum())
+    this.subjectSumPrice.next(this.calculateSumPrice())
+    this.subjectSumAmount.next(this.calculateSumAmount())
     this.saveStorage()
   }
 
-  calculateSum(): number {
+  calculateSumPrice(): number {
     let ret = 0
     this.items.forEach((item) => {
       ret += item.amount * item.price
@@ -33,10 +35,19 @@ export class BasketService {
     return ret
   }
 
+  calculateSumAmount(): number {
+    let ret = 0
+    this.items.forEach((item) => {
+      ret += item.amount
+    })
+    return ret
+  }
+
   clear(): void {
     this.items = []
     this.subjectItems.next([])
-    this.subjectSum.next(-1)
+    this.subjectSumPrice.next(-1)
+    this.subjectSumAmount.next(-1)
     localStorage.removeItem('basket')
   }
 
@@ -52,10 +63,12 @@ export class BasketService {
     let storageBasket = localStorage.getItem('basket')
     if (storageBasket != null) {
       this.items = JSON.parse(storageBasket)
-      this.subjectSum.next(this.calculateSum())
+      this.subjectSumPrice.next(this.calculateSumPrice())
+      this.subjectSumAmount.next(this.calculateSumAmount())
     } else {
       this.items = []
-      this.subjectSum.next(-1)
+      this.subjectSumPrice.next(-1)
+      this.subjectSumAmount.next(-1)
     }
   }
 }

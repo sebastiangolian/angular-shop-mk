@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { bindCallback, Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { EventService } from 'src/app/event/services/event.service';
 import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
 import { BasketItem } from '../../interfaces/basket-item.interface';
@@ -16,14 +16,12 @@ export class BasketComponent implements OnInit {
 
   events$: Observable<Event[]>
   basketItems: BasketItem[] = this.basketService.items
+  basketSumPrice$: Observable<number> = this.basketService.subjectSumPrice.asObservable()
+  basketSumAmount$: Observable<number> = this.basketService.subjectSumAmount.asObservable()
   constructor(private basketService: BasketService, private eventService: EventService) { }
 
   ngOnInit(): void {
     this.events$ = this.getEvents()
-  }
-
-  public getBasketItems(event: Event) {
-    return this.basketItems.filter((items) => items.photo.idEvent == event.idEvent)
   }
 
   private getEvents(): Observable<Event[]> {

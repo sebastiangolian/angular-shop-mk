@@ -1,6 +1,17 @@
 <basket-event 
 *ngFor="let event of events$ | async" 
 [event]="event" 
-[basketItems]="getBasketItems(event)" 
+[basketItems]="basketItems" 
 [attr.class]="'d-block mb-3'">
 </basket-event>
+
+<h3>Podsumowanie: </h3>
+<div class="row mb-4">
+    <div class="col-6">
+        <div *ngIf="(basketSumAmount$ | async) as amount">Ilość: <span class="font-weight-bold">{{ amount }}</span> szt.</div>
+        <div *ngIf="(basketSumPrice$ | async) as sum">Do zapłaty: <span class="font-weight-bold">{{sum | currency:'':''}}</span> zł</div>
+    </div>
+    <div class="col-6">
+        <button class="btn btn-primary btn-lg float-right" [routerLink]="'/order'">Dalej</button>
+    </div>
+</div>

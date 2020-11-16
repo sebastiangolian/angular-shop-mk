@@ -1,12 +1,15 @@
 <div class="row">
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-3 text-right">
         <img [src]="photo.url" [style.height.px]="100" class="img-thumbnail">
     </div>
     <div class="col-12 col-md-9">
         <table class="table">
-            <tr *ngFor="let basketItem of basketItems">
+            <tr *ngFor="let basketItem of basketItemsByPhoto">
                 <td class="p-1 align-middle" [style.width.px]="200">{{basketItem.product.name}}</td>
-                <td class="p-1 align-middle"><number-of-items [amount]="basketItem.amount"></number-of-items></td>
+                <td class="p-1 align-middle text-center">
+                    <number-of-items [amount]="basketItem.amount" (plusClicked)="onChangeAmount(basketItem.product,$event)"
+                        (minusClicked)="onChangeAmount(basketItem.product,$event)"></number-of-items>
+                </td>
                 <td class="p-1 align-middle">{{basketItem.price*basketItem.amount  | currency:'':''}}zł</td>
             </tr>
         </table>
