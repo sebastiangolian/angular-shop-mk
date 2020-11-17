@@ -5,6 +5,6 @@ export interface Order {
     email: string
     emailConfirm: string
     comment: string
-    aggremments: string[]
+    agreements: string[]
     paymentMethod: string
 }

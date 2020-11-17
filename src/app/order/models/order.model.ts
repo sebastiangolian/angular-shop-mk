@@ -7,6 +7,6 @@ export class OrderModel implements Order {
     email: string
     emailConfirm: string
     comment: string
-    aggremments: string[]
+    agreements: string[]
     paymentMethod: string
 }

@@ -2,7 +2,8 @@ html {
     overflow-y:scroll;
 }
 body {
-    font-family: 'PT Sans', sans-serif;
+    /* font-family: 'PT Sans', sans-serif; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 .btn-primary {
     background-color: #63C6AE!important;
@@ -78,6 +79,6 @@ offer-list .btn-link, offer-list .btn-link:hover, offer-list .btn-link:focus{
 offer-list .panel-heading {
     padding: 5px;
 }
-offer-list td {
-    padding: 0.5rem!important;
+offer-list td, offer-list th {
+    padding: 0.2rem!important;
 }

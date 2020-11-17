@@ -120,6 +120,16 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idPhoto: 49, idEvent: 4, url: "https://picsum.photos/id/108/600/400" },
                     { idPhoto: 50, idEvent: 4, url: "https://picsum.photos/id/109/600/400" },
                 ],
+                "orderAgreement": [
+                    { idOrderAgreement: 1212, content: "Zapoznałem się i akceptuje <b><a href='https://sklep.mk.pl/resource/sklep.regulamin.pdf' target='_BLANK'>regulamin sklepu</a></b>", accepted: false, required: true },
+                    { idOrderAgreement: 3323, content: "Chcę dostać e-maila, kiedy w sklepie pojawią się zdjęcia z kolejnej sesji.", accepted: false, required: false },
+                    { idOrderAgreement: 4422, content: "Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.", accepted: false, required: false },
+                ],
+                "orderPaymentMethod": [
+                    { idOrderPaymentMethod: 2124, name: "Gotówka przy odbiorze" },
+                    { idOrderPaymentMethod: 7655, name: "Szybki przelew - Przelewy24" },
+                    { idOrderPaymentMethod: 2354, name: "Przelew tradycyjny" },
+                ],
             }
 
             db = loadStorage(db)
@@ -162,6 +172,16 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'GET' && url.includes("/api/offer/list")): {
                     const response = getAll(url, db.offer)
+                    return response200(response);
+                }
+
+                case (method === 'GET' && url.includes("/api/order-agreement/list")): {
+                    const response = getAll(url, db.orderAgreement)
+                    return response200(response);
+                }
+
+                case (method === 'GET' && url.includes("/api/order-payment-method/list")): {
+                    const response = getAll(url, db.orderPaymentMethod)
                     return response200(response);
                 }
 

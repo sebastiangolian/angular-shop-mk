@@ -1,14 +1,14 @@
 <div class="btn-group">
-    <label class="btn btn-secondary m-0" (click)="onMinusClick()">
+    <label class="btn btn-secondary btn-sm m-0" (click)="onMinusClick()">
         <svg [attr.width]="width" [attr.height]="height" viewBox="0 0 16 16" class="bi bi-dash" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
         </svg>
     </label>
-    <label class="btn btn-secondary m-0" [style.font-size.px]="fontSize">
+    <label class="btn btn-secondary btn-sm m-0" [style.font-size.px]="fontSize">
         {{amount}}
     </label>
-    <label class="btn btn-secondary m-0" (click)="onPlusClick()">
+    <label class="btn btn-secondary btn-sm m-0" (click)="onPlusClick()">
         <svg [attr.width]="width" [attr.height]="height" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"

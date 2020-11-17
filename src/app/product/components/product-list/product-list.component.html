@@ -5,9 +5,9 @@
         <th class="border-0">Ilość</th>
     </tr>
     <tr *ngFor="let product of products">
-        <td class="align-middle" [innerHTML]="product.name"></td>
+        <td class="align-middle" [innerHTML]="product.name" [style.width.%]="45"></td>
         <td class="align-middle" [innerHTML]="product.price | currency:'':''"></td>
-        <td class="align-middle">
+        <td class="align-middle" [style.width.%]="33">
             <number-of-items [amount]="product.amount" (plusClicked)="onChangeAmount(product,$event)"
                 (minusClicked)="onChangeAmount(product,$event)"></number-of-items>
         </td>
