@@ -9,6 +9,7 @@ import { OrderPaymentMethod } from '../../interfaces/order-payment-method.interf
 import { map } from 'rxjs/operators';
 import { OrderAgreement } from '../../interfaces/order-agreement.interface';
 import { OrderPaymentMethodService } from '../../services/offer-payment-method.service';
+import { BasketSummary } from 'src/app/basket/interfaces/basket-summary';
 
 @Component({
   selector: 'app-order',
@@ -17,8 +18,7 @@ import { OrderPaymentMethodService } from '../../services/offer-payment-method.s
 })
 export class OrderComponent implements OnInit {
 
-  basketSumPrice$: Observable<number> = this.basketService.subjectSumPrice.asObservable()
-  basketSumAmount$: Observable<number> = this.basketService.subjectSumAmount.asObservable()
+  basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
   agreements$: Observable<OrderAgreement[]> = this.orderAgreementService.get().pipe(map(items=>items.items))
   paymentMethods$: Observable<OrderPaymentMethod[]> = this.orderPaymentMethodService.get().pipe(map(items=>items.items))
   order: Order = new OrderModel();

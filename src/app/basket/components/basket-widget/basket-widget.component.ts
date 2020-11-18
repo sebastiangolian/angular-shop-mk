@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BasketSummary } from '../../interfaces/basket-summary';
 import { BasketService } from '../../services/basket.service';
 
 @Component({
@@ -10,8 +11,7 @@ import { BasketService } from '../../services/basket.service';
 })
 export class BasketWidgetComponent implements OnInit {
 
-  basketSum$: Observable<number> = this.basketService.subjectSumPrice.asObservable()
-  basketAmount$: Observable<number> = this.basketService.subjectSumAmount.asObservable()
+  basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
 
   constructor(private basketService: BasketService) { }
 

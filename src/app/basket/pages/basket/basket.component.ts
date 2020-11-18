@@ -6,6 +6,7 @@ import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
 import { BasketItem } from '../../interfaces/basket-item.interface';
 import { BasketService } from '../../services/basket.service';
 import { Event } from '../../../event/interfaces/event.interface';
+import { BasketSummary } from '../../interfaces/basket-summary';
 
 @Component({
   selector: 'app-basket',
@@ -16,8 +17,7 @@ export class BasketComponent implements OnInit {
 
   events$: Observable<Event[]>
   basketItems: BasketItem[]
-  basketSumPrice$: Observable<number> = this.basketService.subjectSumPrice.asObservable()
-  basketSumAmount$: Observable<number> = this.basketService.subjectSumAmount.asObservable()
+  basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
   constructor(private basketService: BasketService, private eventService: EventService) { }
 
   ngOnInit(): void {

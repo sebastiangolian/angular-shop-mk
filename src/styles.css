@@ -95,7 +95,7 @@ basket-widget icon-b {
     margin: 0;
 }
 basket-widget .badge{
-    position: relative;
-    top: 15px;
-    right: -30px;
+    position: absolute;
+    top: 10px;
+    margin-left:25px;
 }

@@ -1,6 +1,9 @@
 <h3>Podsumowanie: </h3>
-<div *ngIf="(basketSumAmount$ | async) as amount">Ilość: <span class="font-weight-bold">{{ amount }}</span> szt.</div>
-<div *ngIf="(basketSumPrice$ | async) as sum">Do zapłaty: <span class="font-weight-bold">{{sum | currency:'':''}}</span> zł</div>
+<ng-container *ngIf="(basketSummary$ | async) as summary">
+  <p>Ilość: <span class="font-weight-bold">{{ summary.sumAmount }}</span> szt.</p>
+  <p>Do zapłaty: <span class="font-weight-bold">{{summary.sumPrice | currency:'':''}}</span> zł</p>
+</ng-container>
+
 <form name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" autocomplete="off" class="mt-4">
     
     <div class="form-group">
