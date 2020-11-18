@@ -5,7 +5,7 @@
     </nav>
     <nav id="home" class="navbar navbar-expand-md navbar-light bg-white sticky-top shadow">
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
-        (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-label="Toggle navigation">
+            (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" routerLink="event"><img src="assets/images/logo.jpg" width="100"></a>
@@ -23,14 +23,15 @@
             </ul>
         </div>
         <ng-container *ngIf="(authService.currentUser | async) as currentUser">
-            <div class="navbar-nav pr-3 text-dark hand no-outline" [routerLink]="'/basket'"><basket-widget></basket-widget></div>
+            <div class="pr-3 text-dark hand no-outline" [routerLink]="'/basket'">
+                <basket-widget></basket-widget>
+            </div>
             <button class="btn btn-outline-primary" type="button" (click)="onLogOut()">
                 {{currentUser.login}}<br />
                 <span class="font-weight-light">Wyloguj</span>
             </button>
         </ng-container>
     </nav>
-
 
     <main class="container pt-4 position-relative flex-grow-1">
         <app-messages></app-messages>

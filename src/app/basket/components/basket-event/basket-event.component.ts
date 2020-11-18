@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core';
 import { Event } from 'src/app/event/interfaces/event.interface';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { BasketItem } from '../../interfaces/basket-item.interface';
@@ -13,6 +13,7 @@ export class BasketEventComponent implements OnInit {
 
   @Input() event: Event
   @Input() basketItems: BasketItem[]
+  @Output() basketItemDeleted: EventEmitter<BasketItem> = new EventEmitter<BasketItem>()
   basketItemsFilter: BasketItem[]
 
   photos: Photo[]
@@ -29,5 +30,9 @@ export class BasketEventComponent implements OnInit {
       (item, i, arr) => arr.findIndex(t => t.photo.idPhoto === item.photo.idPhoto) === i
     )
     .map((item)=> item.photo)
+  }
+
+  onBasketItemDeleted(basketItem: BasketItem) {
+    this.basketItemDeleted.emit(basketItem)
   }
 }

@@ -15,12 +15,13 @@ import { Event } from '../../../event/interfaces/event.interface';
 export class BasketComponent implements OnInit {
 
   events$: Observable<Event[]>
-  basketItems: BasketItem[] = this.basketService.items
+  basketItems: BasketItem[]
   basketSumPrice$: Observable<number> = this.basketService.subjectSumPrice.asObservable()
   basketSumAmount$: Observable<number> = this.basketService.subjectSumAmount.asObservable()
   constructor(private basketService: BasketService, private eventService: EventService) { }
 
   ngOnInit(): void {
+    this.basketItems = this.basketService.items
     this.events$ = this.getEvents()
   }
 
@@ -29,6 +30,11 @@ export class BasketComponent implements OnInit {
       map((events: ApiList<Event>) => events.items),
       map(items => items.filter(item => this.basketItems.find((bi) => bi.photo.idEvent == item.idEvent )))
     )
+  }
+
+  onBasketItemDelete(basketItem: BasketItem) {
+    this.basketService.delete(basketItem) 
+    this.ngOnInit()
   }
 
 }

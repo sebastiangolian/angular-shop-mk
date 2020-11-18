@@ -2,16 +2,23 @@
 *ngFor="let event of events$ | async" 
 [event]="event" 
 [basketItems]="basketItems" 
-[attr.class]="'d-block mb-3'">
+[attr.class]="'d-block mb-3'"
+(basketItemDeleted)="onBasketItemDelete($event)">
 </basket-event>
 
-<h3>Podsumowanie: </h3>
-<div class="row mb-4">
-    <div class="col-6">
-        <div *ngIf="(basketSumAmount$ | async) as amount">Ilość: <span class="font-weight-bold">{{ amount }}</span> szt.</div>
+<h3>Podsumowanie</h3>
+<div class="row mb-4" *ngIf="(basketSumAmount$ | async) as amount">
+    <div class="col-6" *ngIf="amount>0; else emptyTemplate">
+        <div *ngIf="amount">Ilość: <span class="font-weight-bold">{{ amount }}</span> szt.</div>
         <div *ngIf="(basketSumPrice$ | async) as sum">Do zapłaty: <span class="font-weight-bold">{{sum | currency:'':''}}</span> zł</div>
     </div>
-    <div class="col-6">
+    <div class="col-6" *ngIf="amount>-1">
         <button class="btn btn-primary btn-lg float-right" [routerLink]="'/order'">Dalej</button>
     </div>
+    <ng-template #emptyTemplate>
+        <div class="col-12">
+            <p>Brak produktów w koszyku</p>
+            <button class="btn btn-primary mt-3" [routerLink]="'../'">Cofnij</button>
+        </div>
+    </ng-template>
 </div>

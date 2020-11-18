@@ -11,6 +11,7 @@ import { BasketService } from '../../services/basket.service';
 export class BasketWidgetComponent implements OnInit {
 
   basketSum$: Observable<number> = this.basketService.subjectSumPrice.asObservable()
+  basketAmount$: Observable<number> = this.basketService.subjectSumAmount.asObservable()
 
   constructor(private basketService: BasketService) { }
 

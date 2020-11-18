@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Event } from 'src/app/event/interfaces/event.interface';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { Product } from 'src/app/product/interfaces/product.interface';
 import { BasketItem } from '../../interfaces/basket-item.interface';
@@ -14,6 +15,7 @@ export class BasketEventPhotoComponent implements OnInit {
 
   @Input() photo: Photo
   @Input() basketItems: BasketItem[]
+  @Output() basketItemDeleted: EventEmitter<BasketItem> = new EventEmitter<BasketItem>()
   basketItemsByPhoto: BasketItem[]
   constructor(private basketService: BasketService) { }
 
@@ -29,6 +31,10 @@ export class BasketEventPhotoComponent implements OnInit {
       product: product
     }
     this.basketService.update(basketItem)
+  }
+
+  onTrashClick(basketItem: BasketItem) {
+    this.basketItemDeleted.emit(basketItem)
   }
 
 }

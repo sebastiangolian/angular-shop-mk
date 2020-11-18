@@ -27,8 +27,16 @@ export class BasketService {
     this.saveStorage()
   }
 
+  delete(basketItem: BasketItem): void {
+    this.items = this.items.filter(item => item !== basketItem)
+    this.subjectItems.next(this.items);
+    this.subjectSumPrice.next(this.calculateSumPrice())
+    this.subjectSumAmount.next(this.calculateSumAmount())
+    this.saveStorage()
+  }
+
   calculateSumPrice(): number {
-    let ret = 0
+    let ret = -1
     this.items.forEach((item) => {
       ret += item.amount * item.price
     })
@@ -36,7 +44,7 @@ export class BasketService {
   }
 
   calculateSumAmount(): number {
-    let ret = 0
+    let ret = -1
     this.items.forEach((item) => {
       ret += item.amount
     })

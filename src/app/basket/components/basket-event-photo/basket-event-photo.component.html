@@ -11,6 +11,9 @@
                         (minusClicked)="onChangeAmount(basketItem.product,$event)"></number-of-items>
                 </td>
                 <td class="p-1 align-middle text-left" [style.width.%]="33">{{basketItem.price*basketItem.amount  | currency:'':''}}zł</td>
+                <td class="p-1 align-middle text-left" [style.width.%]="5">
+                    <icon-b [name]="'trash'" class="hand" (click)="onTrashClick(basketItem)"></icon-b>
+                </td>
             </tr>
         </table>
     </div>
