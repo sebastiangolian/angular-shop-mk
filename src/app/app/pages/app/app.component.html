@@ -23,13 +23,7 @@
         <div [class.collapse]="isCollapsed" class="navbar-collapse" id="navbar-content">
             <ul class="navbar-nav mr-auto font-weight-bold">
                 <li class="nav-item">
-                    <a class="nav-link" [href]="'http://' + environments.host">Strona główna</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [href]="'http://' + environments.host + '/blog/'">Blog</a>
+                    <a class="nav-link" routerLink="event">Strona główna</a>
                 </li>
             </ul>
         </div>
