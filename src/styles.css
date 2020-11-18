@@ -82,3 +82,15 @@ offer-list .panel-heading {
 offer-list td, offer-list th {
     padding: 0.2rem!important;
 }
+basket-widget {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+basket-widget icon-b, basket-widget span{
+    display: block;
+    text-align: center;
+}
+basket-widget icon-b {
+    padding: 0;
+    margin: 0;
+}

@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BasketModule } from '../basket/basket.module';
+import { BannerModule } from '../banner/banner.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { BasketModule } from '../basket/basket.module';
     SharedModule,
     BasketModule,
     ModalModule.forRoot(),
+    BannerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },

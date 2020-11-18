@@ -130,6 +130,9 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idOrderPaymentMethod: 7655, name: "Szybki przelew - Przelewy24" },
                     { idOrderPaymentMethod: 2354, name: "Przelew tradycyjny" },
                 ],
+                "banner": [
+                    { idBanner: 1, name: "banner-main", imgUrl: "assets/images/banner.jpg", url: "" }
+                ],
             }
 
             db = loadStorage(db)
@@ -182,6 +185,11 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'GET' && url.includes("/api/order-payment-method/list")): {
                     const response = getAll(url, db.orderPaymentMethod)
+                    return response200(response);
+                }
+
+                case (method === 'GET' && url.includes("/api/banner/list")): {
+                    const response = getAll(url, db.banner)
                     return response200(response);
                 }
 
