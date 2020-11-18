@@ -1,14 +1,25 @@
 <body class="h-100 d-flex flex-column">
     <!-- NAVIGATION -->
-    <nav id="banner" class="mx-auto">
-        <banner-widget [class]="'mx-auto d-block img-fluid'" [name]="'banner-main'"></banner-widget>
+    <nav id="banner">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 d-none d-lg-block">
+                    <a class="navbar-brand" routerLink="event">
+                        <img src="assets/images/logo.jpg" class="img-fluid" >
+                    </a>
+                </div>
+                <div class="col-12 col-lg-10">
+                    <banner-widget [class]="'d-block mx-lg-auto img-fluid'" [name]="'banner-main'"></banner-widget>
+                </div>
+            </div>
+        </div>
     </nav>
-    <nav id="home" class="navbar navbar-expand-md navbar-light bg-white sticky-top shadow">
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
+    <nav id="home" class="navbar navbar-expand-md navbar-light bg-white sticky-top border-bottom">
+        <!-- <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
             (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" routerLink="event"><img src="assets/images/logo.jpg" width="100"></a>
+        </button> -->
+        <a class="navbar-brand d-block d-md-none" routerLink="event"><img src="assets/images/logo.jpg" width="100"></a>
         <div [class.collapse]="isCollapsed" class="navbar-collapse" id="navbar-content">
             <ul class="navbar-nav mr-auto font-weight-bold">
                 <li class="nav-item">
