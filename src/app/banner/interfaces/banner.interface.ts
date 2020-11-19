@@ -3,4 +3,5 @@ export interface Banner {
     name: string
     imgUrl: string
     url: string
+    backgroundColor: string
 }

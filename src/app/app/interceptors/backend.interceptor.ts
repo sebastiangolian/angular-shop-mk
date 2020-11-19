@@ -131,7 +131,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idOrderPaymentMethod: 2354, name: "Przelew tradycyjny" },
                 ],
                 "banner": [
-                    { idBanner: 1, name: "banner-main", imgUrl: "assets/images/banner.jpg", url: "" }
+                    { idBanner: 1, name: "banner-main", imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
                 ],
             }
 

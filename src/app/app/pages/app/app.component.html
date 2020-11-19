@@ -1,47 +1,33 @@
 <body class="h-100 d-flex flex-column">
     <!-- NAVIGATION -->
     <nav id="banner">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-2 d-none d-lg-block">
-                    <a class="navbar-brand" routerLink="event">
-                        <img src="assets/images/logo.jpg" class="img-fluid" >
-                    </a>
-                </div>
-                <div class="col-12 col-lg-10">
-                    <banner-widget [class]="'d-block mx-lg-auto img-fluid'" [name]="'banner-main'"></banner-widget>
-                </div>
-            </div>
-        </div>
+        <banner-widget [class]="'d-block mx-auto img-fluid'" [name]="'banner-main'"></banner-widget>        
     </nav>
     <nav id="home" class="navbar navbar-expand-md navbar-light bg-white sticky-top border-bottom">
-        <!-- <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-content"
-            (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
-        <a class="navbar-brand d-block d-md-none" routerLink="event"><img src="assets/images/logo.jpg" width="100"></a>
-        <div [class.collapse]="isCollapsed" class="navbar-collapse" id="navbar-content">
-            <ul class="navbar-nav mr-auto font-weight-bold">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="event">Strona główna</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [href]="'http://' + environments.host + '/blog/'">Blog</a>
-                </li>
-            </ul>
-        </div>
-        <ng-container *ngIf="(authService.currentUser | async) as currentUser">
-            <div class="pr-3 text-dark hand no-outline" [routerLink]="'/basket'">
-                <basket-widget></basket-widget>
+        <div class="container-xl">
+            <div [class.collapse]="isCollapsed" class="navbar-collapse" id="navbar-content">
+                <ul class="navbar-nav mr-auto font-weight-bold">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="event">Strona główna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [href]="'http://' + environments.host + '/blog/'">Blog</a>
+                    </li>
+                </ul>
             </div>
-            <button class="btn btn-outline-primary" type="button" (click)="onLogOut()">
-                {{currentUser.login}}<br />
-                <span class="font-weight-light">Wyloguj</span>
-            </button>
-        </ng-container>
+            <ng-container *ngIf="(authService.currentUser | async) as currentUser">
+                <div class="pr-3 text-dark hand no-outline" [routerLink]="'/basket'">
+                    <basket-widget></basket-widget>
+                </div>
+                <button class="btn btn-outline-primary" type="button" (click)="onLogOut()">
+                    {{currentUser.login}}<br />
+                    <span class="font-weight-light">Wyloguj</span>
+                </button>
+            </ng-container>
+        </div>
     </nav>
 
     <main class="container pt-4 position-relative flex-grow-1">
@@ -51,17 +37,19 @@
     </main> 
     <!-- FOOTER -->
     <footer [class.d-none]="!init">
-        <div class="container-fluid bg-dark text-light">
-            <div class="row p-3 text-center">
-                <div class="col-md-8 text-md-left">
-                    <a class="text-light text-decoration-none" [href]="'http://' + environments.host">Strona główna</a> | 
-                    <a class="text-light text-decoration-none" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a> |
-                    <a class="text-light text-decoration-none" [href]="'http://' + environments.host + '/blog/'">Blog</a> |
-                    <a class="text-light text-decoration-none" [href]="'http://sklep.' + environments.host + '/resource/sklep.regulamin.pdf'">Regulamin</a> |
-                    <a class="text-light text-decoration-none" [href]="'http://sklep.' + environments.host + '/resource/sklep.polityka.prywatnosci.pdf'">Polityka prywatności</a>
-                </div>
-                <div class="col-md-4 text-md-right">
-                    <a class="text-light text-decoration-none" [href]="'mailto:' + environments.email">Copyright © {{environments.host}} 2020</a>
+        <div class="bg-dark text-light">
+            <div class="container-xl">
+                <div class="row p-3 text-center">
+                    <div class="col-md-8 text-md-left">
+                        <a class="text-light text-decoration-none" [href]="'http://' + environments.host">Strona główna</a> | 
+                        <a class="text-light text-decoration-none" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a> |
+                        <a class="text-light text-decoration-none" [href]="'http://' + environments.host + '/blog/'">Blog</a> |
+                        <a class="text-light text-decoration-none" [href]="'http://sklep.' + environments.host + '/resource/sklep.regulamin.pdf'">Regulamin</a> |
+                        <a class="text-light text-decoration-none" [href]="'http://sklep.' + environments.host + '/resource/sklep.polityka.prywatnosci.pdf'">Polityka prywatności</a>
+                    </div>
+                    <div class="col-md-4 text-md-right">
+                        <a class="text-light text-decoration-none" [href]="'mailto:' + environments.email">Copyright © {{environments.host}} 2020</a>
+                    </div>
                 </div>
             </div>
         </div>
