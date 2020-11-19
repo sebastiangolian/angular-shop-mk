@@ -1,7 +1,7 @@
 <basket-event 
 *ngFor="let event of events$ | async" 
 [event]="event" 
-[basketItems]="basketItems" 
+[basketItems]="basketItems$ | async" 
 [attr.class]="'d-block mb-3'"
 (basketItemDeleted)="onBasketItemDelete($event)">
 </basket-event>

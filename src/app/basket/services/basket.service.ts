@@ -62,9 +62,11 @@ export class BasketService {
     let storageBasket = localStorage.getItem('basket')
     if (storageBasket != null) {
       this.items = JSON.parse(storageBasket)
+      this.subjectItems.next(this.items)
       this.subjectSummary.next(this.calculate())
     } else {
       this.items = []
+      this.subjectItems.next(this.items)
       this.subjectSummary.next(null)
     }
   }

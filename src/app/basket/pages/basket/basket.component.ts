@@ -17,6 +17,7 @@ export class BasketComponent implements OnInit {
 
   events$: Observable<Event[]>
   basketItems: BasketItem[]
+  basketItems$: Observable<BasketItem[]> = this.basketService.subjectItems.asObservable()
   basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
   constructor(private basketService: BasketService, private eventService: EventService) { }
 
