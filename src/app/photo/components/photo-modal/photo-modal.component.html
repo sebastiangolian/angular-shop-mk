@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div class="modal-footer justify-content-between border-0 p-0">
+    <div *ngIf="photos.length > 1" class="modal-footer justify-content-between border-0 p-0">
         <icon-b class="float-left hand" width=40 height=40 name="arrow-left" (click)="onPrev()"></icon-b>
         <icon-b class="float-right hand" width=40 height=40 name="arrow-right" (click)="onNext()"></icon-b>
     </div>

@@ -6,7 +6,7 @@ export const environment = {
   email: 'info@mk.pl',
   version: require('../../package.json').version,
   production: false,
-  backendDelay: 0,
+  backendDelay: 50,
   httpRetry: 0,
   loggingBackendUrl: true,
   loggingBackendRequestHeaders: false,
