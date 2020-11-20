@@ -1,7 +1,2 @@
-<h3 class="text-center">{{event.name}}</h3>
-<basket-event-photo 
-*ngFor="let photo of photos" 
-[photo]="photo" 
-[basketItems]="basketItemsFilter"
-(basketItemDeleted)="onBasketItemDeleted($event)"
-></basket-event-photo>
+<h3 *ngIf="photos.length > 0" class="text-center">{{event.name}}</h3>
+<basket-event-photo *ngFor="let photo of photos" [photo]="photo"></basket-event-photo>

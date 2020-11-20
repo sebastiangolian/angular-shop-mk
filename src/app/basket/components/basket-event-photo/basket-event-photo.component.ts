@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Observable, Subject, Subscription } from 'rxjs';
-import { Event } from 'src/app/event/interfaces/event.interface';
+import { map } from 'rxjs/operators';
 import { PhotoModalComponent } from 'src/app/photo/components/photo-modal/photo-modal.component';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { Product } from 'src/app/product/interfaces/product.interface';
@@ -17,14 +17,14 @@ import { BasketService } from '../../services/basket.service';
 export class BasketEventPhotoComponent implements OnInit {
 
   @Input() photo: Photo
-  @Input() basketItems: BasketItem[]
-  @Output() basketItemDeleted: EventEmitter<BasketItem> = new EventEmitter<BasketItem>()
-  basketItemsByPhoto: BasketItem[]
+  @Input() basketItems$: Observable<BasketItem[]>
   private _subscription: Subscription = new Subscription();
   constructor(private basketService: BasketService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.basketItemsByPhoto = this.basketItems.filter(item => item.photo.idPhoto == this.photo.idPhoto)
+    this.basketItems$ = this.basketService.subjectItems.asObservable().pipe(
+      map(items => items.filter(item => item.photo.idPhoto == this.photo.idPhoto))
+    )
   }
 
   onChangeAmount(product: Product, amount: number): void {
@@ -38,7 +38,7 @@ export class BasketEventPhotoComponent implements OnInit {
   }
 
   onTrashClick(basketItem: BasketItem) {
-    this.basketItemDeleted.emit(basketItem)
+    this.basketService.delete(basketItem)
   }
 
   onPhotoSelected(photo: Photo) {

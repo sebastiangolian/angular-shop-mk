@@ -1,10 +1,10 @@
-<div class="row border p-2 mt-1">
+<div *ngIf="photo" class="row border p-2 mt-1">
     <div class="col-12 col-md-2 mb-3 text-center">
         <img [src]="photo.url" [style.height.px]="100" class="img-thumbnail" (click)="onPhotoSelected(photo)">
     </div>
     <div class="col-12 col-md-10">
         <table class="table table-borderless">
-            <tr *ngFor="let basketItem of basketItemsByPhoto">
+            <tr *ngFor="let basketItem of basketItems$ | async">
                 <td class="p-1 align-middle" [style.width.%]="33">{{basketItem.product.name}}</td>
                 <td class="p-1 align-middle text-center">
                     <number-of-items [amount]="basketItem.amount" (plusClicked)="onChangeAmount(basketItem.product,$event)"
