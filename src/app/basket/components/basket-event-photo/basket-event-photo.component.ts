@@ -35,6 +35,7 @@ export class BasketEventPhotoComponent implements OnInit {
       product: product
     }
     this.basketService.update(basketItem)
+    if(amount == 0) this.onTrashClick(basketItem)
   }
 
   onTrashClick(basketItem: BasketItem) {

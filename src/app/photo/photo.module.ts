@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PhotoModalComponent } from './components/photo-modal/photo-modal.component';
 import { PhotoModalImageComponent } from './components/photo-modal-image/photo-modal-image.component';
 import { OfferModule } from '../offer/offer.module';
+import { BasketModule } from '../basket/basket.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { OfferModule } from '../offer/offer.module';
     CommonModule,
     PhotoRoutingModule,
     OfferModule,
+    BasketModule,
     SharedModule
   ],
   exports: [
