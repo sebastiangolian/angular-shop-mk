@@ -33,10 +33,10 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idUser: 1, login: "kowalskijan", password: "12345", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU" },
                 ],
                 "event": [
-                    { idEvent: 1, name: "Dzień dziecka", titlePhotoUrl: "https://picsum.photos/id/101/600/400" },
-                    { idEvent: 2, name: "Dzień niepodległości", titlePhotoUrl: "https://picsum.photos/id/125/600/400" },
-                    { idEvent: 3, name: "Bieg City Trail", titlePhotoUrl: "https://picsum.photos/id/102/600/400" },
-                    { idEvent: 4, name: "Wesele Marii i Nikodema 2020-01-01", titlePhotoUrl: "https://picsum.photos/id/109/600/400" },
+                    { idEvent: 1, name: "Dzień dziecka", titlePhotoUrl: "https://picsum.photos/id/101/600/400", description: "<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
+                    { idEvent: 2, name: "Dzień niepodległości", titlePhotoUrl: "https://picsum.photos/id/125/600/400", description: "<h2 class='text-danger'>Dzień niepodległości</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
+                    { idEvent: 3, name: "Bieg City Trail", titlePhotoUrl: "https://picsum.photos/id/102/600/400", description: "<h2 class='text-info'>Bieg City Trail</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
+                    { idEvent: 4, name: "Wesele Marii i Nikodema 2020-01-01", titlePhotoUrl: "https://picsum.photos/id/109/600/400", description: "<h2 class='text-warning'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
                 ],
                 "offer": [
                     { idOffer: 1, name: "Zdjęcie", products: [
@@ -166,6 +166,11 @@ export class BackendInterceptor implements HttpInterceptor {
                 case (method === 'GET' && url.includes("/api/event/list")): {
                     const response = getAll(url, db.event)
                     return response200(response);
+                }
+
+                case (method === 'GET' && url.includes("/api/event")): {
+                    let item = db.event.find(event => event.idEvent.toString() == getIdFromUrl())
+                    return response200({ "item": item });
                 }
 
                 case (method === 'GET' && url.includes("/api/photo/list")): {

@@ -1,6 +1,7 @@
+<div class="col-12 mt-3 mt-md-0 mb-3" [innerHTML]="event.description"></div>
 <photo-list-item 
 *ngFor="let photo of photos" 
-class="text-center text-md-left col-12 col-md-6 col-xl-4 mb-2 px-1" 
+class="text-center text-md-left col-12 col-md-6 col-xl-4 mb-2 px-2" 
 [item]="photo" 
 (itemSelected)="onItemSelected($event)"
 ></photo-list-item>

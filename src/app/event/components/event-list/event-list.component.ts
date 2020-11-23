@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output, HostListener } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, HostListener } from '@angular/core';
 import { Event } from '../../interfaces/event.interface';
 
 @Component({

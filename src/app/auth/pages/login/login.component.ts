@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if(this.authService.token && this.authService.subject.value) {
-      this.router.navigate(['home'])
+      this.router.navigate(['event'])
     }
   }
 
