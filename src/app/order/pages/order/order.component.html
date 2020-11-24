@@ -58,7 +58,7 @@
       <label [innerHTML]="order.labels.emailConfirmLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="emailConfirm" [(ngModel)]="order.emailConfirm" #emailConfirm="ngModel"
         [class.is-invalid]="emailConfirm.invalid && emailConfirm.touched"
-        email required>
+        email required (paste)="$event.preventDefault()">
       <div *ngIf="emailConfirm.touched && emailConfirm.invalid" class="text-danger">
           <div *ngIf="!!emailConfirm.errors.required">Adres email jest wymagany</div>
           <div *ngIf="!!emailConfirm.errors.email">Adres email musi mieć format jankowalski@example.com</div>

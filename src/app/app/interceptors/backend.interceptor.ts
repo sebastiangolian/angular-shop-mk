@@ -120,7 +120,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idPhoto: "49", idEvent: "4", url: "https://picsum.photos/id/108/600/400", name: "photo 49" },
                     { idPhoto: "50", idEvent: "4", url: "https://picsum.photos/id/109/600/400", name: "photo 50" },
                 ],
-                "order": [
+                "orderDefinition": [
                     {
                         idOrder: "",
                         firstname: "Jan",
@@ -148,9 +148,11 @@ export class BackendInterceptor implements HttpInterceptor {
                             { idOrderPaymentMethod: "2124", name: "Gotówka przy odbiorze" },
                             { idOrderPaymentMethod: "7655", name: "Szybki przelew - Przelewy24" },
                             { idOrderPaymentMethod: "2354", name: "Przelew tradycyjny" },
-                        ]
+                        ],
+                        items: []
                     }
                 ],
+                "order": [],
                 "banner": [
                     { idBanner: "1", name: "banner-main", imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
                 ],
@@ -203,11 +205,16 @@ export class BackendInterceptor implements HttpInterceptor {
                     return response200(response);
                 }
 
+                case (method === 'GET' && url.includes("/api/order-definition")): {
+                    return response200({ "item": db.orderDefinition[0] });
+                }
+
                 case (method === 'GET' && url.includes("/api/order")): {
                     return response200({ "item": db.order[0] });
                 }
 
                 case (method === 'POST' && url.includes("/api/order")): {
+                    db.order[0] = body
                     db.order[0].idOrder = (Math.floor(Math.random() * 100000)).toString()
                     saveStorage(db)
                     return response200({ "item": db.order[0]});
