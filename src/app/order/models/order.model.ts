@@ -4,6 +4,7 @@ import { OrderPaymentMethod } from '../interfaces/order-payment-method.interface
 import { Order } from '../interfaces/order.interface'
 
 export class OrderModel implements Order {
+    idOrder?: string
     firstname: string
     lastname: string
     phone: string
@@ -11,6 +12,6 @@ export class OrderModel implements Order {
     emailConfirm: string
     comment: string
     labels: OrderLabel
-    agreements: OrderAgreement[]
-    paymentMethod: OrderPaymentMethod[]
+    agreements: OrderAgreement[] = []
+    paymentMethod: OrderPaymentMethod[] = []
 }

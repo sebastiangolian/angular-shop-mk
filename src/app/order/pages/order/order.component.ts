@@ -1,33 +1,58 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { OrderModel } from '../../models/order.model';
 import { Order } from '../../interfaces/order.interface';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { BasketService } from 'src/app/basket/services/basket.service';
 import { OrderService } from '../../services/offer.service';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BasketSummary } from 'src/app/basket/interfaces/basket-summary';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, OnDestroy {
 
   basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
-  order$: Observable<Order> = this.orderService.getOne().pipe(map(api=>api.item))
-  order: Order = new OrderModel();
+  order$: Observable<Order>
 
-  constructor(private basketService: BasketService, private orderService: OrderService) { }
+  private defaultOrder: Order = null
+  private confirmOrder: Order = new OrderModel()
 
-  ngOnInit(): void {}
+  private _subscription: Subscription = new Subscription();
 
-  onSubmit(f:NgForm) {
-    console.log("---- MODEL ----");
-    console.log(this.order);
-    console.log("---- FORM ----");
-    console.log(f.value);
+  constructor(private basketService: BasketService, private orderService: OrderService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.order$ = this.orderService.getOne().pipe(
+      tap(api=> this.defaultOrder = api.item),
+      map(api=>api.item)
+    )
   }
 
+  onSubmit(f:NgForm) {
+    this.confirmOrder.firstname = f.value.firstname
+    this.confirmOrder.lastname = f.value.lastname
+    this.confirmOrder.email = f.value.email
+    this.confirmOrder.phone = f.value.phone
+    this.confirmOrder.comment = f.value.comment
+    this.confirmOrder.paymentMethod = this.defaultOrder.paymentMethod.filter(method => method.idOrderPaymentMethod == f.value.paymentMethod)
+    this.confirmOrder.agreements = []
+    this.defaultOrder.agreements.forEach(agreement => {
+      if(f.value.agreements[agreement.idOrderAgreement]) {
+        this.confirmOrder.agreements.push(agreement)
+      }
+    })
+
+    this._subscription.add(this.orderService.create(this.confirmOrder).subscribe((result: Order) => {
+      this.router.navigate(['order-confirmation/', result.idOrder])
+    }))
+  }
+
+  ngOnDestroy() {
+    if (this._subscription) this._subscription.unsubscribe()
+  }
 }

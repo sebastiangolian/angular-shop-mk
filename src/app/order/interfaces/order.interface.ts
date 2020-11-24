@@ -3,6 +3,7 @@ import { OrderLabel } from './order-label.interface';
 import { OrderPaymentMethod } from './order-payment-method.interface';
 
 export interface Order {
+    idOrder?: string
     firstname: string
     lastname: string
     phone: string
