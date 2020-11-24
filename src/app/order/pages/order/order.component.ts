@@ -8,6 +8,7 @@ import { OrderService } from '../../services/offer.service';
 import { map, tap } from 'rxjs/operators';
 import { BasketSummary } from 'src/app/basket/interfaces/basket-summary';
 import { Router } from '@angular/router';
+import { Api } from 'src/app/shared/interfaces/api.interface';
 
 @Component({
   selector: 'app-order',
@@ -47,8 +48,9 @@ export class OrderComponent implements OnInit, OnDestroy {
       }
     })
 
-    this._subscription.add(this.orderService.create(this.confirmOrder).subscribe((result: Order) => {
-      this.router.navigate(['order-confirmation/', result.idOrder])
+    this._subscription.add(this.orderService.create(this.confirmOrder).subscribe((result: Api<Order>) => {
+      this.basketService.clear()
+      this.router.navigate(['order/', result.item.idOrder])
     }))
   }
 

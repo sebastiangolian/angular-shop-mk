@@ -208,9 +208,9 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'POST' && url.includes("/api/order")): {
-                    let item = db.order[0]
-                    item.idOrder = "5555"
-                    return response200({ "item": item });
+                    db.order[0].idOrder = (Math.floor(Math.random() * 100000)).toString()
+                    saveStorage(db)
+                    return response200({ "item": db.order[0]});
                 }
 
                 case (method === 'GET' && url.includes("/api/banner/list")): {
