@@ -1,11 +1,7 @@
-<img 
-*ngIf="getUrl()" 
-[attr.data-class]="'img-fluid img-thumbnail rounded hand'"
-[attr.data-src]="getUrl()"
-[class.shadow]="active" 
-[class.border-2]="active" 
-(mouseover)="active = true" 
-(mouseout)="active = false"
-(click)="onClick()"
-lazyLoadImage
->
+<div class="card rounded hand" (click)="onClick()" [class.shadow]="active"
+    (mouseover)="active = true" (mouseout)="active = false">
+    <img *ngIf="getUrl()" [attr.data-class]="'img-fluid card-img-top'" [attr.data-src]="getUrl()" lazyLoadImage>
+    <div class="card-body">
+        <p class="card-text">{{item.name}}</p>
+    </div>
+</div>
