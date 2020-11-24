@@ -11,7 +11,7 @@ export class ModalConfirmService {
 
   constructor(private modalService: BsModalService) { }
 
-  public confirm(content: string): Observable<boolean> {
+  confirm(content: string): Observable<boolean> {
     const subject = new Subject<boolean>();
     const modal = this.modalService.show(ModalConfirmComponent, {
       initialState: {

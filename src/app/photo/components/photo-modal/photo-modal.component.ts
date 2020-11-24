@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
@@ -21,7 +22,7 @@ export class PhotoModalComponent implements OnInit {
   offers$: Observable<Offer[]>
   currentIndex: number
 
-  constructor(public bsModalRef: BsModalRef, public offerService: OfferService) { }
+  constructor(private bsModalRef: BsModalRef, private offerService: OfferService, private router: Router) { }
 
   ngOnInit(): void {
     this.offers$ = this.offerService.get().pipe(
@@ -45,6 +46,11 @@ export class PhotoModalComponent implements OnInit {
       this.currentIndex += 1
     this.photo = this.photos[this.currentIndex]
     this.ngOnInit()
+  }
+
+  onBasketClick() {
+    this.onCancel()
+    this.router.navigate(['basket'])
   }
 
   onCreate() {

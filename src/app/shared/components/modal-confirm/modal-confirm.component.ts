@@ -13,7 +13,7 @@ export class ModalConfirmComponent implements OnInit {
   content: string
   subject: Subject<boolean>;
 
-  constructor(public bsModalRef: BsModalRef) { }
+  constructor(private bsModalRef: BsModalRef) { }
 
   ngOnInit(): void {}
 

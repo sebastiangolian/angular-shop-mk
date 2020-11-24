@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class HeaderService {
-    public subject = new BehaviorSubject<string>("");
+    subject = new BehaviorSubject<string>("");
 
     constructor(private titleService: Title) { }
 

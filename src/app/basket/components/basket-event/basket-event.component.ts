@@ -23,7 +23,7 @@ export class BasketEventComponent implements OnInit, OnDestroy {
     this._subscription.add(this.getBasketItems())
   }
 
-  public getBasketItems(): Subscription {
+  getBasketItems(): Subscription {
     return this.basketService.subjectItems.asObservable().
     pipe(
       map((items) => {
@@ -34,7 +34,7 @@ export class BasketEventComponent implements OnInit, OnDestroy {
     ).subscribe()
   }
 
-  public getUniquePhotos(basketItems): any[] {
+  getUniquePhotos(basketItems): any[] {
     return basketItems
     .filter(
       (item, i, arr) => arr.findIndex(t => t.photo.idPhoto === item.photo.idPhoto) === i
