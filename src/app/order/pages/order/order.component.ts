@@ -4,11 +4,8 @@ import { OrderModel } from '../../models/order.model';
 import { Order } from '../../interfaces/order.interface';
 import { Observable } from 'rxjs';
 import { BasketService } from 'src/app/basket/services/basket.service';
-import { OrderAgreementService } from '../../services/offer-agreement.service';
-import { OrderPaymentMethod } from '../../interfaces/order-payment-method.interface';
+import { OrderService } from '../../services/offer.service';
 import { map } from 'rxjs/operators';
-import { OrderAgreement } from '../../interfaces/order-agreement.interface';
-import { OrderPaymentMethodService } from '../../services/offer-payment-method.service';
 import { BasketSummary } from 'src/app/basket/interfaces/basket-summary';
 
 @Component({
@@ -19,19 +16,12 @@ import { BasketSummary } from 'src/app/basket/interfaces/basket-summary';
 export class OrderComponent implements OnInit {
 
   basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
-  agreements$: Observable<OrderAgreement[]> = this.orderAgreementService.get().pipe(map(items=>items.items))
-  paymentMethods$: Observable<OrderPaymentMethod[]> = this.orderPaymentMethodService.get().pipe(map(items=>items.items))
+  order$: Observable<Order> = this.orderService.getOne().pipe(map(api=>api.item))
   order: Order = new OrderModel();
 
-  constructor(private basketService: BasketService, private orderAgreementService: OrderAgreementService, private orderPaymentMethodService: OrderPaymentMethodService) { }
+  constructor(private basketService: BasketService, private orderService: OrderService) { }
 
-  ngOnInit(): void {
-    this.order.firstname = "Jan"
-    this.order.lastname = "Kowalski"
-    this.order.phone = "777777777"
-    this.order.email = "kowalskijan@gmail.com"
-    this.order.emailConfirm = "kowalskijan@gmail.com"
-  }
+  ngOnInit(): void {}
 
   onSubmit(f:NgForm) {
     console.log("---- MODEL ----");

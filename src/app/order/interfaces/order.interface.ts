@@ -1,3 +1,7 @@
+import { OrderAgreement } from './order-agreement.interface';
+import { OrderLabel } from './order-label.interface';
+import { OrderPaymentMethod } from './order-payment-method.interface';
+
 export interface Order {
     firstname: string
     lastname: string
@@ -5,6 +9,7 @@ export interface Order {
     email: string
     emailConfirm: string
     comment: string
-    agreements: string[]
-    paymentMethod: string
+    labels: OrderLabel
+    agreements: OrderAgreement[]
+    paymentMethod: OrderPaymentMethod[]
 }

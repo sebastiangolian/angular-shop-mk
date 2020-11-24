@@ -4,10 +4,10 @@
   <p>Do zapłaty: <span class="font-weight-bold">{{summary.sumPrice | currency:'':''}}</span> zł</p>
 </ng-container>
 
-<form name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" autocomplete="off" class="mt-4">
+<form *ngIf="(order$|async) as order" name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" autocomplete="off" class="mt-4">
     
     <div class="form-group">
-      <label>Imię:</label><span class="text-danger"> *</span>
+      <label [innerHTML]="order.labels.firstnameLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="firstname" [(ngModel)]="order.firstname" #firstname="ngModel"
         [class.is-invalid]="firstname.invalid && firstname.touched" minlength="2" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."]*'
         required>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group">
-      <label>Nazwisko:</label><span class="text-danger"> *</span>
+      <label [innerHTML]="order.labels.lastnameLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="lastname" [(ngModel)]="order.lastname" #lastname="ngModel"
         [class.is-invalid]="lastname.invalid && lastname.touched" minlength="2" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."-]*'
         required>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-group">
-      <label>Numer telefonu:</label>
+      <label [innerHTML]="order.labels.phoneLabel"></label>
       <input type="text" class="form-control" name="phone" [(ngModel)]="order.phone" #phone="ngModel"
         [class.is-invalid]="phone.invalid && phone.touched" minlength="5" maxlength="13" pattern="[0-9\s]*">
       <div *ngIf="phone.touched && phone.invalid" class="text-danger">
@@ -44,7 +44,7 @@
     </div>
 
     <div class="form-group">
-      <label>Adres email:</label><span class="text-danger"> *</span>
+      <label [innerHTML]="order.labels.emailLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="email" [(ngModel)]="order.email" #email="ngModel"
         [class.is-invalid]="email.invalid && email.touched"
         email required>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="form-group">
-      <label>Potwiedź adres email:</label><span class="text-danger"> *</span>
+      <label [innerHTML]="order.labels.emailConfirmLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="emailConfirm" [(ngModel)]="order.emailConfirm" #emailConfirm="ngModel"
         [class.is-invalid]="emailConfirm.invalid && emailConfirm.touched"
         email required>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="form-group">
-      <label>Uwagi do zamówienia:</label>
+      <label [innerHTML]="order.labels.commentLabel"></label>
       <textarea type="text" class="form-control" name="comment" [(ngModel)]="order.comment" #comment="ngModel" rows="4"
         [class.is-invalid]="comment.invalid && comment.touched" minlength="2" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s.",.]*'></textarea>
       <div *ngIf="comment.touched && comment.invalid" class="text-danger">
@@ -77,26 +77,22 @@
       </div>
     </div>
 
-    <div *ngFor="let agreement of agreements$|async; let i = index" class="form-group form-check" ngModelGroup="agreements">
+    <div *ngFor="let agreement of order.agreements; let i = index" class="form-group form-check" ngModelGroup="agreements">
       <input class="form-check-input" type="checkbox" [name]="agreement.idOrderAgreement" [(ngModel)]="agreement.accepted" #[{{agreement.idOrderAgreement}}]="ngModel" [required]="agreement.required">
       <label class="form-check-label" [innerHTML]="agreement.content"></label><span *ngIf="agreement.required" class="text-danger"> *</span>
     </div>
 
-    <label>Wybierz formę płatności:</label><span class="text-danger"> *</span>
-    <div *ngFor="let method of paymentMethods$|async; let i = index" class="form-group form-check">
+    <label class="font-weight-bold" [innerHTML]="order.labels.paymentMethodLabel"></label><span class="text-danger"> *</span>
+    <div *ngFor="let method of order.paymentMethod; let i = index" class="form-group form-check">
       <input class="form-check-input" type="radio" name="paymentMethod" [value]="method.idOrderPaymentMethod" required ngModel>
       <label class="form-check-label" [innerHTML]="method.name"></label>
     </div>
-
-    <!-- <div *ngIf="paymentMethod.invalid"> 
-      Gender required. 
-    </div>  -->
 
     <p>Form status: {{ f.status }}</p>
     <p>Form value: {{ f.value | json }}</p>
   
     <p class="btn-group">
-        <button class="btn btn-primary btn-lg" routerLink="/basket">Wróć</button>
-        <button type="submit" class="btn btn-primary btn-lg ml-1" [disabled]="!f.valid">Zamawiam z obowiązkiem zapłaty</button>
+        <button class="btn btn-primary" routerLink="/basket">Wróć</button>
+        <button type="submit" class="btn btn-primary ml-1" [disabled]="!f.valid">Zamawiam z obowiązkiem zapłaty</button>
     </p>
   </form>

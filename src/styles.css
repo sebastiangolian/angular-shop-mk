@@ -91,3 +91,8 @@ basket-widget .badge{
     top: 10px;
     margin-left:35px;
 }
+
+label a, label a:hover, label a:focus, label a:active {
+    color: #848689!important;
+    text-decoration: underline;
+}

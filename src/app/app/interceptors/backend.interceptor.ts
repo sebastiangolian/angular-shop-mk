@@ -30,7 +30,7 @@ export class BackendInterceptor implements HttpInterceptor {
 
             let db = {
                 "user": [
-                    { idUser: 1, login: "kowalskijan", password: "12345", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU" },
+                    { idUser: 1, login: "kowalskijan", password: "12345", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU"},
                 ],
                 "event": [
                     { idEvent: 1, name: "Dzień dziecka", titlePhotoUrl: "https://picsum.photos/id/101/600/400", description: "<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
@@ -120,21 +120,40 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idPhoto: 49, idEvent: 4, url: "https://picsum.photos/id/108/600/400", name: "photo 49" },
                     { idPhoto: 50, idEvent: 4, url: "https://picsum.photos/id/109/600/400", name: "photo 50" },
                 ],
-                "orderAgreement": [
-                    { idOrderAgreement: 1212, content: "Zapoznałem się i akceptuje <b><a href='https://sklep.mk.pl/resource/sklep.regulamin.pdf' target='_BLANK'>regulamin sklepu</a></b>", accepted: false, required: true },
-                    { idOrderAgreement: 3323, content: "Chcę dostać e-maila, kiedy w sklepie pojawią się zdjęcia z kolejnej sesji.", accepted: false, required: false },
-                    { idOrderAgreement: 4422, content: "Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.", accepted: false, required: false },
-                ],
-                "orderPaymentMethod": [
-                    { idOrderPaymentMethod: 2124, name: "Gotówka przy odbiorze" },
-                    { idOrderPaymentMethod: 7655, name: "Szybki przelew - Przelewy24" },
-                    { idOrderPaymentMethod: 2354, name: "Przelew tradycyjny" },
+                "order": [
+                    {
+                        firstname: "Jan",
+                        lastname: "Kowalski",
+                        phone: "777777777",
+                        email: "kowalskijan@gmail.com",
+                        emailConfirm: "kowalskijan@gmail.com",
+                        comment: "",
+                        labels: { 
+                            idOrderLabel: 3333, 
+                            firstnameLabel: "Imię",
+                            lastnameLabel: "Nazwisko",
+                            phoneLabel: "Numer telefonu",
+                            emailLabel: "Adres email",
+                            emailConfirmLabel: "Potwierdź adres email",
+                            commentLabel: "Uwagi do zamówienia",
+                            paymentMethodLabel: "Wybierz formę płatności"
+                        },
+                        agreements: [
+                            { idOrderAgreement: 1212, content: "Zapoznałem się i akceptuje <a href='https://sklep.mk.pl/resource/sklep.regulamin.pdf' target='_BLANK'>regulamin sklepu</a>", accepted: false, required: true },
+                            { idOrderAgreement: 3323, content: "Chcę dostać e-maila, kiedy w sklepie pojawią się zdjęcia z kolejnej sesji.", accepted: false, required: false },
+                            { idOrderAgreement: 4422, content: "Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.", accepted: false, required: false },
+                        ],
+                        paymentMethod: [
+                            { idOrderPaymentMethod: 2124, name: "Gotówka przy odbiorze" },
+                            { idOrderPaymentMethod: 7655, name: "Szybki przelew - Przelewy24" },
+                            { idOrderPaymentMethod: 2354, name: "Przelew tradycyjny" },
+                        ]
+                    }
                 ],
                 "banner": [
                     { idBanner: 1, name: "banner-main", imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
                 ],
             }
-
             db = loadStorage(db)
 
             //db.user = []
@@ -183,14 +202,8 @@ export class BackendInterceptor implements HttpInterceptor {
                     return response200(response);
                 }
 
-                case (method === 'GET' && url.includes("/api/order-agreement/list")): {
-                    const response = getAll(url, db.orderAgreement)
-                    return response200(response);
-                }
-
-                case (method === 'GET' && url.includes("/api/order-payment-method/list")): {
-                    const response = getAll(url, db.orderPaymentMethod)
-                    return response200(response);
+                case (method === 'GET' && url.includes("/api/order")): {
+                    return response200({ "item": db.order[0] });
                 }
 
                 case (method === 'GET' && url.includes("/api/banner/list")): {
@@ -212,7 +225,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 return JSON.parse(localStorageDb)
             }
             else {
-                localStorage.setItem('angular-shop-mk', JSON.stringify(db))
+                saveStorage(db)
                 return db
             }
         }
