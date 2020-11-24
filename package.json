@@ -1,6 +1,6 @@
 {
   "name": "angular-shop-mk",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "browserslist": [
     "> 5%"
   ],
@@ -29,6 +29,7 @@
     "bootstrap-icons": "^1.0.0",
     "file-saver": "^2.0.2",
     "ngx-bootstrap": "^6.1.0",
+    "ngx-cookie-service": "^10.1.1",
     "ngx-mask": "^10.0.1",
     "rxjs": "^6.6.0",
     "tslib": "^2.0.0",

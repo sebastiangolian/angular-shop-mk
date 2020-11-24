@@ -12,10 +12,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BasketModule } from '../basket/basket.module';
 import { BannerModule } from '../banner/banner.module';
+import { CookieBarComponent } from './components/cookie-bar/cookie-bar.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CookieBarComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,7 @@ import { BannerModule } from '../banner/banner.module';
     SharedModule,
     BasketModule,
     ModalModule.forRoot(),
+    AlertModule.forRoot(),
     BannerModule
   ],
   providers: [

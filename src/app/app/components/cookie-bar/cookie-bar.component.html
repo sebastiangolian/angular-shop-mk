@@ -1,0 +1,9 @@
+<ng-container *ngIf="visible">
+    <div id="cookie-bar">
+        <alert type="info" dismissible="true" (onClosed)="onClosed()">
+            Ta strona używa plików cookies. 
+            <a href="https://jakwylaczyccookie.pl/polityka-cookies/" target="_BLANK" (click)="onClosed()">Polityka Cookies.</a>&nbsp;
+            <a href="https://jakwylaczyccookie.pl/jak-wylaczyc-pliki-cookies/" target="_BLANK" (click)="onClosed()">Jak wyłączyć cookies?</a>
+        </alert>
+    </div>
+</ng-container>
