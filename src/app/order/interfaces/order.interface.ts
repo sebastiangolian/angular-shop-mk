@@ -4,13 +4,13 @@ import { OrderPaymentMethod } from './order-payment-method.interface';
 
 export interface Order {
     idOrder?: string
+    status?: string
     firstname: string
     lastname: string
     phone: string
     email: string
-    emailConfirm: string
     comment: string
     agreements: OrderAgreement[]
-    paymentMethod: OrderPaymentMethod[]
+    paymentMethod: OrderPaymentMethod
     items: BasketItem[]
 }

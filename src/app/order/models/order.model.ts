@@ -11,7 +11,7 @@ export class OrderModel implements Order {
     email: string
     emailConfirm: string
     comment: string
-    agreements: OrderAgreement[] = []
-    paymentMethod: OrderPaymentMethod[] = []
+    agreements: OrderAgreement[]
+    paymentMethod: OrderPaymentMethod
     items: BasketItem[]
 }

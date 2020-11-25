@@ -31,6 +31,11 @@ export class OrderComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit(): void {
+
+    if(this.basketService.items.length < 1) {
+      this.router.navigate(['event'])
+    }
+
     this.order$ = this.orderDefinitionService.getOne().pipe(
       tap(api=> this.orderDefinition = api.item),
       map(api=>api.item)
@@ -43,7 +48,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.confirmOrder.email = f.value.email
     this.confirmOrder.phone = f.value.phone
     this.confirmOrder.comment = f.value.comment
-    this.confirmOrder.paymentMethod = this.orderDefinition.paymentMethod.filter(method => method.idOrderPaymentMethod == f.value.paymentMethod)
+    this.confirmOrder.paymentMethod = this.orderDefinition.paymentMethod.find(method => method.idOrderPaymentMethod == f.value.paymentMethod)
     this.confirmOrder.agreements = []
     this.orderDefinition.agreements.forEach(agreement => {
       if(f.value.agreements[agreement.idOrderAgreement]) {

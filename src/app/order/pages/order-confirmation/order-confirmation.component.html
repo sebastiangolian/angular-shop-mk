@@ -1,5 +1,8 @@
 <ng-container *ngIf="(order$|async) as order">
     <h1>Potwierdzenie przyjęcia zamówienia nr {{order.idOrder}}</h1>
+    <p>Status zamówienia: <b>{{order.status}}</b></p>
+    <p>Sposób płatności: <b>{{order.paymentMethod.name}}</b></p>
+    <p>Potwierdzenie zamówienia zostało wysłane na adres e-mail: <b>{{order.email}}</b></p>
     <div *ngFor="let event of events">
         <order-list [event]="event" [basketItems]="order.items"></order-list>
     </div>

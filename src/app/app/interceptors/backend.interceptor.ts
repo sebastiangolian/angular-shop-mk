@@ -210,12 +210,14 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'GET' && url.includes("/api/order")): {
+                    //return responseError(404, "Zamówienie nie istnieje")
                     return response200({ "item": db.order[0] });
                 }
 
                 case (method === 'POST' && url.includes("/api/order")): {
                     db.order[0] = body
                     db.order[0].idOrder = (Math.floor(Math.random() * 100000)).toString()
+                    db.order[0].status = "Przyjęte"
                     saveStorage(db)
                     return response200({ "item": db.order[0]});
                 }
