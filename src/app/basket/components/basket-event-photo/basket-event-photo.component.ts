@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core'
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Event } from 'src/app/event/interfaces/event.interface';
 import { PhotoModalComponent } from 'src/app/photo/components/photo-modal/photo-modal.component';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { Product } from 'src/app/product/interfaces/product.interface';
@@ -16,6 +17,7 @@ import { BasketService } from '../../services/basket.service';
 })
 export class BasketEventPhotoComponent implements OnInit {
 
+  @Input() event: Event
   @Input() photo: Photo
   @Input() basketItems$: Observable<BasketItem[]>
   private _subscription: Subscription = new Subscription();
@@ -32,7 +34,8 @@ export class BasketEventPhotoComponent implements OnInit {
       amount: amount,
       price: product.price,
       photo: this.photo,
-      product: product
+      product: product,
+      event: this.event
     }
     this.basketService.update(basketItem)
     if(amount == 0) this.onTrashClick(basketItem)

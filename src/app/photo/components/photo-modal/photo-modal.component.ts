@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 import { map } from 'rxjs/operators';
+import { Event } from 'src/app/event/interfaces/event.interface';
 import { Offer } from 'src/app/offer/interfaces/offer.interface';
 import { OfferService } from 'src/app/offer/services/offer.service';
 import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
@@ -17,6 +18,7 @@ import { Photo } from '../../interfaces/photo.interface';
 })
 export class PhotoModalComponent implements OnInit {
   photo: Photo
+  event: Event
   photos: Photo[]
   subject: Subject<Photo>
   offers$: Observable<Offer[]>

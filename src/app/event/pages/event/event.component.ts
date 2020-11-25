@@ -22,6 +22,7 @@ export class EventComponent implements OnInit, OnDestroy {
   photos: Photo[]
   idEvent: string = null
   event$: Observable<Event>
+  event: Event
   private _subscription: Subscription = new Subscription();
 
   constructor(private eventService: EventService, private photoService: PhotoService, private modalService: BsModalService,
@@ -62,7 +63,10 @@ export class EventComponent implements OnInit, OnDestroy {
       subscribe((segement: UrlSegment[]) => {
         if(segement.length > 0) {
           this.idEvent = segement[0].path
-          this.event$ = this.eventService.getById(this.idEvent).pipe(map(event => event.item))
+          this.event$ = this.eventService.getById(this.idEvent).pipe(map(event => {
+            this.event = event.item
+            return event.item
+          }))
           this.photos$ = this.getPhotos(this.idEvent)
         }
       })
@@ -72,6 +76,7 @@ export class EventComponent implements OnInit, OnDestroy {
     const subject = new Subject<Photo>();
     this.modalService.show(PhotoModalComponent, {
       initialState: {
+        event: this.event,
         photo: photo,
         photos: this.photos,
         currentIndex: this.photos.findIndex(result => result.idPhoto == photo.idPhoto)
