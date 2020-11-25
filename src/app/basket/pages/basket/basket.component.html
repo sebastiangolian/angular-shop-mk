@@ -4,7 +4,7 @@
 [attr.class]="'d-block mb-3'">
 </basket-list>
 
-<h3>Podsumowanie</h3>
+<h1>Podsumowanie</h1>
 <div class="row mb-4" *ngIf="(basketSummary$ | async) as summary">
     <div class="col-6" *ngIf="summary.sumAmount>0; else emptyTemplate">
         <div *ngIf="summary.sumAmount">Ilość: <span class="font-weight-bold">{{ summary.sumAmount }}</span> szt.</div>

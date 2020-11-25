@@ -1,4 +1,4 @@
-<h3>Podsumowanie: </h3>
+<h1>Podsumowanie: </h1>
 <ng-container *ngIf="(basketSummary$ | async) as summary">
   <p>Ilość: <span class="font-weight-bold">{{ summary.sumAmount }}</span> szt.</p>
   <p>Do zapłaty: <span class="font-weight-bold">{{summary.sumPrice | currency:'':''}}</span> zł</p>

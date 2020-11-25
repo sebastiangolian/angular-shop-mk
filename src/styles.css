@@ -5,6 +5,10 @@ body {
     /* font-family: 'PT Sans', sans-serif; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+.h1,h1{font-size:2rem}
+.h2,h2{font-size:1.5rem}
+.h3,h3{font-size:1rem}
+.h4,h4{font-size:0.75rem}
 .btn-primary {
     background-color: #63C6AE!important;
     border-color: #63C6AE!important;

@@ -1,5 +1,5 @@
 <ng-container *ngIf="(order$|async) as order">
-    <h3>Potwierdzenie przyjęcia zamówienia nr {{order.idOrder}}</h3>
+    <h1>Potwierdzenie przyjęcia zamówienia nr {{order.idOrder}}</h1>
     <div *ngFor="let event of events">
         <order-list [event]="event" [basketItems]="order.items"></order-list>
     </div>
