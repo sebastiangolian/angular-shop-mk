@@ -10,12 +10,12 @@ import { BasketItem } from '../../interfaces/basket-item.interface';
 import { BasketService } from '../../services/basket.service';
 
 @Component({
-  selector: 'basket-event-photo',
-  templateUrl: './basket-event-photo.component.html',
-  styleUrls: ['./basket-event-photo.component.css'],
+  selector: 'basket-list-item',
+  templateUrl: './basket-list-item.component.html',
+  styleUrls: ['./basket-list-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BasketEventPhotoComponent implements OnInit {
+export class BasketListItemComponent implements OnInit {
 
   @Input() event: Event
   @Input() photo: Photo

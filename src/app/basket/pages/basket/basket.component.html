@@ -1,8 +1,8 @@
-<basket-event 
+<basket-list 
 *ngFor="let event of events$ | async" 
 [event]="event"  
 [attr.class]="'d-block mb-3'">
-</basket-event>
+</basket-list>
 
 <h3>Podsumowanie</h3>
 <div class="row mb-4" *ngIf="(basketSummary$ | async) as summary">

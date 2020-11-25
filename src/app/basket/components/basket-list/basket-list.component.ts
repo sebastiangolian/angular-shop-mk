@@ -6,12 +6,12 @@ import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { BasketService } from '../../services/basket.service';
 
 @Component({
-  selector: 'basket-event',
-  templateUrl: './basket-event.component.html',
-  styleUrls: ['./basket-event.component.css'],
+  selector: 'basket-list',
+  templateUrl: './basket-list.component.html',
+  styleUrls: ['./basket-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BasketEventComponent implements OnInit, OnDestroy {
+export class BasketListComponent implements OnInit, OnDestroy {
 
   @Input() event: Event
   photos: Photo[]

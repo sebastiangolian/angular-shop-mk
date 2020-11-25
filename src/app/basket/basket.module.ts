@@ -4,15 +4,15 @@ import { BasketRoutingModule } from './basket-routing.module';
 import { BasketComponent } from './pages/basket/basket.component';
 import { BasketWidgetComponent } from './components/basket-widget/basket-widget.component';
 import { SharedModule } from '../shared/shared.module';
-import { BasketEventComponent } from './components/basket-event/basket-event.component';
-import { BasketEventPhotoComponent } from './components/basket-event-photo/basket-event-photo.component';
+import { BasketListComponent } from './components/basket-list/basket-list.component';
+import { BasketListItemComponent } from './components/basket-list-item/basket-list-item.component';
 
 @NgModule({
   declarations: [
     BasketComponent,
     BasketWidgetComponent,
-    BasketEventComponent,
-    BasketEventPhotoComponent
+    BasketListComponent,
+    BasketListItemComponent
   ],
   imports: [
     CommonModule,

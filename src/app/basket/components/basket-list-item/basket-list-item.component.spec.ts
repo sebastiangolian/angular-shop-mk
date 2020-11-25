@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BasketListItemComponent } from './basket-list-item.component';
 
-import { BasketEventComponent } from './basket-event.component';
-
-describe('BasketEventComponent', () => {
-  let component: BasketEventComponent;
-  let fixture: ComponentFixture<BasketEventComponent>;
+describe('BasketListItemComponent', () => {
+  let component: BasketListItemComponent;
+  let fixture: ComponentFixture<BasketListItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BasketEventComponent ]
+      declarations: [ BasketListItemComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BasketEventComponent);
+    fixture = TestBed.createComponent(BasketListItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
