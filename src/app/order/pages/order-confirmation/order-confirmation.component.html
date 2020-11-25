@@ -1,9 +1,18 @@
-<ng-container *ngIf="(order$|async) as order">
-    <h1>Potwierdzenie przyjęcia zamówienia nr {{order.idOrder}}</h1>
-    <p>Status zamówienia: <b>{{order.status}}</b></p>
-    <p>Sposób płatności: <b>{{order.paymentMethod.name}}</b></p>
-    <p>Potwierdzenie zamówienia zostało wysłane na adres e-mail: <b>{{order.email}}</b></p>
-    <div *ngFor="let event of events">
-        <order-list [event]="event" [basketItems]="order.items"></order-list>
-    </div>
+<ng-container *ngIf="mockPayment; else notMock">
+    <h1>Płatności online - MOCK</h1>
+    <h3>Właśnie dokonujesz płatności...</h3>
 </ng-container>
+<ng-template #notMock>
+    <ng-container *ngIf="(order$|async) as order">
+        <h1>Potwierdzenie przyjęcia zamówienia nr {{order.idOrder}}</h1>
+        <p>Status zamówienia: <b>{{order.status}}</b></p>
+        <p>Sposób płatności: <b>{{order.paymentMethod.name}}</b></p>
+        <p>Potwierdzenie zamówienia zostało wysłane na adres e-mail: <b>{{order.email}}</b></p>
+
+        <p *ngIf="order.paymentMethod.url">Status płatności <b>{{order.statusPayment}}</b></p>
+        <button class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
+        <div *ngFor="let event of events">
+            <order-list [event]="event" [basketItems]="order.items"></order-list>
+        </div>
+    </ng-container>
+</ng-template>

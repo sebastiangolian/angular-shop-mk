@@ -12,7 +12,7 @@ import { OrderService } from '../../services/offer.service';
   styleUrls: ['./order-confirmation.component.css']
 })
 export class OrderConfirmationComponent implements OnInit {
-
+  mockPayment: boolean = false
   order$: Observable<Order>
   events: Event[] = []
   constructor(private route: ActivatedRoute, private orderService: OrderService) { }
@@ -25,6 +25,16 @@ export class OrderConfirmationComponent implements OnInit {
         return api.item
       })
     )
+  }
+
+  onOrderPay(order: Order): void {
+    if(order.paymentMethod.url.includes("mock")) {
+      this.mockPayment = true
+      setTimeout(() => this.mockPayment = false, 3000);
+    } else {
+
+    }
+   
   }
 
   private filterEvent(basketItems: BasketItem[]): Event[] {

@@ -145,9 +145,9 @@ export class BackendInterceptor implements HttpInterceptor {
                             { idOrderAgreement: "4422", content: "Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.", accepted: false, required: false },
                         ],
                         paymentMethod: [
-                            { idOrderPaymentMethod: "2124", name: "Gotówka przy odbiorze" },
-                            { idOrderPaymentMethod: "7655", name: "Szybki przelew - Przelewy24" },
-                            { idOrderPaymentMethod: "2354", name: "Przelew tradycyjny" },
+                            { idOrderPaymentMethod: "2124", name: "Gotówka przy odbiorze", url: null },
+                            { idOrderPaymentMethod: "7655", name: "Szybki przelew - Przelewy24", url: "https://mock.secure.przelewy24.pl/trnRequest" },
+                            { idOrderPaymentMethod: "2354", name: "Przelew tradycyjny", url: null },
                         ],
                         items: []
                     }
@@ -218,6 +218,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     db.order[0] = body
                     db.order[0].idOrder = (Math.floor(Math.random() * 100000)).toString()
                     db.order[0].status = "Przyjęte"
+                    db.order[0].statusPayment = "Nierozpoczęta"
                     saveStorage(db)
                     return response200({ "item": db.order[0]});
                 }
