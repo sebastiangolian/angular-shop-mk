@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BasketItem } from 'src/app/basket/interfaces/basket-item.interface';
 import { Event } from 'src/app/event/interfaces/event.interface';
 import { Order } from '../../interfaces/order.interface';
 import { OrderService } from '../../services/offer.service';
@@ -13,19 +14,27 @@ import { OrderService } from '../../services/offer.service';
 export class OrderConfirmationComponent implements OnInit {
 
   order$: Observable<Order>
-  events: Event[]
+  events: Event[] = []
   constructor(private route: ActivatedRoute, private orderService: OrderService) { }
 
   ngOnInit(): void {
     const idOrder = this.route.snapshot.paramMap.get('id');
     this.order$ = this.orderService.getById(idOrder).pipe(
       map(api => {
-        // api.item.items.forEach(item => {
-        //   this.events.push(item.product.)
-        // })
+        this.events = this.filterEvent(api.item.items)
         return api.item
       })
     )
+  }
+
+  private filterEvent(basketItems: BasketItem[]): Event[] {
+    let events: Event[] = []
+    basketItems.forEach(item => {
+      let isEvent = events.find(event => event.idEvent == item.event.idEvent)
+      if(!isEvent) events.push(item.event)
+    })
+
+    return events
   }
 
 }

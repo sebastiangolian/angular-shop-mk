@@ -37,6 +37,7 @@ export class BasketEventPhotoComponent implements OnInit {
       product: product,
       event: this.event
     }
+
     this.basketService.update(basketItem)
     if(amount == 0) this.onTrashClick(basketItem)
   }
@@ -53,6 +54,7 @@ export class BasketEventPhotoComponent implements OnInit {
     const subject = new Subject<Photo>();
     this.modalService.show(PhotoModalComponent, {
       initialState: {
+        event: this.event,
         photo: photo,
         photos: [photo],
         currentIndex: 0
