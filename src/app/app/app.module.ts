@@ -14,6 +14,8 @@ import { BasketModule } from '../basket/basket.module';
 import { BannerModule } from '../banner/banner.module';
 import { CookieBarComponent } from './components/cookie-bar/cookie-bar.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { JwtModule } from "@auth0/angular-jwt";
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,14 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     BasketModule,
     ModalModule.forRoot(),
     AlertModule.forRoot(),
-    BannerModule
+    BannerModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => { return localStorage.getItem("token") },
+        allowedDomains: environment.allowedDomains,
+        disallowedRoutes: environment.disallowedRoutes,
+      }
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },

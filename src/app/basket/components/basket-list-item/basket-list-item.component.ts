@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy} from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { BasketService } from '../../services/basket.service';
   styleUrls: ['./basket-list-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BasketListItemComponent implements OnInit {
+export class BasketListItemComponent implements OnInit, OnDestroy {
 
   @Input() event: Event
   @Input() photo: Photo
@@ -64,5 +64,9 @@ export class BasketListItemComponent implements OnInit {
     }).content.subject = subject
     return subject
   }
+
+  ngOnDestroy() {
+		if (this._subscription) this._subscription.unsubscribe()
+	}
 
 }
