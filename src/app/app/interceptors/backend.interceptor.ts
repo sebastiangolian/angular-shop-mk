@@ -218,7 +218,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'POST' && url.includes("/api/order/mock")): {
-                    db.order[0].isPaid = false
+                    db.order[0].isPaid = true
                     db.orderPaymentStatus[0].status = "W trakcie"
                     saveStorage(db)
                     if(db.orderPaymentStatus[0].isProgress == false) {
