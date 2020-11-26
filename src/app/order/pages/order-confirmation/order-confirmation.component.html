@@ -6,11 +6,10 @@
     <ng-container *ngIf="(order$|async) as order">
         <h1>Potwierdzenie przyjęcia zamówienia nr {{order.idOrder}}</h1>
         <p>Status zamówienia: <b>{{order.status}}</b></p>
-        <p>Sposób płatności: <b>{{order.paymentMethod.name}}</b></p>
         <p>Potwierdzenie zamówienia zostało wysłane na adres e-mail: <b>{{order.email}}</b></p>
-
-        <p *ngIf="order.paymentMethod.url">Status płatności <b>{{order.statusPayment}}</b></p>
-        <button class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
+        <p>Sposób płatności: <b>{{order.paymentMethod.name}}</b>
+        <p *ngIf="order.paymentMethod.url">Status płatności: <b><order-payment-status [order]="order"></order-payment-status></b></p>
+        <button *ngIf="!order.isPaid && order.paymentMethod.url" class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
         <div *ngFor="let event of events">
             <order-list [event]="event" [basketItems]="order.items"></order-list>
         </div>

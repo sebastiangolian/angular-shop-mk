@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
 import { OrderListItemComponent } from './components/order-list-item/order-list-item.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
+import { OrderPaymentStatusComponent } from './components/order-payment-status/order-payment-status.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { OrderListComponent } from './components/order-list/order-list.component
     OrderComponent,
     OrderConfirmationComponent,
     OrderListComponent,
-    OrderListItemComponent
+    OrderListItemComponent,
+    OrderPaymentStatusComponent
   ],
   imports: [
     CommonModule,

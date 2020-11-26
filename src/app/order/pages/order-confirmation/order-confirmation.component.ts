@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BasketItem } from 'src/app/basket/interfaces/basket-item.interface';
 import { Event } from 'src/app/event/interfaces/event.interface';
 import { Order } from '../../interfaces/order.interface';
@@ -15,11 +15,12 @@ export class OrderConfirmationComponent implements OnInit {
   mockPayment: boolean = false
   order$: Observable<Order>
   events: Event[] = []
+  idOrder: string
   constructor(private route: ActivatedRoute, private orderService: OrderService) { }
 
   ngOnInit(): void {
-    const idOrder = this.route.snapshot.paramMap.get('id');
-    this.order$ = this.orderService.getById(idOrder).pipe(
+    this.idOrder = this.route.snapshot.paramMap.get('id');
+    this.order$ = this.orderService.getById(this.idOrder).pipe(
       map(api => {
         this.events = this.filterEvent(api.item.items)
         return api.item
@@ -30,9 +31,13 @@ export class OrderConfirmationComponent implements OnInit {
   onOrderPay(order: Order): void {
     if(order.paymentMethod.url.includes("mock")) {
       this.mockPayment = true
-      setTimeout(() => this.mockPayment = false, 3000);
+      this.order$ = this.orderService.mock(order).pipe(map(api => api.item))
+      setTimeout(() => {
+        this.mockPayment = false
+      }, 3000);
     } else {
-
+      window.location.href = order.paymentMethod.url;
+      //window.location.replace(order.paymentMethod.url);
     }
    
   }

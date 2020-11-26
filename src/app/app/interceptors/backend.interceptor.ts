@@ -153,6 +153,9 @@ export class BackendInterceptor implements HttpInterceptor {
                     }
                 ],
                 "order": [],
+                "orderPaymentStatus": [
+                    {isProgress: false, status: "Nierozpoczęta"}
+                ],
                 "banner": [
                     { idBanner: "1", name: "banner-main", imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
                 ],
@@ -214,11 +217,32 @@ export class BackendInterceptor implements HttpInterceptor {
                     return response200({ "item": db.order[0] });
                 }
 
+                case (method === 'POST' && url.includes("/api/order/mock")): {
+                    db.order[0].isPaid = false
+                    db.orderPaymentStatus[0].status = "W trakcie"
+                    saveStorage(db)
+                    if(db.orderPaymentStatus[0].isProgress == false) {
+                        db.orderPaymentStatus[0].isProgress = true
+                        saveStorage(db)
+                        setTimeout(()=> {
+                            db.orderPaymentStatus[0].isProgress = false
+                            db.orderPaymentStatus[0].status = "Zakończona"
+                            db.order[0].isPaid = true
+                            saveStorage(db)
+                        },10000)
+                    }
+                    return response200({ "item": db.order[0] });
+                }
+
+                case (method === 'POST' && url.includes("/api/order-payment-status")): {
+                    return response200({ "item": db.orderPaymentStatus[0]});
+                }
+
                 case (method === 'POST' && url.includes("/api/order")): {
                     db.order[0] = body
                     db.order[0].idOrder = (Math.floor(Math.random() * 100000)).toString()
                     db.order[0].status = "Przyjęte"
-                    db.order[0].statusPayment = "Nierozpoczęta"
+                    db.order[0].isPaid = false
                     saveStorage(db)
                     return response200({ "item": db.order[0]});
                 }

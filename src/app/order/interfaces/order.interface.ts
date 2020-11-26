@@ -5,7 +5,7 @@ import { OrderPaymentMethod } from './order-payment-method.interface';
 export interface Order {
     idOrder?: string
     status?: string
-    statusPayment?: string
+    isPaid?: boolean
     firstname: string
     lastname: string
     phone: string

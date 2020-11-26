@@ -50,7 +50,7 @@ export abstract class AbstractService<T> {
         return this.http.delete<T>(this.url + "/" + id);
     }
     
-    private _trimItem(item: any) {
+    protected _trimItem(item: any) {
         Object.keys(item).map(k => {
             if(typeof item == "string") item[k] = item[k].trim()
         });
