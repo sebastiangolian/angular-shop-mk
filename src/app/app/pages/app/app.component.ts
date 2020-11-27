@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { UserService } from 'src/app/user/services/user.service';
 import { BasketService } from 'src/app/basket/services/basket.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,13 +18,13 @@ export class AppComponent {
 
   private _subscription: Subscription = new Subscription();
 
-  constructor(public authService: AuthService, private route: ActivatedRoute, private router: Router, private basketService: BasketService) {
+  constructor(public userService: UserService, private route: ActivatedRoute, private router: Router, private basketService: BasketService) {
     this._subscription.add(this.displayFooter())
   }
 
   onLogOut() {
     this.basketService.clear()
-    this._subscription.add(this.authService.logoutSubscription())
+    this._subscription.add(this.userService.logoutSubscription())
   }
 
   private displayFooter(): Subscription {

@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { Auth } from '../../interfaces/auth.interface';
-import { AuthModel } from '../../models/login.model';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { UserModel } from '../../models/user.model';
+import { User } from '../../interfaces/user.interface';
+import { UserService } from '../../services/user.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -15,26 +15,26 @@ import { environment } from 'src/environments/environment';
 export class LoginComponent implements OnInit, OnDestroy {
   environments: any = environment
   error: string | null = null
-  model: Auth = new AuthModel();
+  model: User = new UserModel();
   private _subscription: Subscription = new Subscription();
 
-  constructor(private authService: AuthService, private router: Router, private messageService: MessageService) { }
+  constructor(private userService: UserService, private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    if(this.authService.token && this.authService.subject.value) {
+    if(this.userService.token && this.userService.subject.value) {
       this.router.navigate(['event'])
     }
   }
 
   onSubmit(f: NgForm) {
-    let auth: Auth = new AuthModel()
-    auth.login = this.model.login
-    auth.password = this.model.password
-    this._subscription.add(this.getToken(auth))
+    let user: User = new UserModel()
+    user.login = this.model.login
+    user.password = this.model.password
+    this._subscription.add(this.getToken(user))
   }
 
-  private getToken(auth: AuthModel): Subscription {
-    return this.authService.getToken(auth).subscribe(
+  private getToken(user: UserModel): Subscription {
+    return this.userService.getToken(user).subscribe(
       {
         complete: () => {
           this.messageService.clearMessages()

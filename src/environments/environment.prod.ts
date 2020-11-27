@@ -12,7 +12,6 @@ export const environment = {
   loggingBackendRequest: false,
   loggingBackendResponse: false,
   apiEndpoint: '/api',
-  authEndpoint: '/auth',
   messageDismissible: false,
   allowedDomains: ["localhost"],
   disallowedRoutes: [],

@@ -2,21 +2,17 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { Api } from '../../shared/interfaces/api.interface';
-import { Token } from '../interfaces/token.interface';
-import { UserService } from './user.service';
 import { User } from '../interfaces/user.interface';
-import { Auth } from '../interfaces/auth.interface';
 import { Router } from '@angular/router';
+import { AbstractService } from 'src/app/shared/services/abstract.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class UserService extends AbstractService<User> {
   private _token: string;
   
-  url: string = environment.authEndpoint
   currentUser: Observable<User>;
   subject: BehaviorSubject<User> = new BehaviorSubject<User>(null)
   
@@ -28,13 +24,16 @@ export class AuthService {
       return sessionToken 
   }
 
-  constructor(private http: HttpClient, private userService: UserService, private router: Router) {}
+  constructor(protected http: HttpClient, private router: Router) {
+    super(http) 
+    this.url += "/user"
+  }
 
-  getToken(auth: Auth): Observable<Api<Token>> {
-    return this.http.post<Api<Token>>(this.url + "/login", auth).pipe(
-      tap((auth:Api<Token>) => {
-        this._token = auth.item.token
-        localStorage.setItem('token', auth.item.token)
+  getToken(user: User): Observable<Api<User>> {
+    return this.http.post<Api<User>>(this.url + "/login", user).pipe(
+      tap((user:Api<User>) => {
+        this._token = user.item.token
+        localStorage.setItem('token', user.item.token)
       })
     )
   }
@@ -44,7 +43,7 @@ export class AuthService {
   }
 
   getUser(): Observable<User> {
-    return this.userService.getOne().pipe(
+    return this.getOne().pipe(
       map(user => {
         if(user.item) {
           this.subject.next(user.item);

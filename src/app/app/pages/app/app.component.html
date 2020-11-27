@@ -18,7 +18,7 @@
                     </li>
                 </ul>
             </div>
-            <ng-container *ngIf="(authService.currentUser | async) as currentUser">
+            <ng-container *ngIf="(userService.currentUser | async) as currentUser">
                 <div class="pr-3 text-dark hand no-outline" [routerLink]="'/basket'">
                     <basket-widget></basket-widget>
                 </div>

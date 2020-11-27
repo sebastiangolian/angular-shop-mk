@@ -30,7 +30,7 @@ export class BackendInterceptor implements HttpInterceptor {
 
             let db = {
                 "user": [
-                    { idUser: "1", login: "kowalskijan", password: "12345", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU"},
+                    { login: "kowalskijan", password: "12345", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU"},
                 ],
                 "event": [
                     { idEvent: "1", name: "Dzień dziecka", titlePhotoUrl: "https://picsum.photos/id/101/600/400", description: "<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
@@ -169,7 +169,7 @@ export class BackendInterceptor implements HttpInterceptor {
 
             switch (true) {
 
-                case (method === 'POST' && url.includes("/auth/login")): {
+                case (method === 'POST' && url.includes("/api/user/login")): {
                     if (body.login == db.user[0].login && body.password == db.user[0].password) {
                         localStorage.setItem('token', db.user[0].token)
                         return response200({ "item": db.user[0] });
@@ -179,13 +179,13 @@ export class BackendInterceptor implements HttpInterceptor {
                     }
                 }
 
-                case (method === 'GET' && url.includes("/api/user")): {
-                    return response200({ "item": db.user[0] });
-                }
-
-                case (method === 'GET' && url.includes("/auth/logout")): {
+                case (method === 'GET' && url.includes("/api/user/logout")): {
                     localStorage.clear()
                     return response200();
+                }
+
+                case (method === 'GET' && url.includes("/api/user")): {
+                    return response200({ "item": db.user[0] });
                 }
 
                 case (method === 'GET' && url.includes("/api/event/list")): {
