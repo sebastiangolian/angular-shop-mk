@@ -1,17 +1,19 @@
 {
   "name": "angular-shop-mk",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "browserslist": [
     "> 5%"
   ],
   "scripts": {
     "start": "ng serve --open --port=4202",
+    "start-prod": "ng serve --prod --open --port=4202",
     "build": "ng build",
+    "build-ghpages": "ng build --prod --base-href=/angular-shop-mk/ --outputPath=dist/angular-shop-mk",
     "build-prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e --port=4201 --webdriverUpdate=true",
-    "predeploy": "ng build --prod --base-href=/angular-shop-mk/ --outputPath=dist/angular-shop-mk",
+    "predeploy": "ng build --c=ghpages --base-href=/angular-shop-mk/ --outputPath=dist/angular-shop-mk",
     "deploy": "gh-pages -d dist/angular-shop-mk/",
     "clear": "rmdir /q /s node_modules",
     "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer dist/stats.json"

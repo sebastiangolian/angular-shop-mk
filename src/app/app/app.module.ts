@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './pages/app/app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -16,6 +16,15 @@ import { CookieBarComponent } from './components/cookie-bar/cookie-bar.component
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { JwtModule } from "@auth0/angular-jwt";
 import { environment } from 'src/environments/environment';
+
+let providers: Provider[] = [
+  { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
+];
+
+if (environment.name == "prod") {
+  providers.pop()
+}
 
 @NgModule({
   declarations: [
@@ -42,10 +51,7 @@ import { environment } from 'src/environments/environment';
       }
     })
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
-  ],
+  providers: providers,
   bootstrap: [
     AppComponent
   ]

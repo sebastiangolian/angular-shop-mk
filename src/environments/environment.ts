@@ -1,9 +1,8 @@
 declare var require: any;
 export const environment = {
   name: 'dev',
-  title: 'angular-shop-mk',
-  host: 'mk.pl',
-  email: 'info@mk.pl',
+  host: 'martynaklewinowska.pl',
+  email: 'info@martynaklewinowska.pl',
   version: require('../../package.json').version,
   production: false,
   backendDelay: 50,

@@ -37,7 +37,43 @@
             ]
           },
           "configurations": {
+            "ghpages": {
+              "index": {
+                "input": "src/index.ghpages.html",
+                "output": "index.html"
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.ghpages.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
             "production": {
+              "index": {
+                "input": "src/index.prod.html",
+                "output": "index.html"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -73,6 +109,9 @@
             "browserTarget": "angular-shop-mk:build"
           },
           "configurations": {
+            "ghpages": {
+              "browserTarget": "angular-shop-mk:build:ghpages"
+            },
             "production": {
               "browserTarget": "angular-shop-mk:build:production"
             }
@@ -120,6 +159,9 @@
             "devServerTarget": "angular-shop-mk:serve"
           },
           "configurations": {
+            "ghpages": {
+              "devServerTarget": "angular-shop-mk:serve:ghpages"
+            },
             "production": {
               "devServerTarget": "angular-shop-mk:serve:production"
             }

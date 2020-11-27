@@ -1,8 +1,8 @@
 declare var require: any;
 export const environment = {
-  name: 'prod',
-  host: 'martynaklewinowska.pl',
-  email: 'info@martynaklewinowska.pl',
+  name: 'ghpages',
+  host: 'mk.pl',
+  email: 'info@mk.pl',
   version: require('../../package.json').version,
   production: true,
   backendDelay: 0,
