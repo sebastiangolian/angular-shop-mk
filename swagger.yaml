@@ -1,110 +1,405 @@
-swagger: "2.0"
+openapi: 3.0.0
 info:
-  description: "Sklep MK"
-  version: "1.0.0"
-  title: "Sklep MK"
-host: "mk.pl"
-basePath: "/api"
-schemes:
-- "https"
-- "http"
+  title: Sklep MK
+  description: Sklep MK
+  version: 1.0.0
+servers:
+  - url: http://api.mk.pl/v1
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - "login"
+      properties:
+        login:
+          type: "string"
+        password:
+          type: "string"
+        token:
+          type: "string"
+    BasketItem:
+      type: "object"
+      required:
+      - "amount"
+      - "price"
+      - "photo"
+      - "product"
+      - "event"
+      properties:
+        amount:
+          type: "number"
+        price:
+          type: "number"
+        photo:
+          $ref: "#/components/schemas/Photo"
+        product:
+          $ref: "#/components/schemas/Product"
+        event:
+          $ref: "#/components/schemas/Event"
+    Event:
+      type: "object"
+      required:
+      - "idEvent"
+      - "name"
+      - "titlePhotoUrl"
+      - "description"
+      properties:
+        idEvent:
+          type: "number"
+        name:
+          type: "number"
+        titlePhotoUrl:
+          type: "string"
+        description:
+          type: string
+    Photo:
+      type: "object"
+      required:
+      - "idPhoto"
+      - "url"
+      - "idEvent"
+      - "name"
+      properties:
+        idPhoto:
+          type: "string"
+        url:
+          type: "string"
+        idEvent:
+          type: "string"
+        name:
+          type: "string"
+    Product:
+      type: "object"
+      required:
+      - "idProduct"
+      - "name"
+      - "price"
+      properties:
+        idProduct:
+          type: "string"
+        name:
+          type: "string"
+        price:
+          type: "number"
+        amount:
+          type: "number"
+    Offer:
+      type: "object"
+      required:
+      - "idOffer"
+      - "name"
+      properties:
+        idOffer:
+          type: "number"
+        name:
+          type: "number"
+        products:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Product"
+    OrderAgreement:
+      type: "object"
+      required:
+      - "idOrderAgreement"
+      - "name"
+      - "accepted"
+      - "required"
+      properties:
+        idOrderAgreement:
+          type: "string"
+        content:
+          type: "string"
+        accepted:
+          type: "boolean"
+        required:
+          type: "boolean"
+    OrderDefinition:
+      type: "object"
+      required:
+      - "labels"
+      - "agreements"
+      - "paymentMethod"
+      properties:
+        firstname:
+          type: "string"
+        lastname:
+          type: "string"
+        phone:
+          type: "string"
+        email:
+          type: "string"
+        emailConfirm:
+          type: "string"
+        comment:
+          type: "string"
+        labels:
+          $ref: "#/components/schemas/OrderLabel"
+        agreements:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OrderAgreement"
+        paymentMethod:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OrderPaymentMethod"
+    OrderLabel:
+      type: "object"
+      required:
+      - "idOrderLabel"
+      - "firstnameLabel"
+      - "lastnameLabel"
+      - "phoneLabel"
+      - "emailLabel"
+      - "emailConfirmLabel"
+      - "commentLabel"
+      - "paymentMethodLabel"
+      properties:
+        idOrderLabel:
+          type: "string"
+        firstnameLabel:
+          type: "string"
+        lastnameLabel:
+          type: "string"
+        phoneLabel:
+          type: "string"
+        emailLabel:
+          type: "string"
+        emailConfirmLabel:
+          type: "string"
+        commentLabel:
+          type: "string"
+        paymentMethodLabel:
+          type: "string"
+    OrderPaymentMethod:
+      type: "object"
+      required:
+      - "idOrderPaymentMethod"
+      - "name"
+      properties:
+        idOrderPaymentMethod:
+          type: "string"
+        name:
+          type: "string"
+        url:
+          type: "string"
+    OrderPaymentStatus:
+      type: "object"
+      required:
+      - "idOrder"
+      - "isProgress"
+      - "status"
+      properties:
+        idOrder:
+          type: "string"
+        isProgress:
+          type: "boolean"
+        status:
+          type: "string"
+    Order:
+      type: "object"
+      required:
+      - "firstname"
+      - "lastname"
+      - "phone"
+      - "email"
+      - "comment"
+      - "agreements"
+      - "paymentMethod"
+      - "items"
+      properties:
+        idOrder:
+          type: "string"
+        status:
+          type: "boolean"
+        isPaid:
+          type: "string"
+        firstname:
+          type: "string"
+        lastname:
+          type: "string"
+        phone:
+          type: "string"
+        email:
+          type: "string"
+        comment:
+          type: "string"
+        agreements:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OrderAgreement"
+        paymentMethod:
+            $ref: "#/components/schemas/OrderPaymentMethod"
+        items:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/BasketItem"    
+    Banner:
+      type: "object"
+      required:
+      - "idBanner"
+      - "name"
+      - "imgUrl"
+      - "backgroundColor"
+      properties:
+        idBanner:
+          type: "string"
+        name:
+          type: "string"
+        imgUrl:
+          type: "string"
+        url:
+          type: "string"
+        backgroundColor:
+          type: "string"
+    Api:
+      type: "object"
+      properties:
+        item:
+          type: "array"
+        bussinesLogic:
+          type: "array"
+          $ref: "#/components/schemas/ApiBussinesLogic"
+    ApiList:
+      type: "object"
+      properties:
+        items:
+          type: array
+          items:
+            oneOf:
+            - $ref: "#/components/schemas/Banner"
+            - $ref: "#/components/schemas/BasketItem"
+            - $ref: "#/components/schemas/Event"
+            - $ref: "#/components/schemas/Offer"
+            - $ref: "#/components/schemas/Order"
+            - $ref: "#/components/schemas/OrderAgreement"
+            - $ref: "#/components/schemas/OrderDefinition"
+            - $ref: "#/components/schemas/OrderLabel"
+            - $ref: "#/components/schemas/OrderPaymentMethod"
+            - $ref: "#/components/schemas/Photo"
+            - $ref: "#/components/schemas/Product"
+            - $ref: "#/components/schemas/User"
+        total:
+          type: "number"
+        bussinesLogic:
+          type: "array"
+          $ref: "#/components/schemas/ApiBussinesLogic"
+    ApiBussinesLogic:
+      type: "object"
+      properties:
+        errors:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ApiError"
+    ApiError:
+      type: "object"
+      properties:
+        code:
+          type: "string"
+        message:
+          type: "string"
+  responses:
+    OK:
+      description: "OK"
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: '#/components/schemas/Api'
+              - $ref: '#/components/schemas/ApiList'
+    BadRequest:
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    Unauthorized:
+      description: "Unauthorized"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    NotFound:
+      description: "Not Found"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  parameters:
+    sort_by:
+      name: sort_by
+      in: query
+      required: true
+      schema:
+        type: string
+    order:
+      name: order
+      in: query
+      required: true
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: true
+      schema:
+        type: string
+    page:
+      name: page
+      in: query
+      required: true
+      schema:
+        type: string
+    filters:
+      name: filters
+      in: query
+      required: true
+      schema:
+        type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 paths:
   /user/login:
     post:
-      tags:
-      - "user"
-      summary: "Logs user into the system"
-      operationId: "loginUser"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "username"
-        in: "query"
-        description: "The user name for login"
+      requestBody:
         required: true
-        type: "string"
-      - name: "password"
-        in: "query"
-        description: "The password for login"
-        required: true
-        type: "string"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
       responses:
-        "200":
-          description: "successful operation"
-        "400":
-          description: "Invalid username/password supplied"
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
   /user/logout:
     get:
-      tags:
-      - "user"
-      summary: "Logs out current logged in user session"
-      operationId: "logoutUser"
-      produces:
-      - "application/json"
-      parameters: []
+      security:
+        - bearerAuth: []
       responses:
-        default:
-          description: "successful operation"
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
   /user:
     get:
-      tags:
-      - "user"
-      summary: "Get user by user name"
-      operationId: "getUserByName"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "username"
-        in: "path"
-        description: "The name that needs to be fetched. Use user1 for testing. "
-        required: true
-        type: "string"
+      security:
+        - bearerAuth: []
       responses:
-        "200":
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/User"
-        "400":
-          description: "Invalid username supplied"
-        "404":
-          description: "User not found"
-definitions:
-  User:
-    type: "object"
-    properties:
-      login:
-        type: "string"
-      password:
-        type: "string"
-  Api:
-    type: "object"
-    properties:
-      item:
-        type: "array"
-      bussinesLogic:
-        type: "array"
-        $ref: "#/definitions/ApiBussinesLogic"
-  ApiList:
-    type: "object"
-    properties:
-      items:
-        type: "array"
-      total:
-        type: "number"
-      bussinesLogic:
-        type: "array"
-        $ref: "#/definitions/ApiBussinesLogic"
-  ApiBussinesLogic:
-    type: "object"
-    properties:
-      errors:
-        type: "array"
-        items:
-          $ref: "#/definitions/ApiError"
-  ApiError:
-    type: "object"
-    properties:
-      code:
-        type: "string"
-      message:
-        type: "string"
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+security:
+  - bearerAuth: [] 

@@ -175,7 +175,7 @@ export class BackendInterceptor implements HttpInterceptor {
                         return response200({ "item": db.user[0] });
                     }
                     else {
-                        return responseError(401, "Musisz podać prawidłowy login i hasło.")
+                        return responseError(400, "Musisz podać prawidłowy login i hasło.")
                     }
                 }
 
