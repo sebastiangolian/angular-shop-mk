@@ -14,7 +14,8 @@ components:
           type: "object"
         bussinesLogic:
           type: "array"
-          $ref: "#/components/schemas/ApiBussinesLogic"
+          items:
+            $ref: "#/components/schemas/ApiBussinesLogic"
     ApiBussinesLogic:
       type: "object"
       properties:
@@ -52,7 +53,8 @@ components:
           type: "number"
         bussinesLogic:
           type: "array"
-          $ref: "#/components/schemas/ApiBussinesLogic"
+          items:
+            $ref: "#/components/schemas/ApiBussinesLogic"
     Banner:
       type: "object"
       required:
@@ -712,7 +714,8 @@ paths:
                     $ref: "#/components/schemas/User"
                   bussinesLogic:
                     type: "array"
-                    $ref: "#/components/schemas/ApiBussinesLogic"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
