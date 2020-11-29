@@ -48,7 +48,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.confirmOrder.email = f.value.email
     this.confirmOrder.phone = f.value.phone
     this.confirmOrder.comment = f.value.comment
-    this.confirmOrder.paymentMethod = this.orderDefinition.paymentMethod.find(method => method.idOrderPaymentMethod == f.value.paymentMethod)
+    this.confirmOrder.paymentMethod = this.orderDefinition.paymentMethods.find(method => method.idOrderPaymentMethod == f.value.paymentMethod)
     this.confirmOrder.agreements = []
     this.orderDefinition.agreements.forEach(agreement => {
       if(f.value.agreements[agreement.idOrderAgreement]) {
@@ -57,7 +57,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     })
     this.confirmOrder.items = this.basketService.items
 
-    this._subscription.add(this.orderService.create(this.confirmOrder).subscribe((result: Api<Order>) => {
+    this._subscription.add(this.orderService.post(this.confirmOrder).subscribe((result: Api<Order>) => {
       this.basketService.clear()
       this.router.navigate(['order/', result.item.idOrder])
     }))

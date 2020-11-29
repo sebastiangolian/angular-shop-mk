@@ -11,5 +11,5 @@ export interface OrderDefinition {
     comment: string
     labels: OrderLabel
     agreements: OrderAgreement[]
-    paymentMethod: OrderPaymentMethod[]
+    paymentMethods: OrderPaymentMethod[]
 }

@@ -31,7 +31,7 @@ export abstract class AbstractService<T> {
         return this.http.get<Api<T>>(this.url + "/" + id);
     }
 
-    create(item: T): Observable<any> {
+    post(item: T): Observable<any> {
         item = this._trimItem(item)
         return this.http.post<T>(this.url, item);
     }

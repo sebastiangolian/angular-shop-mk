@@ -23,7 +23,7 @@ export class OrderPaymentStatusComponent implements OnInit {
   ngOnInit(): void {
     let orderPaymentStatus = new OrderPaymentStatusModel()
     orderPaymentStatus.idOrder = this.order.idOrder
-    this.orderPaymentStatus$ = this.orderPaymentStatusService.create(orderPaymentStatus).pipe(
+    this.orderPaymentStatus$ = this.orderPaymentStatusService.getById(this.order.idOrder).pipe(
       repeatWhen(completed => completed.pipe(delay(3000))),
       map(api => api.item),
       tap(item => {if(item.isProgress == false) this.stopRequesting.next(true)}),

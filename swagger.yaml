@@ -179,7 +179,7 @@ components:
       required:
       - "labels"
       - "agreements"
-      - "paymentMethod"
+      - "paymentMethods"
       properties:
         firstname:
           type: "string"
@@ -199,7 +199,7 @@ components:
           type: "array"
           items:
             $ref: "#/components/schemas/OrderAgreement"
-        paymentMethod:
+        paymentMethods:
           type: "array"
           items:
             $ref: "#/components/schemas/OrderPaymentMethod"
@@ -362,8 +362,77 @@ components:
       scheme: bearer
       bearerFormat: JWT
 paths:
+  /banner/list:
+    get:
+      tags:
+        - Banner
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/SortBy'
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/Banner"
+                  total:
+                    type: "number"
+                  bussinesLogic:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /event/{idEvent}:
+    get:
+      tags:
+        - Event
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: idEvent
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    type: "object"
+                    $ref: "#/components/schemas/Event"
+                  bussinesLogic:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
+        '400': 
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /event/list:
     get:
+      tags:
+        - Event
       security:
         - bearerAuth: []
       parameters:
@@ -396,8 +465,208 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+  /photo/list:
+    get:
+      tags:
+        - Photo
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/SortBy'
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/Photo"
+                  total:
+                    type: "number"
+                  bussinesLogic:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /offer/list:
+    get:
+      tags:
+        - Offer
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/SortBy'
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/Offer"
+                  total:
+                    type: "number"
+                  bussinesLogic:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /order-definition:
+    get:
+      tags:
+        - OrderDefinition
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    type: "object"
+                    $ref: "#/components/schemas/OrderDefinition"
+                  bussinesLogic:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
+        '400': 
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /order:
+    post:
+      tags:
+        - Order
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    type: "object"
+                    $ref: "#/components/schemas/Order"
+                  bussinesLogic:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
+        '400': 
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /order/{idOrder}:
+    get:
+      tags:
+        - Order
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: idOrder
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    type: "object"
+                    $ref: "#/components/schemas/Order"
+                  bussinesLogic:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
+        '400': 
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /order-payment-status/{idOrder}:
+    post:
+      tags:
+        - OrderPaymentStatus
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: idOrder
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    type: "object"
+                    $ref: "#/components/schemas/Order"
+                  bussinesLogic:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
+        '400': 
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /user/login:
     post:
+      tags:
+        - User
       requestBody:
         required: true
         content:
@@ -413,6 +682,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
   /user/logout:
     get:
+      tags:
+        - User
       security:
         - bearerAuth: []
       responses:
@@ -424,6 +695,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
   /user:
     get:
+      tags:
+        - User
       security:
         - bearerAuth: []
       responses:
@@ -446,5 +719,3 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-security:
-  - bearerAuth: [] 
