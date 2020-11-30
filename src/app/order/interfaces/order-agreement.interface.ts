@@ -1,6 +1,6 @@
 export interface OrderAgreement {
     idOrderAgreement: string
     content: string
-    accepted: boolean
+    checked: boolean
     required: boolean
 }

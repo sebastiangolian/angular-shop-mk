@@ -78,7 +78,7 @@
     </div>
 
     <div *ngFor="let agreement of order.agreements; let i = index" class="form-group form-check" ngModelGroup="agreements">
-      <input class="form-check-input" type="checkbox" [name]="agreement.idOrderAgreement" [(ngModel)]="agreement.accepted" #[{{agreement.idOrderAgreement}}]="ngModel" [required]="agreement.required">
+      <input class="form-check-input" type="checkbox" [name]="agreement.idOrderAgreement" [(ngModel)]="agreement.checked" #[{{agreement.idOrderAgreement}}]="ngModel" [required]="agreement.required" [checked]="agreement.checked">
       <label class="form-check-label" [innerHTML]="agreement.content"></label><span *ngIf="agreement.required" class="text-danger"> *</span>
     </div>
 

@@ -166,14 +166,14 @@ components:
       required:
       - "idOrderAgreement"
       - "name"
-      - "accepted"
+      - "checked"
       - "required"
       properties:
         idOrderAgreement:
           type: "string"
         content:
           type: "string"
-        accepted:
+        checked:
           type: "boolean"
         required:
           type: "boolean"

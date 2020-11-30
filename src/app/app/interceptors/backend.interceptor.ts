@@ -142,9 +142,9 @@ export class BackendInterceptor implements HttpInterceptor {
                             paymentMethodLabel: "Wybierz formę płatności"
                         },
                         agreements: [
-                            { idOrderAgreement: "1212", content: "Zapoznałem się i akceptuje <a href='https://sklep.mk.pl/resource/sklep.regulamin.pdf' target='_BLANK'>regulamin sklepu</a>", accepted: false, required: true },
-                            { idOrderAgreement: "3323", content: "Chcę dostać e-maila, kiedy w sklepie pojawią się zdjęcia z kolejnej sesji.", accepted: false, required: false },
-                            { idOrderAgreement: "4422", content: "Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.", accepted: false, required: false },
+                            { idOrderAgreement: "1212", content: "Zapoznałem się i akceptuje <a href='https://sklep.mk.pl/resource/sklep.regulamin.pdf' target='_BLANK'>regulamin sklepu</a>", checked: true, required: true },
+                            { idOrderAgreement: "3323", content: "Chcę dostać e-maila, kiedy w sklepie pojawią się zdjęcia z kolejnej sesji.", checked: false, required: false },
+                            { idOrderAgreement: "4422", content: "Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.", checked: false, required: false },
                         ],
                         deliveryMethods: [
                             { idOrderDeliveryMethod: "sadsawewq222", content: "Odbiór we Wtelnie"},
