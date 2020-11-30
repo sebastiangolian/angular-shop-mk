@@ -16,6 +16,7 @@ import { CookieBarComponent } from './components/cookie-bar/cookie-bar.component
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { JwtModule } from "@auth0/angular-jwt";
 import { environment } from 'src/environments/environment';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 let providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
@@ -42,6 +43,7 @@ if (environment.name == "prod") {
     BasketModule,
     ModalModule.forRoot(),
     AlertModule.forRoot(),
+    CollapseModule.forRoot(),
     BannerModule,
     JwtModule.forRoot({
       config: {

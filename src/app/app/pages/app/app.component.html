@@ -5,8 +5,15 @@
     </nav>
     <nav id="home" class="navbar navbar-expand-md navbar-light bg-white sticky-top border-bottom">
         <div class="container-xl">
-            <div [class.collapse]="isCollapsed" class="navbar-collapse" id="navbar-content">
-                <ul class="navbar-nav mr-auto font-weight-bold">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                (click)="isCollapsed = !isCollapsed" >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div [collapse]=isCollapsed class="navbar-collapse" id="navbar-content">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" routerLink="event">Strona główna</a>
                     </li>
@@ -18,6 +25,7 @@
                     </li>
                 </ul>
             </div>
+
             <ng-container *ngIf="(userService.currentUser | async) as currentUser">
                 <div class="pr-3 text-dark hand no-outline" [routerLink]="'/basket'">
                     <basket-widget></basket-widget>
