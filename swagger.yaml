@@ -131,7 +131,6 @@ components:
       - "email"
       - "comment"
       - "agreements"
-      - "paymentMethod"
       - "items"
       properties:
         idOrder:

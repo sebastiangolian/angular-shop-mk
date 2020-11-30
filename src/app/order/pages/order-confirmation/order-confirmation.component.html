@@ -7,10 +7,12 @@
         <h1>Potwierdzenie przyjęcia zamówienia nr {{order.idOrder}}</h1>
         <p>Status zamówienia: <b>{{order.status}}</b></p>
         <p>Potwierdzenie zamówienia zostało wysłane na adres e-mail: <b>{{order.email}}</b></p>
-        <p>Sposób odbioru zamówienia: <b>{{order.deliveryMethod.content}}</b>
-        <p>Sposób płatności: <b>{{order.paymentMethod.content}}</b>
-        <p *ngIf="order.paymentMethod.url">Status płatności: <b><order-payment-status [order]="order"></order-payment-status></b></p>
-        <button *ngIf="!order.isPaid && order.paymentMethod.url" class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
+        <p *ngIf="order.deliveryMethod">Sposób odbioru zamówienia: <b>{{order.deliveryMethod.content}}</b>
+        <ng-container *ngIf="order.paymentMethod">
+            <p>Sposób płatności: <b>{{order.paymentMethod.content}}</b>
+            <p *ngIf="order.paymentMethod.url">Status płatności: <b><order-payment-status [order]="order"></order-payment-status></b></p>
+            <button *ngIf="!order.isPaid && order.paymentMethod.url" class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
+        </ng-container>
         <div *ngFor="let event of events">
             <order-list [event]="event" [basketItems]="order.items"></order-list>
         </div>

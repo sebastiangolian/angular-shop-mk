@@ -48,8 +48,12 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.confirmOrder.email = f.value.email
     this.confirmOrder.phone = f.value.phone
     this.confirmOrder.comment = f.value.comment
-    this.confirmOrder.paymentMethod = this.orderDefinition.paymentMethods.find(method => method.idOrderPaymentMethod == f.value.paymentMethod)
-    this.confirmOrder.deliveryMethod = this.orderDefinition.deliveryMethods.find(method => method.idOrderDeliveryMethod == f.value.deliveryMethod)
+    if(f.value.paymentMethod) {
+      this.confirmOrder.paymentMethod = this.orderDefinition.paymentMethods.find(method => method.idOrderPaymentMethod == f.value.paymentMethod)
+    }
+    if(f.value.deliveryMethod) {
+      this.confirmOrder.deliveryMethod = this.orderDefinition.deliveryMethods.find(method => method.idOrderDeliveryMethod == f.value.deliveryMethod)
+    }
     this.confirmOrder.agreements = []
     this.orderDefinition.agreements.forEach(agreement => {
       if(f.value.agreements[agreement.idOrderAgreement]) {
