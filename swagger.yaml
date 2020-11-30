@@ -298,8 +298,13 @@ components:
           type: "string"
         password:
           type: "string"
+    Token:
+      type: object
+      required:
+        - "token"
+      properties:
         token:
-          type: "string"
+          type: "string"    
   responses:
     OK:
       description: "OK"
@@ -677,7 +682,19 @@ paths:
               $ref: '#/components/schemas/User'
       responses:
         '200':
-          $ref: '#/components/responses/OK'
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    type: "object"
+                    $ref: "#/components/schemas/Token"
+                  bussinesLogic:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/ApiBussinesLogic"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':

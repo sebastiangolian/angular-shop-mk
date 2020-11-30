@@ -6,6 +6,7 @@ import { Api } from '../../shared/interfaces/api.interface';
 import { User } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { AbstractService } from 'src/app/shared/services/abstract.service';
+import { Token } from '../interfaces/token.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +30,11 @@ export class UserService extends AbstractService<User> {
     this.url += "/user"
   }
 
-  getToken(user: User): Observable<Api<User>> {
-    return this.http.post<Api<User>>(this.url + "/login", user).pipe(
-      tap((user:Api<User>) => {
-        this._token = user.item.token
-        localStorage.setItem('token', user.item.token)
+  getToken(user: User): Observable<Api<Token>> {
+    return this.http.post<Api<Token>>(this.url + "/login", user).pipe(
+      tap((api:Api<Token>) => {
+        this._token = api.item.token
+        localStorage.setItem('token', api.item.token)
       })
     )
   }

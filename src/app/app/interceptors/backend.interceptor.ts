@@ -30,7 +30,7 @@ export class BackendInterceptor implements HttpInterceptor {
 
             let db = {
                 "user": [
-                    { login: "kowalskijan", password: "12345", token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU"},
+                    { login: "kowalskijan", password: "12345"},
                 ],
                 "event": [
                     { idEvent: "1", name: "Dzień dziecka", titlePhotoUrl: "https://picsum.photos/id/101/600/400", description: "<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
@@ -171,7 +171,7 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'POST' && url.includes("/api/user/login")): {
                     if (body.login == db.user[0].login && body.password == db.user[0].password) {
-                        localStorage.setItem('token', db.user[0].token)
+                        localStorage.setItem('token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU")
                         return response200({ "item": db.user[0] });
                     }
                     else {
