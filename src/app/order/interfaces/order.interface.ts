@@ -1,5 +1,6 @@
 import { BasketItem } from 'src/app/basket/interfaces/basket-item.interface';
 import { OrderAgreement } from './order-agreement.interface';
+import { OrderDeliveryMethod } from './order-delivery-method.interface';
 import { OrderPaymentMethod } from './order-payment-method.interface';
 
 export interface Order {
@@ -12,6 +13,7 @@ export interface Order {
     email: string
     comment: string
     agreements: OrderAgreement[]
+    deliveryMethod?: OrderDeliveryMethod
     paymentMethod: OrderPaymentMethod
     items: BasketItem[]
 }

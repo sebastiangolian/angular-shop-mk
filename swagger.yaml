@@ -156,6 +156,8 @@ components:
             $ref: "#/components/schemas/OrderAgreement"
         paymentMethod:
             $ref: "#/components/schemas/OrderPaymentMethod"
+        deliveryMethod:
+            $ref: "#/components/schemas/OrderDeliveryMethod"
         items:
           type: "array"
           items:
@@ -181,7 +183,6 @@ components:
       required:
       - "labels"
       - "agreements"
-      - "paymentMethods"
       properties:
         firstname:
           type: "string"
@@ -205,6 +206,10 @@ components:
           type: "array"
           items:
             $ref: "#/components/schemas/OrderPaymentMethod"
+        deliveryMethods:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OrderDeliveryMethod"
     OrderLabel:
       type: "object"
       required:
@@ -215,7 +220,6 @@ components:
       - "emailLabel"
       - "emailConfirmLabel"
       - "commentLabel"
-      - "paymentMethodLabel"
       properties:
         idOrderLabel:
           type: "string"
@@ -233,6 +237,8 @@ components:
           type: "string"
         paymentMethodLabel:
           type: "string"
+        orderMethodLabel:
+          type: "string"
     OrderPaymentMethod:
       type: "object"
       required:
@@ -244,6 +250,16 @@ components:
         name:
           type: "string"
         url:
+          type: "string"
+    OrderDeliveryMethod:
+      type: "object"
+      required:
+      - "idOrderDeliveryMethod"
+      - "content"
+      properties:
+        idOrderDeliveryMethod:
+          type: "string"
+        content:
           type: "string"
     OrderPaymentStatus:
       type: "object"

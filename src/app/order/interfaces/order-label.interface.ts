@@ -6,5 +6,6 @@ export interface OrderLabel {
     emailLabel: string
     emailConfirmLabel: string
     commentLabel: string
+    orderMethodLabel: string
     paymentMethodLabel: string
 }

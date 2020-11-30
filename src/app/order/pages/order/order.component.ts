@@ -49,6 +49,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.confirmOrder.phone = f.value.phone
     this.confirmOrder.comment = f.value.comment
     this.confirmOrder.paymentMethod = this.orderDefinition.paymentMethods.find(method => method.idOrderPaymentMethod == f.value.paymentMethod)
+    this.confirmOrder.deliveryMethod = this.orderDefinition.deliveryMethods.find(method => method.idOrderDeliveryMethod == f.value.deliveryMethod)
     this.confirmOrder.agreements = []
     this.orderDefinition.agreements.forEach(agreement => {
       if(f.value.agreements[agreement.idOrderAgreement]) {

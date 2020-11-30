@@ -7,6 +7,7 @@
         <h1>Potwierdzenie przyjęcia zamówienia nr {{order.idOrder}}</h1>
         <p>Status zamówienia: <b>{{order.status}}</b></p>
         <p>Potwierdzenie zamówienia zostało wysłane na adres e-mail: <b>{{order.email}}</b></p>
+        <p>Sposób odbioru zamówienia: <b>{{order.deliveryMethod.content}}</b>
         <p>Sposób płatności: <b>{{order.paymentMethod.name}}</b>
         <p *ngIf="order.paymentMethod.url">Status płatności: <b><order-payment-status [order]="order"></order-payment-status></b></p>
         <button *ngIf="!order.isPaid && order.paymentMethod.url" class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>

@@ -137,6 +137,7 @@ export class BackendInterceptor implements HttpInterceptor {
                             emailLabel: "Adres email",
                             emailConfirmLabel: "Potwierdź adres email",
                             commentLabel: "Uwagi do zamówienia",
+                            orderMethodLabel: "Wybierz sposób odbioru zamówienia",
                             paymentMethodLabel: "Wybierz formę płatności"
                         },
                         agreements: [
@@ -144,12 +145,17 @@ export class BackendInterceptor implements HttpInterceptor {
                             { idOrderAgreement: "3323", content: "Chcę dostać e-maila, kiedy w sklepie pojawią się zdjęcia z kolejnej sesji.", accepted: false, required: false },
                             { idOrderAgreement: "4422", content: "Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.", accepted: false, required: false },
                         ],
+                        deliveryMethods: [
+                            { idOrderDeliveryMethod: "sadsawewq222", content: "Odbiór we Wtelnie"},
+                            { idOrderDeliveryMethod: "dsdsdsdadsad", content: "Odbiór w Piccolo Studio (ul. Kujawska 109 Bydgoszcz)"},
+                            { idOrderDeliveryMethod: "we232e2e2e2e", content: "Wysyłka paczkomatem Inpost (+12 zł)"},
+                            { idOrderDeliveryMethod: "r4r4r424r2r2", content: "Wysyłka kurierem (+15 zł)"}
+                        ],
                         paymentMethods: [
                             { idOrderPaymentMethod: "2124", name: "Gotówka przy odbiorze", url: null },
                             { idOrderPaymentMethod: "7655", name: "Szybki przelew - Przelewy24", url: "https://mock.secure.przelewy24.pl/trnRequest" },
                             { idOrderPaymentMethod: "2354", name: "Przelew tradycyjny", url: null },
                         ],
-                        items: []
                     }
                 ],
                 "order": [],
