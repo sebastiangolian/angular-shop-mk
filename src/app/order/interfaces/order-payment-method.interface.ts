@@ -1,5 +1,5 @@
 export interface OrderPaymentMethod {
     idOrderPaymentMethod: string
-    name: string
+    content: string
     url?: string
 }

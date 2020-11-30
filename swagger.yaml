@@ -243,11 +243,11 @@ components:
       type: "object"
       required:
       - "idOrderPaymentMethod"
-      - "name"
+      - "content"
       properties:
         idOrderPaymentMethod:
           type: "string"
-        name:
+        content:
           type: "string"
         url:
           type: "string"

@@ -152,9 +152,9 @@ export class BackendInterceptor implements HttpInterceptor {
                             { idOrderDeliveryMethod: "r4r4r424r2r2", content: "Wysyłka kurierem (+15 zł)"}
                         ],
                         paymentMethods: [
-                            { idOrderPaymentMethod: "2124", name: "Gotówka przy odbiorze", url: null },
-                            { idOrderPaymentMethod: "7655", name: "Szybki przelew - Przelewy24", url: "https://mock.secure.przelewy24.pl/trnRequest" },
-                            { idOrderPaymentMethod: "2354", name: "Przelew tradycyjny", url: null },
+                            { idOrderPaymentMethod: "2124", content: "Gotówka przy odbiorze", url: null },
+                            { idOrderPaymentMethod: "7655", content: "Szybki przelew - Przelewy24", url: "https://mock.secure.przelewy24.pl/trnRequest" },
+                            { idOrderPaymentMethod: "2354", content: "Przelew tradycyjny", url: null },
                         ],
                     }
                 ],
