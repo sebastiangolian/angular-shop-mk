@@ -29,6 +29,7 @@ export class BackendInterceptor implements HttpInterceptor {
             let ret: Observable<HttpEvent<any>> = null
 
             let db = {
+                "token": { token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU"},
                 "user": [
                     { login: "kowalskijan", password: "12345"},
                 ],
@@ -177,8 +178,7 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'POST' && url.includes("/api/user/login")): {
                     if (body.login == db.user[0].login && body.password == db.user[0].password) {
-                        localStorage.setItem('token', "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU")
-                        return response200({ "item": db.user[0] });
+                        return response200({ "item": db.token });
                     }
                     else {
                         return responseError(400, "Musisz podać prawidłowy login i hasło.")
