@@ -38,7 +38,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       {
         complete: () => {
           this.messageService.clearMessages()
-          this.router.navigate(['/event'])
+          const redirectUrl = sessionStorage.getItem("redirectUrl")
+          if(redirectUrl) {
+            sessionStorage.removeItem("redirectUrl")
+            this.router.navigate([redirectUrl])
+          } else {
+            this.router.navigate(['/event'])
+          }
         },
         error: error => this.error = "Podany login lub hasło są nie prawidłowe, lub nie masz konta w aplikacji"
       }
