@@ -12,11 +12,11 @@ body {
 .btn-primary {
     background-color: #63C6AE!important;
     border-color: #63C6AE!important;
-    color: #000000!important;
+    color: white!important;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
     background-color:#459e87!important;
-    color: #000000!important;
+    color: white!important;
 }
 .btn-outline-primary {
     border-color: #63C6AE!important;

@@ -6,13 +6,15 @@ import { BasketWidgetComponent } from './components/basket-widget/basket-widget.
 import { SharedModule } from '../shared/shared.module';
 import { BasketListComponent } from './components/basket-list/basket-list.component';
 import { BasketListItemComponent } from './components/basket-list-item/basket-list-item.component';
+import { BasketButtonComponent } from './components/basket-button/basket-button.component';
 
 @NgModule({
   declarations: [
     BasketComponent,
     BasketWidgetComponent,
     BasketListComponent,
-    BasketListItemComponent
+    BasketListItemComponent,
+    BasketButtonComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { BasketListItemComponent } from './components/basket-list-item/basket-li
     SharedModule
   ],
   exports: [
-    BasketWidgetComponent
+    BasketWidgetComponent,
+    BasketButtonComponent
   ]
 })
 export class BasketModule { }
