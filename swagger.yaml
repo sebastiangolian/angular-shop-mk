@@ -165,7 +165,7 @@ components:
       type: "object"
       required:
       - "idOrderAgreement"
-      - "name"
+      - "content"
       - "checked"
       - "required"
       properties:
