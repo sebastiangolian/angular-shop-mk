@@ -195,9 +195,9 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'GET' && url.includes("/api/event/list")): {
-                    //const response = getAll(url, db.event)
-                    //return response200(response);
-                    return responseError(404, "Lista zdarzeń nie istnieje")
+                    const response = getAll(url, db.event)
+                    return response200(response);
+                    //return responseError(404, "Lista zdarzeń nie istnieje")
                 }
 
                 case (method === 'GET' && url.includes("/api/event")): {
