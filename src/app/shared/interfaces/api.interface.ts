@@ -1,6 +1,6 @@
-import { ApiBussinesLogic } from './api-bussines-logic.interface';
+import { ApiError } from './api-error.interface';
 
 export interface Api<T> {
     item: T;    
-    businessLogic: ApiBussinesLogic[]
+    messages: ApiError
 }

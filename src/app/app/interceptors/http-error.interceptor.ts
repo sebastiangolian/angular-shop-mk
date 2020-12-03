@@ -5,6 +5,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Message } from 'src/app/shared/interfaces/message.interface';
+import { ApiMessage } from 'src/app/shared/interfaces/api-message.interface';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -15,41 +16,44 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         retry(environment.httpRetry),
-        catchError((error: HttpErrorResponse) => {
-          let message: Message;
+        catchError((error) => {
+          let messages: Message[] = [];
+
           if (error.error instanceof ErrorEvent) {
-            message = this.clientSideError(error.error);
+            messages.push(this.clientSideError(error.error));
           } else {
-            message = this.serverSideError(error);
+            if (error.errors) {
+              messages.push(...this.serverSideError(error))
+            }
           }
-          this.messageService.sendMessage(message.text, message.type)
-          return throwError(message.text);
+         
+          messages.forEach(message => {
+            this.messageService.sendMessage(message.text, message.type)
+          })
+
+          if(messages)
+            return throwError(messages[0].text)
+          else 
+            return throwError('Wystąpił nieoczekiwany błąd w działaniu aplikacji')
         })
       )
   }
 
   clientSideError(error: ErrorEvent): Message {
-    return {text: error.error.message, type: "danger"}
+    return { text: error.error.message, type: "danger" }
   }
 
-  serverSideError(error: HttpErrorResponse): Message {
-    switch (error.status) {
-      case 401: {
-        //return {text: "Twoja sesja wygasła. Zaloguj się ponownie", type: "warning"}
-        return null
-      }
-      case 403: {
-        return {text: `Nie masz uprawnień do tego zasobu`, type: "warning"}
-      }
-      case 404: {
-        return {text: `Podany zasób nie istnieje`, type: "info"}
-      }
-      case 500: {
-        return {text: `Wystąpił nieoczekiwany problem. Proszę spróbuj ponownie`, type: "danger"}
-      }
-      default: { 
-        return {text: `(${error.status}) ${error.message}`, type: "danger"}
-      }
-    }
+  serverSideError(apiMessage: ApiMessage): Message[] {
+    let messages: Message[] = []
+
+    apiMessage.errors.forEach(apiError => {
+      messages.push({ text: `(${apiError.code}) ${apiError.message}`, type: "danger" })
+    })
+
+    apiMessage.notifications.forEach(apiNotification => {
+      messages.push({ text: apiNotification.message, type: "warning" })
+    })
+
+    return messages
   }
 }
