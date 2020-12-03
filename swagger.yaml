@@ -2,27 +2,22 @@ openapi: 3.0.0
 info:
   title: Sklep MK
   description: Sklep MK
-  version: 1.0.0
+  version: 1.0.2
 servers:
   - url: http://api.mk.pl/v1
 components:
   schemas:
-    Api:
-      type: "object"
-      properties:
-        item:
-          type: "object"
-        bussinesLogic:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/ApiBussinesLogic"
-    ApiBussinesLogic:
+    ApiMessage:
       type: "object"
       properties:
         errors:
           type: "array"
           items:
             $ref: "#/components/schemas/ApiError"
+        notifications:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ApiNotification"
     ApiError:
       type: "object"
       properties:
@@ -30,31 +25,11 @@ components:
           type: "string"
         message:
           type: "string"
-    ApiList:
+    ApiNotification:
       type: "object"
       properties:
-        items:
-          type: array
-          items:
-            oneOf:
-            - $ref: "#/components/schemas/Banner"
-            - $ref: "#/components/schemas/BasketItem"
-            - $ref: "#/components/schemas/Event"
-            - $ref: "#/components/schemas/Offer"
-            - $ref: "#/components/schemas/Order"
-            - $ref: "#/components/schemas/OrderAgreement"
-            - $ref: "#/components/schemas/OrderDefinition"
-            - $ref: "#/components/schemas/OrderLabel"
-            - $ref: "#/components/schemas/OrderPaymentMethod"
-            - $ref: "#/components/schemas/Photo"
-            - $ref: "#/components/schemas/Product"
-            - $ref: "#/components/schemas/User"
-        total:
-          type: "number"
-        bussinesLogic:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/ApiBussinesLogic"
+        message:
+          type: "string"
     Banner:
       type: "object"
       required:
@@ -103,10 +78,19 @@ components:
         idEvent:
           type: "number"
         name:
-          type: "number"
+          type: "string"
         titlePhotoUrl:
           type: "string"
         description:
+          type: string
+    Log:
+      type: object
+      properties:
+        timestamp:
+          type: number
+        type: 
+          type: string
+        content:
           type: string
     Offer:
       type: "object"
@@ -117,7 +101,7 @@ components:
         idOffer:
           type: "number"
         name:
-          type: "number"
+          type: "string"
         products:
           type: "array"
           items:
@@ -211,17 +195,7 @@ components:
             $ref: "#/components/schemas/OrderDeliveryMethod"
     OrderLabel:
       type: "object"
-      required:
-      - "idOrderLabel"
-      - "firstnameLabel"
-      - "lastnameLabel"
-      - "phoneLabel"
-      - "emailLabel"
-      - "emailConfirmLabel"
-      - "commentLabel"
       properties:
-        idOrderLabel:
-          type: "string"
         firstnameLabel:
           type: "string"
         lastnameLabel:
@@ -231,12 +205,6 @@ components:
         emailLabel:
           type: "string"
         emailConfirmLabel:
-          type: "string"
-        commentLabel:
-          type: "string"
-        paymentMethodLabel:
-          type: "string"
-        orderMethodLabel:
           type: "string"
     OrderPaymentMethod:
       type: "object"
@@ -321,14 +289,6 @@ components:
         token:
           type: "string"    
   responses:
-    OK:
-      description: "OK"
-      content:
-        application/json:
-          schema:
-            oneOf:
-              - $ref: '#/components/schemas/Api'
-              - $ref: '#/components/schemas/ApiList'
     BadRequest:
       description: "Bad Request"
       content:
@@ -408,10 +368,8 @@ paths:
                       $ref: "#/components/schemas/Banner"
                   total:
                     type: "number"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -439,12 +397,9 @@ paths:
                 type: object
                 properties:
                   item:
-                    type: "object"
                     $ref: "#/components/schemas/Event"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -477,10 +432,8 @@ paths:
                       $ref: "#/components/schemas/Event"
                   total:
                     type: "number"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -513,10 +466,8 @@ paths:
                       $ref: "#/components/schemas/Photo"
                   total:
                     type: "number"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -549,10 +500,8 @@ paths:
                       $ref: "#/components/schemas/Offer"
                   total:
                     type: "number"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -574,12 +523,39 @@ paths:
                 type: object
                 properties:
                   item:
-                    type: "object"
                     $ref: "#/components/schemas/OrderDefinition"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
+        '400': 
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /log:
+    post:
+      tags:
+        - Log
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Log'
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    $ref: "#/components/schemas/Log"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -607,12 +583,9 @@ paths:
                 type: object
                 properties:
                   item:
-                    type: "object"
                     $ref: "#/components/schemas/Order"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -640,12 +613,9 @@ paths:
                 type: object
                 properties:
                   item:
-                    type: "object"
                     $ref: "#/components/schemas/Order"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -673,12 +643,9 @@ paths:
                 type: object
                 properties:
                   item:
-                    type: "object"
-                    $ref: "#/components/schemas/Order"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                    $ref: "#/components/schemas/OrderPaymentStatus"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -698,18 +665,23 @@ paths:
       responses:
         '200':
           description: "OK"
+          headers:
+            X-Expires-After:
+              schema:
+                type: string
+                format: date-time
+              description: The date after which the token will expire
+            Auth-Token:
+              schema: 
+                type: string
+              description: JWT token
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  item:
-                    type: "object"
-                    $ref: "#/components/schemas/Token"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -722,7 +694,14 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          $ref: '#/components/responses/OK'
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -742,12 +721,9 @@ paths:
                 type: object
                 properties:
                   item:
-                    type: "object"
                     $ref: "#/components/schemas/User"
-                  bussinesLogic:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/ApiBussinesLogic"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
