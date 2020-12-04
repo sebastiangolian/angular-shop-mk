@@ -17,6 +17,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { JwtModule } from "@auth0/angular-jwt";
 import { environment } from 'src/environments/environment';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { LogModule } from '../log/log.module';
 
 let providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
@@ -51,7 +52,8 @@ if (environment.name == "prod") {
         allowedDomains: environment.allowedDomains,
         disallowedRoutes: environment.disallowedRoutes,
       }
-    })
+    }),
+    LogModule
   ],
   providers: providers,
   bootstrap: [

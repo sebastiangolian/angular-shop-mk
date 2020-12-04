@@ -1,16 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpResponseBase } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subscription, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Message } from 'src/app/shared/interfaces/message.interface';
 import { ApiMessage } from 'src/app/shared/interfaces/api-message.interface';
+import { LogService } from 'src/app/log/services/log.service';
 
 @Injectable()
-export class HttpErrorInterceptor implements HttpInterceptor {
+export class HttpErrorInterceptor implements HttpInterceptor, OnDestroy {
 
-  constructor(private messageService: MessageService) { }
+  private _subscription: Subscription = new Subscription();
+  
+  constructor(private messageService: MessageService, private logService: LogService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
@@ -20,6 +23,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           let messages: Message[] = [];
 
           if (error.error instanceof ErrorEvent) {
+            this.sendLog(error.error)
             messages.push(this.clientSideError(error.error));
           } else {
             if (error.errors) {
@@ -56,4 +60,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
     return messages
   }
+
+  private sendLog(error: ErrorEvent): void {
+    this._subscription.add(this.logService.post({"timestamp": Date.now(), "type": error.filename, "content": error.message}).subscribe())
+  }
+
+  ngOnDestroy() {
+		if (this._subscription) this._subscription.unsubscribe()
+	}
 }

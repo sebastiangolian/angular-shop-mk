@@ -165,6 +165,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 "banner": [
                     { idBanner: "1", name: "banner-main", imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
                 ],
+                "log": [],
             }
             db = loadStorage(db)
 
@@ -256,6 +257,12 @@ export class BackendInterceptor implements HttpInterceptor {
                 case (method === 'GET' && url.includes("/api/banner/list")): {
                     const response = getAll(url, db.banner)
                     return response200(response);
+                }
+
+                case (method === 'POST' && url.includes("/api/log")): {
+                    db.log.push(body)
+                    saveStorage(db)
+                    return response200({ "item": body});
                 }
 
                 default: ret = null;
