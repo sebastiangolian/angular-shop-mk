@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 import { Api } from 'src/app/shared/interfaces/api.interface';
 import { OrderDefinitionService } from '../../services/offer-definition.service';
 import { Order } from '../../interfaces/order.interface';
+import { OrderLabelData } from '../../data/order-label.data';
+import { OrderLabel } from '../../interfaces/order-label.interface';
 
 @Component({
   selector: 'app-order',
@@ -24,6 +26,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   private orderDefinition: OrderDefinition = null
   private confirmOrder: Order = new OrderModel()
+  
 
   private _subscription: Subscription = new Subscription();
 
@@ -38,7 +41,10 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     this.order$ = this.orderDefinitionService.getOne().pipe(
       tap(api=> this.orderDefinition = api.item),
-      map(api=>api.item)
+      map(api=>{
+        api.item.labels = this.fillOrderLabels(api.item.labels)
+        return api.item
+      })
     )
   }
 
@@ -66,6 +72,22 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.basketService.clear()
       this.router.navigate(['order/', result.item.idOrder])
     }))
+  }
+
+  private fillOrderLabels(labels: OrderLabel): OrderLabel {
+    let returnLabel: OrderLabel = OrderLabelData
+
+    if(labels.firstnameLabel) returnLabel.firstnameLabel = labels.firstnameLabel
+    if(labels.lastnameLabel) returnLabel.lastnameLabel = labels.lastnameLabel
+    if(labels.phoneLabel) returnLabel.phoneLabel = labels.phoneLabel
+    if(labels.emailLabel) returnLabel.emailLabel = labels.emailLabel
+    if(labels.emailConfirmLabel) returnLabel.emailConfirmLabel = labels.emailConfirmLabel
+    if(labels.commentLabel) returnLabel.commentLabel = labels.commentLabel
+    if(labels.orderMethodLabel) returnLabel.orderMethodLabel = labels.orderMethodLabel
+    if(labels.paymentMethodLabel) returnLabel.paymentMethodLabel = labels.paymentMethodLabel
+
+    return returnLabel
+
   }
 
   ngOnDestroy() {

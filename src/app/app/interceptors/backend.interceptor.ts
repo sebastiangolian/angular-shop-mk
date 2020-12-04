@@ -131,9 +131,8 @@ export class BackendInterceptor implements HttpInterceptor {
                         emailConfirm: "kowalskijan@gmail.com",
                         comment: "",
                         labels: { 
-                            idOrderLabel: "3333", 
-                            firstnameLabel: "Imię",
-                            lastnameLabel: "Nazwisko",
+                            firstnameLabel: "Podaj swoje imię",
+                            lastnameLabel: "Podaj swoje nazwisko",
                             phoneLabel: "Numer telefonu",
                             emailLabel: "Adres email",
                             emailConfirmLabel: "Potwierdź adres email",
