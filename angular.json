@@ -37,6 +37,18 @@
             ]
           },
           "configurations": {
+            "testing": {
+              "index": {
+                "input": "src/index.testing.html",
+                "output": "index.html"
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.testing.ts"
+                }
+              ]
+            },
             "ghpages": {
               "index": {
                 "input": "src/index.ghpages.html",
@@ -109,6 +121,9 @@
             "browserTarget": "angular-shop-mk:build"
           },
           "configurations": {
+            "testing": {
+              "browserTarget": "angular-shop-mk:build:testing"
+            },
             "ghpages": {
               "browserTarget": "angular-shop-mk:build:ghpages"
             },
@@ -159,6 +174,9 @@
             "devServerTarget": "angular-shop-mk:serve"
           },
           "configurations": {
+            "testing": {
+              "devServerTarget": "angular-shop-mk:serve:testing"
+            },
             "ghpages": {
               "devServerTarget": "angular-shop-mk:serve:ghpages"
             },

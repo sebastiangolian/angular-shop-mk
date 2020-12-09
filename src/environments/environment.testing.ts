@@ -1,6 +1,6 @@
 declare var require: any;
 export const environment = {
-  name: 'prod',
+  name: 'test',
   host: 'martynaklewinowska.pl',
   email: 'info@martynaklewinowska.pl',
   version: require('../../package.json').version,

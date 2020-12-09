@@ -24,7 +24,7 @@ let providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
 ];
 
-if (environment.name == "prod") {
+if (environment.name == "prod" || environment.name == "test") {
   providers.pop()
 }
 

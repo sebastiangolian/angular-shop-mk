@@ -35,10 +35,13 @@ export class HttpErrorInterceptor implements HttpInterceptor, OnDestroy {
             this.messageService.sendMessage(message.text, message.type)
           })
 
-          if(messages)
+          if(messages.length > 0)
             return throwError(messages[0].text)
-          else 
-            return throwError('Wystąpił nieoczekiwany błąd w działaniu aplikacji')
+          else {
+            let error: string = "Wystąpił nieoczekiwany błąd w działaniu aplikacji"
+            this.messageService.sendMessage(error, "danger")
+            return throwError(error)
+          }
         })
       )
   }
