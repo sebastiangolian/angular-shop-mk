@@ -1,4 +1,6 @@
 const { exec } = require("child_process");
+const ftp = require("basic-ftp")
+require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
 
 let environment = ""
 let version = ""
@@ -6,26 +8,31 @@ let package = ""
 const NAME = "angular-shop-mk"
 const PASS = "123456"
 const DIR = "c:/ftp/angular-shop-mk"
+const FTP_HOST = "s55.hekko.pl"
+const FTP_USER = "seba@sklep.martynaklewinowska.online"
+const FTP_PASS = "Jakiestamhaslo2@"
 
+//process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
 process.argv.forEach(val => {
     if(val.includes("environment")) environment = val.replace("environment=","")
     if(val.includes("version")) version = val.replace("version=","")
     if(environment && version) {
         package = `${NAME}_v_${version}_${environment}`
-        build()
     }
 });
 
+build()
+//upload()
 
 function build() {
     console.info('------ build -------');
-    var build = `ng build --c=${environment} --outputPath=${package}`
+    var build = `ng build --c=${environment}`
 
     if(environment == "test") {
-        build = `ng build --c=testing --aot --optimization --build-optimizer --named-chunks=false --output-hashing=all --source-map=false --vendor-chunk=false --outputPath=${package}`
+        build = `ng build --c=testing --progress --aot --optimization --build-optimizer --named-chunks=false --output-hashing=all --source-map=false --vendor-chunk=false`
     }
     if(environment == "prod") {
-        build = `ng build --prod --outputPath=${package}`
+        build = `ng build --prod`
     }
 
     exec(build, (error, stdout, stderr) => {
@@ -37,9 +44,29 @@ function build() {
             console.error(` ${stderr}`);
         }
         console.info(`${stdout}`);
-        compressing()
+        upload()
     });
  }
+
+async function upload() {
+    const client = new ftp.Client()
+    client.ftp.verbose = true
+    try {
+        await client.access({
+            host: FTP_HOST,
+            user: FTP_USER,
+            password: FTP_PASS,
+            secure: true
+        })
+
+        console.log(await client.list())
+        await client.uploadFromDir("dist")
+    }
+    catch(err) {
+        console.log(err)
+    }
+    client.close()
+}
 
  function compressing() {
     console.info('------ compressing -------');

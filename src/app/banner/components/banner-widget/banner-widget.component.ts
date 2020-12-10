@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Banner } from '../../interfaces/banner.interface';
 import { BannerService } from '../../services/banner.service';
 
@@ -20,7 +20,7 @@ export class BannerWidgetComponent implements OnInit {
   ngOnInit(): void {
     this.banner$ = this.bannerService.get().pipe(
       map(api => api.items),
-      map(banner => banner.find(banner => banner.name == this.name))
+      map(banner => banner.find(banner => banner.name == this.name)),
     )
   }
 
