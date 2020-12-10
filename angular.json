@@ -20,12 +20,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/assets",
-              {
-                "glob": "*.svg",
-                "input": "./node_modules/bootstrap-icons/icons/",
-                "output": "/assets/icons/"
-              }
+              "src/assets"
             ],
             "styles": [
               "src/external/bootstrap.min.css",
