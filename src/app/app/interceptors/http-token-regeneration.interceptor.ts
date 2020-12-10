@@ -23,8 +23,6 @@ export class HttpTokenRegenerationInterceptor implements HttpInterceptor {
       //this.autoLogoutService.reset()
       const autorizationValue = headers.get('Authorization')
       if (autorizationValue) {
-
-        console.log(this.getToken(autorizationValue))
         localStorage.setItem('token', this.getToken(autorizationValue))
       }
     }
