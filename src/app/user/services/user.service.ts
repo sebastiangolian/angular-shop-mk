@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import { Api } from '../../shared/interfaces/api.interface';
 import { User } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { AbstractService } from 'src/app/shared/services/abstract.service';
-import { Token } from '../interfaces/token.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +16,11 @@ export class UserService extends AbstractService<User> {
   subject: BehaviorSubject<User> = new BehaviorSubject<User>(null)
   
   get token(): string { 
-    const sessionToken = localStorage.getItem('token')
-    if(!sessionToken)
+    const storageToken = localStorage.getItem('token')
+    if(!storageToken)
       return this._token 
     else
-      return sessionToken 
+      return storageToken 
   }
 
   constructor(protected http: HttpClient, private router: Router) {
@@ -30,13 +28,8 @@ export class UserService extends AbstractService<User> {
     this.url += "/user"
   }
 
-  getToken(user: User): Observable<Api<Token>> {
-    return this.http.post<Api<Token>>(this.url + "/login", user).pipe(
-      tap((api:Api<Token>) => {
-        this._token = api.item.token
-        localStorage.setItem('token', api.item.token)
-      })
-    )
+  getToken(user: User): Observable<null> {
+    return this.http.post<null>(this.url + "/login", user)
   }
 
   setToken(token: string) {

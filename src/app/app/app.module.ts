@@ -18,9 +18,11 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { environment } from 'src/environments/environment';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { LogModule } from '../log/log.module';
+import { HttpTokenRegenerationInterceptor } from './interceptors/http-token-regeneration.interceptor';
 
 let providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: HttpTokenRegenerationInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
 ];
 
