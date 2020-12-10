@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpClient } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { mergeMap, materialize, delay, dematerialize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -29,9 +29,9 @@ export class BackendInterceptor implements HttpInterceptor {
             let ret: Observable<HttpEvent<any>> = null
 
             let db = {
-                "token": { token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU"},
+                "token": { token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU" },
                 "user": [
-                    { login: "kowalskijan", password: "12345"},
+                    { login: "kowalskijan", password: "12345" },
                 ],
                 "event": [
                     { idEvent: "1", name: "Dzień dziecka", titlePhotoUrl: "https://picsum.photos/id/101/600/400", description: "<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
@@ -40,35 +40,45 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idEvent: "4", name: "Wesele Marii i Nikodema 2020-01-01", titlePhotoUrl: "https://picsum.photos/id/109/600/400", description: "<h2 class='text-warning'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
                 ],
                 "offer": [
-                    { idOffer: "1", name: "Zdjęcie", products: [
-                        {idProduct:"1", name: "Zdjęcie 10x15", price: 10.00},
-                        {idProduct:"2", name: "Zdjęcie 13x18", price: 10.00},
-                        {idProduct:"3", name: "Zdjęcie 15x21", price: 10.00},
-                        {idProduct:"4", name: "Zdjęcie 18x25", price: 12.00},
-                        {idProduct:"5", name: "Zdjęcie 21x30", price: 14.00},
-                        {idProduct:"6", name: "Zdjęcie 25x38", price: 18.00},
-                        {idProduct:"7", name: "Zdjęcie 30x40", price: 60.00},
-                        {idProduct:"8", name: "Zdjęcie 40x50", price: 40.00},
-                        {idProduct:"9", name: "Zdjęcie 50x70", price: 60.00},
-                        {idProduct:"10", name: "Zdjęcie Legitymacyjne 4 szt", price: 10.00},
-                    ]},
-                    { idOffer: "2", name: "Fotomagnes", products: [
-                        {idProduct:"11", name: "Fotomagnes 7,5x10", price: 10.00},
-                        {idProduct:"12", name: "Fotomagnes 10x15", price: 16.00},
-                    ]},
-                    { idOffer: "3", name: "Kalendarz", products: [
-                        {idProduct:"13", name: "Kalendarz A3", price: 30.00},
-                        {idProduct:"14", name: "Kalendarz Z wsuwanym zdjęciem A4", price: 35.00},
-                        {idProduct:"15", name: "Kalendarz Fotomagnes A4", price: 35.00},
-                    ]},
-                    { idOffer: "4", name: "Fotoobraz", products: [
-                        {idProduct:"16", name: "Fotoobraz 20x30", price: 50.00},
-                        {idProduct:"17", name: "Fotoobraz 30x45", price: 70.00},
-                        {idProduct:"18", name: "Fotoobraz 50x70", price: 110.00},
-                    ]},
-                    { idOffer: "4", name: "Plik cyfrowy", products: [
-                        {idProduct:"19", name: "Plik cyfrowy jpg", price: 30.00}
-                    ]},
+                    {
+                        idOffer: "1", name: "Zdjęcie", products: [
+                            { idProduct: "1", name: "Zdjęcie 10x15", price: 10.00 },
+                            { idProduct: "2", name: "Zdjęcie 13x18", price: 10.00 },
+                            { idProduct: "3", name: "Zdjęcie 15x21", price: 10.00 },
+                            { idProduct: "4", name: "Zdjęcie 18x25", price: 12.00 },
+                            { idProduct: "5", name: "Zdjęcie 21x30", price: 14.00 },
+                            { idProduct: "6", name: "Zdjęcie 25x38", price: 18.00 },
+                            { idProduct: "7", name: "Zdjęcie 30x40", price: 60.00 },
+                            { idProduct: "8", name: "Zdjęcie 40x50", price: 40.00 },
+                            { idProduct: "9", name: "Zdjęcie 50x70", price: 60.00 },
+                            { idProduct: "10", name: "Zdjęcie Legitymacyjne 4 szt", price: 10.00 },
+                        ]
+                    },
+                    {
+                        idOffer: "2", name: "Fotomagnes", products: [
+                            { idProduct: "11", name: "Fotomagnes 7,5x10", price: 10.00 },
+                            { idProduct: "12", name: "Fotomagnes 10x15", price: 16.00 },
+                        ]
+                    },
+                    {
+                        idOffer: "3", name: "Kalendarz", products: [
+                            { idProduct: "13", name: "Kalendarz A3", price: 30.00 },
+                            { idProduct: "14", name: "Kalendarz Z wsuwanym zdjęciem A4", price: 35.00 },
+                            { idProduct: "15", name: "Kalendarz Fotomagnes A4", price: 35.00 },
+                        ]
+                    },
+                    {
+                        idOffer: "4", name: "Fotoobraz", products: [
+                            { idProduct: "16", name: "Fotoobraz 20x30", price: 50.00 },
+                            { idProduct: "17", name: "Fotoobraz 30x45", price: 70.00 },
+                            { idProduct: "18", name: "Fotoobraz 50x70", price: 110.00 },
+                        ]
+                    },
+                    {
+                        idOffer: "4", name: "Plik cyfrowy", products: [
+                            { idProduct: "19", name: "Plik cyfrowy jpg", price: 30.00 }
+                        ]
+                    },
                 ],
                 "photo": [
                     { idPhoto: "1", idEvent: "1", url: "https://picsum.photos/id/101/600/400", name: "photo 1" },
@@ -130,7 +140,7 @@ export class BackendInterceptor implements HttpInterceptor {
                         email: "kowalskijan@gmail.com",
                         emailConfirm: "kowalskijan@gmail.com",
                         comment: "",
-                        labels: { 
+                        labels: {
                             firstnameLabel: "Podaj swoje imię",
                             lastnameLabel: "Podaj swoje nazwisko",
                             phoneLabel: "Numer telefonu",
@@ -146,10 +156,10 @@ export class BackendInterceptor implements HttpInterceptor {
                             { idOrderAgreement: "4422", content: "Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.", checked: false, required: false },
                         ],
                         deliveryMethods: [
-                            { idOrderDeliveryMethod: "sadsawewq222", content: "Odbiór we Wtelnie"},
-                            { idOrderDeliveryMethod: "dsdsdsdadsad", content: "Odbiór w Piccolo Studio (ul. Kujawska 109 Bydgoszcz)"},
-                            { idOrderDeliveryMethod: "we232e2e2e2e", content: "Wysyłka paczkomatem Inpost (+12 zł)"},
-                            { idOrderDeliveryMethod: "r4r4r424r2r2", content: "Wysyłka kurierem (+15 zł)"}
+                            { idOrderDeliveryMethod: "sadsawewq222", content: "Odbiór we Wtelnie" },
+                            { idOrderDeliveryMethod: "dsdsdsdadsad", content: "Odbiór w Piccolo Studio (ul. Kujawska 109 Bydgoszcz)" },
+                            { idOrderDeliveryMethod: "we232e2e2e2e", content: "Wysyłka paczkomatem Inpost (+12 zł)" },
+                            { idOrderDeliveryMethod: "r4r4r424r2r2", content: "Wysyłka kurierem (+15 zł)" }
                         ],
                         paymentMethods: [
                             { idOrderPaymentMethod: "2124", content: "Gotówka przy odbiorze", url: null },
@@ -160,7 +170,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 ],
                 "order": [],
                 "orderPaymentStatus": [
-                    {isProgress: false, status: "Nierozpoczęta"}
+                    { isProgress: false, status: "Nierozpoczęta" }
                 ],
                 "banner": [
                     { idBanner: "1", name: "banner-main", imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
@@ -178,7 +188,8 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'POST' && url.includes("/api/user/login")): {
                     if (body.login == db.user[0].login && body.password == db.user[0].password) {
-                        return response200({ "item": db.token });
+                        const headers = new HttpHeaders({'Authorization': `Bearer ${db.token}`})
+                        return response200({ "item": db.token }, headers);
                     }
                     else {
                         return responseError(400, "Musisz podać prawidłowy login i hasło.")
@@ -220,7 +231,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'GET' && url.includes("/api/order-payment-status")): {
-                    return response200({ "item": db.orderPaymentStatus[0]});
+                    return response200({ "item": db.orderPaymentStatus[0] });
                 }
 
                 case (method === 'GET' && url.includes("/api/order")): {
@@ -232,15 +243,15 @@ export class BackendInterceptor implements HttpInterceptor {
                     db.order[0].isPaid = true
                     db.orderPaymentStatus[0].status = "W trakcie"
                     saveStorage(db)
-                    if(db.orderPaymentStatus[0].isProgress == false) {
+                    if (db.orderPaymentStatus[0].isProgress == false) {
                         db.orderPaymentStatus[0].isProgress = true
                         saveStorage(db)
-                        setTimeout(()=> {
+                        setTimeout(() => {
                             db.orderPaymentStatus[0].isProgress = false
                             db.orderPaymentStatus[0].status = "Zakończona"
                             db.order[0].isPaid = true
                             saveStorage(db)
-                        },10000)
+                        }, 10000)
                     }
                     return response200({ "item": db.order[0] });
                 }
@@ -251,7 +262,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     db.order[0].status = "Przyjęte"
                     db.order[0].isPaid = false
                     saveStorage(db)
-                    return response200({ "item": db.order[0]});
+                    return response200({ "item": db.order[0] });
                 }
 
                 case (method === 'GET' && url.includes("/api/banner/list")): {
@@ -262,7 +273,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 case (method === 'POST' && url.includes("/api/log")): {
                     db.log.push(body)
                     saveStorage(db)
-                    return response200({ "item": body});
+                    return response200({ "item": body });
                 }
 
                 default: ret = null;
@@ -311,8 +322,9 @@ export class BackendInterceptor implements HttpInterceptor {
             return { total: totalItemFilter, items: ret }
         }
 
-        function response200(body?: any): Observable<HttpResponse<any>> {
-            let response = { code: 200, body }
+        function response200(body?: any, headers?: any): Observable<HttpResponse<any>> {
+            let response = { status: 200, body: body, headers: null }
+            if (headers) response = { status: 200, body: body, headers: headers }
             if (environment.loggingBackendResponse) console.info(response)
             return of(new HttpResponse<any>(response))
         }
