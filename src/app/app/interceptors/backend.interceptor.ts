@@ -1,9 +1,10 @@
+import { UserType } from './../../user/enums/user-type.enum';
+import { BannerName } from './../../banner/enums/banner-name.enum';
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { mergeMap, materialize, delay, dematerialize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { DateTimeHelper } from 'src/app/shared/helpers/date-time.helper';
 
 
 @Injectable()
@@ -29,9 +30,21 @@ export class BackendInterceptor implements HttpInterceptor {
             let ret: Observable<HttpEvent<any>> = null
 
             let db = {
-                "token": { token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzU" },
                 "user": [
-                    { login: "kowalskijan", password: "12345" },
+                    { 
+                        login: "individual", 
+                        password: "81Xac4g21",
+                        firstName: "Jan",
+                        lastName: "Indiwidualny",
+                        type: UserType.INDIVIDUAL
+                    },
+                    { 
+                        login: "group", 
+                        password: "81Xac4g22",
+                        firstName: "Jan",
+                        lastName: "Grupowy",
+                        type: UserType.GROUP
+                    },
                 ],
                 "event": [
                     { idEvent: "1", name: "Dzień dziecka", titlePhotoUrl: "https://picsum.photos/id/101/600/400", description: "<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
@@ -173,23 +186,19 @@ export class BackendInterceptor implements HttpInterceptor {
                     { isProgress: false, status: "Nierozpoczęta" }
                 ],
                 "banner": [
-                    { idBanner: "1", name: "banner-main", imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
+                    { idBanner: "1", name: BannerName.TOP_BANNER, imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
                 ],
                 "log": [],
             }
             db = loadStorage(db)
 
-            //db.user = []
-            // for(let i = 1; i <= 100; i++) {
-            //     db.user.push({id: i,email: 'example' + i + '@o2.pl', zipCode: '11-111',created: DateTimeHelper.currentDateTime(), active: true, documentLink: getPdfUrl()})
-            // }
-
             switch (true) {
 
                 case (method === 'POST' && url.includes("/api/user/login")): {
-                    if (body.login == db.user[0].login && body.password == db.user[0].password) {
-                        const headers = new HttpHeaders({'Authorization': `Bearer ${db.token}`})
-                        return response200({ "item": db.token }, headers);
+                    let user = db.user.find(user => user.login == body.login && user.password == body.password)
+                    if (user) {
+                        const headers = new HttpHeaders({'Authorization': `Bearer ${body.login}`})
+                        return response200(null, headers);
                     }
                     else {
                         return responseError(400, "Musisz podać prawidłowy login i hasło.")
@@ -202,7 +211,9 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'GET' && url.includes("/api/user")): {
-                    return response200({ "item": db.user[0] });
+                    let login = headers.get("Authorization").replace("Bearer ","")
+                    let user = db.user.find(user => user.login == login)
+                    return response200({ "item": user });
                 }
 
                 case (method === 'GET' && url.includes("/api/event/list")): {

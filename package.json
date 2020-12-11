@@ -5,7 +5,7 @@
     "> 5%"
   ],
   "scripts": {
-    "start": "ng serve --o --port=4202",
+    "start": "ng serve --o --port=4203",
     "start-test": "ng serve -o --c=testing  --port=4400",
     "build": "ng build",
     "build-ghpages": "ng build --prod --base-href=/angular-shop-mk/ --outputPath=dist/angular-shop-mk",

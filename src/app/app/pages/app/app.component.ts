@@ -1,3 +1,4 @@
+import { BannerName } from './../../../banner/enums/banner-name.enum';
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,6 +16,7 @@ export class AppComponent {
   title = 'angular-shop-mk';
   environments: any = environment
   init: boolean = false
+  bannerName: BannerName = BannerName.TOP_BANNER
 
   private _subscription: Subscription = new Subscription();
 

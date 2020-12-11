@@ -1,7 +1,7 @@
 <body class="h-100 d-flex flex-column">
     <!-- NAVIGATION -->
     <nav id="banner">
-        <banner-widget [class]="'d-block mx-auto img-fluid'" [name]="'top-banner'"></banner-widget>        
+        <banner-widget [class]="'d-block mx-auto img-fluid'" [name]="bannerName"></banner-widget>        
     </nav>
     <nav id="home" class="navbar navbar-expand-md navbar-light bg-white sticky-top border-bottom">
         <div class="container-xl">
@@ -31,7 +31,7 @@
                     <basket-widget></basket-widget>
                 </div>
                 <button class="btn btn-outline-primary" type="button" (click)="onLogOut()">
-                    {{currentUser.login}}<br />
+                    {{currentUser.firstName}} {{currentUser.lastName}}<br />
                     <span class="font-weight-light">Wyloguj</span>
                 </button>
             </ng-container>

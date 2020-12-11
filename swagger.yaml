@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Sklep MK
   description: Sklep MK
-  version: 1.0.2
+  version: 1.0.5
 servers:
   - url: http://api.mk.pl/v1
 components:
@@ -42,6 +42,8 @@ components:
           type: "string"
         name:
           type: "string"
+          enum: 
+            - "top-banner"
         imgUrl:
           type: "string"
         url:
@@ -281,13 +283,15 @@ components:
           type: "string"
         password:
           type: "string"
-    Token:
-      type: object
-      required:
-        - "token"
-      properties:
-        token:
-          type: "string"    
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        type:
+          type: "string"
+          enum:
+            - "individual"
+            - "group"
   responses:
     BadRequest:
       description: "Bad Request"
@@ -622,6 +626,40 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+  /order/list:
+    get:
+      tags:
+        - Order
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/SortBy'
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/Order"
+                  total:
+                    type: "number"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /order-payment-status/{idOrder}:
     post:
       tags:
@@ -671,7 +709,7 @@ paths:
                 type: string
                 format: date-time
               description: The date after which the token will expire
-            Auth-Token:
+            Authorization:
               schema: 
                 type: string
               description: JWT token
@@ -695,6 +733,12 @@ paths:
       responses:
         '200':
           description: "OK"
+          headers:
+            Logout-Success:
+              schema:
+                type: string
+                format: date-time
+              description: The date of logout
           content:
             application/json:
               schema:
