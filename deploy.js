@@ -56,10 +56,10 @@ async function upload() {
     ftpDeploy
         .deploy(config)
         .then(res => {
-            console.log("finished:", res)
+            console.info("finished:", res)
             deployHttp()
         })
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
 }
 
 function deployHttp() {
