@@ -3,12 +3,12 @@ import { BasketItem } from 'src/app/basket/interfaces/basket-item.interface';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 
 @Component({
-  selector: 'order-list-item',
-  templateUrl: './order-list-item.component.html',
-  styleUrls: ['./order-list-item.component.css'],
+  selector: 'order-element-list-item',
+  templateUrl: './order-element-list-item.component.html',
+  styleUrls: ['./order-element-list-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OrderListItemComponent implements OnInit {
+export class OrderElementListItemComponent implements OnInit {
 
   @Input() basketItems: BasketItem[]
   @Input() photo: Photo

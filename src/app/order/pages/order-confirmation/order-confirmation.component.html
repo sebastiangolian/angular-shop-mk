@@ -14,7 +14,7 @@
             <button *ngIf="!order.isPaid && order.paymentMethod.url" class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
         </ng-container>
         <div *ngFor="let event of events">
-            <order-list [event]="event" [basketItems]="order.items"></order-list>
+            <order-element-list [event]="event" [basketItems]="order.items"></order-element-list>
         </div>
     </ng-container>
 </ng-template>

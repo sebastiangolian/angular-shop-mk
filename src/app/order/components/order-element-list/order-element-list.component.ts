@@ -4,12 +4,12 @@ import { Event } from 'src/app/event/interfaces/event.interface';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 
 @Component({
-  selector: 'order-list',
-  templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.css'],
+  selector: 'order-element-list',
+  templateUrl: './order-element-list.component.html',
+  styleUrls: ['./order-element-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OrderListComponent implements OnInit {
+export class OrderElementListComponent implements OnInit {
 
   @Input() event: Event
   @Input() basketItems: BasketItem[]
