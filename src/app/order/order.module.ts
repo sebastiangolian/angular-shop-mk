@@ -7,6 +7,7 @@ import { OrderConfirmationComponent } from './pages/order-confirmation/order-con
 import { OrderPaymentStatusComponent } from './components/order-payment-status/order-payment-status.component';
 import { OrderElementListComponent } from './components/order-element-list/order-element-list.component';
 import { OrderElementListItemComponent } from './components/order-element-list-item/order-element-list-item.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
 
 
 @NgModule({
@@ -15,12 +16,16 @@ import { OrderElementListItemComponent } from './components/order-element-list-i
     OrderConfirmationComponent,
     OrderElementListComponent,
     OrderElementListItemComponent,
-    OrderPaymentStatusComponent
+    OrderPaymentStatusComponent,
+    OrderListComponent
   ],
   imports: [
     CommonModule,
     OrderRoutingModule,
     FormsModule,
+  ],
+  exports: [
+    OrderListComponent
   ]
 })
 export class OrderModule { }

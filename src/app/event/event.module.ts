@@ -11,7 +11,13 @@ import { EventPhotoListComponent } from './components/event-photo-list/event-pho
 import { EventPhotoListItemComponent } from './components/event-photo-list-item/event-photo-list-item.component';
 
 @NgModule({
-  declarations: [EventComponent, EventListComponent, EventListItemComponent, EventPhotoListComponent, EventPhotoListItemComponent],
+  declarations: [
+    EventComponent, 
+    EventListComponent, 
+    EventListItemComponent, 
+    EventPhotoListComponent, 
+    EventPhotoListItemComponent
+  ],
   imports: [
     CommonModule,
     EventRoutingModule,

@@ -245,6 +245,11 @@ export class BackendInterceptor implements HttpInterceptor {
                     return response200({ "item": db.orderPaymentStatus[0] });
                 }
 
+                case (method === 'GET' && url.includes("/api/order/list")): {
+                    const response = getAll(url, db.order)
+                    return response200(response);
+                }
+
                 case (method === 'GET' && url.includes("/api/order")): {
                     //return responseError(404, "Zamówienie nie istnieje")
                     return response200({ "item": db.order[0] });
