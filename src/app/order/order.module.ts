@@ -8,6 +8,8 @@ import { OrderElementListComponent } from './components/order-element-list/order
 import { OrderElementListItemComponent } from './components/order-element-list-item/order-element-list-item.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderCreateComponent } from './pages/order-create/order-create.component';
+import { OrderComponent } from './pages/order/order.component';
+import { OrderListItemComponent } from './components/order-list-item/order-list-item.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { OrderCreateComponent } from './pages/order-create/order-create.componen
     OrderElementListComponent,
     OrderElementListItemComponent,
     OrderPaymentStatusComponent,
-    OrderListComponent
+    OrderListComponent,
+    OrderComponent,
+    OrderListItemComponent
   ],
   imports: [
     CommonModule,

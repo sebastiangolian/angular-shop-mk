@@ -1,7 +1,4 @@
 <p>Moje zamówienia</p>
-<ul *ngFor="let order of $orders|async" class="list-group">
-    <li class="list-group-item p-1 mb-1 hand d-block"
-        [routerLink]="'/order/' + order.idOrder">
-        {{ order.idOrder }}
-    </li>
+<ul [class]="class">
+    <order-list-item *ngFor="let order of orders" [activeIdOrder]="activeIdOrder" [order]="order"></order-list-item>
 </ul>

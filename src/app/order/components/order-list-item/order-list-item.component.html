@@ -1,0 +1,4 @@
+<li *ngIf="order" class="list-group-item p-1 mb-1 hand" [class.active]="activeIdOrder == order.idOrder"
+    [routerLink]="'/order/' + order.idOrder">
+    {{ order.idOrder }}
+</li>

@@ -1,8 +1,5 @@
-import { Observable } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { OrderService } from '../../services/offer.service';
+import { Component, OnInit, ChangeDetectionStrategy, Input, HostListener } from '@angular/core';
 import { Order } from '../../interfaces/order.interface';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'order-list',
@@ -12,13 +9,22 @@ import { map } from 'rxjs/operators';
 })
 export class OrderListComponent implements OnInit {
 
-  $orders: Observable<Order[]>
-  constructor(private orderService: OrderService) { }
+  class: string = "list-group sticky-100"
+  @Input() orders: Order[]
+  @Input() activeIdOrder: string = null
+  
+  constructor() { }
 
-  ngOnInit(): void {
-    this.$orders = this.orderService.get().pipe(
-      map(api=> api.items)
-    )
+  ngOnInit(): void {}
+  
+  @HostListener('window:scroll', ['$event'])
+  scrollHandler(event) {	
+    if (window.outerHeight > window.pageYOffset + 100) {
+      this.class = "list-group sticky-100"
+    }
+    else {
+      this.class = "list-group sticky-20"
+    }
+      
   }
-
 }
