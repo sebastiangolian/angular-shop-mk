@@ -15,11 +15,10 @@ import { OrderLabelData } from '../../data/order-label.data';
 import { OrderLabel } from '../../interfaces/order-label.interface';
 
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  templateUrl: './order-create.component.html',
+  styleUrls: ['./order-create.component.css']
 })
-export class OrderComponent implements OnInit, OnDestroy {
+export class OrderCreateComponent implements OnInit, OnDestroy {
 
   basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
   order$: Observable<OrderDefinition>
