@@ -1,10 +1,12 @@
 <div class="row" *ngIf="(orders$ | async) as orders">
-    <div class="text-center text-md-left col-12 col-md-3 col-xl-2">
+    <div class="text-center text-md-left col-12 col-md-3 col-xl-2" *ngIf="orders.length > 0">
         <order-list [orders]="orders" [activeIdOrder]="idOrder" (itemSelected)="onOrderSelected($event)"></order-list>
     </div>
-    <div class="col-12 col-md-9 col-xl-10">
+    <div class="col-12 col-md-9 col-xl-10" *ngIf="orders.length > 0">
         <h1>Tu będzie wyświetlało się zamówienie</h1>
         <!-- <photo-list *ngIf="(event$ | async) as event" class="row" [photos]="photos$ | async" [event]="event" (itemSelected)="onPhotoSelected($event)"></photo-list>
         <event-photo-list class="row" *ngIf="!photos$" [events]="events"></event-photo-list> -->
     </div>
+
+    <h2 *ngIf="orders.length == 0">Brak dostępnych zamówień</h2>
 </div>

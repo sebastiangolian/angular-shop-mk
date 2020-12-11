@@ -1,4 +1,4 @@
-<p>Wydarzenia</p>
+<p *ngIf="events.length > 0">Wydarzenia</p>
 <ul [class]="class">
   <event-list-item *ngFor="let event of events" [activeIdEvent]="activeIdEvent" [event]="event"></event-list-item>
 </ul>
