@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
 import { Order } from '../../interfaces/order.interface';
 import { OrderService } from '../../services/offer.service';
@@ -14,14 +14,28 @@ export class OrderComponent implements OnInit {
 
   orders$: Observable<Order[]>
   order$: Observable<Order>
-  idOrder: string = null
+  activeIdOrder: string
 
-  constructor(private orderService: OrderService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private orderService: OrderService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.idOrder = this.route.snapshot.paramMap.get('id');
-    if(this.idOrder) this.order$ = this.orderService.getById(this.idOrder).pipe(map(api => api.item))
     this.orders$ = this.getOrders()
+    this.order$ = this.getOrder()
+  }
+
+  private getOrder(): Observable<Order|null> {
+    return this.route.url.pipe(
+      mergeMap(segement => {
+        if(segement.length > 0) {
+          this.activeIdOrder = segement[0].path
+          return this.orderService.getById(this.activeIdOrder).pipe(
+            map(api => api.item)
+          )
+        } else {
+          return of(null)
+        }
+      })
+    )
   }
 
   private getOrders(): Observable<Order[]> {
