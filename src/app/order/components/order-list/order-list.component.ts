@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, HostListener } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, HostListener, Output, EventEmitter } from '@angular/core';
 import { Order } from '../../interfaces/order.interface';
 
 @Component({

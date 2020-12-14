@@ -13,11 +13,14 @@ import { OrderService } from '../../services/offer.service';
 export class OrderComponent implements OnInit {
 
   orders$: Observable<Order[]>
+  order$: Observable<Order>
   idOrder: string = null
 
   constructor(private orderService: OrderService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.idOrder = this.route.snapshot.paramMap.get('id');
+    if(this.idOrder) this.order$ = this.orderService.getById(this.idOrder).pipe(map(api => api.item))
     this.orders$ = this.getOrders()
   }
 
@@ -26,9 +29,4 @@ export class OrderComponent implements OnInit {
       map((orders: ApiList<Order>) => orders.items)
     )
   }
-
-  onOrderSelected(order: Order) {
-    this.router.navigate(['order/', order.idOrder])
-  }
-
 }

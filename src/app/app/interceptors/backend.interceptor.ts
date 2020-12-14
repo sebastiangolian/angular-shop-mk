@@ -184,7 +184,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 ],
                 "order": [],
                 "orderPaymentStatus": [
-                    { isProgress: false, status: "Nierozpoczęta" }
+                    
                 ],
                 "banner": [
                     { idBanner: "1", name: BannerName.TOP_BANNER, imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
@@ -243,7 +243,8 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'GET' && url.includes("/api/order-payment-status")): {
-                    return response200({ "item": db.orderPaymentStatus[0] });
+                    let item = db.orderPaymentStatus.find(status => status.idOrder.toString() == getIdFromUrl())
+                    return response200({ "item": item });
                 }
 
                 case (method === 'GET' && url.includes("/api/order/list")): {
@@ -253,34 +254,39 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'GET' && url.includes("/api/order")): {
                     //return responseError(404, "Zamówienie nie istnieje")
-                    return response200({ "item": db.order[0] });
+                    let item = db.order.find(order => order.idOrder.toString() == getIdFromUrl())
+                    return response200({ "item": item });
                 }
 
                 case (method === 'POST' && url.includes("/api/order/mock")): {
-                    db.order[0].isPaid = true
-                    db.orderPaymentStatus[0].status = "W trakcie"
+                    let indexOrder = db.order.findIndex(order => order.idOrder.toString() == body.idOrder)
+                    let indexOrderPaymentStatus = db.orderPaymentStatus.findIndex(status => status.idOrder.toString() == body.idOrder)
+                    db.order[indexOrder].isPaid = true                    
                     saveStorage(db)
-                    if (db.orderPaymentStatus[0].isProgress == false) {
-                        db.orderPaymentStatus[0].isProgress = true
+                    if (db.orderPaymentStatus[indexOrderPaymentStatus].isProgress == false) {
+                        db.orderPaymentStatus[indexOrderPaymentStatus].isProgress = true
+                        db.orderPaymentStatus[indexOrderPaymentStatus].status = "W trakcie"
                         saveStorage(db)
                         setTimeout(() => {
-                            db.orderPaymentStatus[0].isProgress = false
-                            db.orderPaymentStatus[0].status = "Zakończona"
-                            db.order[0].isPaid = true
+                            db.orderPaymentStatus[indexOrderPaymentStatus].isProgress = false
+                            db.orderPaymentStatus[indexOrderPaymentStatus].status = "Zakończona"
+                            db.order[indexOrder].isPaid = true
                             saveStorage(db)
                         }, 10000)
                     }
-                    return response200({ "item": db.order[0] });
+                    return response200({ "item": db.order[indexOrder] });
                 }
 
                 case (method === 'POST' && url.includes("/api/order")): {
-                    db.order[0] = body
-                    db.order[0].idOrder = (Math.floor(Math.random() * 100000)).toString()
-                    db.order[0].status = "Przyjęte"
-                    db.order[0].isPaid = false
-                    db.order[0].orderDate = DateTimeHelper.currentDateTime()
+                    let index = db.order.length
+                    db.order[index] = body
+                    db.order[index].idOrder = (Math.floor(Math.random() * 100000)).toString()
+                    db.order[index].status = "Przyjęte"
+                    db.order[index].isPaid = false
+                    db.order[index].orderDate = DateTimeHelper.currentDateTime()
+                    db.orderPaymentStatus.push({ idOrder:db.order[index].idOrder, isProgress: false, status: "Nierozpoczęta" })
                     saveStorage(db)
-                    return response200({ "item": db.order[0] });
+                    return response200({ "item": db.order[index] });
                 }
 
                 case (method === 'GET' && url.includes("/api/banner/list")): {
