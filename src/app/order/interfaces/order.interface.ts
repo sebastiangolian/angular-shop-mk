@@ -12,6 +12,7 @@ export interface Order {
     phone: string
     email: string
     comment: string
+    orderDate?: string
     agreements: OrderAgreement[]
     deliveryMethod?: OrderDeliveryMethod
     paymentMethod: OrderPaymentMethod

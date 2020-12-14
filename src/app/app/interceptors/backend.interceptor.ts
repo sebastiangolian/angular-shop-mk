@@ -5,6 +5,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, Htt
 import { Observable, of, throwError } from 'rxjs';
 import { mergeMap, materialize, delay, dematerialize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { DateTimeHelper } from 'src/app/shared/helpers/date-time.helper';
 
 
 @Injectable()
@@ -277,6 +278,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     db.order[0].idOrder = (Math.floor(Math.random() * 100000)).toString()
                     db.order[0].status = "Przyjęte"
                     db.order[0].isPaid = false
+                    db.order[0].orderDate = DateTimeHelper.currentDateTime()
                     saveStorage(db)
                     return response200({ "item": db.order[0] });
                 }

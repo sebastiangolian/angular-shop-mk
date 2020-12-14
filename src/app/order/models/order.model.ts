@@ -12,6 +12,7 @@ export class OrderModel implements Order {
     email: string
     emailConfirm: string
     comment: string
+    orderDate?: string
     agreements: OrderAgreement[]
     deliveryMethod: OrderDeliveryMethod
     paymentMethod: OrderPaymentMethod
