@@ -52,6 +52,9 @@ body {
 .hand {
     cursor: pointer;
 }
+.underline {
+    text-decoration: underline;
+}
 .border-2 {
     border-width: 2px;
 }

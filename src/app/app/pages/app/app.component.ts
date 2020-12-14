@@ -25,7 +25,6 @@ export class AppComponent {
   constructor(public userService: UserService, private route: ActivatedRoute, private router: Router, private basketService: BasketService) {
     this._subscription.add(this.displayFooter())
     this._subscription.add(this.getUser())
-    
   }
 
   onLogOut() {
