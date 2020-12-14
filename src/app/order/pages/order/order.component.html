@@ -1,11 +1,11 @@
-<div class="row" *ngIf="{ orders: orders$ | async, order: order$ | async } as orderContainer">
-    <div class="col-12 col-md-3 col-xl-2 text-center text-md-left" *ngIf="orderContainer.orders?.length > 0">
-        <order-list [orders]="orderContainer.orders" [activeIdOrder]="activeIdOrder"></order-list>
+<div class="row" *ngIf="{ user: currentUser$ | async, orders: orders$ | async, order: order$ | async } as con">
+    <div class="col-12 col-md-3 col-xl-2 text-center text-md-left" *ngIf="con.orders">
+        <order-list [orders]="con.orders" [activeIdOrder]="activeIdOrder"></order-list>
     </div>
-    <div class="col-12 col-md-9 col-xl-10">
-        <order-item *ngIf="orderContainer.order" [order]="orderContainer.order"></order-item>
+    <div class="col-12 col-md-9 col-xl-10" *ngIf="con.order">
+        <order-item [order]="con.order"></order-item>
     </div>
-    <div class="col-12" *ngIf="orderContainer.orders?.length == 0">
+    <div class="col-12" *ngIf="!con.order && !con.orders">
         <h1>Brak dostępnych zamówień</h1>
     </div>
 </div>

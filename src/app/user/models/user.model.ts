@@ -7,4 +7,5 @@ export class UserModel implements User {
   firstName: string = ""
   lastName: string = ""
   type: UserType = UserType.INDIVIDUAL
+  isIndividual?: boolean = false
 }

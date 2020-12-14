@@ -1,3 +1,4 @@
+import { User } from './../../../user/interfaces/user.interface';
 import { BannerName } from './../../../banner/enums/banner-name.enum';
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
@@ -17,16 +18,25 @@ export class AppComponent {
   environments: any = environment
   init: boolean = false
   bannerName: BannerName = BannerName.TOP_BANNER
+  user: User
 
   private _subscription: Subscription = new Subscription();
 
   constructor(public userService: UserService, private route: ActivatedRoute, private router: Router, private basketService: BasketService) {
     this._subscription.add(this.displayFooter())
+    this._subscription.add(this.getUser())
+    
   }
 
   onLogOut() {
     this.basketService.clear()
     this._subscription.add(this.userService.logoutSubscription())
+  }
+
+  private getUser(): Subscription {
+    return this.userService.subject.asObservable().subscribe(user => {
+      this.user = user
+    })
   }
 
   private displayFooter(): Subscription {
