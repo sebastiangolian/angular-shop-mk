@@ -1,5 +1,8 @@
+import { PhotoService } from 'src/app/photo/services/photo.service';
 import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Photo } from '../../interfaces/photo.interface';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'photo-list-item',
@@ -12,16 +15,17 @@ export class PhotoListItemComponent implements OnInit {
   @Input() item: Photo;
   @Output() itemSelected: EventEmitter<Photo> = new EventEmitter<Photo>();
   active: boolean = false
+  src$: Observable<string>
 
-  constructor() { }
+  constructor(private photoService: PhotoService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.src$ = this.photoService.getFile(this.item).pipe(
+      map(api => api.body)
+    )
+  }
 
   onClick() {
     this.itemSelected.emit(this.item)
   }
-
-  getUrl() {
-    return this.item.url;
-  } 
 }

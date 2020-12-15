@@ -1,5 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PhotoService } from 'src/app/photo/services/photo.service';
+import { Component, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
 import { Photo } from '../../interfaces/photo.interface';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'photo-modal-image',
@@ -7,12 +10,16 @@ import { Photo } from '../../interfaces/photo.interface';
   styleUrls: ['./photo-modal-image.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PhotoModalImageComponent implements OnInit {
+export class PhotoModalImageComponent implements OnChanges {
 
   @Input() photo: Photo
-  constructor() { }
+  src$: Observable<string>
+  constructor(private photoService: PhotoService) { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    this.src$ = this.photoService.getFile(this.photo).pipe(
+      map(api => api.body)
+    )
   }
 
 }

@@ -1,5 +1,5 @@
-<img 
-*ngIf="photo" 
-class="img-fluid img-thumbnail rounded hand"
-[src]="photo.url"
->
+<ng-container *ngIf="photo">
+    <ng-container *ngIf="src$|async as src">
+        <img class="img-fluid img-thumbnail rounded hand" [attr.src]="src|safe:'resourceUrl'">
+    </ng-container>
+</ng-container>

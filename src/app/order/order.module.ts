@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderRoutingModule } from './order-routing.module';
@@ -27,6 +28,7 @@ import { OrderItemComponent } from './components/order-item/order-item.component
     CommonModule,
     OrderRoutingModule,
     FormsModule,
+    SharedModule
   ],
   exports: [
     OrderListComponent

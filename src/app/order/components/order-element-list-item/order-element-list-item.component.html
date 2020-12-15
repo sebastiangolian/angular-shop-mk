@@ -1,7 +1,10 @@
 <div *ngIf="photo" class="row border p-2 mt-1">
     <div class="col-12 col-md-3 mb-3 text-center">
-        <img [src]="photo.url" [style.height.px]="100" class="img-thumbnail">
+        <ng-container *ngIf="src$|async as src">
+            <img [src]="src|safe:'resourceUrl'" [style.height.px]="100" class="img-thumbnail" loading="lazy">
+        </ng-container>
     </div>
+    
     <div class="col-12 col-md-9">
         <table class="table table-borderless">
             <tr *ngFor="let basketItem of basketItems">

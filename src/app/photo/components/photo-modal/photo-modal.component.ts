@@ -27,9 +27,7 @@ export class PhotoModalComponent implements OnInit {
   constructor(private bsModalRef: BsModalRef, private offerService: OfferService, private router: Router) { }
 
   ngOnInit(): void {
-    let filters = {}
-    filters["idEvent"] = this.event.idEvent
-    this.offers$ = this.offerService.get(0, 0, null, null, filters)
+    this.offers$ = this.offerService.get()
   }
 
   onPrev() {

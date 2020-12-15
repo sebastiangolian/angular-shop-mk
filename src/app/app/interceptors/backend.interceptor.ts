@@ -48,10 +48,10 @@ export class BackendInterceptor implements HttpInterceptor {
                     },
                 ],
                 "event": [
-                    { idEvent: "1", name: "Dzień dziecka", titlePhotoUrl: "https://picsum.photos/id/101/600/400", description: "<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
-                    { idEvent: "2", name: "Dzień niepodległości", titlePhotoUrl: "https://picsum.photos/id/125/600/400", description: "<h2 class='text-danger'>Dzień niepodległości</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
-                    { idEvent: "3", name: "Bieg City Trail", titlePhotoUrl: "https://picsum.photos/id/102/600/400", description: "<h2 class='text-info'>Bieg City Trail</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
-                    { idEvent: "4", name: "Wesele Marii i Nikodema 2020-01-01", titlePhotoUrl: "https://picsum.photos/id/109/600/400", description: "<h2 class='text-warning'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
+                    { idEvent: "1", name: "Dzień dziecka", titlePhotoUrl: "/api/photo/file/1/image", description: "<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
+                    { idEvent: "2", name: "Dzień niepodległości", titlePhotoUrl: "/api/photo/file/2/image", description: "<h2 class='text-danger'>Dzień niepodległości</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
+                    { idEvent: "3", name: "Bieg City Trail", titlePhotoUrl: "/api/photo/file/3/image", description: "<h2 class='text-info'>Bieg City Trail</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
+                    { idEvent: "4", name: "Wesele Marii i Nikodema 2020-01-01", titlePhotoUrl: "/api/photo/file/4/image", description: "<h2 class='text-warning'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
                 ],
                 "offer": [
                     {
@@ -105,55 +105,55 @@ export class BackendInterceptor implements HttpInterceptor {
                     },
                 ],
                 "photo": [
-                    { idPhoto: "1", idEvent: "1", url: "https://picsum.photos/id/101/600/400", name: "photo 1" },
-                    { idPhoto: "2", idEvent: "1", url: "https://picsum.photos/id/102/600/400", name: "photo 2" },
-                    { idPhoto: "3", idEvent: "1", url: "https://picsum.photos/id/103/600/400", name: "photo 3" },
-                    { idPhoto: "4", idEvent: "1", url: "https://picsum.photos/id/104/600/400", name: "photo 4" },
-                    { idPhoto: "5", idEvent: "1", url: "https://picsum.photos/id/113/600/400", name: "photo 5" },
-                    { idPhoto: "6", idEvent: "1", url: "https://picsum.photos/id/106/400/600", name: "photo 6" },
-                    { idPhoto: "7", idEvent: "1", url: "https://picsum.photos/id/107/600/400", name: "photo 7" },
-                    { idPhoto: "8", idEvent: "1", url: "https://picsum.photos/id/108/600/400", name: "photo 8" },
-                    { idPhoto: "9", idEvent: "1", url: "https://picsum.photos/id/109/600/400", name: "photo 9" },
-                    { idPhoto: "10", idEvent: "1", url: "https://picsum.photos/id/110/600/400", name: "photo 10" },
-                    { idPhoto: "11", idEvent: "1", url: "https://picsum.photos/id/111/600/400", name: "photo 11" },
-                    { idPhoto: "12", idEvent: "1", url: "https://picsum.photos/id/112/400/600", name: "photo 12" },
-                    { idPhoto: "14", idEvent: "1", url: "https://picsum.photos/id/114/600/400", name: "photo 14" },
-                    { idPhoto: "15", idEvent: "1", url: "https://picsum.photos/id/115/600/400", name: "photo 15" },
-                    { idPhoto: "16", idEvent: "1", url: "https://picsum.photos/id/116/600/400", name: "photo 16" },
-                    { idPhoto: "17", idEvent: "1", url: "https://picsum.photos/id/117/400/600", name: "photo 17" },
-                    { idPhoto: "18", idEvent: "1", url: "https://picsum.photos/id/118/600/400", name: "photo 18" },
-                    { idPhoto: "19", idEvent: "1", url: "https://picsum.photos/id/119/600/400", name: "photo 19" },
-                    { idPhoto: "20", idEvent: "1", url: "https://picsum.photos/id/120/600/400", name: "photo 20" },
-                    { idPhoto: "21", idEvent: "1", url: "https://picsum.photos/id/121/600/400", name: "photo 21" },
-                    { idPhoto: "22", idEvent: "1", url: "https://picsum.photos/id/122/600/400", name: "photo 22" },
-                    { idPhoto: "23", idEvent: "1", url: "https://picsum.photos/id/123/600/400", name: "photo 23" },
-                    { idPhoto: "24", idEvent: "1", url: "https://picsum.photos/id/124/600/400", name: "photo 24" },
-                    { idPhoto: "25", idEvent: "1", url: "https://picsum.photos/id/125/600/400", name: "photo 25" },
-                    { idPhoto: "26", idEvent: "1", url: "https://picsum.photos/id/126/600/400", name: "photo 26" },
-                    { idPhoto: "27", idEvent: "1", url: "https://picsum.photos/id/127/600/400", name: "photo 27" },
-                    { idPhoto: "28", idEvent: "1", url: "https://picsum.photos/id/128/600/400", name: "photo 28" },
-                    { idPhoto: "29", idEvent: "1", url: "https://picsum.photos/id/129/600/400", name: "photo 29" },
-                    { idPhoto: "30", idEvent: "1", url: "https://picsum.photos/id/130/600/400", name: "photo 30" },
-                    { idPhoto: "31", idEvent: "1", url: "https://picsum.photos/id/131/600/400", name: "photo 31" },
-                    { idPhoto: "32", idEvent: "2", url: "https://picsum.photos/id/125/600/400", name: "photo 32" },
-                    { idPhoto: "33", idEvent: "2", url: "https://picsum.photos/id/126/600/400", name: "photo 33" },
-                    { idPhoto: "34", idEvent: "2", url: "https://picsum.photos/id/127/600/400", name: "photo 34" },
-                    { idPhoto: "35", idEvent: "2", url: "https://picsum.photos/id/128/600/400", name: "photo 35" },
-                    { idPhoto: "36", idEvent: "2", url: "https://picsum.photos/id/129/600/400", name: "photo 36" },
-                    { idPhoto: "37", idEvent: "2", url: "https://picsum.photos/id/130/600/400", name: "photo 37" },
-                    { idPhoto: "38", idEvent: "2", url: "https://picsum.photos/id/131/600/400", name: "photo 38" },
-                    { idPhoto: "39", idEvent: "3", url: "https://picsum.photos/id/101/600/400", name: "photo 39" },
-                    { idPhoto: "40", idEvent: "3", url: "https://picsum.photos/id/102/600/400", name: "photo 40" },
-                    { idPhoto: "41", idEvent: "3", url: "https://picsum.photos/id/103/600/400", name: "photo 41" },
-                    { idPhoto: "42", idEvent: "3", url: "https://picsum.photos/id/104/600/400", name: "photo 42" },
-                    { idPhoto: "43", idEvent: "3", url: "https://picsum.photos/id/113/600/400", name: "photo 43" },
-                    { idPhoto: "44", idEvent: "3", url: "https://picsum.photos/id/106/600/400", name: "photo 44" },
-                    { idPhoto: "45", idEvent: "3", url: "https://picsum.photos/id/107/600/400", name: "photo 45" },
-                    { idPhoto: "46", idEvent: "3", url: "https://picsum.photos/id/108/600/400", name: "photo 46" },
-                    { idPhoto: "47", idEvent: "4", url: "https://picsum.photos/id/109/600/400", name: "photo 47" },
-                    { idPhoto: "48", idEvent: "4", url: "https://picsum.photos/id/107/600/400", name: "photo 48" },
-                    { idPhoto: "49", idEvent: "4", url: "https://picsum.photos/id/108/600/400", name: "photo 49" },
-                    { idPhoto: "50", idEvent: "4", url: "https://picsum.photos/id/109/600/400", name: "photo 50" },
+                    { idPhoto: "1", idEvent: "1", name: "photo 1" },
+                    { idPhoto: "2", idEvent: "1", name: "photo 2" },
+                    { idPhoto: "3", idEvent: "1", name: "photo 3" },
+                    { idPhoto: "4", idEvent: "1", name: "photo 4" },
+                    { idPhoto: "5", idEvent: "1", name: "photo 5" },
+                    { idPhoto: "6", idEvent: "1", name: "photo 6" },
+                    { idPhoto: "7", idEvent: "1", name: "photo 7" },
+                    { idPhoto: "8", idEvent: "1", name: "photo 8" },
+                    { idPhoto: "9", idEvent: "1", name: "photo 9" },
+                    { idPhoto: "10", idEvent: "1", name: "photo 10" },
+                    { idPhoto: "11", idEvent: "1", name: "photo 11" },
+                    { idPhoto: "12", idEvent: "1", name: "photo 12" },
+                    { idPhoto: "14", idEvent: "1", name: "photo 14" },
+                    { idPhoto: "15", idEvent: "1", name: "photo 15" },
+                    { idPhoto: "16", idEvent: "1", name: "photo 16" },
+                    { idPhoto: "17", idEvent: "1", name: "photo 17" },
+                    { idPhoto: "18", idEvent: "1", name: "photo 18" },
+                    { idPhoto: "19", idEvent: "1", name: "photo 19" },
+                    { idPhoto: "20", idEvent: "1", name: "photo 20" },
+                    { idPhoto: "21", idEvent: "1", name: "photo 21" },
+                    { idPhoto: "22", idEvent: "1", name: "photo 22" },
+                    { idPhoto: "23", idEvent: "1", name: "photo 23" },
+                    { idPhoto: "24", idEvent: "1", name: "photo 24" },
+                    { idPhoto: "25", idEvent: "1", name: "photo 25" },
+                    { idPhoto: "26", idEvent: "1", name: "photo 26" },
+                    { idPhoto: "27", idEvent: "1", name: "photo 27" },
+                    { idPhoto: "28", idEvent: "1", name: "photo 28" },
+                    { idPhoto: "29", idEvent: "1", name: "photo 29" },
+                    { idPhoto: "30", idEvent: "1", name: "photo 30" },
+                    { idPhoto: "31", idEvent: "1", name: "photo 31" },
+                    { idPhoto: "32", idEvent: "2", name: "photo 32" },
+                    { idPhoto: "33", idEvent: "2", name: "photo 33" },
+                    { idPhoto: "34", idEvent: "2", name: "photo 34" },
+                    { idPhoto: "35", idEvent: "2", name: "photo 35" },
+                    { idPhoto: "36", idEvent: "2", name: "photo 36" },
+                    { idPhoto: "37", idEvent: "2", name: "photo 37" },
+                    { idPhoto: "38", idEvent: "2", name: "photo 38" },
+                    { idPhoto: "39", idEvent: "3", name: "photo 39" },
+                    { idPhoto: "40", idEvent: "3", name: "photo 40" },
+                    { idPhoto: "41", idEvent: "3", name: "photo 41" },
+                    { idPhoto: "42", idEvent: "3", name: "photo 42" },
+                    { idPhoto: "43", idEvent: "3", name: "photo 43" },
+                    { idPhoto: "44", idEvent: "3", name: "photo 44" },
+                    { idPhoto: "45", idEvent: "3", name: "photo 45" },
+                    { idPhoto: "46", idEvent: "3", name: "photo 46" },
+                    { idPhoto: "47", idEvent: "4", name: "photo 47" },
+                    { idPhoto: "48", idEvent: "4", name: "photo 48" },
+                    { idPhoto: "49", idEvent: "4", name: "photo 49" },
+                    { idPhoto: "50", idEvent: "4", name: "photo 50" },
                 ],
                 "orderDefinition": [
                     {
@@ -236,6 +236,15 @@ export class BackendInterceptor implements HttpInterceptor {
                 case (method === 'GET' && url.includes("/api/event")): {
                     let item = db.event.find(event => event.idEvent.toString() == getIdFromUrl())
                     return response200({ "item": item });
+                }
+
+                case (method === 'GET' && url.includes("/api/photo/list")): {
+                    const response = getAll(url, db.photo)
+                    return response200(response);
+                }
+
+                case (method === 'GET' && url.includes("/api/photo") && url.includes("/image")): {
+                    return response200(getJpegBlob());
                 }
 
                 case (method === 'GET' && url.includes("/api/photo/list")): {
@@ -440,7 +449,7 @@ export class BackendInterceptor implements HttpInterceptor {
         }
 
         function getPdfUrl() {
-            const pdfData = atob(
+            const data = atob(
                 `JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwogIC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAv
                 TWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0KPj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAg
                 L1Jlc291cmNlcyA8PAogICAgL0ZvbnQgPDwKICAgICAgL0YxIDQgMCBSIAogICAgPj4KICA+PgogIC9Db250ZW50cyA1IDAgUgo+PgplbmRvYmoKCjQgMCBvYmoKPDwKICAvVHlwZSAvRm9u
@@ -448,11 +457,33 @@ export class BackendInterceptor implements HttpInterceptor {
                 CjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4g
                 CjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9v
                 dCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G`);
-            let binary = pdfData
+            let binary = data
             let array = new Uint8Array(binary.length)
             for (var i = 0; i < binary.length; i++) { array[i] = binary.charCodeAt(i) }
 
             let blob = new Blob([array], { type: 'application/pdf' });
+            return URL.createObjectURL(blob);
+        }
+
+        function getJpegBlob() {
+            const data = atob(
+                `iVBORw0KGgoAAAANSUhEUgAAAdgAAAFNCAIAAAAsEOk+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARSSURBVHhe7dQxAQAADMOg+TfdycgDI
+                rgBkBIxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzF
+                ATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxE
+                QPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBA
+                TMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEA
+                DERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQ
+                MEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFAT
+                MQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQP
+                ERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATM
+                UBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADE
+                RA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAyQ2h7pXiGeO/1emQAAA
+                ABJRU5ErkJggg==`);
+            let binary = data
+            let array = new Uint8Array(binary.length)
+            for (var i = 0; i < binary.length; i++) { array[i] = binary.charCodeAt(i) }
+
+            let blob = new Blob([array], { type: 'application/jpeg' });
             return URL.createObjectURL(blob);
         }
     }

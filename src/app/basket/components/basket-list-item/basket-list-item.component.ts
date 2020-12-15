@@ -1,3 +1,4 @@
+import { PhotoService } from 'src/app/photo/services/photo.service';
 import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy} from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Observable, Subject, Subscription } from 'rxjs';
@@ -20,12 +21,18 @@ export class BasketListItemComponent implements OnInit, OnDestroy {
   @Input() event: Event
   @Input() photo: Photo
   @Input() basketItems$: Observable<BasketItem[]>
+  src$: Observable<string>
+
   private _subscription: Subscription = new Subscription();
-  constructor(private basketService: BasketService, private modalService: BsModalService) { }
+  constructor(private basketService: BasketService, private modalService: BsModalService, private photoService: PhotoService) { }
 
   ngOnInit(): void {
     this.basketItems$ = this.basketService.subjectItems.asObservable().pipe(
       map(items => items.filter(item => item.photo.idPhoto == this.photo.idPhoto))
+    )
+
+    this.src$ = this.photoService.getFile(this.photo).pipe(
+      map(api => api.body)
     )
   }
 

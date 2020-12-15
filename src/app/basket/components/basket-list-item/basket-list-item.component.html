@@ -1,6 +1,8 @@
 <div *ngIf="photo" class="row border p-2 mt-1">
     <div class="col-12 col-md-2 mb-3 text-center">
-        <img [src]="photo.url" [style.height.px]="100" class="img-thumbnail" (click)="onPhotoSelected(photo)">
+        <ng-container *ngIf="src$|async as src">
+            <img [attr.src]="src|safe:'resourceUrl'" [style.height.px]="100" class="img-thumbnail" (click)="onPhotoSelected(photo)">
+        </ng-container>
     </div>
     <div class="col-12 col-md-10">
         <table class="table table-borderless">

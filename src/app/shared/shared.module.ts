@@ -13,6 +13,7 @@ import { HtmlPipe } from './pipes/html.pipe';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { LazyLoadImageDirective } from './directives/lazy-load-image.directive';
 import { NumberOfItemsComponent } from './components/number-of-items/number-of-items.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NumberOfItemsComponent } from './components/number-of-items/number-of-i
     IconBComponent,
     HtmlPipe,
     ScrollToTopComponent,
-    NumberOfItemsComponent
+    NumberOfItemsComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { NumberOfItemsComponent } from './components/number-of-items/number-of-i
     IconBComponent,
     ScrollToTopComponent,
     LazyLoadImageDirective,
-    NumberOfItemsComponent
+    NumberOfItemsComponent,
+    SafePipe
   ]
 })
 export class SharedModule { }
