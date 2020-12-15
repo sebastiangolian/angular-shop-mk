@@ -2,8 +2,7 @@ import { UserService } from './../../../user/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map, mergeMap, tap } from 'rxjs/operators';
-import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
+import { mergeMap, tap } from 'rxjs/operators';
 import { Order } from '../../interfaces/order.interface';
 import { OrderService } from '../../services/offer.service';
 import { User } from 'src/app/user/interfaces/user.interface';
@@ -25,7 +24,7 @@ export class OrderComponent implements OnInit {
     this.currentUser$ = this.userService.currentUser.pipe(
       tap(user => {
         if(user.isIndividual) {
-          this.orders$ = this.getOrders()
+          this.orders$ = this.orderService.get()
         } else {
           this.orders$ = of(null)
         }
@@ -39,23 +38,9 @@ export class OrderComponent implements OnInit {
       mergeMap(segement => {
         if(segement.length > 0) {
           this.activeIdOrder = segement[0].path
-          return this.orderService.getById(this.activeIdOrder).pipe(
-            map(api => api.item)
-          )
+          return this.orderService.getById(this.activeIdOrder)
         } else {
           return of(null)
-        }
-      })
-    )
-  }
-
-  private getOrders(): Observable<Order[]|null> {
-    return this.orderService.get().pipe(
-      map((orders: ApiList<Order>) => {
-        if(orders.items.length > 0) {
-          return orders.items
-        } else {
-          return null
         }
       })
     )

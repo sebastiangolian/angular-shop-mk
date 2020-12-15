@@ -2,7 +2,7 @@ import { UserType } from './../enums/user-type.enum';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { User } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { AbstractService } from 'src/app/shared/services/abstract.service';
@@ -39,12 +39,11 @@ export class UserService extends AbstractService<User> {
 
   getUser(): Observable<User> {
     return this.getOne().pipe(
-      map(user => {
-        if(user.item) {
-          this.subject.next(user.item);
+      tap(user => {
+        if(user) {
+          this.subject.next(user);
           this.currentUser = this.subject.asObservable();
-          user.item.isIndividual = user.item.type == UserType.INDIVIDUAL
-          return user.item;
+          user.isIndividual = user.type == UserType.INDIVIDUAL
         } 
       })
     );

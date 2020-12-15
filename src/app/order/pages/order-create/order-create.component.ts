@@ -25,43 +25,42 @@ export class OrderCreateComponent implements OnInit, OnDestroy {
 
   private orderDefinition: OrderDefinition = null
   private confirmOrder: Order = new OrderModel()
-  
+
 
   private _subscription: Subscription = new Subscription();
 
-  constructor(private basketService: BasketService, private orderDefinitionService: OrderDefinitionService, private orderService: OrderService, 
+  constructor(private basketService: BasketService, private orderDefinitionService: OrderDefinitionService, private orderService: OrderService,
     private router: Router) { }
 
   ngOnInit(): void {
 
-    if(this.basketService.items.length < 1) {
+    if (this.basketService.items.length < 1) {
       this.router.navigate(['event'])
     }
 
     this.order$ = this.orderDefinitionService.getOne().pipe(
-      tap(api=> this.orderDefinition = api.item),
-      map(api=>{
-        api.item.labels = this.fillOrderLabels(api.item.labels)
-        return api.item
+      tap(item => {
+        this.orderDefinition = item
+        item.labels = this.fillOrderLabels(item.labels)
       })
     )
   }
 
-  onSubmit(f:NgForm) {
+  onSubmit(f: NgForm) {
     this.confirmOrder.firstname = f.value.firstname
     this.confirmOrder.lastname = f.value.lastname
     this.confirmOrder.email = f.value.email
     this.confirmOrder.phone = f.value.phone
     this.confirmOrder.comment = f.value.comment
-    if(f.value.paymentMethod) {
+    if (f.value.paymentMethod) {
       this.confirmOrder.paymentMethod = this.orderDefinition.paymentMethods.find(method => method.idOrderPaymentMethod == f.value.paymentMethod)
     }
-    if(f.value.deliveryMethod) {
+    if (f.value.deliveryMethod) {
       this.confirmOrder.deliveryMethod = this.orderDefinition.deliveryMethods.find(method => method.idOrderDeliveryMethod == f.value.deliveryMethod)
     }
     this.confirmOrder.agreements = []
     this.orderDefinition.agreements.forEach(agreement => {
-      if(f.value.agreements[agreement.idOrderAgreement]) {
+      if (f.value.agreements[agreement.idOrderAgreement]) {
         this.confirmOrder.agreements.push(agreement)
       }
     })
@@ -76,14 +75,14 @@ export class OrderCreateComponent implements OnInit, OnDestroy {
   private fillOrderLabels(labels: OrderLabel): OrderLabel {
     let returnLabel: OrderLabel = OrderLabelData
 
-    if(labels.firstnameLabel) returnLabel.firstnameLabel = labels.firstnameLabel
-    if(labels.lastnameLabel) returnLabel.lastnameLabel = labels.lastnameLabel
-    if(labels.phoneLabel) returnLabel.phoneLabel = labels.phoneLabel
-    if(labels.emailLabel) returnLabel.emailLabel = labels.emailLabel
-    if(labels.emailConfirmLabel) returnLabel.emailConfirmLabel = labels.emailConfirmLabel
-    if(labels.commentLabel) returnLabel.commentLabel = labels.commentLabel
-    if(labels.orderMethodLabel) returnLabel.orderMethodLabel = labels.orderMethodLabel
-    if(labels.paymentMethodLabel) returnLabel.paymentMethodLabel = labels.paymentMethodLabel
+    if (labels.firstnameLabel) returnLabel.firstnameLabel = labels.firstnameLabel
+    if (labels.lastnameLabel) returnLabel.lastnameLabel = labels.lastnameLabel
+    if (labels.phoneLabel) returnLabel.phoneLabel = labels.phoneLabel
+    if (labels.emailLabel) returnLabel.emailLabel = labels.emailLabel
+    if (labels.emailConfirmLabel) returnLabel.emailConfirmLabel = labels.emailConfirmLabel
+    if (labels.commentLabel) returnLabel.commentLabel = labels.commentLabel
+    if (labels.orderMethodLabel) returnLabel.orderMethodLabel = labels.orderMethodLabel
+    if (labels.paymentMethodLabel) returnLabel.paymentMethodLabel = labels.paymentMethodLabel
 
     return returnLabel
 

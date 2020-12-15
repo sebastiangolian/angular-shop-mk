@@ -19,7 +19,6 @@ export class BannerWidgetComponent implements OnInit {
 
   ngOnInit(): void {
     this.banner$ = this.bannerService.get().pipe(
-      map(api => api.items),
       map(banner => banner.find(banner => banner.name == this.name)),
     )
   }

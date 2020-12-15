@@ -19,7 +19,6 @@ export class BasketComponent implements OnInit {
 
   ngOnInit(): void {
     this.events$ = this.eventService.get().pipe(
-      map((events: ApiList<Event>) => events.items),
       map(items => items.filter(item => this.basketService.items.find((bi) => bi.photo.idEvent == item.idEvent )))
     )
   }

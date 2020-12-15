@@ -3,13 +3,14 @@ import { ApiList } from '../interfaces/api-list.interface';
 import { Observable } from 'rxjs/internal/Observable';
 import { Api } from '../interfaces/api.interface';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 export abstract class AbstractService<T> {
     url: string = environment.apiEndpoint
 
     constructor(protected http: HttpClient) { }
 
-    get(limit?: number, page?: number, sort?: string, order?: string, filters?: any): Observable<ApiList<T>> {
+    get(limit?: number, page?: number, sort?: string, order?: string, filters?: any): Observable<T[]> {
         let url = this.url + "/list"
         let parameters: string[] = [];
     
@@ -20,15 +21,39 @@ export abstract class AbstractService<T> {
         }
         
         if(parameters.length > 0) url += "?" + parameters.join("&")
-        return this.http.get<ApiList<T>>(url);
+        return this.http.get<ApiList<T>>(url).pipe(
+            map(api => {
+                if(api.items.length == 0) {
+                    return null
+                } else {
+                    return api.items
+                }
+            })
+        );
     }
 
-    getOne(): Observable<Api<T>> {
-        return this.http.get<Api<T>>(this.url);
+    getOne(): Observable<T> {
+        return this.http.get<Api<T>>(this.url).pipe(
+            map(api => {
+                if(api.item) {
+                    return api.item
+                } else {
+                    return null
+                }
+            })
+        );
     }
 
-    getById(id: string): Observable<Api<T>> {
-        return this.http.get<Api<T>>(this.url + "/" + id);
+    getById(id: string): Observable<T> {
+        return this.http.get<Api<T>>(this.url + "/" + id).pipe(
+            map(api => {
+                if(api.item) {
+                    return api.item
+                } else {
+                    return null
+                }
+            })
+        );
     }
 
     post(item: T): Observable<any> {

@@ -3,7 +3,7 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { EventService } from '../../services/event.service';
 import { Event } from '../../interfaces/event.interface';
 import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { PhotoService } from 'src/app/photo/services/photo.service';
 import { PhotoModalComponent } from 'src/app/photo/components/photo-modal/photo-modal.component';
@@ -30,7 +30,7 @@ export class EventComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._subscription.add(this.getPhotosByRouterId())
-    this.events$ = this.getEvents()
+    this.events$ = this.eventService.get()
   }
 
   onEventSelected(event: Event) {
@@ -41,20 +41,11 @@ export class EventComponent implements OnInit, OnDestroy {
     this._subscription.add(this.photoModal(photo).subscribe())
   }
 
-  private getEvents(): Observable<Event[]> {
-    return this.eventService.get().pipe(
-      map((events: ApiList<Event>) => events.items)
-    )
-  }
-
   private getPhotos(idEvent: string): Observable<Photo[]> {
     let filters = {}
     filters["idEvent"] = idEvent
     return this.photoService.get(0, 0, null, null, filters).pipe(
-      map((photos: ApiList<Photo>) => {
-        this.photos = photos.items
-        return photos.items
-      })
+      tap(photos => this.photos = photos)
     )
   }
 
@@ -63,10 +54,9 @@ export class EventComponent implements OnInit, OnDestroy {
       subscribe((segement: UrlSegment[]) => {
         if(segement.length > 0) {
           this.idEvent = segement[0].path
-          this.event$ = this.eventService.getById(this.idEvent).pipe(map(event => {
-            this.event = event.item
-            return event.item
-          }))
+          this.event$ = this.eventService.getById(this.idEvent).pipe(
+            tap(event => this.event = event)
+          )
           this.photos$ = this.getPhotos(this.idEvent)
         }
       })

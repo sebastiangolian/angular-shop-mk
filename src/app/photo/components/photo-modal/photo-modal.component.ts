@@ -27,9 +27,7 @@ export class PhotoModalComponent implements OnInit {
   constructor(private bsModalRef: BsModalRef, private offerService: OfferService, private router: Router) { }
 
   ngOnInit(): void {
-    this.offers$ = this.offerService.get().pipe(
-      map((offers: ApiList<Offer>) => offers.items)
-    )
+    this.offers$ = this.offerService.get()
   }
 
   onPrev() {

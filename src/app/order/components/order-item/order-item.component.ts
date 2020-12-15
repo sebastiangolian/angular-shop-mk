@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { BasketItem } from 'src/app/basket/interfaces/basket-item.interface';
 import { Order } from '../../interfaces/order.interface';
@@ -11,14 +11,14 @@ import { Event } from '../../../event/interfaces/event.interface';
   styleUrls: ['./order-item.component.css'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class OrderItemComponent implements OnInit {
+export class OrderItemComponent implements OnChanges {
 
   @Input() order: Order
   mockPayment: boolean = false
   events: Event[] = []
   constructor(private orderService: OrderService) { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.events = this.filterEvent(this.order.items)
   }
 
@@ -41,9 +41,6 @@ export class OrderItemComponent implements OnInit {
       let isEvent = events.find(event => event.idEvent == item.event.idEvent)
       if(!isEvent) events.push(item.event)
     })
-
     return events
   }
-
-
 }
