@@ -55,7 +55,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 ],
                 "offer": [
                     {
-                        idOffer: "1", name: "Zdjęcie", products: [
+                        idOffer: "1", idEvent: "1", name: "Zdjęcie", products: [
                             { idProduct: "1", name: "Zdjęcie 10x15", price: 10.00 },
                             { idProduct: "2", name: "Zdjęcie 13x18", price: 10.00 },
                             { idProduct: "3", name: "Zdjęcie 15x21", price: 10.00 },
@@ -69,27 +69,37 @@ export class BackendInterceptor implements HttpInterceptor {
                         ]
                     },
                     {
-                        idOffer: "2", name: "Fotomagnes", products: [
+                        idOffer: "2", idEvent: "1", name: "Fotomagnes", products: [
                             { idProduct: "11", name: "Fotomagnes 7,5x10", price: 10.00 },
                             { idProduct: "12", name: "Fotomagnes 10x15", price: 16.00 },
                         ]
                     },
                     {
-                        idOffer: "3", name: "Kalendarz", products: [
+                        idOffer: "3", idEvent: "1", name: "Kalendarz", products: [
                             { idProduct: "13", name: "Kalendarz A3", price: 30.00 },
                             { idProduct: "14", name: "Kalendarz Z wsuwanym zdjęciem A4", price: 35.00 },
                             { idProduct: "15", name: "Kalendarz Fotomagnes A4", price: 35.00 },
                         ]
                     },
                     {
-                        idOffer: "4", name: "Fotoobraz", products: [
+                        idOffer: "4", idEvent: "1", name: "Fotoobraz", products: [
                             { idProduct: "16", name: "Fotoobraz 20x30", price: 50.00 },
                             { idProduct: "17", name: "Fotoobraz 30x45", price: 70.00 },
                             { idProduct: "18", name: "Fotoobraz 50x70", price: 110.00 },
                         ]
                     },
                     {
-                        idOffer: "4", name: "Plik cyfrowy", products: [
+                        idOffer: "5", idEvent: "2", name: "Plik cyfrowy", products: [
+                            { idProduct: "19", name: "Plik cyfrowy jpg", price: 30.00 }
+                        ]
+                    },
+                    {
+                        idOffer: "6", idEvent: "3", name: "Plik cyfrowy", products: [
+                            { idProduct: "19", name: "Plik cyfrowy jpg", price: 30.00 }
+                        ]
+                    },
+                    {
+                        idOffer: "7", idEvent: "4", name: "Plik cyfrowy", products: [
                             { idProduct: "19", name: "Plik cyfrowy jpg", price: 30.00 }
                         ]
                     },
