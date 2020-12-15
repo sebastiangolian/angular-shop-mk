@@ -2,7 +2,6 @@ import { PhotoService } from 'src/app/photo/services/photo.service';
 import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Photo } from '../../interfaces/photo.interface';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'photo-list-item',
@@ -20,9 +19,7 @@ export class PhotoListItemComponent implements OnInit {
   constructor(private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.src$ = this.photoService.getFile(this.item).pipe(
-      map(api => api.body)
-    )
+    this.src$ = this.photoService.getFile(this.item)
   }
 
   onClick() {

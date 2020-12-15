@@ -31,9 +31,7 @@ export class BasketListItemComponent implements OnInit, OnDestroy {
       map(items => items.filter(item => item.photo.idPhoto == this.photo.idPhoto))
     )
 
-    this.src$ = this.photoService.getFile(this.photo).pipe(
-      map(api => api.body)
-    )
+    this.src$ = this.photoService.getFile(this.photo)
   }
 
   onChangeAmount(product: Product, amount: number): void {

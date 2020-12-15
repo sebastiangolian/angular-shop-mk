@@ -18,9 +18,7 @@ export class EventPhotoListItemComponent implements OnInit {
   constructor(private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.src$ = this.photoService.getFileFromUrl(this.event.titlePhotoUrl).pipe(
-      map(api => api.body)
-    )
+    this.src$ = this.photoService.getFileFromUrl(this.event.titlePhotoUrl)
   }
 
   getUrl() {
