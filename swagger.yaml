@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Sklep MK
   description: Sklep MK
-  version: 1.0.5
+  version: 1.0.7
 servers:
   - url: http://api.mk.pl/v1
 components:
@@ -121,6 +121,9 @@ components:
       properties:
         idOrder:
           type: "string"
+        orderDate:
+          type: "string"
+          format: date-time
         status:
           type: "boolean"
         isPaid:
@@ -472,6 +475,32 @@ paths:
                     type: "number"
                   messages:
                     $ref: "#/components/schemas/ApiMessage"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /photo/{idPhoto}/image:
+    get:
+      tags:
+        - Photo
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: idPhoto
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "OK"
+          content:
+            image/jpg:
+              schema: 
+                type: "string"
+                format: "binary"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
