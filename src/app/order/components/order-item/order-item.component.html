@@ -9,8 +9,12 @@
     <p *ngIf="order.deliveryMethod">Sposób odbioru zamówienia: <b>{{order.deliveryMethod.content}}</b>
     <ng-container *ngIf="order.paymentMethod">
         <p>Sposób płatności: <b>{{order.paymentMethod.content}}</b>
-        <p *ngIf="order.paymentMethod.url">Status płatności: <b><order-payment-status [order]="order"></order-payment-status></b></p>
-        <button *ngIf="!order.isPaid && order.paymentMethod.url" class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
+        <ng-container *ngIf="order.payment">
+            <p *ngIf="order.payment.operatorUrl">Status płatności: 
+                <b><order-payment [order]="order"></order-payment></b>
+            </p>
+            <button *ngIf="!order.isPaid && order.payment.operatorUrl" class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
+        </ng-container>
     </ng-container>
     <div *ngFor="let event of events">
         <order-element-list [event]="event" [basketItems]="order.items"></order-element-list>

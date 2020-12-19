@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 import { Order } from '../../interfaces/order.interface';
-import { OrderService } from '../../services/offer.service';
+import { OrderService } from '../../services/order.service';
 import { User } from 'src/app/user/interfaces/user.interface';
 
 @Component({

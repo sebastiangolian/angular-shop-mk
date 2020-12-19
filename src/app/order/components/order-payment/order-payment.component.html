@@ -1,0 +1,4 @@
+<span *ngIf="orderPayment$ | async as orderPayment">
+    {{orderPayment.status}}
+    <img *ngIf="orderPayment.isProgress" height="50" src="assets/images/loading.gif" />
+</span>

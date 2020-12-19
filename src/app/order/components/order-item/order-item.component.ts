@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { BasketItem } from 'src/app/basket/interfaces/basket-item.interface';
 import { Order } from '../../interfaces/order.interface';
-import { OrderService } from '../../services/offer.service';
+import { OrderService } from '../../services/order.service';
 import { Event } from '../../../event/interfaces/event.interface';
 
 @Component({
@@ -23,14 +23,14 @@ export class OrderItemComponent implements OnChanges {
   }
 
   onOrderPay(order: Order): void {
-    if(order.paymentMethod.url.includes("mock")) {
+    if(order.payment.operatorUrl.includes("mock")) {
       this.mockPayment = true
       this.orderService.mock(order).pipe(map(api => api.item)).subscribe(order => this.order = order)
       setTimeout(() => {
         this.mockPayment = false
       }, 3000);
     } else {
-      window.location.href = order.paymentMethod.url;
+      window.location.href = order.payment.operatorUrl;
     }
    
   }

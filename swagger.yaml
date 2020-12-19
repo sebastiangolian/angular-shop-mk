@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Sklep MK
   description: Sklep MK
-  version: 1.0.7
+  version: 1.0.12
 servers:
   - url: http://api.mk.pl/v1
 components:
@@ -78,22 +78,22 @@ components:
       - "description"
       properties:
         idEvent:
-          type: "number"
+          type: "string"
         name:
           type: "string"
         titlePhotoUrl:
           type: "string"
         description:
-          type: string
+          type: "string"
     Log:
-      type: object
+      type: "object"
       properties:
         timestamp:
-          type: number
+          type: "number"
         type: 
-          type: string
+          type: "string"
         content:
-          type: string
+          type: "string"
     Offer:
       type: "object"
       required:
@@ -101,7 +101,7 @@ components:
       - "name"
       properties:
         idOffer:
-          type: "number"
+          type: "string"
         name:
           type: "string"
         products:
@@ -123,11 +123,11 @@ components:
           type: "string"
         orderDate:
           type: "string"
-          format: date-time
+          format: "date-time"
         status:
-          type: "boolean"
-        isPaid:
           type: "string"
+        isPaid:
+          type: "boolean"
         firstname:
           type: "string"
         lastname:
@@ -143,9 +143,11 @@ components:
           items:
             $ref: "#/components/schemas/OrderAgreement"
         paymentMethod:
-            $ref: "#/components/schemas/OrderPaymentMethod"
+          $ref: "#/components/schemas/OrderPaymentMethod"
         deliveryMethod:
-            $ref: "#/components/schemas/OrderDeliveryMethod"
+          $ref: "#/components/schemas/OrderDeliveryMethod"
+        payment:
+          $ref: '#/components/schemas/OrderPayment'
         items:
           type: "array"
           items:
@@ -221,8 +223,6 @@ components:
           type: "string"
         content:
           type: "string"
-        url:
-          type: "string"
     OrderDeliveryMethod:
       type: "object"
       required:
@@ -233,30 +233,25 @@ components:
           type: "string"
         content:
           type: "string"
-    OrderPaymentStatus:
+    OrderPayment:
       type: "object"
-      required:
-      - "idOrder"
-      - "isProgress"
-      - "status"
       properties:
-        idOrder:
+        idOrderPayment:
           type: "string"
         isProgress:
           type: "boolean"
         status:
           type: "string"    
+        operatorUrl:
+          type: "string"    
     Photo:
       type: "object"
       required:
       - "idPhoto"
-      - "url"
       - "idEvent"
       - "name"
       properties:
         idPhoto:
-          type: "string"
-        url:
           type: "string"
         idEvent:
           type: "string"
@@ -278,7 +273,7 @@ components:
         amount:
           type: "number"
     User:
-      type: object
+      type: "object"
       required:
         - "login"
       properties:
@@ -367,7 +362,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   items:
                     type: "array"
@@ -394,14 +389,14 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: "string"
       responses:
         '200':
           description: "OK"
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   item:
                     $ref: "#/components/schemas/Event"
@@ -431,7 +426,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   items:
                     type: "array"
@@ -465,7 +460,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   items:
                     type: "array"
@@ -492,7 +487,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: "string"
       responses:
         '200':
           description: "OK"
@@ -525,7 +520,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   items:
                     type: "array"
@@ -553,7 +548,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   item:
                     $ref: "#/components/schemas/OrderDefinition"
@@ -583,7 +578,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   item:
                     $ref: "#/components/schemas/Log"
@@ -613,7 +608,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   item:
                     $ref: "#/components/schemas/Order"
@@ -636,14 +631,14 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: "string"
       responses:
         '200':
           description: "OK"
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   item:
                     $ref: "#/components/schemas/Order"
@@ -673,7 +668,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   items:
                     type: "array"
@@ -689,28 +684,57 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  /order-payment-status/{idOrder}:
+  /order/{idOrder}/payment:
+    parameters:
+      - name: idOrder
+        in: path
+        required: true
+        schema:
+          type: "string"
     post:
       tags:
-        - OrderPaymentStatus
+        - Order
       security:
         - bearerAuth: []
-      parameters:
-        - name: idOrder
-          in: path
-          required: true
-          schema:
-            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderPayment'
       responses:
         '200':
           description: "OK"
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   item:
-                    $ref: "#/components/schemas/OrderPaymentStatus"
+                    $ref: "#/components/schemas/OrderPayment"
+                  messages:
+                    $ref: "#/components/schemas/ApiMessage"
+        '400': 
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Order
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  item:
+                    $ref: '#/components/schemas/OrderPayment'
                   messages:
                     $ref: "#/components/schemas/ApiMessage"
         '400': 
@@ -735,17 +759,17 @@ paths:
           headers:
             X-Expires-After:
               schema:
-                type: string
-                format: date-time
+                type: "string"
+                format: "date-time"
               description: The date after which the token will expire
             Authorization:
               schema: 
-                type: string
+                type: "string"
               description: JWT token
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   messages:
                     $ref: "#/components/schemas/ApiMessage"
@@ -765,13 +789,13 @@ paths:
           headers:
             Logout-Success:
               schema:
-                type: string
-                format: date-time
+                type: "string"
+                format: "date-time"
               description: The date of logout
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   messages:
                     $ref: "#/components/schemas/ApiMessage"
@@ -791,7 +815,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: "object"
                 properties:
                   item:
                     $ref: "#/components/schemas/User"

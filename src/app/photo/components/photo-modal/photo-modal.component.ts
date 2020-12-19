@@ -3,11 +3,9 @@ import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
-import { map, tap } from 'rxjs/operators';
 import { Event } from 'src/app/event/interfaces/event.interface';
 import { Offer } from 'src/app/offer/interfaces/offer.interface';
 import { OfferService } from 'src/app/offer/services/offer.service';
-import { ApiList } from 'src/app/shared/interfaces/api-list.interface';
 import { Photo } from '../../interfaces/photo.interface';
 
 @Component({
@@ -32,7 +30,7 @@ export class PhotoModalComponent implements OnInit {
 
   private getOffers(): Observable<Offer[]> {
     let filters = {}
-    filters["idEvent"] = this.event.idEvent
+    filters["idPhoto"] = this.photo.idPhoto
     return this.offerService.get(0, 0, null, null, filters)
   }
 
