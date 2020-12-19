@@ -17,49 +17,48 @@ import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 })
 export class EventComponent implements OnInit, OnDestroy {
 
-  events$: Observable<Event[]>
-  photos$: Observable<Photo[]>
-  photos: Photo[]
-  idEvent: string = null
-  event$: Observable<Event>
-  event: Event
-  private _subscription: Subscription = new Subscription();
+  events$: Observable<Event[]>;
+  photos$: Observable<Photo[]>;
+  photos: Photo[];
+  idEvent: string = null;
+  event$: Observable<Event>;
+  event: Event;
+  private subscription: Subscription = new Subscription();
 
   constructor(private eventService: EventService, private photoService: PhotoService, private modalService: BsModalService,
-    private route: ActivatedRoute, private router: Router) { }
+              private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this._subscription.add(this.getPhotosByRouterId())
-    this.events$ = this.eventService.get()
+    this.subscription.add(this.getPhotosByRouterId());
+    this.events$ = this.eventService.get();
   }
 
   onEventSelected(event: Event) {
-    this.router.navigate(['event/', event.idEvent])
+    this.router.navigate(['event/', event.idEvent]);
   }
 
   onPhotoSelected(photo: Photo) {
-    this._subscription.add(this.photoModal(photo).subscribe())
+    this.subscription.add(this.photoModal(photo).subscribe());
   }
 
   private getPhotos(idEvent: string): Observable<Photo[]> {
-    let filters = {}
-    filters["idEvent"] = idEvent
+    const filters = {idEvent};
     return this.photoService.get(0, 0, null, null, filters).pipe(
       tap(photos => this.photos = photos)
-    )
+    );
   }
 
   private getPhotosByRouterId(): Subscription {
     return this.route.url.
       subscribe((segement: UrlSegment[]) => {
-        if(segement.length > 0) {
-          this.idEvent = segement[0].path
+        if (segement.length > 0) {
+          this.idEvent = segement[0].path;
           this.event$ = this.eventService.getById(this.idEvent).pipe(
             tap(event => this.event = event)
-          )
-          this.photos$ = this.getPhotos(this.idEvent)
+          );
+          this.photos$ = this.getPhotos(this.idEvent);
         }
-      })
+      });
   }
 
   private photoModal(photo: Photo): Observable<Photo> {
@@ -67,18 +66,18 @@ export class EventComponent implements OnInit, OnDestroy {
     this.modalService.show(PhotoModalComponent, {
       initialState: {
         event: this.event,
-        photo: photo,
+        photo,
         photos: this.photos,
-        currentIndex: this.photos.findIndex(result => result.idPhoto == photo.idPhoto)
+        currentIndex: this.photos.findIndex(result => result.idPhoto === photo.idPhoto)
       },
       class: 'modal-xl pt-4',
       ignoreBackdropClick: true
-    }).content.subject = subject
-    return subject
+    }).content.subject = subject;
+    return subject;
   }
 
   ngOnDestroy() {
-    if (this._subscription) this._subscription.unsubscribe()
+    if (this.subscription) { this.subscription.unsubscribe(); }
   }
 
 }

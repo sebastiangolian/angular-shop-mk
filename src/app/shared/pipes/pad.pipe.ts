@@ -6,12 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PadPipe implements PipeTransform {
 
   transform(value: number, ...args: number[]): string {
-    return this.pad(value, 2)
+    return this.pad(value, 2);
   }
 
   pad(num: number, size: number) {
-    var s = num + "";
-    while (s.length < size) s = "0" + s;
+    let s = num + '';
+    while (s.length < size) { s = '0' + s; }
     return s;
   }
 

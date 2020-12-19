@@ -5,22 +5,22 @@ import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl
 @Pipe({name: 'safe'})
 export class SafePipe implements PipeTransform {
 
-  constructor(protected _sanitizer: DomSanitizer) {}
+  constructor(protected sanitizer: DomSanitizer) {}
 
   transform(value: string, type: string): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
     switch (type) {
       case 'html':
-        return this._sanitizer.bypassSecurityTrustHtml(value);
+        return this.sanitizer.bypassSecurityTrustHtml(value);
       case 'style':
-        return this._sanitizer.bypassSecurityTrustStyle(value);
+        return this.sanitizer.bypassSecurityTrustStyle(value);
       case 'script':
-        return this._sanitizer.bypassSecurityTrustScript(value);
+        return this.sanitizer.bypassSecurityTrustScript(value);
       case 'url':
-        return this._sanitizer.bypassSecurityTrustUrl(value);
+        return this.sanitizer.bypassSecurityTrustUrl(value);
       case 'resourceUrl':
-        return this._sanitizer.bypassSecurityTrustResourceUrl(value);
+        return this.sanitizer.bypassSecurityTrustResourceUrl(value);
       default:
-        return this._sanitizer.bypassSecurityTrustHtml(value);
+        return this.sanitizer.bypassSecurityTrustHtml(value);
     }
   }
 }

@@ -10,15 +10,15 @@ import { Event } from '../../../event/interfaces/event.interface';
 })
 export class PhotoListComponent implements OnInit {
 
-  @Input() photos: Photo[]
-  @Input() event: Event
+  @Input() photos: Photo[];
+  @Input() event: Event;
   @Output() itemSelected: EventEmitter<Photo> = new EventEmitter<Photo>();
   constructor() { }
 
   ngOnInit(): void {}
 
   onItemSelected(photo: Photo) {
-    this.itemSelected.emit(photo)
+    this.itemSelected.emit(photo);
   }
 
 }

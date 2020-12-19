@@ -11,7 +11,7 @@ export class ScrollToTopComponent implements OnInit {
 
   windowScrolled: boolean;
   constructor(@Inject(DOCUMENT) private document: Document) { }
-  @HostListener("window:scroll", [])
+  @HostListener('window:scroll', [])
   onWindowScroll() {
     if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
       this.windowScrolled = true;
@@ -22,7 +22,7 @@ export class ScrollToTopComponent implements OnInit {
   }
   scrollToTop() {
     (function smoothscroll() {
-      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
       if (currentScroll > 0) {
         window.requestAnimationFrame(smoothscroll);
         window.scrollTo(0, currentScroll - (currentScroll / 8));

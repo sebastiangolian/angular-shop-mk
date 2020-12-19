@@ -11,64 +11,68 @@ import { AbstractService } from 'src/app/shared/services/abstract.service';
   providedIn: 'root'
 })
 export class UserService extends AbstractService<User> {
-  private _token: string;
-  
-  currentUser: Observable<User> = new Observable<User>()
-  subject: BehaviorSubject<User> = new BehaviorSubject<User>(null)
-  
-  get token(): string { 
-    const storageToken = localStorage.getItem('token')
-    if(!storageToken)
-      return this._token 
-    else
-      return storageToken 
+  private localToken: string;
+
+  currentUser: Observable<User> = new Observable<User>();
+  subject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+
+  get token(): string {
+    const storageToken = localStorage.getItem('token');
+    if (!storageToken) {
+      return this.localToken;
+    }
+    else {
+      return storageToken;
+    }
   }
 
   constructor(protected http: HttpClient, private router: Router) {
-    super(http) 
-    this.url += "/user"
+    super(http);
+    this.url += '/user';
   }
 
   getToken(user: User): Observable<null> {
-    return this.http.post<null>(this.url + "/login", user)
+    return this.http.post<null>(this.url + '/login', user);
   }
 
   setToken(token: string) {
-    this._token = token
+    this.localToken = token;
   }
 
   getUser(): Observable<User> {
     return this.getOne().pipe(
       tap(user => {
-        if(user) {
+        if (user) {
           this.subject.next(user);
           this.currentUser = this.subject.asObservable();
-          user.isIndividual = user.type == UserType.INDIVIDUAL
-        } 
+          user.isIndividual = user.type === UserType.INDIVIDUAL;
+        }
       })
     );
   }
 
   login(): Observable<User> {
-    if(this.token === undefined) return of(null)
-    if(this.subject.value) 
+    if (this.token === undefined) { return of(null); }
+    if (this.subject.value) {
       return this.subject.asObservable();
-    else 
-      return this.getUser()
+    }
+    else {
+      return this.getUser();
+    }
   }
 
   logout(): Observable<any>{
-    return this.http.get<any>(this.url + "/logout")
+    return this.http.get<any>(this.url + '/logout');
   }
 
   logoutSubscription(): Subscription {
     return this.logout().subscribe({
       complete: () => {
         localStorage.clear();
-        this.setToken(null)
+        this.setToken(null);
         this.subject.next(null);
-        this.router.navigate(['/login']); 
+        this.router.navigate(['/login']);
       }
-    })
+    });
   }
 }

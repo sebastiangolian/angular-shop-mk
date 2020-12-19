@@ -2,7 +2,7 @@ import { browser, by, element } from 'protractor';
 
 export class PageHome {
   navigateTo() {
-    return browser.get('/#/home')
+    return browser.get('/#/home');
   }
 
   getHeaderText() {

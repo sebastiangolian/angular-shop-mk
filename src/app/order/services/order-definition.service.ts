@@ -6,8 +6,8 @@ import { OrderDefinition } from '../interfaces/order-definition.interface';
 @Injectable({providedIn: 'root'})
 export class OrderDefinitionService extends AbstractService<OrderDefinition> {
 
-  constructor(protected http: HttpClient) { 
-    super(http) 
-    this.url += "/order-definition"
+  constructor(protected http: HttpClient) {
+    super(http);
+    this.url += '/order-definition';
   }
 }

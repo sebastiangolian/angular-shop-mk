@@ -14,20 +14,20 @@ import { BasketModule } from '../basket/basket.module';
 import { BannerModule } from '../banner/banner.module';
 import { CookieBarComponent } from './components/cookie-bar/cookie-bar.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { JwtModule } from "@auth0/angular-jwt";
+import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { LogModule } from '../log/log.module';
 import { HttpTokenRegenerationInterceptor } from './interceptors/http-token-regeneration.interceptor';
 
-let providers: Provider[] = [
+const providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: HttpTokenRegenerationInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
 ];
 
-if (environment.name == "prod" || environment.name == "test") {
-  providers.pop()
+if (environment.name === 'prod' || environment.name === 'test') {
+  providers.pop();
 }
 
 @NgModule({
@@ -50,14 +50,14 @@ if (environment.name == "prod" || environment.name == "test") {
     BannerModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => { return localStorage.getItem("token") },
+        tokenGetter: () => localStorage.getItem('token'),
         allowedDomains: environment.allowedDomains,
         disallowedRoutes: environment.disallowedRoutes,
       }
     }),
     LogModule
   ],
-  providers: providers,
+  providers,
   bootstrap: [
     AppComponent
   ]

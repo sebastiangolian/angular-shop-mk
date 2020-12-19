@@ -13,8 +13,8 @@ import { OrderService } from '../../services/order.service';
 })
 export class OrderPaymentComponent implements OnInit {
 
-  @Input() order: Order
-  orderPayment$: Observable<OrderPayment>
+  @Input() order: Order;
+  orderPayment$: Observable<OrderPayment>;
   stopRequesting: Subject<boolean> = new Subject<boolean>();
 
   constructor(private orderService: OrderService) { }
@@ -24,9 +24,9 @@ export class OrderPaymentComponent implements OnInit {
     // orderPayment.idOrderPayment = this.order.idOrder
     this.orderPayment$ = this.orderService.getPayment(this.order.idOrder).pipe(
       repeatWhen(completed => completed.pipe(delay(3000))),
-      tap(item => {if(item.isProgress == false) this.stopRequesting.next(true)}),
+      tap(item => {if (item.isProgress === false) { this.stopRequesting.next(true); }}),
       takeUntil(this.stopRequesting.pipe(delay(2000)))
-    )
+    );
   }
 
 }

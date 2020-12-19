@@ -1,4 +1,4 @@
 export interface BasketSummary {
-    sumPrice: number
-    sumAmount: number
+    sumPrice: number;
+    sumAmount: number;
 }

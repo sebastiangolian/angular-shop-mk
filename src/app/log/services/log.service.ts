@@ -6,8 +6,8 @@ import { Log } from '../interfaces/log.interface';
 @Injectable({providedIn: 'root'})
 export class LogService extends AbstractService<Log> {
 
-  constructor(protected http: HttpClient) { 
-    super(http) 
-    this.url += "/log"
+  constructor(protected http: HttpClient) {
+    super(http);
+    this.url += '/log';
   }
 }

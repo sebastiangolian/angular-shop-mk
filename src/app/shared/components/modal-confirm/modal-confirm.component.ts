@@ -9,7 +9,7 @@ import { Subject } from 'rxjs/internal/Subject';
 })
 export class ModalConfirmComponent implements OnInit {
 
-  content: string
+  content: string;
   subject: Subject<boolean>;
 
   constructor(private bsModalRef: BsModalRef) { }

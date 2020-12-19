@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../interfaces/message.interface';
 import { Subscription } from 'rxjs';
@@ -9,15 +9,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./messages.component.css'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class MessagesComponent implements OnInit {
+export class MessagesComponent implements OnInit, OnDestroy {
 
-  messages: Message[] = []
-  private _subscription: Subscription = new Subscription();
-  
+  messages: Message[] = [];
+  private subscription: Subscription = new Subscription();
+
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this._subscription.add(this.getMessages())
+    this.subscription.add(this.getMessages());
   }
 
   private getMessages(): Subscription {
@@ -31,7 +31,7 @@ export class MessagesComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this._subscription.unsubscribe()
+    this.subscription.unsubscribe();
   }
 
 }

@@ -12,10 +12,10 @@ import { EventPhotoListItemComponent } from './components/event-photo-list-item/
 
 @NgModule({
   declarations: [
-    EventComponent, 
-    EventListComponent, 
-    EventListItemComponent, 
-    EventPhotoListComponent, 
+    EventComponent,
+    EventListComponent,
+    EventListItemComponent,
+    EventPhotoListComponent,
     EventPhotoListItemComponent
   ],
   imports: [

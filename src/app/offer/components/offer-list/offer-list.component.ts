@@ -11,9 +11,9 @@ import { Offer } from '../../interfaces/offer.interface';
 })
 export class OfferListComponent implements OnInit {
 
-  @Input() offers: Offer[]
-  @Input() photo: Photo
-  @Input() event: Event
+  @Input() offers: Offer[];
+  @Input() photo: Photo;
+  @Input() event: Event;
   constructor() { }
 
   ngOnInit(): void {

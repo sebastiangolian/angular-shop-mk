@@ -6,8 +6,8 @@ import { Offer } from '../interfaces/offer.interface';
 @Injectable({providedIn: 'root'})
 export class OfferService extends AbstractService<Offer> {
 
-  constructor(protected http: HttpClient) { 
-    super(http) 
-    this.url += "/offer"
+  constructor(protected http: HttpClient) {
+    super(http);
+    this.url += '/offer';
   }
 }

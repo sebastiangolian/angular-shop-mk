@@ -1,3 +1,3 @@
 export enum BannerName {
-    TOP_BANNER = "top-banner"
+    TOP_BANNER = 'top-banner'
 }

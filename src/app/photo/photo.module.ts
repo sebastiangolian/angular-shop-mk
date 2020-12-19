@@ -12,7 +12,7 @@ import { BasketModule } from '../basket/basket.module';
 
 @NgModule({
   declarations: [
-    PhotoListComponent, 
+    PhotoListComponent,
     PhotoListItemComponent,
     PhotoModalComponent,
     PhotoModalImageComponent

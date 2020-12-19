@@ -3,12 +3,12 @@ import { browser, logging } from 'protractor';
 import { PageHome } from './page-home';
 
 describe('---------- page-home test -----------------', () => {
-  let page: PageHome = new PageHome();
+  const page: PageHome = new PageHome();
 
   beforeAll(() => {
     page.navigateTo();
   });
-  
+
   it('check header', () => {
     expect(page.getHeaderText()).toEqual('home');
   });

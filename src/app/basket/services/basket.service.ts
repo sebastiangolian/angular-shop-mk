@@ -9,65 +9,67 @@ import { BasketSummary } from '../interfaces/basket-summary';
 export class BasketService {
   subjectItems: BehaviorSubject<BasketItem[]> = new BehaviorSubject<BasketItem[]>([]);
   subjectSummary: BehaviorSubject<BasketSummary> = new BehaviorSubject<BasketSummary>(null);
-  items: BasketItem[] = []
+  items: BasketItem[] = [];
   constructor() {
-    this.loadStorage()
+    this.loadStorage();
   }
 
   update(item: BasketItem): void {
-    let itemIndex: number = this.findIndex(item)
+    const itemIndex: number = this.findIndex(item);
     if (itemIndex > -1) {
-      this.items[itemIndex] = item
+      this.items[itemIndex] = item;
     } else {
-      this.items.push(item)
+      this.items.push(item);
     }
     this.subjectItems.next(this.items);
-    this.subjectSummary.next(this.calculate())
-    this.saveStorage()
+    this.subjectSummary.next(this.calculate());
+    this.saveStorage();
   }
 
   delete(basketItem: BasketItem): void {
-    this.items = this.items.filter(item => item !== basketItem)
+    this.items = this.items.filter(item => item !== basketItem);
     this.subjectItems.next(this.items);
-    this.subjectSummary.next(this.calculate())
-    this.saveStorage()
+    this.subjectSummary.next(this.calculate());
+    this.saveStorage();
   }
 
   calculate(): BasketSummary {
-    let sumPrice = 0
-    let sumAmount = 0 
+    let sumPrice = 0;
+    let sumAmount = 0;
     this.items.forEach((item) => {
-      sumAmount += item.amount
-      sumPrice += item.amount * item.price
-    })
-    return {"sumPrice":sumPrice, "sumAmount": sumAmount}
+      sumAmount += item.amount;
+      sumPrice += item.amount * item.price;
+    });
+    return {sumPrice, sumAmount};
   }
 
   clear(): void {
-    this.items = []
-    this.subjectItems.next([])
-    this.subjectSummary.next(null)
-    localStorage.removeItem('basket')
+    this.items = [];
+    this.subjectItems.next([]);
+    this.subjectSummary.next(null);
+    localStorage.removeItem('basket');
   }
 
   private findIndex(item: BasketItem): number {
-    return this.items.findIndex((value) => item.product.idProduct == value.product.idProduct && item.photo.idPhoto == value.photo.idPhoto)
+    return this.items.findIndex(value =>
+      item.product.idProduct === value.product.idProduct && item.photo.idPhoto === value.photo.idPhoto
+    );
   }
 
   private saveStorage(): void {
-    localStorage.setItem('basket', JSON.stringify(this.items))
+    localStorage.setItem('basket', JSON.stringify(this.items));
   }
 
   private loadStorage(): void {
-    let storageBasket = localStorage.getItem('basket')
+    const storageBasket = localStorage.getItem('basket');
     if (storageBasket != null) {
-      this.items = JSON.parse(storageBasket)
-      this.subjectItems.next(this.items)
-      this.subjectSummary.next(this.calculate())
+      this.items = JSON.parse(storageBasket);
+      this.subjectItems.next(this.items);
+      this.subjectSummary.next(this.calculate());
     } else {
-      this.items = []
-      this.subjectItems.next(this.items)
-      this.subjectSummary.next(null)
+      this.items = [];
+      this.subjectItems.next(this.items);
+      this.subjectSummary.next(null);
     }
   }
 }

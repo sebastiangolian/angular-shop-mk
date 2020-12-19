@@ -13,34 +13,34 @@ import { Event } from '../../../event/interfaces/event.interface';
 })
 export class OrderItemComponent implements OnChanges {
 
-  @Input() order: Order
-  mockPayment: boolean = false
-  events: Event[] = []
+  @Input() order: Order;
+  mockPayment = false;
+  events: Event[] = [];
   constructor(private orderService: OrderService) { }
 
   ngOnChanges(): void {
-    this.events = this.filterEvent(this.order.items)
+    this.events = this.filterEvent(this.order.items);
   }
 
   onOrderPay(order: Order): void {
-    if(order.payment.operatorUrl.includes("mock")) {
-      this.mockPayment = true
-      this.orderService.mock(order).pipe(map(api => api.item)).subscribe(order => this.order = order)
+    if (order.payment.operatorUrl.includes('mock')) {
+      this.mockPayment = true;
+      this.orderService.mock(order).pipe(map(api => api.item)).subscribe(result => this.order = result);
       setTimeout(() => {
-        this.mockPayment = false
+        this.mockPayment = false;
       }, 3000);
     } else {
       window.location.href = order.payment.operatorUrl;
     }
-   
+
   }
 
   private filterEvent(basketItems: BasketItem[]): Event[] {
-    let events: Event[] = []
+    const events: Event[] = [];
     basketItems.forEach(item => {
-      let isEvent = events.find(event => event.idEvent == item.event.idEvent)
-      if(!isEvent) events.push(item.event)
-    })
-    return events
+      const isEvent = events.find(event => event.idEvent === item.event.idEvent);
+      if (!isEvent) { events.push(item.event); }
+    });
+    return events;
   }
 }

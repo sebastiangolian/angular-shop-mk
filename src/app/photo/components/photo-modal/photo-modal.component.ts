@@ -15,46 +15,49 @@ import { Photo } from '../../interfaces/photo.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PhotoModalComponent implements OnInit {
-  photo: Photo
-  event: Event
-  photos: Photo[]
-  subject: Subject<Photo>
-  offers$: Observable<Offer[]>
-  currentIndex: number
+  photo: Photo;
+  event: Event;
+  photos: Photo[];
+  subject: Subject<Photo>;
+  offers$: Observable<Offer[]>;
+  currentIndex: number;
 
   constructor(private bsModalRef: BsModalRef, private offerService: OfferService, private router: Router) { }
 
   ngOnInit(): void {
-    this.offers$ = this.getOffers()
+    this.offers$ = this.getOffers();
   }
 
   private getOffers(): Observable<Offer[]> {
-    let filters = {}
-    filters["idPhoto"] = this.photo.idPhoto
-    return this.offerService.get(0, 0, null, null, filters)
+    const filters = {idPhoto: this.photo.idPhoto};
+    return this.offerService.get(0, 0, null, null, filters);
   }
 
   onPrev() {
-    if(this.currentIndex == 0) 
-      this.currentIndex = this.photos.length - 1
-    else 
-      this.currentIndex -= 1
-    this.photo = this.photos[this.currentIndex]
-    this.ngOnInit()
+    if (this.currentIndex === 0) {
+      this.currentIndex = this.photos.length - 1;
+    }
+    else {
+      this.currentIndex -= 1;
+    }
+    this.photo = this.photos[this.currentIndex];
+    this.ngOnInit();
   }
 
   onNext() {
-    if(this.currentIndex == this.photos.length - 1) 
-      this.currentIndex = 0
-    else 
-      this.currentIndex += 1
-    this.photo = this.photos[this.currentIndex]
-    this.ngOnInit()
+    if (this.currentIndex === this.photos.length - 1) {
+      this.currentIndex = 0;
+    }
+    else {
+      this.currentIndex += 1;
+    }
+    this.photo = this.photos[this.currentIndex];
+    this.ngOnInit();
   }
 
   onBasketClick() {
-    this.onCancel()
-    this.router.navigate(['basket'])
+    this.onCancel();
+    this.router.navigate(['basket']);
   }
 
   onCreate() {

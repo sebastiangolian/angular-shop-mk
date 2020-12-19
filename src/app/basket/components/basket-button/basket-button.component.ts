@@ -11,17 +11,17 @@ import { BasketService } from '../../services/basket.service';
 })
 export class BasketButtonComponent implements OnInit {
 
-  @Input() class: string = ""
-  @Output() clicked: EventEmitter<boolean> = new EventEmitter<boolean>()
+  @Input() class = '';
+  @Output() clicked: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
+  basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable();
   constructor(private basketService: BasketService) { }
 
   ngOnInit(): void {
   }
 
   onClick(): void {
-    this.clicked.emit(true)
+    this.clicked.emit(true);
   }
 
 }

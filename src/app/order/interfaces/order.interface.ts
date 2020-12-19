@@ -5,18 +5,18 @@ import { OrderPaymentMethod } from './order-payment-method.interface';
 import { OrderPayment } from './order-payment.interface';
 
 export interface Order {
-    idOrder?: string
-    status?: string
-    isPaid?: boolean
-    firstname: string
-    lastname: string
-    phone: string
-    email: string
-    comment: string
-    orderDate?: string
-    agreements: OrderAgreement[]
-    deliveryMethod?: OrderDeliveryMethod
-    paymentMethod: OrderPaymentMethod
-    payment: OrderPayment
-    items: BasketItem[]
+    idOrder?: string;
+    status?: string;
+    isPaid?: boolean;
+    firstname: string;
+    lastname: string;
+    phone: string;
+    email: string;
+    comment: string;
+    orderDate?: string;
+    agreements: OrderAgreement[];
+    deliveryMethod?: OrderDeliveryMethod;
+    paymentMethod: OrderPaymentMethod;
+    payment: OrderPayment;
+    items: BasketItem[];
 }

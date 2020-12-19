@@ -9,11 +9,6 @@ export class LazyLoadImageDirective {
         this.applyLazyLoading();
     }
 
-    applyLazyLoading() {
-        const $el = this.el.nativeElement;
-        LazyLoadImageDirective.lazyLoadImage($el);
-    }
-
     private static lazyLoadImage($el: HTMLImageElement) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
@@ -25,5 +20,10 @@ export class LazyLoadImageDirective {
             });
         });
         observer.observe($el);
+    }
+
+    applyLazyLoading() {
+        const $el = this.el.nativeElement;
+        LazyLoadImageDirective.lazyLoadImage($el);
     }
 }

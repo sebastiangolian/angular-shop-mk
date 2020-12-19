@@ -13,25 +13,25 @@ import { BasketService } from '../../services/basket.service';
 })
 export class BasketListComponent implements OnInit, OnDestroy {
 
-  @Input() event: Event
-  photos: Photo[]
-  private _subscription: Subscription = new Subscription();
+  @Input() event: Event;
+  photos: Photo[];
+  private subscription: Subscription = new Subscription();
 
   constructor(private basketService: BasketService) { }
 
   ngOnInit(): void {
-    this._subscription.add(this.getBasketItems())
+    this.subscription.add(this.getBasketItems());
   }
 
   getBasketItems(): Subscription {
     return this.basketService.subjectItems.asObservable().
     pipe(
       map((items) => {
-        const filterItems = items.filter((items) => items.photo.idEvent == this.event.idEvent)
-        this.photos = this.getUniquePhotos(filterItems)
-        return filterItems
+        const filterItems = items.filter(item => item.photo.idEvent === this.event.idEvent);
+        this.photos = this.getUniquePhotos(filterItems);
+        return filterItems;
       })
-    ).subscribe()
+    ).subscribe();
   }
 
   getUniquePhotos(basketItems): any[] {
@@ -39,10 +39,10 @@ export class BasketListComponent implements OnInit, OnDestroy {
     .filter(
       (item, i, arr) => arr.findIndex(t => t.photo.idPhoto === item.photo.idPhoto) === i
     )
-    .map((item)=> item.photo)
+    .map((item) => item.photo);
   }
 
   ngOnDestroy() {
-		if (this._subscription) this._subscription.unsubscribe()
-	}
+    if (this.subscription) { this.subscription.unsubscribe(); }
+  }
 }

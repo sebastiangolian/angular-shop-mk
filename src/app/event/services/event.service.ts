@@ -6,8 +6,8 @@ import { Event } from '../interfaces/event.interface';
 @Injectable({providedIn: 'root'})
 export class EventService extends AbstractService<Event> {
 
-  constructor(protected http: HttpClient) { 
-    super(http) 
-    this.url += "/event"
+  constructor(protected http: HttpClient) {
+    super(http);
+    this.url += '/event';
   }
 }

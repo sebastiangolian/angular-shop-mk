@@ -1,5 +1,5 @@
 export interface Log {
-    timestamp: number
-    type: string
-    content: string
+    timestamp: number;
+    type: string;
+    content: string;
 }

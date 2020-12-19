@@ -1,3 +1,3 @@
 export interface ApiNotification {
-    message: string
+    message: string;
 }

@@ -11,20 +11,20 @@ import { Offer } from '../../interfaces/offer.interface';
 })
 export class OfferListItemComponent implements OnInit {
 
-  @Input() offer: Offer 
-  @Input() photo: Photo 
-  @Input() event: Event
-  iconClass: string = ''
-  
+  @Input() offer: Offer;
+  @Input() photo: Photo;
+  @Input() event: Event;
+  iconClass = '';
+
   constructor() { }
 
   ngOnInit(): void {}
 
   isOpenChange(status: boolean) {
-    if(status) {
-      this.iconClass = 'rotate-180'
+    if (status) {
+      this.iconClass = 'rotate-180';
     } else {
-      this.iconClass = 'rotate-0'
+      this.iconClass = 'rotate-0';
     }
   }
 

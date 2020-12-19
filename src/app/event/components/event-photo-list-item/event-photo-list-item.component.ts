@@ -12,17 +12,17 @@ import { Event } from '../../interfaces/event.interface';
 })
 export class EventPhotoListItemComponent implements OnInit {
 
-  @Input() event: Event
-  active: boolean = false
-  src$: Observable<string>
+  @Input() event: Event;
+  active = false;
+  src$: Observable<string>;
   constructor(private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.src$ = this.photoService.getFileFromUrl(this.event.titlePhotoUrl)
+    this.src$ = this.photoService.getFileFromUrl(this.event.titlePhotoUrl);
   }
 
   getUrl() {
     return this.event.titlePhotoUrl;
-  } 
+  }
 
 }

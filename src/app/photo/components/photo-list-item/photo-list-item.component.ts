@@ -13,16 +13,16 @@ export class PhotoListItemComponent implements OnInit {
 
   @Input() item: Photo;
   @Output() itemSelected: EventEmitter<Photo> = new EventEmitter<Photo>();
-  active: boolean = false
-  src$: Observable<string>
+  active = false;
+  src$: Observable<string>;
 
   constructor(private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.src$ = this.photoService.getFile(this.item)
+    this.src$ = this.photoService.getFile(this.item);
   }
 
   onClick() {
-    this.itemSelected.emit(this.item)
+    this.itemSelected.emit(this.item);
   }
 }

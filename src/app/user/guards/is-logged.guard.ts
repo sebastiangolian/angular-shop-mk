@@ -17,11 +17,11 @@ export class IsLoggedGuard implements CanActivate {
         return true;
       }
       else {
-        sessionStorage.setItem("redirectUrl",state.url)
-        this.router.navigate(['/login'])
+        sessionStorage.setItem('redirectUrl', state.url);
+        this.router.navigate(['/login']);
         return false;
       }
-    }))
+    }));
   }
 
 }

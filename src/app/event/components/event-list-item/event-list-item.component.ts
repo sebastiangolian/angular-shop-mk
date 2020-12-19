@@ -10,8 +10,8 @@ import { Event } from '../../interfaces/event.interface';
 export class EventListItemComponent implements OnInit {
 
   @Input() event: Event;
-  @Input() activeIdEvent: string
-  active: boolean = false
+  @Input() activeIdEvent: string;
+  active = false;
 
   constructor() { }
 

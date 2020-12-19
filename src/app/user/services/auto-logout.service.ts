@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'src/app/shared/services/message.service';
 
-const CHECK_INTERVALL = 1000
+const CHECK_INTERVALL = 1000;
 const STORE_KEY = 'lastAction';
 
 @Injectable({providedIn: 'root'})
@@ -12,14 +12,14 @@ export class AutoLogoutService {
 
   constructor(private userService: UserService, private router: Router, private ngZone: NgZone, private messageService: MessageService) {
     this.check();
-    //this.initListener();
+    // this.initListener();
     this.initInterval();
   }
 
   get lastAction() {
-    return parseInt(localStorage.getItem(STORE_KEY));
+    return Number(localStorage.getItem(STORE_KEY));
   }
-  
+
   set lastAction(value) {
     localStorage.setItem(STORE_KEY, value.toString());
   }
@@ -35,7 +35,7 @@ export class AutoLogoutService {
       setInterval(() => {
         this.check();
       }, CHECK_INTERVALL);
-    })
+    });
   }
 
   reset() {
@@ -50,9 +50,9 @@ export class AutoLogoutService {
 
     this.ngZone.run(() => {
       if (isTimeout && this.userService.currentUser) {
-        let message = `Nastąpiło automatyczne wylogowanie z aplikacji po ${environment.autoLogOutTimeout} minutach.`
-        this.messageService.sendMessage(message, 'warning')  
-        this.userService.logoutSubscription()
+        const message = `Nastąpiło automatyczne wylogowanie z aplikacji po ${environment.autoLogOutTimeout} minutach.`;
+        this.messageService.sendMessage(message, 'warning');
+        this.userService.logoutSubscription();
       }
     });
   }

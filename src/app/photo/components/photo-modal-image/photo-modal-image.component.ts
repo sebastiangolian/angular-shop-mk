@@ -11,12 +11,12 @@ import { Photo } from '../../interfaces/photo.interface';
 })
 export class PhotoModalImageComponent implements OnChanges {
 
-  @Input() photo: Photo
-  src$: Observable<string>
+  @Input() photo: Photo;
+  src$: Observable<string>;
   constructor(private photoService: PhotoService) { }
 
   ngOnChanges(): void {
-    this.src$ = this.photoService.getFile(this.photo)
+    this.src$ = this.photoService.getFile(this.photo);
   }
 
 }

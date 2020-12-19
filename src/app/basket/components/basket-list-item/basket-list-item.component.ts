@@ -1,5 +1,5 @@
 import { PhotoService } from 'src/app/photo/services/photo.service';
-import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, OnDestroy } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,41 +18,41 @@ import { BasketService } from '../../services/basket.service';
 })
 export class BasketListItemComponent implements OnInit, OnDestroy {
 
-  @Input() event: Event
-  @Input() photo: Photo
-  @Input() basketItems$: Observable<BasketItem[]>
-  src$: Observable<string>
+  @Input() event: Event;
+  @Input() photo: Photo;
+  @Input() basketItems$: Observable<BasketItem[]>;
+  src$: Observable<string>;
 
-  private _subscription: Subscription = new Subscription();
+  private subscription: Subscription = new Subscription();
   constructor(private basketService: BasketService, private modalService: BsModalService, private photoService: PhotoService) { }
 
   ngOnInit(): void {
     this.basketItems$ = this.basketService.subjectItems.asObservable().pipe(
-      map(items => items.filter(item => item.photo.idPhoto == this.photo.idPhoto))
-    )
+      map(items => items.filter(item => item.photo.idPhoto === this.photo.idPhoto))
+    );
 
-    this.src$ = this.photoService.getFile(this.photo)
+    this.src$ = this.photoService.getFile(this.photo);
   }
 
   onChangeAmount(product: Product, amount: number): void {
-    let basketItem: BasketItem = {
-      amount: amount,
+    const basketItem: BasketItem = {
+      amount,
       price: product.price,
       photo: this.photo,
-      product: product,
+      product,
       event: this.event
-    }
+    };
 
-    this.basketService.update(basketItem)
-    if(amount == 0) this.onTrashClick(basketItem)
+    this.basketService.update(basketItem);
+    if (amount === 0) { this.onTrashClick(basketItem); }
   }
 
   onTrashClick(basketItem: BasketItem) {
-    this.basketService.delete(basketItem)
+    this.basketService.delete(basketItem);
   }
 
   onPhotoSelected(photo: Photo) {
-    this._subscription.add(this.photoModal(photo).subscribe())
+    this.subscription.add(this.photoModal(photo).subscribe());
   }
 
   private photoModal(photo: Photo): Observable<Photo> {
@@ -60,18 +60,18 @@ export class BasketListItemComponent implements OnInit, OnDestroy {
     this.modalService.show(PhotoModalComponent, {
       initialState: {
         event: this.event,
-        photo: photo,
+        photo,
         photos: [photo],
         currentIndex: 0
       },
       class: 'modal-xl pt-4',
       ignoreBackdropClick: true
-    }).content.subject = subject
-    return subject
+    }).content.subject = subject;
+    return subject;
   }
 
   ngOnDestroy() {
-		if (this._subscription) this._subscription.unsubscribe()
-	}
+    if (this.subscription) { this.subscription.unsubscribe(); }
+  }
 
 }

@@ -1,4 +1,4 @@
 export interface OrderPaymentMethod {
-    idOrderPaymentMethod: string
-    content: string
+    idOrderPaymentMethod: string;
+    content: string;
 }

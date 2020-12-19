@@ -10,8 +10,8 @@ import { Order } from '../../interfaces/order.interface';
 export class OrderListItemComponent implements OnInit {
 
   @Input() order: Order;
-  @Input() activeIdOrder: string
-  active: boolean = false
+  @Input() activeIdOrder: string;
+  active = false;
 
   constructor() { }
 

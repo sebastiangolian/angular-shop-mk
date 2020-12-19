@@ -12,15 +12,15 @@ import { BannerService } from '../../services/banner.service';
 })
 export class BannerWidgetComponent implements OnInit {
 
-  @Input() name: string = "banner-main"
-  @Input() class: string
-  banner$: Observable<Banner>
+  @Input() name = 'banner-main';
+  @Input() class: string;
+  banner$: Observable<Banner>;
   constructor(private bannerService: BannerService) { }
 
   ngOnInit(): void {
     this.banner$ = this.bannerService.get().pipe(
-      map(banner => banner.find(banner => banner.name == this.name)),
-    )
+      map(banners => banners.find(banner => banner.name === this.name)),
+    );
   }
 
 }

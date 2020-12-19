@@ -10,25 +10,25 @@ import { map } from 'rxjs/operators';
 @Injectable({providedIn: 'root'})
 export class OrderService extends AbstractService<Order> {
 
-  constructor(protected http: HttpClient) { 
-    super(http) 
-    this.url += "/order"
+  constructor(protected http: HttpClient) {
+    super(http);
+    this.url += '/order';
   }
 
   getPayment(idOrder: string): Observable<OrderPayment> {
-    return this.http.get<Api<OrderPayment>>(this.url + "/" + idOrder + "/payment").pipe(
+    return this.http.get<Api<OrderPayment>>(this.url + '/' + idOrder + '/payment').pipe(
         map(api => {
-            if(api.item) {
-                return api.item
+            if (api.item) {
+                return api.item;
             } else {
-                return null
+                return null;
             }
         })
     );
 }
 
   mock(item: Order): Observable<Api<Order>> {
-    item = this._trimItem(item)
-    return this.http.post<Api<Order>>(this.url+"/mock", item);
+    item = this._trimItem(item);
+    return this.http.post<Api<Order>>(this.url + '/mock', item);
   }
 }

@@ -10,22 +10,22 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class CookieBarComponent implements OnInit {
 
-  private COOKIE_KEY: string = 'cookie-bar';
-  public visible: boolean = false
+  private COOKIE_KEY = 'cookie-bar';
+  public visible = false;
 
   constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
-    if(this.getCookieValue() != '1') this.visible = true
+    if (this.getCookieValue() !== '1') { this.visible = true; }
   }
 
   private getCookieValue()
   {
-    return this.cookieService.get(this.COOKIE_KEY)
+    return this.cookieService.get(this.COOKIE_KEY);
   }
 
   onClosed() {
-    this.cookieService.set(this.COOKIE_KEY,'1', new Date().getDate() + 365);
+    this.cookieService.set(this.COOKIE_KEY, '1', new Date().getDate() + 365);
   }
 
 }

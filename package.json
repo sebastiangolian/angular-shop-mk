@@ -15,7 +15,7 @@
     "preghpages": "ng build --c=ghpages --base-href=/angular-shop-mk/ --outputPath=dist/angular-shop-mk",
     "ghpages": "gh-pages -d dist/angular-shop-mk/",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint --fix",
     "e2e": "ng e2e --port=4201 --webdriverUpdate=true",
     "clear": "rmdir /q /s node_modules",
     "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer dist/stats.json"

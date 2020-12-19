@@ -8,7 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 })
 export class EventPhotoListComponent implements OnInit {
 
-  @Input() events: Event[]
+  @Input() events: Event[];
 
   constructor() { }
 

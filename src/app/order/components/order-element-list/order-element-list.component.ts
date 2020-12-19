@@ -11,24 +11,24 @@ import { Photo } from 'src/app/photo/interfaces/photo.interface';
 })
 export class OrderElementListComponent implements OnInit {
 
-  @Input() event: Event
-  @Input() basketItems: BasketItem[]
-  photos: Photo[] = []
+  @Input() event: Event;
+  @Input() basketItems: BasketItem[];
+  photos: Photo[] = [];
   constructor() { }
 
   ngOnInit(): void {
-    this.basketItems = this.basketItems.filter(item => item.event.idEvent == this.event.idEvent)
-    this.photos = this.filterPhotos(this.basketItems)
+    this.basketItems = this.basketItems.filter(item => item.event.idEvent === this.event.idEvent);
+    this.photos = this.filterPhotos(this.basketItems);
   }
 
   private filterPhotos(basketItems: BasketItem[]): Photo[] {
-    let photos: Photo[] = []
+    const photos: Photo[] = [];
     basketItems.forEach(item => {
-      let isPhoto = photos.find(photo => photo.idPhoto == item.photo.idPhoto)
-      if(!isPhoto) photos.push(item.photo)
-    })
+      const isPhoto = photos.find(photo => photo.idPhoto === item.photo.idPhoto);
+      if (!isPhoto) { photos.push(item.photo); }
+    });
 
-    return photos
+    return photos;
   }
 
 }

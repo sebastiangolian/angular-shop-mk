@@ -2,7 +2,7 @@ import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
 describe('---------- app test -----------------', () => {
-  let page: AppPage = new AppPage();
+  const page: AppPage = new AppPage();
 
   beforeAll(() => {
     page.navigateTo();

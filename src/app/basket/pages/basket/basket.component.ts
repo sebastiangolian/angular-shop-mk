@@ -13,13 +13,13 @@ import { BasketSummary } from '../../interfaces/basket-summary';
   styleUrls: ['./basket.component.css']
 })
 export class BasketComponent implements OnInit {
-  events$: Observable<Event[]>
-  basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
+  events$: Observable<Event[]>;
+  basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable();
   constructor(private basketService: BasketService, private eventService: EventService) { }
 
   ngOnInit(): void {
     this.events$ = this.eventService.get().pipe(
-      map(items => items.filter(item => this.basketService.items.find((bi) => bi.photo.idEvent == item.idEvent )))
-    )
+      map(items => items.filter(item => this.basketService.items.find((bi) => bi.photo.idEvent === item.idEvent )))
+    );
   }
 }

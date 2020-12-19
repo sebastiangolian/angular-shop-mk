@@ -12,13 +12,13 @@ import { Observable } from 'rxjs';
 })
 export class OrderElementListItemComponent implements OnInit {
 
-  @Input() basketItems: BasketItem[]
-  @Input() photo: Photo
-  src$: Observable<string>
+  @Input() basketItems: BasketItem[];
+  @Input() photo: Photo;
+  src$: Observable<string>;
   constructor(private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.basketItems = this.basketItems.filter(item => item.photo.idPhoto == this.photo.idPhoto)
-    this.src$ = this.photoService.getFile(this.photo)
+    this.basketItems = this.basketItems.filter(item => item.photo.idPhoto === this.photo.idPhoto);
+    this.src$ = this.photoService.getFile(this.photo);
   }
 }

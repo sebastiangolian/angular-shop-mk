@@ -11,19 +11,19 @@ export class HttpTokenRegenerationInterceptor implements HttpInterceptor {
 
   getToken(headerValue: string): string {
     if (headerValue) {
-      return headerValue.replace("Bearer ", "")
+      return headerValue.replace('Bearer ', '');
     } else {
-      return headerValue
+      return headerValue;
     }
   }
 
   regenerateToken(response) {
     if (response instanceof HttpResponseBase) {
       const { headers } = response;
-      this.autoLogoutService.reset()
-      const autorizationValue = headers.get('Authorization')
+      this.autoLogoutService.reset();
+      const autorizationValue = headers.get('Authorization');
       if (autorizationValue) {
-        localStorage.setItem('token', this.getToken(autorizationValue))
+        localStorage.setItem('token', this.getToken(autorizationValue));
       }
     }
   }
@@ -31,10 +31,10 @@ export class HttpTokenRegenerationInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       tap(response => {
-        this.regenerateToken(response)
+        this.regenerateToken(response);
       }),
       catchError((error) => {
-        this.regenerateToken(error)
+        this.regenerateToken(error);
         return throwError(error);
       })
     );

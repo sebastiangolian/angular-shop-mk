@@ -11,7 +11,7 @@ import { BasketService } from '../../services/basket.service';
 })
 export class BasketWidgetComponent implements OnInit {
 
-  basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable()
+  basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable();
 
   constructor(private basketService: BasketService) { }
 

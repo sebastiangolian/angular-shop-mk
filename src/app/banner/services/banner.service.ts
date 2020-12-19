@@ -6,8 +6,8 @@ import { Banner } from '../interfaces/banner.interface';
 @Injectable({providedIn: 'root'})
 export class BannerService extends AbstractService<Banner> {
 
-  constructor(protected http: HttpClient) { 
-    super(http) 
-    this.url += "/banner"
+  constructor(protected http: HttpClient) {
+    super(http);
+    this.url += '/banner';
   }
 }
