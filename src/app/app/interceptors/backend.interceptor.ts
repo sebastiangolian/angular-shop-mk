@@ -23,92 +23,92 @@ export class BackendInterceptor implements HttpInterceptor {
 
         function handleRoute() {
 
-            let httpClient: HttpClient = new HttpClient(next);
+            const httpClient: HttpClient = new HttpClient(next);
 
-            if (environment.loggingBackendUrl) console.info('[' + request.method + ']' + url);
-            if (environment.loggingBackendRequestHeaders) console.info(headers);
-            if (environment.loggingBackendRequest) console.info(body);
-            let ret: Observable<HttpEvent<any>> = null
+            if (environment.loggingBackendUrl) { console.info('[' + request.method + ']' + url); }
+            if (environment.loggingBackendRequestHeaders) { console.info(headers); }
+            if (environment.loggingBackendRequest) { console.info(body); }
+            let ret: Observable<HttpEvent<any>> = null;
 
             let db = {
-                "user": [
-                    { 
-                        login: "individual", 
-                        password: "81Xac4g21",
-                        firstName: "Jan",
-                        lastName: "Indiwidualny",
+                user: [
+                    {
+                        login: 'individual',
+                        password: '81Xac4g21',
+                        firstName: 'Jan',
+                        lastName: 'Indiwidualny',
                         type: UserType.INDIVIDUAL
                     },
-                    { 
-                        login: "group", 
-                        password: "81Xac4g22",
-                        firstName: "Jan",
-                        lastName: "Grupowy",
+                    {
+                        login: 'group',
+                        password: '81Xac4g22',
+                        firstName: 'Jan',
+                        lastName: 'Grupowy',
                         type: UserType.GROUP
                     },
                 ],
-                "event": [
-                    { idEvent: "1", name: "Dzień dziecka", titlePhotoUrl: "/api/photo/file/1/image", description: "<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
-                    { idEvent: "2", name: "Dzień niepodległości", titlePhotoUrl: "/api/photo/file/2/image", description: "<h2 class='text-danger'>Dzień niepodległości</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
-                    { idEvent: "3", name: "Bieg City Trail", titlePhotoUrl: "/api/photo/file/3/image", description: "<h2 class='text-info'>Bieg City Trail</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
-                    { idEvent: "4", name: "Wesele Marii i Nikodema 2020-01-01", titlePhotoUrl: "/api/photo/file/4/image", description: "<h2 class='text-warning'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla." },
+                event: [
+                    { idEvent: '1', name: 'Dzień dziecka', titlePhotoUrl: '/api/photo/file/1/image', description: '<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.' },
+                    { idEvent: '2', name: 'Dzień niepodległości', titlePhotoUrl: '/api/photo/file/2/image', description: '<h2 class=\'text-danger\'>Dzień niepodległości</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.' },
+                    { idEvent: '3', name: 'Bieg City Trail', titlePhotoUrl: '/api/photo/file/3/image', description: '<h2 class=\'text-info\'>Bieg City Trail</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.' },
+                    { idEvent: '4', name: 'Wesele Marii i Nikodema 2020-01-01', titlePhotoUrl: '/api/photo/file/4/image', description: '<h2 class=\'text-warning\'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.' },
                 ],
-                "offer": [
+                offer: [
                     {
-                        idOffer: "1", idPhoto: "1", name: "Zdjęcie", products: [
-                            { idProduct: "1", name: "Zdjęcie 10x15", price: 10.00 },
-                            { idProduct: "2", name: "Zdjęcie 13x18", price: 10.00 },
-                            { idProduct: "3", name: "Zdjęcie 15x21", price: 10.00 },
-                            { idProduct: "4", name: "Zdjęcie 18x25", price: 12.00 },
-                            { idProduct: "5", name: "Zdjęcie 21x30", price: 14.00 },
-                            { idProduct: "6", name: "Zdjęcie 25x38", price: 18.00 },
-                            { idProduct: "7", name: "Zdjęcie 30x40", price: 60.00 },
-                            { idProduct: "8", name: "Zdjęcie 40x50", price: 40.00 },
-                            { idProduct: "9", name: "Zdjęcie 50x70", price: 60.00 },
-                            { idProduct: "10", name: "Zdjęcie Legitymacyjne 4 szt", price: 10.00 },
+                        idOffer: '1', idPhoto: '1', name: 'Zdjęcie', products: [
+                            { idProduct: '1', name: 'Zdjęcie 10x15', price: 10.00 },
+                            { idProduct: '2', name: 'Zdjęcie 13x18', price: 10.00 },
+                            { idProduct: '3', name: 'Zdjęcie 15x21', price: 10.00 },
+                            { idProduct: '4', name: 'Zdjęcie 18x25', price: 12.00 },
+                            { idProduct: '5', name: 'Zdjęcie 21x30', price: 14.00 },
+                            { idProduct: '6', name: 'Zdjęcie 25x38', price: 18.00 },
+                            { idProduct: '7', name: 'Zdjęcie 30x40', price: 60.00 },
+                            { idProduct: '8', name: 'Zdjęcie 40x50', price: 40.00 },
+                            { idProduct: '9', name: 'Zdjęcie 50x70', price: 60.00 },
+                            { idProduct: '10', name: 'Zdjęcie Legitymacyjne 4 szt', price: 10.00 },
                         ]
                     },
                     {
-                        idOffer: "2", idPhoto: "1", name: "Fotomagnes", products: [
-                            { idProduct: "11", name: "Fotomagnes 7,5x10", price: 10.00 },
-                            { idProduct: "12", name: "Fotomagnes 10x15", price: 16.00 },
+                        idOffer: '2', idPhoto: '1', name: 'Fotomagnes', products: [
+                            { idProduct: '11', name: 'Fotomagnes 7,5x10', price: 10.00 },
+                            { idProduct: '12', name: 'Fotomagnes 10x15', price: 16.00 },
                         ]
                     },
                     {
-                        idOffer: "3", idPhoto: "1", name: "Kalendarz", products: [
-                            { idProduct: "13", name: "Kalendarz A3", price: 30.00 },
-                            { idProduct: "14", name: "Kalendarz Z wsuwanym zdjęciem A4", price: 35.00 },
-                            { idProduct: "15", name: "Kalendarz Fotomagnes A4", price: 35.00 },
+                        idOffer: '3', idPhoto: '1', name: 'Kalendarz', products: [
+                            { idProduct: '13', name: 'Kalendarz A3', price: 30.00 },
+                            { idProduct: '14', name: 'Kalendarz Z wsuwanym zdjęciem A4', price: 35.00 },
+                            { idProduct: '15', name: 'Kalendarz Fotomagnes A4', price: 35.00 },
                         ]
                     },
                     {
-                        idOffer: "4", idPhoto: "1", name: "Fotoobraz", products: [
-                            { idProduct: "16", name: "Fotoobraz 20x30", price: 50.00 },
-                            { idProduct: "17", name: "Fotoobraz 30x45", price: 70.00 },
-                            { idProduct: "18", name: "Fotoobraz 50x70", price: 110.00 },
+                        idOffer: '4', idPhoto: '1', name: 'Fotoobraz', products: [
+                            { idProduct: '16', name: 'Fotoobraz 20x30', price: 50.00 },
+                            { idProduct: '17', name: 'Fotoobraz 30x45', price: 70.00 },
+                            { idProduct: '18', name: 'Fotoobraz 50x70', price: 110.00 },
                         ]
                     },
                     {
-                        idOffer: "5", idPhoto: "2", name: "Plik cyfrowy", products: [
-                            { idProduct: "19", name: "Plik cyfrowy jpg", price: 30.00 }
+                        idOffer: '5', idPhoto: '2', name: 'Plik cyfrowy', products: [
+                            { idProduct: '19', name: 'Plik cyfrowy jpg', price: 30.00 }
                         ]
                     },
                     {
-                        idOffer: "6", idPhoto: "3", name: "Plik cyfrowy", products: [
-                            { idProduct: "19", name: "Plik cyfrowy jpg", price: 30.00 }
+                        idOffer: '6', idPhoto: '3', name: 'Plik cyfrowy', products: [
+                            { idProduct: '19', name: 'Plik cyfrowy jpg', price: 30.00 }
                         ]
                     },
                     {
-                        idOffer: "7", idPhoto: "4", name: "Plik cyfrowy", products: [
-                            { idProduct: "19", name: "Plik cyfrowy jpg", price: 30.00 }
+                        idOffer: '7', idPhoto: '4', name: 'Plik cyfrowy', products: [
+                            { idProduct: '19', name: 'Plik cyfrowy jpg', price: 30.00 }
                         ]
                     },
                 ],
-                "photo": [
-                    { idPhoto: "1", idEvent: "1", name: "photo 1" },
-                    { idPhoto: "2", idEvent: "2", name: "photo 2" },
-                    { idPhoto: "3", idEvent: "3", name: "photo 3" },
-                    { idPhoto: "4", idEvent: "4", name: "photo 4" },
+                photo: [
+                    { idPhoto: '1', idEvent: '1', name: 'photo 1' },
+                    { idPhoto: '2', idEvent: '2', name: 'photo 2' },
+                    { idPhoto: '3', idEvent: '3', name: 'photo 3' },
+                    { idPhoto: '4', idEvent: '4', name: 'photo 4' },
                     // { idPhoto: "5", idEvent: "1", name: "photo 5" },
                     // { idPhoto: "6", idEvent: "1", name: "photo 6" },
                     // { idPhoto: "7", idEvent: "1", name: "photo 7" },
@@ -155,238 +155,239 @@ export class BackendInterceptor implements HttpInterceptor {
                     // { idPhoto: "49", idEvent: "4", name: "photo 49" },
                     // { idPhoto: "50", idEvent: "4", name: "photo 50" },
                 ],
-                "orderDefinition": [
+                orderDefinition: [
                     {
-                        idOrder: "",
-                        firstname: "Jan",
-                        lastname: "Kowalski",
-                        phone: "777777777",
-                        email: "kowalskijan@gmail.com",
-                        emailConfirm: "kowalskijan@gmail.com",
-                        comment: "",
+                        idOrder: '',
+                        firstname: 'Jan',
+                        lastname: 'Kowalski',
+                        phone: '777777777',
+                        email: 'kowalskijan@gmail.com',
+                        emailConfirm: 'kowalskijan@gmail.com',
+                        comment: '',
                         labels: {
-                            firstnameLabel: "Podaj swoje imię",
-                            lastnameLabel: "Podaj swoje nazwisko",
-                            phoneLabel: "Numer telefonu",
-                            emailLabel: "Adres email",
-                            emailConfirmLabel: "Potwierdź adres email",
-                            commentLabel: "Uwagi do zamówienia",
-                            orderMethodLabel: "Wybierz sposób odbioru zamówienia",
-                            paymentMethodLabel: "Wybierz formę płatności"
+                            firstnameLabel: 'Podaj swoje imię',
+                            lastnameLabel: 'Podaj swoje nazwisko',
+                            phoneLabel: 'Numer telefonu',
+                            emailLabel: 'Adres email',
+                            emailConfirmLabel: 'Potwierdź adres email',
+                            commentLabel: 'Uwagi do zamówienia',
+                            orderMethodLabel: 'Wybierz sposób odbioru zamówienia',
+                            paymentMethodLabel: 'Wybierz formę płatności'
                         },
                         agreements: [
-                            { idOrderAgreement: "1212", content: "Zapoznałem się i akceptuje <a href='https://sklep.mk.pl/resource/sklep.regulamin.pdf' target='_BLANK'>regulamin sklepu</a>", checked: true, required: true },
-                            { idOrderAgreement: "3323", content: "Chcę dostać e-maila, kiedy w sklepie pojawią się zdjęcia z kolejnej sesji.", checked: false, required: false },
-                            { idOrderAgreement: "4422", content: "Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.", checked: false, required: false },
+                            { idOrderAgreement: '1212', content: 'Zapoznałem się i akceptuje <a href=\'https://sklep.mk.pl/resource/sklep.regulamin.pdf\' target=\'_BLANK\'>regulamin sklepu</a>', checked: true, required: true },
+                            { idOrderAgreement: '3323', content: 'Chcę dostać e-maila, kiedy w sklepie pojawią się zdjęcia z kolejnej sesji.', checked: false, required: false },
+                            { idOrderAgreement: '4422', content: 'Chcę otrzymywać informacje na temat SESJI (mini sesji, sesji świątecznych) i WYDARZEŃ SPECJALNYCH organizowanych przez MK FOTOGRAFIA.', checked: false, required: false },
                         ],
                         deliveryMethods: [
-                            { idOrderDeliveryMethod: "sadsawewq222", content: "Odbiór we Wtelnie" },
-                            { idOrderDeliveryMethod: "dsdsdsdadsad", content: "Odbiór w Piccolo Studio (ul. Kujawska 109 Bydgoszcz)" },
-                            { idOrderDeliveryMethod: "we232e2e2e2e", content: "Wysyłka paczkomatem Inpost (+12 zł)" },
-                            { idOrderDeliveryMethod: "r4r4r424r2r2", content: "Wysyłka kurierem (+15 zł)" }
+                            { idOrderDeliveryMethod: 'sadsawewq222', content: 'Odbiór we Wtelnie' },
+                            { idOrderDeliveryMethod: 'dsdsdsdadsad', content: 'Odbiór w Piccolo Studio (ul. Kujawska 109 Bydgoszcz)' },
+                            { idOrderDeliveryMethod: 'we232e2e2e2e', content: 'Wysyłka paczkomatem Inpost (+12 zł)' },
+                            { idOrderDeliveryMethod: 'r4r4r424r2r2', content: 'Wysyłka kurierem (+15 zł)' }
                         ],
                         paymentMethods: [
-                            { idOrderPaymentMethod: "2124", content: "Gotówka przy odbiorze" },
-                            { idOrderPaymentMethod: "7655", content: "Szybki przelew - Przelewy24" },
-                            { idOrderPaymentMethod: "2354", content: "Przelew tradycyjny" },
+                            { idOrderPaymentMethod: '2124', content: 'Gotówka przy odbiorze' },
+                            { idOrderPaymentMethod: '7655', content: 'Szybki przelew - Przelewy24' },
+                            { idOrderPaymentMethod: '2354', content: 'Przelew tradycyjny' },
                         ],
                     }
                 ],
-                "order": [],
-                "banner": [
-                    { idBanner: "1", name: BannerName.TOP_BANNER, imgUrl: "assets/images/banner.jpg", url: "", backgroundColor: "#051E1A" }
+                order: [],
+                banner: [
+                    { idBanner: '1', name: BannerName.TOP_BANNER, imgUrl: 'assets/images/banner.jpg', url: '', backgroundColor: '#051E1A' }
                 ],
-                "log": [],
-            }
-            db = loadStorage(db)
+                log: [],
+            };
+            db = loadStorage(db);
 
             switch (true) {
 
-                case (method === 'POST' && url.includes("/api/user/login")): {
-                    let user = db.user.find(user => user.login == body.login && user.password == body.password)
+                case (method === 'POST' && url.includes('/api/user/login')): {
+                    const user = db.user.find(item => item.login === body.login && item.password === body.password);
                     if (user) {
-                        const headers = new HttpHeaders({'Authorization': `Bearer ${body.login}`})
-                        return response200(null, headers);
+                        const httpHeaders = new HttpHeaders({Authorization: `Bearer ${body.login}`});
+                        return response200(null, httpHeaders);
                     }
                     else {
-                        return responseError(400, "Musisz podać prawidłowy login i hasło.")
+                        return responseError(400, 'Musisz podać prawidłowy login i hasło.');
                     }
                 }
 
-                case (method === 'GET' && url.includes("/api/user/logout")): {
-                    localStorage.clear()
+                case (method === 'GET' && url.includes('/api/user/logout')): {
+                    localStorage.clear();
                     return response200();
                 }
 
-                case (method === 'GET' && url.includes("/api/user")): {
-                    let login = headers.get("Authorization").replace("Bearer ","")
-                    let user = db.user.find(user => user.login == login)
-                    return response200({ "item": user });
+                case (method === 'GET' && url.includes('/api/user')): {
+                    const login = headers.get('Authorization').replace('Bearer ', '');
+                    const user = db.user.find(item => item.login === login);
+                    return response200({ item: user });
                 }
 
-                case (method === 'GET' && url.includes("/api/event/list")): {
-                    const response = getAll(url, db.event)
+                case (method === 'GET' && url.includes('/api/event/list')): {
+                    const response = getAll(db.event);
                     return response200(response);
-                    //return responseError(404, "Lista zdarzeń nie istnieje")
+                    // return responseError(404, "Lista zdarzeń nie istnieje")
                 }
 
-                case (method === 'GET' && url.includes("/api/event")): {
-                    let item = db.event.find(event => event.idEvent.toString() == getIdFromUrl())
-                    return response200({ "item": item });
+                case (method === 'GET' && url.includes('/api/event')): {
+                    const item = db.event.find(event => event.idEvent.toString() === getIdFromUrl());
+                    return response200({ item });
                 }
 
-                case (method === 'GET' && url.includes("/api/photo/list")): {
-                    const response = getAll(url, db.photo)
+                case (method === 'GET' && url.includes('/api/photo/list')): {
+                    const response = getAll(db.photo);
                     return response200(response);
                 }
 
-                case (method === 'GET' && url.includes("/api/photo") && url.includes("/image")): {
+                case (method === 'GET' && url.includes('/api/photo') && url.includes('/image')): {
                     return response200(getJpegBlob());
                 }
 
-                case (method === 'GET' && url.includes("/api/photo/list")): {
-                    const response = getAll(url, db.photo)
+                case (method === 'GET' && url.includes('/api/photo/list')): {
+                    const response = getAll(db.photo);
                     return response200(response);
                 }
 
-                case (method === 'GET' && url.includes("/api/offer/list")): {
-                    const response = getAll(url, db.offer)
+                case (method === 'GET' && url.includes('/api/offer/list')): {
+                    const response = getAll(db.offer);
                     return response200(response);
                 }
 
-                case (method === 'GET' && url.includes("/api/order-definition")): {
-                    return response200({ "item": db.orderDefinition[0] });
+                case (method === 'GET' && url.includes('/api/order-definition')): {
+                    return response200({ item: db.orderDefinition[0] });
                 }
 
-                case (method === 'GET' && url.includes("/api/order") && url.includes("/payment")): {
-                    let copyUrl = url.replace("/payment","")
-                    let idOrder = copyUrl.substring(copyUrl.lastIndexOf('/') + 1);
-                    let item = db.order.find(order => order.idOrder.toString() == idOrder)
-                    return response200({ "item": item.payment });
+                case (method === 'GET' && url.includes('/api/order') && url.includes('/payment')): {
+                    const copyUrl = url.replace('/payment', '');
+                    const idOrder = copyUrl.substring(copyUrl.lastIndexOf('/') + 1);
+                    const item = db.order.find(order => order.idOrder.toString() === idOrder);
+                    return response200({ item: item.payment });
                 }
 
-                case (method === 'GET' && url.includes("/api/order/list")): {
-                    const response = getAll(url, db.order)
+                case (method === 'GET' && url.includes('/api/order/list')): {
+                    const response = getAll(db.order);
                     return response200(response);
                 }
 
-                case (method === 'GET' && url.includes("/api/order")): {
-                    //return responseError(404, "Zamówienie nie istnieje")
-                    let item = db.order.find(order => order.idOrder.toString() == getIdFromUrl())
-                    return response200({ "item": item });
+                case (method === 'GET' && url.includes('/api/order')): {
+                    // return responseError(404, "Zamówienie nie istnieje")
+                    const item = db.order.find(order => order.idOrder.toString() === getIdFromUrl());
+                    return response200({ item });
                 }
 
-                case (method === 'POST' && url.includes("/api/order/mock")): {
-                    let indexOrder = db.order.findIndex(order => order.idOrder.toString() == body.idOrder)
-                    db.order[indexOrder].isPaid = true                    
-                    saveStorage(db)
-                    if (db.order[indexOrder].payment.isProgress == false) {
-                        db.order[indexOrder].payment.isProgress = true
-                        db.order[indexOrder].payment.status = "W trakcie"
-                        saveStorage(db)
+                case (method === 'POST' && url.includes('/api/order/mock')): {
+                    const indexOrder = db.order.findIndex(order => order.idOrder.toString() === body.idOrder);
+                    db.order[indexOrder].isPaid = true;
+                    saveStorage(db);
+                    if (db.order[indexOrder].payment.isProgress === false) {
+                        db.order[indexOrder].payment.isProgress = true;
+                        db.order[indexOrder].payment.status = 'W trakcie';
+                        saveStorage(db);
                         setTimeout(() => {
-                            db.order[indexOrder].payment.isProgress = false
-                            db.order[indexOrder].payment.status = "Zakończona"
-                            db.order[indexOrder].isPaid = true
-                            saveStorage(db)
-                        }, 10000)
+                            db.order[indexOrder].payment.isProgress = false;
+                            db.order[indexOrder].payment.status = 'Zakończona';
+                            db.order[indexOrder].isPaid = true;
+                            saveStorage(db);
+                        }, 10000);
                     }
-                    return response200({ "item": db.order[indexOrder] });
+                    return response200({ item: db.order[indexOrder] });
                 }
 
-                case (method === 'POST' && url.includes("/api/order")): {
-                    let index = db.order.length
-                    db.order[index] = body
-                    db.order[index].idOrder = (Math.floor(Math.random() * 100000)).toString()
-                    db.order[index].status = "Przyjęte"
-                    db.order[index].isPaid = false
-                    db.order[index].orderDate = DateTimeHelper.currentDateTime()
-                    if(db.order[index].paymentMethod.idOrderPaymentMethod == "7655") {
-                        db.order[index].payment = { 
-                            idOrderPayment: db.order[index].idOrder, 
-                            isProgress: false, 
-                            status: "Nierozpoczęta",
-                            operatorUrl: "https://mock.secure.przelewy24.pl/trnRequest"
-                        }
+                case (method === 'POST' && url.includes('/api/order')): {
+                    const index = db.order.length;
+                    db.order[index] = body;
+                    db.order[index].idOrder = (Math.floor(Math.random() * 100000)).toString();
+                    db.order[index].status = 'Przyjęte';
+                    db.order[index].isPaid = false;
+                    db.order[index].orderDate = DateTimeHelper.currentDateTime();
+                    if (db.order[index].paymentMethod.idOrderPaymentMethod === '7655') {
+                        db.order[index].payment = {
+                            idOrderPayment: db.order[index].idOrder,
+                            isProgress: false,
+                            status: 'Nierozpoczęta',
+                            operatorUrl: 'https://mock.secure.przelewy24.pl/trnRequest'
+                        };
                     } else {
-                        db.order[index].payment = null
+                        db.order[index].payment = null;
                     }
-                    
-                    saveStorage(db)
-                    return response200({ "item": db.order[index] });
+
+                    saveStorage(db);
+                    return response200({ item: db.order[index] });
                 }
 
-                case (method === 'GET' && url.includes("/api/banner/list")): {
-                    const response = getAll(url, db.banner)
+                case (method === 'GET' && url.includes('/api/banner/list')): {
+                    const response = getAll(db.banner);
                     return response200(response);
                 }
 
-                case (method === 'POST' && url.includes("/api/log")): {
-                    db.log.push(body)
-                    saveStorage(db)
-                    return response200({ "item": body });
+                case (method === 'POST' && url.includes('/api/log')): {
+                    db.log.push(body);
+                    saveStorage(db);
+                    return response200({ item: body });
                 }
 
                 default: ret = null;
             }
 
-            if (ret == null) ret = next.handle(request)
+            if (ret == null) { ret = next.handle(request); }
             return ret;
         }
 
         function loadStorage(db: any): any {
-            let localStorageDb = localStorage.getItem('angular-shop-mk')
+            const localStorageDb = localStorage.getItem('angular-shop-mk');
 
             if (localStorageDb != null) {
-                return JSON.parse(localStorageDb)
+                return JSON.parse(localStorageDb);
             }
             else {
-                saveStorage(db)
-                return db
+                saveStorage(db);
+                return db;
             }
         }
 
         function saveStorage(db) {
-            localStorage.setItem('angular-shop-mk', JSON.stringify(db))
+            localStorage.setItem('angular-shop-mk', JSON.stringify(db));
         }
 
-        function getAll(url: string, items: any[]): any {
-            let sort_by: string = getParamFromUrl('sort_by');
-            let order: string = getParamFromUrl('order');
-            let limit: string = getParamFromUrl('limit');
-            let page: string = getParamFromUrl('page');
-            let filters: string = getParamFromUrl('filters');
+        function getAll(items: any[]): any {
+            const sortBy: string = getParamFromUrl('sort_by');
+            const order: string = getParamFromUrl('order');
+            const limit: string = getParamFromUrl('limit');
+            const page: string = getParamFromUrl('page');
+            const filters: string = getParamFromUrl('filters');
             let ret: any[] = items;
             let totalItemFilter: number = items.length;
-            if (filters) ret = setFilter(ret, JSON.parse(filters));
+            if (filters) { ret = setFilter(ret, JSON.parse(filters)); }
 
-            totalItemFilter = ret.length
+            totalItemFilter = ret.length;
 
-            if (sort_by) ret = setSort(ret, sort_by, order);
+            if (sortBy) { ret = setSort(ret, sortBy, order); }
 
             if (limit && page) {
-                let min: number = Number(limit) * (Number(page) - 1);
-                let max: number = min + Number(limit);
-                ret = ret.filter((i: any, index: number) => (index >= min && index < max))
+                const min: number = Number(limit) * (Number(page) - 1);
+                const max: number = min + Number(limit);
+                ret = ret.filter((i: any, index: number) => (index >= min && index < max));
             }
 
-            return { total: totalItemFilter, items: ret }
+            return { total: totalItemFilter, items: ret };
         }
 
-        function response200(body?: any, headers?: any): Observable<HttpResponse<any>> {
-            let response = { status: 200, body: body, headers: null }
-            if (headers) response = { status: 200, body: body, headers: headers }
-            if (environment.loggingBackendResponse) console.info(response)
-            return of(new HttpResponse<any>(response))
+        function response200(responseBody?: any, responseHeaders?: any): Observable<HttpResponse<any>> {
+            const response = { status: 200, body, headers };
+            if (responseBody) { response.body = responseBody; }
+            if (responseHeaders) { response.headers = responseHeaders; }
+            if (environment.loggingBackendResponse) { console.info(response); }
+            return of(new HttpResponse<any>(response));
         }
 
         function responseError(code: number, message: string): Observable<HttpResponse<any>> {
             return throwError({
                 errors: [
-                    { code: code, message: message }
+                    { code, message }
                 ],
                 notifications: [
-                    { message: message }
+                    { message }
                 ]
             }
             );
@@ -397,29 +398,29 @@ export class BackendInterceptor implements HttpInterceptor {
         }
 
         function getParamFromUrl(name: string): string {
-            let param = name + "=";
-            let urlSplit = url.split(param)
+            const param = name + '=';
+            const urlSplit = url.split(param);
 
             if (urlSplit.length > 1) {
-                return urlSplit[1].split("&")[0]
+                return urlSplit[1].split('&')[0];
             } else {
-                return ""
+                return '';
             }
         }
 
         function getParamFromBody(name: string): string {
-            let param = name + "=";
-            let urlSplit = body.split(param)
+            const param = name + '=';
+            const urlSplit = body.split(param);
 
             if (urlSplit.length > 1) {
-                return urlSplit[1].split("&")[0]
+                return urlSplit[1].split('&')[0];
             } else {
-                return ""
+                return '';
             }
         }
 
         function setSort(data: any[], sort: string, order: string): any[] {
-            if (sort == "" || order == "") {
+            if (sort === '' || order === '') {
                 return data;
             }
 
@@ -437,23 +438,23 @@ export class BackendInterceptor implements HttpInterceptor {
         }
 
         function setFilter(data: any[], filters: object): any[] {
-            if (typeof (filters) !== "object") {
+            if (typeof (filters) !== 'object') {
                 return data;
             }
-            let dataFilter = data.filter((item) => {
-                let currentValues: boolean[] = []
+            const dataFilter = data.filter((item) => {
+                const currentValues: boolean[] = [];
                 for (const [key, value] of Object.entries(filters)) {
-                    if (item[key] || item[key] == false) {
-                        let valueString = value.toString().toLowerCase()
-                        currentValues.push(item[key].toString().toLowerCase().includes(valueString))
+                    if (item[key] || item[key] === false) {
+                        const valueString = value.toString().toLowerCase();
+                        currentValues.push(item[key].toString().toLowerCase().includes(valueString));
                     } else {
-                        currentValues.push(false)
+                        currentValues.push(false);
                     }
                 }
-                return !currentValues.includes(false)
-            })
+                return !currentValues.includes(false);
+            });
 
-            return dataFilter
+            return dataFilter;
         }
 
         function getPdfUrl() {
@@ -465,11 +466,11 @@ export class BackendInterceptor implements HttpInterceptor {
                 CjcwIDUwIFRECi9GMSAxMiBUZgooSGVsbG8sIHdvcmxkISkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDEwIDAwMDAwIG4g
                 CjAwMDAwMDAwNzkgMDAwMDAgbiAKMDAwMDAwMDE3MyAwMDAwMCBuIAowMDAwMDAwMzAxIDAwMDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9v
                 dCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G`);
-            let binary = data
-            let array = new Uint8Array(binary.length)
-            for (var i = 0; i < binary.length; i++) { array[i] = binary.charCodeAt(i) }
+            const binary = data;
+            const array = new Uint8Array(binary.length);
+            for (let i = 0; i < binary.length; i++) { array[i] = binary.charCodeAt(i); }
 
-            let blob = new Blob([array], { type: 'application/pdf' });
+            const blob = new Blob([array], { type: 'application/pdf' });
             return URL.createObjectURL(blob);
         }
 
@@ -487,11 +488,11 @@ export class BackendInterceptor implements HttpInterceptor {
                 UBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADE
                 RA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAyQ2h7pXiGeO/1emQAAA
                 ABJRU5ErkJggg==`);
-            let binary = data
-            let array = new Uint8Array(binary.length)
-            for (var i = 0; i < binary.length; i++) { array[i] = binary.charCodeAt(i) }
+            const binary = data;
+            const array = new Uint8Array(binary.length);
+            for (let i = 0; i < binary.length; i++) { array[i] = binary.charCodeAt(i); }
 
-            let blob = new Blob([array], { type: 'application/jpg' });
+            const blob = new Blob([array], { type: 'application/jpg' });
             return URL.createObjectURL(blob);
         }
 
@@ -509,12 +510,12 @@ export class BackendInterceptor implements HttpInterceptor {
                 UBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADE
                 RA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAwQEzFATMQAMREDxEQMEBMxQEzEADERA8REDBATMUBMxAAxEQPERAyQ2h7pXiGeO/1emQAAA
                 ABJRU5ErkJggg==`);
-            let binary = data
-            let array = new Uint8Array(binary.length)
-            for (var i = 0; i < binary.length; i++) { array[i] = binary.charCodeAt(i) }
+            const binary = data;
+            const array = new Uint8Array(binary.length);
+            for (let i = 0; i < binary.length; i++) { array[i] = binary.charCodeAt(i); }
 
-            let blob = new Blob([array], { type: 'application/jpg' });
-            return blob
+            const blob = new Blob([array], { type: 'application/jpg' });
+            return blob;
         }
     }
 }
