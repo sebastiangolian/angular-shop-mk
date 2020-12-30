@@ -30,7 +30,7 @@ export class OrderCreateComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   constructor(private basketService: BasketService, private orderDefinitionService: OrderDefinitionService,
-              private orderService: OrderService, private router: Router) { }
+    private orderService: OrderService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -67,11 +67,14 @@ export class OrderCreateComponent implements OnInit, OnDestroy {
       }
     });
     this.confirmOrder.items = this.basketService.items;
+    this.subscription.add(this.postSubscription());
+  }
 
-    this.subscription.add(this.orderService.post(this.confirmOrder).subscribe((result: Api<Order>) => {
+  private postSubscription(): Subscription {
+    return this.orderService.post(this.confirmOrder).subscribe((result: Api<Order>) => {
       this.basketService.clear();
       this.router.navigate(['order/', result.item.idOrder]);
-    }));
+    })
   }
 
   private fillOrderLabels(labels: OrderLabel): OrderLabel {

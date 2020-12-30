@@ -205,7 +205,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 case (method === 'POST' && url.includes('/api/user/login')): {
                     const user = db.user.find(item => item.login === body.login && item.password === body.password);
                     if (user) {
-                        const httpHeaders = new HttpHeaders({Authorization: `Bearer ${body.login}`});
+                        const httpHeaders = new HttpHeaders({ Authorization: `Bearer ${body.login}` });
                         return response200(null, httpHeaders);
                     }
                     else {
