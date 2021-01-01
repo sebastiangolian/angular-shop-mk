@@ -2,7 +2,7 @@ import { UserType } from './../enums/user-type.enum';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { User } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { AbstractService } from 'src/app/shared/services/abstract.service';
@@ -61,7 +61,7 @@ export class UserService extends AbstractService<User> {
     }
   }
 
-  logout(): Observable<any>{
+  logout(): Observable<any> {
     return this.http.get<any>(this.url + '/logout');
   }
 
@@ -71,6 +71,7 @@ export class UserService extends AbstractService<User> {
         localStorage.clear();
         this.setToken(null);
         this.subject.next(null);
+        this.currentUser = null
         this.router.navigate(['/login']);
       }
     });

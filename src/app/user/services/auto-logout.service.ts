@@ -7,7 +7,7 @@ import { MessageService } from 'src/app/shared/services/message.service';
 const CHECK_INTERVALL = 1000;
 const STORE_KEY = 'lastAction';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AutoLogoutService {
 
   constructor(private userService: UserService, private router: Router, private ngZone: NgZone, private messageService: MessageService) {
