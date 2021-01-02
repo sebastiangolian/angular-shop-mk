@@ -56,51 +56,51 @@ export class BackendInterceptor implements HttpInterceptor {
                 offer: [
                     {
                         idOffer: '1', idPhoto: '1', name: 'Zdjęcie', products: [
-                            { idProduct: '1', name: 'Zdjęcie 10x15', price: 10.00 },
-                            { idProduct: '2', name: 'Zdjęcie 13x18', price: 10.00 },
-                            { idProduct: '3', name: 'Zdjęcie 15x21', price: 10.00 },
-                            { idProduct: '4', name: 'Zdjęcie 18x25', price: 12.00 },
-                            { idProduct: '5', name: 'Zdjęcie 21x30', price: 14.00 },
-                            { idProduct: '6', name: 'Zdjęcie 25x38', price: 18.00 },
-                            { idProduct: '7', name: 'Zdjęcie 30x40', price: 60.00 },
-                            { idProduct: '8', name: 'Zdjęcie 40x50', price: 40.00 },
-                            { idProduct: '9', name: 'Zdjęcie 50x70', price: 60.00 },
-                            { idProduct: '10', name: 'Zdjęcie Legitymacyjne 4 szt', price: 10.00 },
+                            { idProduct: '1', name: '10x15', price: 10.00 },
+                            { idProduct: '2', name: '13x18', price: 10.00 },
+                            { idProduct: '3', name: '15x21', price: 10.00 },
+                            { idProduct: '4', name: '18x25', price: 12.00 },
+                            { idProduct: '5', name: '21x30', price: 14.00 },
+                            { idProduct: '6', name: '25x38', price: 18.00 },
+                            { idProduct: '7', name: '30x40', price: 60.00 },
+                            { idProduct: '8', name: '40x50', price: 40.00 },
+                            { idProduct: '9', name: '50x70', price: 60.00 },
+                            { idProduct: '10', name: 'Legitymacyjne 4 szt', price: 10.00 },
                         ]
                     },
                     {
                         idOffer: '2', idPhoto: '1', name: 'Fotomagnes', products: [
-                            { idProduct: '11', name: 'Fotomagnes 7,5x10', price: 10.00 },
-                            { idProduct: '12', name: 'Fotomagnes 10x15', price: 16.00 },
+                            { idProduct: '11', name: '7,5x10', price: 10.00 },
+                            { idProduct: '12', name: '10x15', price: 16.00 },
                         ]
                     },
                     {
                         idOffer: '3', idPhoto: '1', name: 'Kalendarz', products: [
-                            { idProduct: '13', name: 'Kalendarz A3', price: 30.00 },
-                            { idProduct: '14', name: 'Kalendarz Z wsuwanym zdjęciem A4', price: 35.00 },
-                            { idProduct: '15', name: 'Kalendarz Fotomagnes A4', price: 35.00 },
+                            { idProduct: '13', name: 'A3', price: 30.00 },
+                            { idProduct: '14', name: 'z wsuwanym zdjęciem A4', price: 35.00 },
+                            { idProduct: '15', name: 'A4', price: 35.00 },
                         ]
                     },
                     {
                         idOffer: '4', idPhoto: '1', name: 'Fotoobraz', products: [
-                            { idProduct: '16', name: 'Fotoobraz 20x30', price: 50.00 },
-                            { idProduct: '17', name: 'Fotoobraz 30x45', price: 70.00 },
-                            { idProduct: '18', name: 'Fotoobraz 50x70', price: 110.00 },
+                            { idProduct: '16', name: '20x30', price: 50.00 },
+                            { idProduct: '17', name: '30x45', price: 70.00 },
+                            { idProduct: '18', name: '50x70', price: 110.00 },
                         ]
                     },
                     {
                         idOffer: '5', idPhoto: '2', name: 'Plik cyfrowy', products: [
-                            { idProduct: '19', name: 'Plik cyfrowy jpg', price: 30.00 }
+                            { idProduct: '19', name: 'jpg', price: 30.00 }
                         ]
                     },
                     {
                         idOffer: '6', idPhoto: '3', name: 'Plik cyfrowy', products: [
-                            { idProduct: '19', name: 'Plik cyfrowy jpg', price: 30.00 }
+                            { idProduct: '19', name: 'jpg', price: 30.00 }
                         ]
                     },
                     {
                         idOffer: '7', idPhoto: '4', name: 'Plik cyfrowy', products: [
-                            { idProduct: '19', name: 'Plik cyfrowy jpg', price: 30.00 }
+                            { idProduct: '19', name: 'jpg', price: 30.00 }
                         ]
                     },
                 ],
@@ -109,51 +109,6 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idPhoto: '2', idEvent: '2', name: 'photo 2' },
                     { idPhoto: '3', idEvent: '3', name: 'photo 3' },
                     { idPhoto: '4', idEvent: '4', name: 'photo 4' },
-                    // { idPhoto: "5", idEvent: "1", name: "photo 5" },
-                    // { idPhoto: "6", idEvent: "1", name: "photo 6" },
-                    // { idPhoto: "7", idEvent: "1", name: "photo 7" },
-                    // { idPhoto: "8", idEvent: "1", name: "photo 8" },
-                    // { idPhoto: "9", idEvent: "1", name: "photo 9" },
-                    // { idPhoto: "10", idEvent: "1", name: "photo 10" },
-                    // { idPhoto: "11", idEvent: "1", name: "photo 11" },
-                    // { idPhoto: "12", idEvent: "1", name: "photo 12" },
-                    // { idPhoto: "14", idEvent: "1", name: "photo 14" },
-                    // { idPhoto: "15", idEvent: "1", name: "photo 15" },
-                    // { idPhoto: "16", idEvent: "1", name: "photo 16" },
-                    // { idPhoto: "17", idEvent: "1", name: "photo 17" },
-                    // { idPhoto: "18", idEvent: "1", name: "photo 18" },
-                    // { idPhoto: "19", idEvent: "1", name: "photo 19" },
-                    // { idPhoto: "20", idEvent: "1", name: "photo 20" },
-                    // { idPhoto: "21", idEvent: "1", name: "photo 21" },
-                    // { idPhoto: "22", idEvent: "1", name: "photo 22" },
-                    // { idPhoto: "23", idEvent: "1", name: "photo 23" },
-                    // { idPhoto: "24", idEvent: "1", name: "photo 24" },
-                    // { idPhoto: "25", idEvent: "1", name: "photo 25" },
-                    // { idPhoto: "26", idEvent: "1", name: "photo 26" },
-                    // { idPhoto: "27", idEvent: "1", name: "photo 27" },
-                    // { idPhoto: "28", idEvent: "1", name: "photo 28" },
-                    // { idPhoto: "29", idEvent: "1", name: "photo 29" },
-                    // { idPhoto: "30", idEvent: "1", name: "photo 30" },
-                    // { idPhoto: "31", idEvent: "1", name: "photo 31" },
-                    // { idPhoto: "32", idEvent: "2", name: "photo 32" },
-                    // { idPhoto: "33", idEvent: "2", name: "photo 33" },
-                    // { idPhoto: "34", idEvent: "2", name: "photo 34" },
-                    // { idPhoto: "35", idEvent: "2", name: "photo 35" },
-                    // { idPhoto: "36", idEvent: "2", name: "photo 36" },
-                    // { idPhoto: "37", idEvent: "2", name: "photo 37" },
-                    // { idPhoto: "38", idEvent: "2", name: "photo 38" },
-                    // { idPhoto: "39", idEvent: "3", name: "photo 39" },
-                    // { idPhoto: "40", idEvent: "3", name: "photo 40" },
-                    // { idPhoto: "41", idEvent: "3", name: "photo 41" },
-                    // { idPhoto: "42", idEvent: "3", name: "photo 42" },
-                    // { idPhoto: "43", idEvent: "3", name: "photo 43" },
-                    // { idPhoto: "44", idEvent: "3", name: "photo 44" },
-                    // { idPhoto: "45", idEvent: "3", name: "photo 45" },
-                    // { idPhoto: "46", idEvent: "3", name: "photo 46" },
-                    // { idPhoto: "47", idEvent: "4", name: "photo 47" },
-                    // { idPhoto: "48", idEvent: "4", name: "photo 48" },
-                    // { idPhoto: "49", idEvent: "4", name: "photo 49" },
-                    // { idPhoto: "50", idEvent: "4", name: "photo 50" },
                 ],
                 orderDefinition: [
                     {
