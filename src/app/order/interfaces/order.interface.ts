@@ -10,9 +10,9 @@ export interface Order {
     isPaid?: boolean;
     firstname: string;
     lastname: string;
-    phone: string;
+    phone?: string;
     email: string;
-    comment: string;
+    comment?: string;
     orderDate?: string;
     orderNumber?: string;
     agreements: OrderAgreement[];

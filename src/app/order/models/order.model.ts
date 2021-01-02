@@ -9,10 +9,10 @@ export class OrderModel implements Order {
     idOrder?: string;
     firstname: string;
     lastname: string;
-    phone: string;
+    phone?: string;
     email: string;
     emailConfirm: string;
-    comment: string;
+    comment?: string;
     orderDate?: string;
     agreements: OrderAgreement[];
     deliveryMethod: OrderDeliveryMethod;

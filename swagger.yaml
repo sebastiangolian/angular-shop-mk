@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Sklep MK
   description: Sklep MK
-  version: 1.0.12
+  version: 1.0.17
 servers:
   - url: http://api.mk.pl/v1
 components:
@@ -113,13 +113,13 @@ components:
       required:
       - "firstname"
       - "lastname"
-      - "phone"
       - "email"
-      - "comment"
       - "agreements"
       - "items"
       properties:
         idOrder:
+          type: "string"
+        orderNumber:
           type: "string"
         orderDate:
           type: "string"
@@ -217,7 +217,6 @@ components:
       type: "object"
       required:
       - "idOrderPaymentMethod"
-      - "content"
       properties:
         idOrderPaymentMethod:
           type: "string"
@@ -239,6 +238,8 @@ components:
         idOrderPayment:
           type: "string"
         isProgress:
+          type: "boolean"
+        canStartNewPayment:
           type: "boolean"
         status:
           type: "string"    
@@ -696,12 +697,6 @@ paths:
         - Order
       security:
         - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrderPayment'
       responses:
         '200':
           description: "OK"
