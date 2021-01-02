@@ -14,6 +14,7 @@ export interface Order {
     email: string;
     comment: string;
     orderDate?: string;
+    orderNumber?: string;
     agreements: OrderAgreement[];
     deliveryMethod?: OrderDeliveryMethod;
     paymentMethod: OrderPaymentMethod;

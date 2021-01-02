@@ -253,6 +253,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     const index = db.order.length;
                     db.order[index] = body;
                     db.order[index].idOrder = (Math.floor(Math.random() * 100000)).toString();
+                    db.order[index].orderNumber = db.order[index].idOrder
                     db.order[index].status = 'Przyjęte';
                     db.order[index].isPaid = false;
                     db.order[index].orderDate = DateTimeHelper.currentDateTime();
