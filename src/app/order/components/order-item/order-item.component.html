@@ -3,19 +3,22 @@
     <h3>Właśnie dokonujesz płatności...</h3>
 </ng-container>
 <ng-template #notMock>
-    <h1>Potwierdzenie przyjęcia zamówienia nr {{order.idOrder}}</h1>
+    <h1>Potwierdzenie przyjęcia zamówienia nr {{order.orderNumber}}</h1>
     <p>Status zamówienia: <b>{{order.status}}</b></p>
     <p>Potwierdzenie zamówienia zostało wysłane na adres e-mail: <b>{{order.email}}</b></p>
     <p *ngIf="order.deliveryMethod">Sposób odbioru zamówienia: <b>{{order.deliveryMethod.content}}</b>
-    <ng-container *ngIf="order.paymentMethod">
-        <p>Sposób płatności: <b>{{order.paymentMethod.content}}</b>
-        <ng-container *ngIf="order.payment">
-            <p *ngIf="order.payment.operatorUrl">Status płatności: 
-                <b><order-payment [order]="order"></order-payment></b>
-            </p>
-            <button *ngIf="!order.isPaid && order.payment.operatorUrl" class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
+        <ng-container *ngIf="order.paymentMethod">
+            <p>Sposób płatności: <b>{{order.paymentMethod.content}}</b>
+                <ng-container *ngIf="order.payment">
+                    <p *ngIf="order.payment.operatorUrl">Status płatności:
+                        <b>
+                            <order-payment [order]="order"></order-payment>
+                        </b>
+                    </p>
+                    <button *ngIf="!order.isPaid && order.payment.operatorUrl" class="btn btn-primary"
+                        (click)="onOrderPay(order)">Opłać zamówienie</button>
+                </ng-container>
         </ng-container>
-    </ng-container>
     <div *ngFor="let event of events">
         <order-element-list [event]="event" [basketItems]="order.items"></order-element-list>
     </div>

@@ -30,8 +30,13 @@ export class OrderService extends AbstractService<Order> {
   private compressOrder(order: Order): Order {
     let orderClone: Order = JSON.parse(JSON.stringify(order));
 
-    if (orderClone.paymentMethod.content) delete orderClone.paymentMethod.content;
-    if (orderClone.deliveryMethod.content) delete orderClone.deliveryMethod.content;
+    if (orderClone.paymentMethod) {
+      if (orderClone.paymentMethod.content) delete orderClone.paymentMethod.content;
+    }
+
+    if (orderClone.deliveryMethod) {
+      if (orderClone.deliveryMethod.content) delete orderClone.deliveryMethod.content;
+    }
 
     if (order.agreements) {
       orderClone.agreements.forEach((agreement: OrderAgreement, index: number) => {
