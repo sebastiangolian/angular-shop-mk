@@ -1,6 +1,6 @@
 import { OrderAgreement } from './../interfaces/order-agreement.interface';
 import { BasketItem } from './../../basket/interfaces/basket-item.interface';
-import { environment } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { OrderPayment } from '../interfaces/order-payment.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';

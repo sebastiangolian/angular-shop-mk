@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AbstractService } from 'src/app/shared/services/abstract.service';
 import { Photo } from '../interfaces/photo.interface';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class PhotoService extends AbstractService<Photo> {
@@ -15,7 +15,7 @@ export class PhotoService extends AbstractService<Photo> {
   }
 
   getFileUrl(photo: Photo): string {
-    if (environment.name == "ghpages" || environment.name == "dev") {
+    if (environment.name === "ghpages" || environment.name === "dev") {
       return "https://picsum.photos/id/" + photo.idPhoto + "/300/200"
     } else {
       return this.url + '/' + photo.idPhoto + '/image'
