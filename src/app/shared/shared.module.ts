@@ -17,16 +17,19 @@ import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
+    //components
+    IconBComponent,
     MessagesComponent,
+    ModalConfirmComponent,
+    NumberOfItemsComponent,
+    ScrollToTopComponent,
+    //directives
     InputFocusDirective,
     LazyLoadImageDirective,
+    //pipes
     BooleanPipe,
-    ModalConfirmComponent,
-    PadPipe,
-    IconBComponent,
     HtmlPipe,
-    ScrollToTopComponent,
-    NumberOfItemsComponent,
+    PadPipe,
     SafePipe
   ],
   imports: [
@@ -36,15 +39,19 @@ import { SafePipe } from './pipes/safe.pipe';
     ModalModule.forRoot(),
   ],
   exports: [
-    MessagesComponent,
-    InputFocusDirective,
-    BooleanPipe,
-    PadPipe,
-    HtmlPipe,
+    //components
     IconBComponent,
-    ScrollToTopComponent,
-    LazyLoadImageDirective,
+    MessagesComponent,
+    ModalConfirmComponent,
     NumberOfItemsComponent,
+    ScrollToTopComponent,
+    //directives
+    InputFocusDirective,
+    LazyLoadImageDirective,
+    //pipes
+    BooleanPipe,
+    HtmlPipe,
+    PadPipe,
     SafePipe
   ]
 })
