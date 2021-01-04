@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PhotoService } from 'src/app/photo/services/photo.service';
+import { environment } from 'src/environments/environment';
 import { Event } from '../../interfaces/event.interface';
 
 @Component({
@@ -14,15 +15,8 @@ export class EventPhotoListItemComponent implements OnInit {
 
   @Input() event: Event;
   active = false;
-  src$: Observable<string>;
-  constructor(private photoService: PhotoService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.src$ = this.photoService.getFileFromUrl(this.event.titlePhotoUrl);
-  }
-
-  getUrl() {
-    return this.event.titlePhotoUrl;
-  }
+  ngOnInit(): void { }
 
 }

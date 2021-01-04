@@ -1,8 +1,6 @@
 <div *ngIf="photo" class="row border p-2 mt-1">
     <div class="col-12 col-md-3 mb-3 text-center">
-        <ng-container *ngIf="src$|async as src">
-            <img [src]="src|safe:'resourceUrl'" [style.height.px]="100" class="img-thumbnail" loading="lazy">
-        </ng-container>
+        <img class="img-thumbnail" [attr.data-src]="src" [isBlob]="true" lazyLoadingImage>
     </div>
     
     <div class="col-12 col-md-9">

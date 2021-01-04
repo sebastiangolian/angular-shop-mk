@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { PhotoService } from 'src/app/photo/services/photo.service';
 import { Component, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
 import { Photo } from '../../interfaces/photo.interface';
@@ -12,11 +11,11 @@ import { Photo } from '../../interfaces/photo.interface';
 export class PhotoModalImageComponent implements OnChanges {
 
   @Input() photo: Photo;
-  src$: Observable<string>;
+  src: string;
   constructor(private photoService: PhotoService) { }
 
   ngOnChanges(): void {
-    this.src$ = this.photoService.getFile(this.photo);
+    this.src = this.photoService.getFileUrl(this.photo);
   }
 
 }

@@ -15,7 +15,7 @@ export class PhotoExternalService {
       map(api => api.body),
       map(body => {
         if (body) {
-          const blob = new Blob([body], { type: 'image/jpeg' });
+          const blob = new Blob([body]);
           return URL.createObjectURL(blob);
         } else {
           return null

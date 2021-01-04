@@ -11,7 +11,6 @@ import { PadPipe } from './pipes/pad.pipe';
 import { IconBComponent } from './components/icon-b/icon-b.component';
 import { HtmlPipe } from './pipes/html.pipe';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
-import { LazyLoadImageDirective } from './directives/lazy-load-image.directive';
 import { NumberOfItemsComponent } from './components/number-of-items/number-of-items.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { IntersectionObserverDirective } from './directives/intersection-observer.directive';
@@ -28,7 +27,6 @@ import { LazyLoadingImageDirective } from './directives/lazy-loading-image.direc
     //directives
     InputFocusDirective,
     IntersectionObserverDirective,
-    LazyLoadImageDirective,
     LazyLoadingImageDirective,
     //pipes
     BooleanPipe,
@@ -52,7 +50,6 @@ import { LazyLoadingImageDirective } from './directives/lazy-loading-image.direc
     //directives
     InputFocusDirective,
     IntersectionObserverDirective,
-    LazyLoadImageDirective,
     LazyLoadingImageDirective,
     //pipes
     BooleanPipe,

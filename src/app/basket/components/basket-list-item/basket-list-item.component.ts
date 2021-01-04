@@ -21,7 +21,7 @@ export class BasketListItemComponent implements OnInit, OnDestroy {
   @Input() event: Event;
   @Input() photo: Photo;
   @Input() basketItems$: Observable<BasketItem[]>;
-  src$: Observable<string>;
+  src!: string;
 
   private subscription: Subscription = new Subscription();
   constructor(private basketService: BasketService, private modalService: BsModalService, private photoService: PhotoService) { }
@@ -31,7 +31,7 @@ export class BasketListItemComponent implements OnInit, OnDestroy {
       map(items => items.filter(item => item.photo.idPhoto === this.photo.idPhoto))
     );
 
-    this.src$ = this.photoService.getFile(this.photo);
+    this.src = this.photoService.getFileUrl(this.photo);
   }
 
   onChangeAmount(product: Product, amount: number): void {

@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BannerWidgetComponent } from './components/banner-widget/banner-widget.component';
@@ -7,7 +8,8 @@ import { BannerWidgetComponent } from './components/banner-widget/banner-widget.
     BannerWidgetComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [
     BannerWidgetComponent

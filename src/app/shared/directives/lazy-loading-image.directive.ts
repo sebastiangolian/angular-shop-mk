@@ -11,18 +11,20 @@ export class LazyLoadingImageDirective {
 
   @Input() isBlob: boolean = false
   @Output() visibleChange = new EventEmitter<boolean>();
+  private isVisible = false
 
   constructor(private element: ElementRef, protected http: HttpClient) {
     this.visibleChange.emit(false)
 
     const intersectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !this.isVisible) {
           if (this.isBlob) {
             this.subscription.add(this.getBlobUrlSubscription(this.element.nativeElement.getAttribute('data-src')))
           } else {
             this.element.nativeElement.src = this.element.nativeElement.getAttribute('data-src')
           }
+          this.isVisible = true
           this.visibleChange.emit(true)
         }
       });

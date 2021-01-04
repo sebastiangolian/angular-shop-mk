@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Input, Output } from '@angular/core';
 import { Photo } from '../../interfaces/photo.interface';
+import { PhotoService } from '../../services/photo.service';
 
 @Component({
   selector: 'photo-list-item',
@@ -14,10 +15,10 @@ export class PhotoListItemComponent implements OnInit {
   active = false;
   src!: string
 
-  constructor() { }
+  constructor(private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.src = '/api/photo/' + this.item.idPhoto + '/image'
+    this.src = this.photoService.getFileUrl(this.item);
   }
 
   onClick() {
