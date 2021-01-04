@@ -17,7 +17,6 @@ export class ProductListComponent implements OnInit {
   @Input() products: Product[];
   @Input() photo: Photo;
   @Input() event: Event;
-  @Input() offer: Offer;
   constructor(private basketService: BasketService) { }
 
   ngOnInit(): void {
