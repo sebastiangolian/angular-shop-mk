@@ -14,17 +14,21 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 import { LazyLoadImageDirective } from './directives/lazy-load-image.directive';
 import { NumberOfItemsComponent } from './components/number-of-items/number-of-items.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { ImageLazyLoadingComponent } from './components/image-lazy-loading/image-lazy-loading.component';
+import { IntersectionObserverDirective } from './directives/intersection-observer.directive';
 
 @NgModule({
   declarations: [
     //components
     IconBComponent,
+    ImageLazyLoadingComponent,
     MessagesComponent,
     ModalConfirmComponent,
     NumberOfItemsComponent,
     ScrollToTopComponent,
     //directives
     InputFocusDirective,
+    IntersectionObserverDirective,
     LazyLoadImageDirective,
     //pipes
     BooleanPipe,
@@ -41,12 +45,14 @@ import { SafePipe } from './pipes/safe.pipe';
   exports: [
     //components
     IconBComponent,
+    ImageLazyLoadingComponent,
     MessagesComponent,
     ModalConfirmComponent,
     NumberOfItemsComponent,
     ScrollToTopComponent,
     //directives
     InputFocusDirective,
+    IntersectionObserverDirective,
     LazyLoadImageDirective,
     //pipes
     BooleanPipe,
