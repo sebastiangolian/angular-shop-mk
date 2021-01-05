@@ -276,7 +276,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     db.order[index].orderNumber = db.order[index].idOrder
                     db.order[index].status = 'Przyjęte';
                     db.order[index].isPaid = false;
-                    db.order[index].orderDate = DateTimeHelper.currentDateTime();
+                    db.order[index].orderDate = DateTimeHelper.isoString();
                     if (db.order[index].paymentMethod.idOrderPaymentMethod === '7655') {
                         db.order[index].payment = {
                             idOrderPayment: db.order[index].idOrder,

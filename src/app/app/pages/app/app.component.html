@@ -17,9 +17,11 @@
                     <li class="nav-item">
                         <a class="nav-link" routerLink="event" routerLinkActive="active underline">Strona główna</a>
                     </li>
-                    <li class="nav-item" *ngIf="user?.isIndividual">
-                        <a class="nav-link" routerLink="order" routerLinkActive="active underline">Moje zamówienia</a>
-                    </li>
+                    <ng-container *ngIf="user">
+                        <li class="nav-item" *ngIf="user?.isIndividual">
+                            <a class="nav-link" routerLink="order" routerLinkActive="active underline">Moje zamówienia</a>
+                        </li>
+                    </ng-container>
                     <li class="nav-item">
                         <a class="nav-link" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a>
                     </li>

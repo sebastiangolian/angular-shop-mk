@@ -82,13 +82,15 @@
       <label class="form-check-label" [innerHTML]="agreement.content"></label><span *ngIf="agreement.required" class="text-danger"> *</span>
     </div>
 
-    <label *ngIf="order.deliveryMethods" class="font-weight-bold" [innerHTML]="order.labels.orderMethodLabel"></label>
-    <span *ngIf="order.deliveryMethods" class="text-danger"> *</span>
-    <div *ngFor="let method of order.deliveryMethods; let i = index" class="form-group form-check">
-      <input class="form-check-input" type="radio" name="deliveryMethod" [value]="method.idOrderDeliveryMethod" required ngModel>
-      <label class="form-check-label" [innerHTML]="method.content"></label>
-    </div>
-
+    <ng-container *ngIf="order.deliveryMethods.length > 0">
+      <label class="font-weight-bold" [innerHTML]="order.labels.orderMethodLabel"></label>
+      <span class="text-danger"> *</span>
+      <div *ngFor="let method of order.deliveryMethods; let i = index" class="form-group form-check">
+        <input class="form-check-input" type="radio" name="deliveryMethod" [value]="method.idOrderDeliveryMethod" required ngModel>
+        <label class="form-check-label" [innerHTML]="method.content"></label>
+      </div>
+    </ng-container>
+    
     <label *ngIf="order.paymentMethods" class="font-weight-bold" [innerHTML]="order.labels.paymentMethodLabel"></label>
     <span *ngIf="order.paymentMethods" class="text-danger"> *</span>
     <div *ngFor="let method of order.paymentMethods; let i = index" class="form-group form-check">

@@ -1,4 +1,9 @@
 export class DateTimeHelper {
+
+    static isoString(): string {
+        return new Date().toISOString()
+    }
+
     static currentDate(): string {
         return new Date().toISOString().slice(0, 10);
     }

@@ -7,9 +7,7 @@
         <table class="table table-borderless">
             <tr *ngFor="let basketItem of basketItems">
                 <td class="p-1 align-middle" [style.width.%]="33">{{basketItem.product.name}}</td>
-                <td class="p-1 align-middle text-center">
-                    {{basketItem.amount}}
-                </td>
+                <td class="p-1 align-middle text-center">{{basketItem.amount}}</td>
                 <td class="p-1 align-middle text-left" [style.width.%]="33">{{basketItem.price*basketItem.amount  | currency:'':''}}zł</td>
             </tr>
         </table>
