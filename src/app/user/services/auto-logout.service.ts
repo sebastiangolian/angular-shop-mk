@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'src/app/shared/services/message.service';
 
-const CHECK_INTERVALL = 1000;
+const CHECK_INTERVALL = 10000;
 const STORE_KEY = 'lastAction';
 
 @Injectable({ providedIn: 'root' })
