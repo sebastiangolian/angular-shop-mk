@@ -12,8 +12,8 @@ export const environment = {
   loggingBackendRequestHeaders: false,
   loggingBackendRequest: false,
   loggingBackendResponse: false,
-  apiEndpoint: 'http://sklepmartynaklewinowska.online/api',
+  apiEndpoint: 'http://www.sklep.martynaklewinowska.online/api',
   messageDismissible: false,
-  allowedDomains: ["sklepmartynaklewinowska.online"],
+  allowedDomains: ["www.sklep.martynaklewinowska.online"],
   disallowedRoutes: [],
 };
