@@ -16,11 +16,17 @@ export class HttpApiErrorInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         tap((response: HttpResponse<any>) => {
-          if (response.body.messages) {
-            let messages = this.formatServerError(response.body.messages)
-            messages.forEach(message => {
-              this.messageService.sendMessage(message.text, message.type);
-            });
+          if (response != null) {
+            if (response.hasOwnProperty('body')) {
+              if (response.body != null) {
+                if (response.body.hasOwnProperty('messages')) {
+                  let messages = this.formatServerError(response.body.messages)
+                  messages.forEach(message => {
+                    this.messageService.sendMessage(message.text, message.type);
+                  });
+                }
+              }
+            }
           }
         })
       );

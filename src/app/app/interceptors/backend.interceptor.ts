@@ -109,26 +109,26 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idOffer: '7', idPhoto: '20', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
                 ],
                 photo: [
-                    { idPhoto: '10', idEvent: '1', name: 'photo 10' },
-                    { idPhoto: '2', idEvent: '2', name: 'photo 2' },
-                    { idPhoto: '3', idEvent: '3', name: 'photo 3' },
-                    { idPhoto: '4', idEvent: '4', name: 'photo 4' },
-                    { idPhoto: '11', idEvent: '1', name: 'photo 11' },
-                    { idPhoto: '12', idEvent: '1', name: 'photo 12' },
-                    { idPhoto: '13', idEvent: '1', name: 'photo 13' },
-                    { idPhoto: '14', idEvent: '1', name: 'photo 14' },
-                    { idPhoto: '15', idEvent: '1', name: 'photo 15' },
-                    { idPhoto: '16', idEvent: '1', name: 'photo 16' },
-                    { idPhoto: '17', idEvent: '1', name: 'photo 17' },
-                    { idPhoto: '18', idEvent: '1', name: 'photo 18' },
-                    { idPhoto: '19', idEvent: '1', name: 'photo 19' },
-                    { idPhoto: '20', idEvent: '1', name: 'photo 20' },
-                    { idPhoto: '21', idEvent: '1', name: 'photo 21' },
-                    { idPhoto: '22', idEvent: '1', name: 'photo 22' },
-                    { idPhoto: '23', idEvent: '1', name: 'photo 23' },
-                    { idPhoto: '24', idEvent: '1', name: 'photo 24' },
-                    { idPhoto: '25', idEvent: '1', name: 'photo 25' },
-                    { idPhoto: '26', idEvent: '1', name: 'photo 26' },
+                    { idPhoto: '10', idEvent: '1', name: 'photo 10', height: 200, width: 300 },
+                    { idPhoto: '2', idEvent: '2', name: 'photo 2', height: 200, width: 300 },
+                    { idPhoto: '3', idEvent: '3', name: 'photo 3', height: 200, width: 300 },
+                    { idPhoto: '4', idEvent: '4', name: 'photo 4', height: 200, width: 300 },
+                    { idPhoto: '11', idEvent: '1', name: 'photo 11', height: 200, width: 300 },
+                    { idPhoto: '12', idEvent: '1', name: 'photo 12', height: 200, width: 300 },
+                    { idPhoto: '13', idEvent: '1', name: 'photo 13', height: 200, width: 300 },
+                    { idPhoto: '14', idEvent: '1', name: 'photo 14', height: 200, width: 300 },
+                    { idPhoto: '15', idEvent: '1', name: 'photo 15', height: 200, width: 300 },
+                    { idPhoto: '16', idEvent: '1', name: 'photo 16', height: 200, width: 300 },
+                    { idPhoto: '17', idEvent: '1', name: 'photo 17', height: 200, width: 300 },
+                    { idPhoto: '18', idEvent: '1', name: 'photo 18', height: 200, width: 300 },
+                    { idPhoto: '19', idEvent: '1', name: 'photo 19', height: 200, width: 300 },
+                    { idPhoto: '20', idEvent: '1', name: 'photo 20', height: 200, width: 300 },
+                    { idPhoto: '21', idEvent: '1', name: 'photo 21', height: 200, width: 300 },
+                    { idPhoto: '22', idEvent: '1', name: 'photo 22', height: 200, width: 300 },
+                    { idPhoto: '23', idEvent: '1', name: 'photo 23', height: 200, width: 300 },
+                    { idPhoto: '24', idEvent: '1', name: 'photo 24', height: 200, width: 300 },
+                    { idPhoto: '25', idEvent: '1', name: 'photo 25', height: 200, width: 300 },
+                    { idPhoto: '26', idEvent: '1', name: 'photo 26', height: 200, width: 300 },
                 ],
                 orderDefinition: [
                     {
@@ -201,8 +201,7 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'GET' && url.includes('/api/event/list')): {
                     const response = getAll(db.event);
-                    //return response200(response);
-                    return responseError(501, "Lista zdarzeń nie istnieje")
+                    return response200(response);
                 }
 
                 case (method === 'GET' && url.includes('/api/event')): {
@@ -246,7 +245,6 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'GET' && url.includes('/api/order')): {
-                    // return responseError(404, "Zamówienie nie istnieje")
                     const item = db.order.find(order => order.idOrder.toString() === getIdFromUrl());
                     return response200({ item });
                 }

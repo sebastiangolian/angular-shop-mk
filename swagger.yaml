@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Sklep MK
   description: Sklep MK
-  version: 1.0.17
+  version: 1.0.18
 servers:
   - url: http://api.mk.pl/v1
 components:
@@ -251,6 +251,8 @@ components:
       - "idPhoto"
       - "idEvent"
       - "name"
+      - "width"
+      - "height"
       properties:
         idPhoto:
           type: "string"
@@ -258,6 +260,10 @@ components:
           type: "string"
         name:
           type: "string"
+        width:
+          type: "number"
+        height:
+          type: "number"
     Product:
       type: "object"
       required:

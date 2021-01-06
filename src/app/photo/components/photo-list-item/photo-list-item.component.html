@@ -1,5 +1,6 @@
 <div class="card rounded hand" (click)="onClick()" [class.shadow]="active" (mouseover)="active = true" (mouseout)="active = false">
-    <img class="img-fluid img-thumbnail rounded hand" [attr.data-src]="src" [isBlob]="true" lazyLoadingImage>
+    <img class="img-fluid img-thumbnail rounded hand" [width]="item.width" [height]="item.height" [attr.data-src]="src" 
+        [isBlob]="true" lazyLoadingImage>
     <div class="card-body">
         <p class="card-text">{{item.name}}</p>
     </div>
