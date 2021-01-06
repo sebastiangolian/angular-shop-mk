@@ -9,7 +9,7 @@
     <div class="form-group">
       <label [innerHTML]="order.labels.firstnameLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="firstname" [(ngModel)]="order.firstname" #firstname="ngModel"
-        [class.is-invalid]="firstname.invalid && firstname.touched" minlength="2" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."]*'
+        [class.is-invalid]="firstname.invalid && firstname.touched" minlength="1" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."]*'
         required>
       <div *ngIf="firstname.touched && firstname.invalid" class="text-danger">
         <div *ngIf="!!firstname.errors.required">Imię jest wymagane</div>
@@ -22,7 +22,7 @@
     <div class="form-group">
       <label [innerHTML]="order.labels.lastnameLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="lastname" [(ngModel)]="order.lastname" #lastname="ngModel"
-        [class.is-invalid]="lastname.invalid && lastname.touched" minlength="2" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."-]*'
+        [class.is-invalid]="lastname.invalid && lastname.touched" minlength="1" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."-]*'
         required>
       <div *ngIf="lastname.touched && lastname.invalid" class="text-danger">
         <div *ngIf="!!lastname.errors.required">Nazwisko jest wymagane</div>
