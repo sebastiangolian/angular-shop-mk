@@ -73,6 +73,18 @@ export class OrderService extends AbstractService<Order> {
     );
   }
 
+  postPayment(idOrder: string): Observable<OrderPayment> {
+    return this.http.post<Api<OrderPayment>>(this.url + '/' + idOrder + '/payment', null).pipe(
+      map(api => {
+        if (api.item) {
+          return api.item;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
   mock(item: Order): Observable<Api<Order>> {
     item = this.trimItem(item);
     return this.http.post<Api<Order>>(this.url + '/mock', item);

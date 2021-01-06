@@ -22,6 +22,7 @@ export class OrderCreateComponent implements OnInit, OnDestroy {
 
   basketSummary$: Observable<BasketSummary> = this.basketService.subjectSummary.asObservable();
   order$: Observable<OrderDefinition>;
+  isDisabled: boolean = false;
 
   private orderDefinition: OrderDefinition = null;
   private confirmOrder: Order = new OrderModel();
@@ -47,6 +48,7 @@ export class OrderCreateComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(f: NgForm) {
+    this.isDisabled = true
     this.confirmOrder.firstname = f.value.firstname;
     this.confirmOrder.lastname = f.value.lastname;
     this.confirmOrder.email = f.value.email;

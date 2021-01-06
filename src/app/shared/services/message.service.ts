@@ -15,14 +15,14 @@ export class MessageService {
                     break;
                 }
                 case 'info': {
-                    timeout = 2000;
+                    timeout = 5000;
                     break;
                 }
                 default: {
                     timeout = 10000;
                     break;
                 }
-             }
+            }
         }
 
         this.subject.next({ text: message, type, dismissible, timeout });

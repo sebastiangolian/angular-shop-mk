@@ -1,9 +1,12 @@
-import { Component, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
+import { OrderPayment } from './../../interfaces/order-payment.interface';
+import { environment } from './../../../../environments/environment';
+import { Component, ChangeDetectionStrategy, Input, OnChanges, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { BasketItem } from 'src/app/basket/interfaces/basket-item.interface';
 import { Order } from '../../interfaces/order.interface';
 import { OrderService } from '../../services/order.service';
 import { Event } from '../../../event/interfaces/event.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'order-item',
@@ -11,11 +14,13 @@ import { Event } from '../../../event/interfaces/event.interface';
   styleUrls: ['./order-item.component.css'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class OrderItemComponent implements OnChanges {
+export class OrderItemComponent implements OnChanges, OnDestroy {
 
-  @Input() order: Order;
-  mockPayment = false;
+  @Input() order!: Order;
+  mockPayment: boolean = false;
+  isDisabled: boolean = false
   events: Event[] = [];
+  private subscription: Subscription = new Subscription();
   constructor(private orderService: OrderService) { }
 
   ngOnChanges(): void {
@@ -23,16 +28,21 @@ export class OrderItemComponent implements OnChanges {
   }
 
   onOrderPay(order: Order): void {
-    if (order.payment.operatorUrl.includes('mock')) {
+    if (environment.name == "dev" || environment.name == "ghpages") {
       this.mockPayment = true;
-      this.orderService.mock(order).pipe(map(api => api.item)).subscribe(result => this.order = result);
+      this.subscription.add(this.orderService.mock(order).pipe(map(api => api.item)).subscribe(result => this.order = result));
       setTimeout(() => {
         this.mockPayment = false;
       }, 3000);
     } else {
-      window.location.href = order.payment.operatorUrl;
+      this.subscription.add(
+        this.orderService.postPayment(order.idOrder).subscribe((orderPayment: OrderPayment) => {
+          if (orderPayment.operatorUrl != "") {
+            window.location.href = orderPayment.operatorUrl
+          }
+        })
+      )
     }
-
   }
 
   private filterEvent(basketItems: BasketItem[]): Event[] {
@@ -42,5 +52,9 @@ export class OrderItemComponent implements OnChanges {
       if (!isEvent) { events.push(item.event); }
     });
     return events;
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) { this.subscription.unsubscribe(); }
   }
 }

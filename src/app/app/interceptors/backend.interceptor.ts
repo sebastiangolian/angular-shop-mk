@@ -255,6 +255,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     saveStorage(db);
                     if (db.order[indexOrder].payment.isProgress === false) {
                         db.order[indexOrder].payment.isProgress = true;
+                        db.order[indexOrder].payment.canStartNewPayment = false;
                         db.order[indexOrder].payment.status = 'W trakcie';
                         saveStorage(db);
                         setTimeout(() => {
@@ -279,6 +280,7 @@ export class BackendInterceptor implements HttpInterceptor {
                         db.order[index].payment = {
                             idOrderPayment: db.order[index].idOrder,
                             isProgress: false,
+                            canStartNewPayment: true,
                             status: 'Nierozpoczęta',
                             operatorUrl: 'https://mock.secure.przelewy24.pl/trnRequest'
                         };

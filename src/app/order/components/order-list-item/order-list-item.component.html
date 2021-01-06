@@ -1,5 +1,5 @@
 <li *ngIf="order" class="list-group-item p-1 mb-1 hand" [class.active]="activeIdOrder ===order.idOrder"
     [routerLink]="'/order/' + order.idOrder">
     <p class="p-0 m-0">{{ order.orderNumber }} </p>
-    <p class="p-0 m-0 font-size-0-6">{{order.orderDate | date:'yyyy-MM-dd hh:mm:ss' }}</p>
+    <p class="p-0 m-0 font-size-0-6">{{order.orderDate | date:'yyyy-MM-dd HH:mm:ss' }}</p>
 </li>

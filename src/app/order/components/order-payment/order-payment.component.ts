@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { delay, repeatWhen, takeUntil, tap } from 'rxjs/operators';
 import { OrderPayment } from '../../interfaces/order-payment.interface';
@@ -11,7 +11,7 @@ import { OrderService } from '../../services/order.service';
   styleUrls: ['./order-payment.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OrderPaymentComponent implements OnInit {
+export class OrderPaymentComponent implements OnChanges {
 
   @Input() order: Order;
   orderPayment$: Observable<OrderPayment>;
@@ -19,12 +19,10 @@ export class OrderPaymentComponent implements OnInit {
 
   constructor(private orderService: OrderService) { }
 
-  ngOnInit(): void {
-    // let orderPayment = new OrderPaymentModel()
-    // orderPayment.idOrderPayment = this.order.idOrder
+  ngOnChanges(): void {
     this.orderPayment$ = this.orderService.getPayment(this.order.idOrder).pipe(
       repeatWhen(completed => completed.pipe(delay(3000))),
-      tap(item => {if (item.isProgress === false) { this.stopRequesting.next(true); }}),
+      tap(item => { if (item.isProgress === false) { this.stopRequesting.next(true); } }),
       takeUntil(this.stopRequesting.pipe(delay(2000)))
     );
   }

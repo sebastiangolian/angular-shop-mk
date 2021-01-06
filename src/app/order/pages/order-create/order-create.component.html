@@ -100,6 +100,6 @@
   
     <p class="btn-group">
         <button class="btn btn-primary" routerLink="/basket">Wróć</button>
-        <button type="submit" class="btn btn-primary ml-1" [disabled]="!f.valid">Zamawiam z obowiązkiem zapłaty</button>
+        <button [disabled]="isDisabled" type="submit" class="btn btn-primary ml-1" [disabled]="!f.valid">Zamawiam z obowiązkiem zapłaty</button>
     </p>
   </form>
