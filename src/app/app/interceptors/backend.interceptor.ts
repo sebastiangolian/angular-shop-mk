@@ -201,8 +201,8 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'GET' && url.includes('/api/event/list')): {
                     const response = getAll(db.event);
-                    return response200(response);
-                    // return responseError(404, "Lista zdarzeń nie istnieje")
+                    //return response200(response);
+                    return responseError(501, "Lista zdarzeń nie istnieje")
                 }
 
                 case (method === 'GET' && url.includes('/api/event')): {
@@ -357,16 +357,19 @@ export class BackendInterceptor implements HttpInterceptor {
             return of(new HttpResponse<any>(response));
         }
 
-        function responseError(code: number, message: string): Observable<HttpResponse<any>> {
-            return throwError({
-                errors: [
-                    { code, message }
-                ],
-                notifications: [
-                    { message }
-                ]
-            }
-            );
+        function responseApiError(code: number, message: string): Observable<any> {
+            let response = { status: 200, body, headers };
+            response.body = {
+                messages: {
+                    errors: [{ code, message }],
+                    notifications: [{ message }]
+                }
+            };
+            return of(new HttpResponse<any>(response));
+        }
+
+        function responseError(status: number, message: string): Observable<HttpResponse<any>> {
+            return throwError({ status: status, message: message });
         }
 
         function getIdFromUrl(): string {

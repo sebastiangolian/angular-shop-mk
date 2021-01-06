@@ -1,72 +1,67 @@
+import { UserService } from 'src/app/user/services/user.service';
 import { Injectable, OnDestroy } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpResponseBase } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Message } from 'src/app/shared/interfaces/message.interface';
-import { ApiMessage } from 'src/app/shared/interfaces/api-message.interface';
 import { LogService } from 'src/app/log/services/log.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor, OnDestroy {
-
   private subscription: Subscription = new Subscription();
-
-  constructor(private messageService: MessageService, private logService: LogService) { }
+  constructor(private messageService: MessageService, private userService: UserService, private logService: LogService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
       .pipe(
         retry(environment.httpRetry),
         catchError((error) => {
-          const messages: Message[] = [];
-
-          if (error.error instanceof ErrorEvent) {
-            this.sendLog(error.error);
-            messages.push(this.clientSideError(error.error));
-          } else {
-            if (error.errors) {
-              messages.push(...this.serverSideError(error));
+          switch (error.status) {
+            case 401: {
+              this.messageService.sendMessage('Twoja sesja wygasła. Zostałeś wylogowany automatycznie.', 'info')
+              this.userService.logoutSession()
+              break;
+            }
+            case 403: {
+              this.messageService.sendMessage("Nie masz uprawnień do wykonanie tego polecenia", 'warning')
+              break;
+            }
+            case 404: {
+              let showError: boolean = true
+              if (request.url.includes("/api/photo") && request.url.includes("/image")) showError = false
+              if (showError) this.messageService.sendMessage("Strona, której szukasz, nie istnieje", 'info')
+              break;
+            }
+            default: {
+              this.catchOther(error)
+              this.sendLog(error);
+              this.messageService.sendMessage("Wystąpił nieoczekiwany problem. Proszę spróbuj ponownie", 'danger')
             }
           }
 
-          messages.forEach(message => {
-            this.messageService.sendMessage(message.text, message.type);
-          });
-
-          if (messages.length > 0) {
-            return throwError(messages[0].text);
-          }
-          else {
-            const message = 'Wystąpił nieoczekiwany błąd w działaniu aplikacji';
-            this.messageService.sendMessage(message, 'danger');
-            return throwError(message);
-          }
+          return throwError(error);
         })
       );
   }
 
-  clientSideError(error: ErrorEvent): Message {
-    return { text: error.error.message, type: 'danger' };
-  }
+  catchOther(error: any) {
+    let messages: Message[] = [];
 
-  serverSideError(apiMessage: ApiMessage): Message[] {
-    const messages: Message[] = [];
+    if (error.error instanceof ErrorEvent) {
+      messages.push({ text: error.error.message, type: 'danger' });
+    } else {
+      messages.push({ text: `(${error.status}) ${error.message}`, type: 'danger' });
+    }
 
-    apiMessage.errors.forEach(apiError => {
-      messages.push({ text: `(${apiError.code}) ${apiError.message}`, type: 'danger' });
+    messages.forEach(message => {
+      this.messageService.sendMessage(message.text, message.type);
     });
-
-    apiMessage.notifications.forEach(apiNotification => {
-      messages.push({ text: apiNotification.message, type: 'warning' });
-    });
-
-    return messages;
   }
 
   private sendLog(error: ErrorEvent): void {
-    this.subscription.add(this.logService.post({timestamp: Date.now(), type: error.filename, content: error.message}).subscribe());
+    this.subscription.add(this.logService.post({ timestamp: Date.now(), type: error.filename, content: error.message }).subscribe());
   }
 
   ngOnDestroy() {

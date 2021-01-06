@@ -19,9 +19,11 @@ import { environment } from 'src/environments/environment';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { LogModule } from '../log/log.module';
 import { HttpTokenRegenerationInterceptor } from './interceptors/http-token-regeneration.interceptor';
+import { HttpApiErrorInterceptor } from './interceptors/http-api-error.interceptor';
 
 const providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: HttpApiErrorInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: HttpTokenRegenerationInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
 ];

@@ -61,18 +61,23 @@ export class UserService extends AbstractService<User> {
     }
   }
 
-  logout(): Observable<any> {
+  logoutHttp(): Observable<any> {
     return this.http.get<any>(this.url + '/logout');
   }
 
+  logoutSession(): void {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.setToken(null);
+    this.subject.next(null);
+    this.currentUser = null
+    this.router.navigate(['/login']);
+  }
+
   logoutSubscription(): Subscription {
-    return this.logout().subscribe({
+    return this.logoutHttp().subscribe({
       complete: () => {
-        localStorage.clear();
-        this.setToken(null);
-        this.subject.next(null);
-        this.currentUser = null
-        this.router.navigate(['/login']);
+        this.logoutSession()
       }
     });
   }

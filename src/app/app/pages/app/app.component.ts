@@ -23,7 +23,7 @@ export class AppComponent implements OnDestroy {
   private subscription: Subscription = new Subscription();
 
   constructor(public userService: UserService, private route: ActivatedRoute, private router: Router,
-              private basketService: BasketService) {
+    private basketService: BasketService) {
     this.subscription.add(this.displayFooter());
     this.subscription.add(this.getUser());
   }
