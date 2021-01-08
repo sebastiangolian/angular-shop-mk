@@ -23,10 +23,11 @@ export class EventComponent implements OnInit, OnDestroy {
   idEvent: string = null;
   event$: Observable<Event>;
   event: Event;
+  isEventList: boolean = false;
   private subscription: Subscription = new Subscription();
 
   constructor(private eventService: EventService, private photoService: PhotoService, private modalService: BsModalService,
-              private route: ActivatedRoute, private router: Router) { }
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.subscription.add(this.getPhotosByRouterId());
@@ -42,7 +43,7 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   private getPhotos(idEvent: string): Observable<Photo[]> {
-    const filters = {idEvent};
+    const filters = { idEvent };
     return this.photoService.get(0, 0, null, null, filters).pipe(
       tap(photos => this.photos = photos)
     );
@@ -52,11 +53,14 @@ export class EventComponent implements OnInit, OnDestroy {
     return this.route.url.
       subscribe((segement: UrlSegment[]) => {
         if (segement.length > 0) {
+          this.isEventList = true
           this.idEvent = segement[0].path;
           this.event$ = this.eventService.getById(this.idEvent).pipe(
             tap(event => this.event = event)
           );
           this.photos$ = this.getPhotos(this.idEvent);
+        } else {
+          this.isEventList = false
         }
       });
   }

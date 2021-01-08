@@ -15,7 +15,7 @@
             <div [collapse]=isCollapsed class="navbar-collapse" id="navbar-content">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="event" routerLinkActive="active underline">Strona główna</a>
+                        <a class="nav-link" routerLink="event" routerLinkActive="active underline">Wydarzenia</a>
                     </li>
                     <ng-container *ngIf="user">
                         <li class="nav-item" *ngIf="user?.isIndividual">
@@ -54,7 +54,7 @@
             <div class="container-xl">
                 <div class="row p-3 text-center">
                     <div class="col-md-8 text-md-left">
-                        <a class="text-light text-decoration-none" [href]="'http://' + environments.host">Strona główna</a> | 
+                        <a class="text-light text-decoration-none" [href]="'http://' + environments.host">Wydarzenia</a> | 
                         <a class="text-light text-decoration-none" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a> |
                         <a class="text-light text-decoration-none" [href]="'http://' + environments.host + '/blog/'">Blog</a> |
                         <a class="text-light text-decoration-none" [href]="'http://sklep.' + environments.host + '/resource/sklep.regulamin.pdf'">Regulamin</a> |
