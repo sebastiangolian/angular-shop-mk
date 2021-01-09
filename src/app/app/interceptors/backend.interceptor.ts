@@ -48,10 +48,22 @@ export class BackendInterceptor implements HttpInterceptor {
                     },
                 ],
                 event: [
-                    { idEvent: '1', name: 'Dzień dziecka', titlePhotoUrl: 'https://picsum.photos/id/100/300/200', description: '<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.' },
-                    { idEvent: '2', name: 'Dzień niepodległości', titlePhotoUrl: 'https://picsum.photos/id/200/300/200', description: '<h2 class=\'text-danger\'>Dzień niepodległości</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.' },
-                    { idEvent: '3', name: 'Bieg City Trail', titlePhotoUrl: 'https://picsum.photos/id/300/300/200', description: '<h2 class=\'text-info\'>Bieg City Trail</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.' },
-                    { idEvent: '4', name: 'Wesele Marii i Nikodema 2020-01-01', titlePhotoUrl: 'https://picsum.photos/id/400/300/200', description: '<h2 class=\'text-warning\'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.' },
+                    {
+                        idEvent: '1', name: 'Dzień dziecka', description: '<h2>Dzień dziecka</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.',
+                        titlePhoto: { idPhoto: '100', idEvent: '1', name: 'photo 10', width: 300, height: 200 }
+                    },
+                    {
+                        idEvent: '2', name: 'Dzień niepodległości', description: '<h2 class=\'text-danger\'>Dzień niepodległości</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.',
+                        titlePhoto: { idPhoto: '200', idEvent: '2', name: 'photo 2', width: 300, height: 200 }
+                    },
+                    {
+                        idEvent: '3', name: 'Bieg City Trail', description: '<h2 class=\'text-info\'>Bieg City Trail</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.',
+                        titlePhoto: { idPhoto: '300', idEvent: '3', name: 'photo 3', width: 300, height: 200 }
+                    },
+                    {
+                        idEvent: '4', name: 'Wesele Marii i Nikodema 2020-01-01', titlePhotoUrl: 'https://picsum.photos/id/400/300/200', description: '<h2 class=\'text-warning\'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.',
+                        titlePhoto: { idPhoto: '400', idEvent: '4', name: 'photo 4', width: 300, height: 200 }
+                    },
                 ],
                 offer: [
                     {
@@ -109,26 +121,26 @@ export class BackendInterceptor implements HttpInterceptor {
                     { idOffer: '7', idPhoto: '20', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
                 ],
                 photo: [
-                    { idPhoto: '10', idEvent: '1', name: 'photo 10', height: 200, width: 300 },
-                    { idPhoto: '2', idEvent: '2', name: 'photo 2', height: 200, width: 300 },
-                    { idPhoto: '3', idEvent: '3', name: 'photo 3', height: 200, width: 300 },
-                    { idPhoto: '4', idEvent: '4', name: 'photo 4', height: 200, width: 300 },
-                    { idPhoto: '11', idEvent: '1', name: 'photo 11', height: 200, width: 300 },
-                    { idPhoto: '12', idEvent: '1', name: 'photo 12', height: 200, width: 300 },
-                    { idPhoto: '13', idEvent: '1', name: 'photo 13', height: 200, width: 300 },
-                    { idPhoto: '14', idEvent: '1', name: 'photo 14', height: 200, width: 300 },
-                    { idPhoto: '15', idEvent: '1', name: 'photo 15', height: 200, width: 300 },
-                    { idPhoto: '16', idEvent: '1', name: 'photo 16', height: 200, width: 300 },
-                    { idPhoto: '17', idEvent: '1', name: 'photo 17', height: 200, width: 300 },
-                    { idPhoto: '18', idEvent: '1', name: 'photo 18', height: 200, width: 300 },
-                    { idPhoto: '19', idEvent: '1', name: 'photo 19', height: 200, width: 300 },
-                    { idPhoto: '20', idEvent: '1', name: 'photo 20', height: 200, width: 300 },
-                    { idPhoto: '21', idEvent: '1', name: 'photo 21', height: 200, width: 300 },
-                    { idPhoto: '22', idEvent: '1', name: 'photo 22', height: 200, width: 300 },
-                    { idPhoto: '23', idEvent: '1', name: 'photo 23', height: 200, width: 300 },
-                    { idPhoto: '24', idEvent: '1', name: 'photo 24', height: 200, width: 300 },
-                    { idPhoto: '25', idEvent: '1', name: 'photo 25', height: 200, width: 300 },
-                    { idPhoto: '26', idEvent: '1', name: 'photo 26', height: 200, width: 300 },
+                    { idPhoto: '100', idEvent: '1', name: 'photo 10', height: 200, width: 300 },
+                    { idPhoto: '200', idEvent: '2', name: 'photo 2', height: 200, width: 300 },
+                    { idPhoto: '300', idEvent: '3', name: 'photo 3', height: 200, width: 300 },
+                    { idPhoto: '400', idEvent: '4', name: 'photo 4', height: 200, width: 300 },
+                    { idPhoto: '101', idEvent: '1', name: 'photo 11', height: 200, width: 300 },
+                    { idPhoto: '102', idEvent: '1', name: 'photo 12', height: 200, width: 300 },
+                    { idPhoto: '103', idEvent: '1', name: 'photo 13', height: 200, width: 300 },
+                    { idPhoto: '104', idEvent: '1', name: 'photo 14', height: 200, width: 300 },
+                    { idPhoto: '105', idEvent: '1', name: 'photo 15', height: 200, width: 300 },
+                    { idPhoto: '106', idEvent: '1', name: 'photo 16', height: 200, width: 300 },
+                    { idPhoto: '107', idEvent: '1', name: 'photo 17', height: 200, width: 300 },
+                    { idPhoto: '108', idEvent: '1', name: 'photo 18', height: 200, width: 300 },
+                    { idPhoto: '109', idEvent: '1', name: 'photo 19', height: 200, width: 300 },
+                    { idPhoto: '111', idEvent: '1', name: 'photo 20', height: 200, width: 300 },
+                    { idPhoto: '112', idEvent: '1', name: 'photo 21', height: 200, width: 300 },
+                    { idPhoto: '113', idEvent: '1', name: 'photo 22', height: 200, width: 300 },
+                    { idPhoto: '114', idEvent: '1', name: 'photo 23', height: 200, width: 300 },
+                    { idPhoto: '115', idEvent: '1', name: 'photo 24', height: 200, width: 300 },
+                    { idPhoto: '116', idEvent: '1', name: 'photo 25', height: 200, width: 300 },
+                    { idPhoto: '117', idEvent: '1', name: 'photo 26', height: 200, width: 300 },
                 ],
                 orderDefinition: [
                     {

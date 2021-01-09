@@ -15,8 +15,11 @@ export class EventPhotoListItemComponent implements OnInit {
 
   @Input() event: Event;
   active = false;
-  constructor() { }
+  src: string;
+  constructor(private photoService: PhotoService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.src = this.photoService.getFileUrl(this.event.titlePhoto);
+  }
 
 }

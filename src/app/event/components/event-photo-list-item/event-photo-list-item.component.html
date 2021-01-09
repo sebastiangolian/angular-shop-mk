@@ -1,6 +1,6 @@
 <div class="card hand h-100" [routerLink]="'/event/' + event.idEvent" (mouseover)="active = true"
     [class.shadow]="active" (mouseout)="active = false" [class.border-black]="active">
-    <img class="card-img-top" [attr.data-src]="event.titlePhotoUrl" [isBlob]="true" lazyLoadingImage>
+    <img class="card-img-top" [height]="event.titlePhoto.height" [width]="event.titlePhoto.width" [attr.data-src]="src"  [isBlob]="true" lazyLoadingImage>
     <div class="card-body bg-dark text-light align-items-center">
         <div class="card-text text-center mx-auto" [innerHTML]="event.name"></div>
     </div>

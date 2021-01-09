@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Sklep MK
   description: Sklep MK
-  version: 1.0.18
+  version: 1.0.19
 servers:
   - url: http://api.mk.pl/v1
 components:
@@ -74,15 +74,15 @@ components:
       required:
       - "idEvent"
       - "name"
-      - "titlePhotoUrl"
+      - "titlePhoto"
       - "description"
       properties:
         idEvent:
           type: "string"
         name:
           type: "string"
-        titlePhotoUrl:
-          type: "string"
+        titlePhoto:
+          $ref: "#/components/schemas/Photo"
         description:
           type: "string"
     Log:
