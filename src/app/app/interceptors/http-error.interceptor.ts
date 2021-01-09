@@ -1,6 +1,6 @@
 import { UserService } from 'src/app/user/services/user.service';
 import { Injectable, OnDestroy } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -60,8 +60,14 @@ export class HttpErrorInterceptor implements HttpInterceptor, OnDestroy {
     });
   }
 
-  private sendLog(error: ErrorEvent): void {
-    this.subscription.add(this.logService.post({ timestamp: Date.now(), type: error.filename, content: error.message }).subscribe());
+  private sendLog(error: HttpErrorResponse): void {
+    let content: string = error.message
+    let login: string = null
+    this.subscription.add(this.userService.subject.asObservable().subscribe(user => login = user.login));
+    if (login) {
+      content = `(${login})` + content
+    }
+    this.subscription.add(this.logService.post({ timestamp: Date.now(), type: error.url, content: content }).subscribe());
   }
 
   ngOnDestroy() {

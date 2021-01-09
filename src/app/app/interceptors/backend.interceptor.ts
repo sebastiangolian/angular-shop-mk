@@ -67,7 +67,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 ],
                 offer: [
                     {
-                        idOffer: '1', idPhoto: '10', name: 'Zdjęcie', products: [
+                        idOffer: '1', idPhoto: '100', name: 'Zdjęcie', products: [
                             { idProduct: '1', name: 'Zdjęcie 10x15', price: 10.00 },
                             { idProduct: '2', name: 'Zdjęcie 13x18', price: 10.00 },
                             { idProduct: '3', name: 'Zdjęcie 15x21', price: 10.00 },
@@ -81,44 +81,44 @@ export class BackendInterceptor implements HttpInterceptor {
                         ]
                     },
                     {
-                        idOffer: '2', idPhoto: '1', name: 'Fotomagnes', products: [
+                        idOffer: '2', idPhoto: '100', name: 'Fotomagnes', products: [
                             { idProduct: '11', name: 'Fotomagnes 7,5x10', price: 10.00 },
                             { idProduct: '12', name: 'Fotomagnes 10x15', price: 16.00 },
                         ]
                     },
                     {
-                        idOffer: '3', idPhoto: '1', name: 'Kalendarz', products: [
+                        idOffer: '3', idPhoto: '100', name: 'Kalendarz', products: [
                             { idProduct: '13', name: 'Kalendarz A3', price: 30.00 },
                             { idProduct: '14', name: 'Kalendarz z wsuwanym zdjęciem A4', price: 35.00 },
                             { idProduct: '15', name: 'Kalendarz A4', price: 35.00 },
                         ]
                     },
                     {
-                        idOffer: '4', idPhoto: '1', name: 'Fotoobraz', products: [
+                        idOffer: '4', idPhoto: '100', name: 'Fotoobraz', products: [
                             { idProduct: '16', name: 'Fotoobraz 20x30', price: 50.00 },
                             { idProduct: '17', name: 'Fotoobraz 30x45', price: 70.00 },
                             { idProduct: '18', name: 'Fotoobraz 50x70', price: 110.00 },
                         ]
                     },
-                    { idOffer: '5', idPhoto: '2', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '6', idPhoto: '3', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '4', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '5', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '6', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '7', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '8', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '9', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '10', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '11', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '12', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '13', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '14', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '15', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '16', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '17', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '18', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '19', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
-                    { idOffer: '7', idPhoto: '20', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '5', idPhoto: '200', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '6', idPhoto: '300', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '400', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '101', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '102', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '103', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '104', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '105', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '106', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '107', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '108', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '109', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '111', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '112', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '113', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '114', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '115', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '116', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
+                    { idOffer: '7', idPhoto: '117', name: 'Plik cyfrowy', products: [{ idProduct: '19', name: 'jpg', price: 30.00 }] },
                 ],
                 photo: [
                     { idPhoto: '100', idEvent: '1', name: 'photo 10', height: 200, width: 300 },

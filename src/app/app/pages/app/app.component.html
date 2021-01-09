@@ -36,7 +36,13 @@
                     <basket-widget></basket-widget>
                 </div>
                 <button class="btn btn-outline-primary" type="button" (click)="onLogOut()">
-                    {{currentUser.firstName}} {{currentUser.lastName}}<br />
+                    <ng-container *ngIf="currentUser.firstName && currentUser.lastName;else loginBlock">
+                        {{currentUser.firstName}} {{currentUser.lastName}}
+                    </ng-container>
+                    <ng-template #loginBlock>
+                        {{currentUser.login}}
+                    </ng-template>
+                    <br />
                     <span class="font-weight-light">Wyloguj</span>
                 </button>
             </ng-container>
