@@ -252,6 +252,8 @@ export class BackendInterceptor implements HttpInterceptor {
                 }
 
                 case (method === 'GET' && url.includes('/api/order/list')): {
+                    db.order = setSort(db.order, 'orderDate', 'desc')
+
                     const response = getAll(db.order);
                     return response200(response);
                 }
