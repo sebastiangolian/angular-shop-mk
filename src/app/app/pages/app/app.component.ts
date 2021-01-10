@@ -1,7 +1,7 @@
 import { User } from './../../../user/interfaces/user.interface';
 import { BannerName } from './../../../banner/enums/banner-name.enum';
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/user/services/user.service';
 import { BasketService } from 'src/app/basket/services/basket.service';

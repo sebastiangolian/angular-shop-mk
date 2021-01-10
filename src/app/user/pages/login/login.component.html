@@ -3,6 +3,7 @@
     <form name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm">
 
       <div *ngIf="error" class="alert alert-danger" role="alert" [innerHTML]="error"></div>
+      
       <!-- LOGIN -->
       <input type="text" class="form-control" name="login" [(ngModel)]="model.login" #login="ngModel"
         [class.is-invalid]="login.invalid && login.touched" placeholder="Login" minlength="3" maxlength="25"

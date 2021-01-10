@@ -37,7 +37,6 @@ export class HttpErrorInterceptor implements HttpInterceptor, OnDestroy {
             default: {
               this.catchOther(error)
               this.sendLog(error);
-              this.messageService.sendMessage("Wystąpił nieoczekiwany problem. Proszę spróbuj ponownie", 'danger')
             }
           }
 
