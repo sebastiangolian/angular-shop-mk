@@ -38,9 +38,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       {
         complete: () => {
           this.messageService.clearMessages();
-          const redirectUrl = sessionStorage.getItem('redirectUrl');
+          const redirectUrl = localStorage.getItem('redirectUrl');
           if (redirectUrl) {
-            sessionStorage.removeItem('redirectUrl');
+            localStorage.removeItem('redirectUrl');
             this.router.navigate([redirectUrl]);
           } else {
             this.router.navigate(['/event']);

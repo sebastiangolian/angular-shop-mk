@@ -9,10 +9,9 @@
     <div class="form-group">
       <label [innerHTML]="order.labels.firstnameLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="firstname" [(ngModel)]="order.firstname" #firstname="ngModel"
-        [class.is-invalid]="firstname.invalid && firstname.touched" minlength="1" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."]*'
+        [class.is-invalid]="firstname.invalid || !firstname.value" minlength="2" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."]*'
         required>
-      <div *ngIf="firstname.touched && firstname.invalid" class="text-danger">
-        <div *ngIf="!!firstname.errors.required">Imię jest wymagane</div>
+      <div *ngIf="firstname.invalid" class="text-danger">
         <div *ngIf="!!firstname.errors.minlength">Imię jest za krótkie</div>
         <div *ngIf="!!firstname.errors.maxlength">Imię jest za długie</div>
         <div *ngIf="!!firstname.errors.pattern">W imieniu możesz używać tylko liter</div>
@@ -22,10 +21,9 @@
     <div class="form-group">
       <label [innerHTML]="order.labels.lastnameLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="lastname" [(ngModel)]="order.lastname" #lastname="ngModel"
-        [class.is-invalid]="lastname.invalid && lastname.touched" minlength="1" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."-]*'
+        [class.is-invalid]="lastname.invalid && !lastname.value" minlength="2" maxlength="30" pattern='[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż\s."-]*'
         required>
-      <div *ngIf="lastname.touched && lastname.invalid" class="text-danger">
-        <div *ngIf="!!lastname.errors.required">Nazwisko jest wymagane</div>
+      <div *ngIf="lastname.invalid" class="text-danger">
         <div *ngIf="!!lastname.errors.minlength">Nazwisko jest za krótkie</div>
         <div *ngIf="!!lastname.errors.maxlength">Nazwisko jest za długie</div>
         <div *ngIf="!!lastname.errors.pattern">W nazwisku możesz używać tylko liter i myślnika</div>
@@ -46,10 +44,8 @@
     <div class="form-group">
       <label [innerHTML]="order.labels.emailLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="email" [(ngModel)]="order.email" #email="ngModel"
-        [class.is-invalid]="email.invalid && email.touched"
-        email required>
-      <div *ngIf="email.touched && email.invalid" class="text-danger">
-          <div *ngIf="!!email.errors.required">Adres email jest wymagany</div>
+        [class.is-invalid]="email.invalid && !email.value" email required>
+      <div *ngIf="email.invalid" class="text-danger">
           <div *ngIf="!!email.errors.email">Adres email musi mieć format jankowalski@example.com</div>
       </div>
     </div>
@@ -57,10 +53,9 @@
     <div class="form-group">
       <label [innerHTML]="order.labels.emailConfirmLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="emailConfirm" [(ngModel)]="order.emailConfirm" #emailConfirm="ngModel"
-        [class.is-invalid]="emailConfirm.invalid && emailConfirm.touched"
+        [class.is-invalid]="emailConfirm.invalid && !emailConfirm.value"
         email required (paste)="$event.preventDefault()">
-      <div *ngIf="emailConfirm.touched && emailConfirm.invalid" class="text-danger">
-          <div *ngIf="!!emailConfirm.errors.required">Adres email jest wymagany</div>
+      <div *ngIf="emailConfirm.invalid" class="text-danger">
           <div *ngIf="!!emailConfirm.errors.email">Adres email musi mieć format jankowalski@example.com</div>
           <div *ngIf="email.value != emailConfirm.value">Adresy email muszą być identyczne</div>
       </div>

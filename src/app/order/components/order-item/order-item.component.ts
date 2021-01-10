@@ -45,6 +45,10 @@ export class OrderItemComponent implements OnChanges, OnDestroy {
     }
   }
 
+  endProgress(orderPayment: OrderPayment): void {
+    this.order.payment = orderPayment
+  }
+
   private filterEvent(basketItems: BasketItem[]): Event[] {
     const events: Event[] = [];
     basketItems.forEach(item => {
