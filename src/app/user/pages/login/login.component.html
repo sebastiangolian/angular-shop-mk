@@ -7,7 +7,7 @@
       <!-- LOGIN -->
       <input type="text" class="form-control" name="login" [(ngModel)]="model.login" #login="ngModel"
         [class.is-invalid]="login.invalid && login.touched" placeholder="Login" minlength="3" maxlength="25"
-        pattern="[a-zA-Z0-9_]*" required focus>
+        required focus>
       <div *ngIf="login.touched && login.invalid" class="text-danger">
         <div *ngIf="!!login.errors.required">Login jest wymagany</div>
         <div *ngIf="!!login.errors.minlength">Login jest za krótki</div>

@@ -298,6 +298,15 @@ export class BackendInterceptor implements HttpInterceptor {
                             status: 'Nierozpoczęta',
                             operatorUrl: 'https://mock.secure.przelewy24.pl/trnRequest'
                         };
+                    } else if (db.order[index].paymentMethod.idOrderPaymentMethod === '2354') {
+                        db.order[index].payment = {
+                            idOrderPayment: null,
+                            isProgress: false,
+                            canStartNewPayment: false,
+                            status: 'Nierozpoczęta',
+                            operatorUrl: '',
+                            description: 'Numer konta do wpłaty: 00 0000 0000 0000 0000 0000 0000 Jan Kowalski tytułem: usługa fotograficzna zamówienie nr 102'
+                        };
                     } else {
                         db.order[index].payment = null;
                     }

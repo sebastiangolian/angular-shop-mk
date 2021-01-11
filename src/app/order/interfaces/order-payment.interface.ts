@@ -4,4 +4,5 @@ export interface OrderPayment {
     canStartNewPayment: boolean;
     status: string;
     operatorUrl: string;
+    description: string;
 }

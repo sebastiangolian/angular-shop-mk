@@ -11,8 +11,9 @@
         <p>Sposób płatności: <b>{{order.paymentMethod.content}}</b></p>
     </ng-container>
     <ng-container *ngIf="order.payment">
-        <p *ngIf="order.payment">Status płatności:<b><order-payment (endProgres)="endProgress($event)" [order]="order"></order-payment></b></p>
+        <p *ngIf="order.payment.status">Status płatności:<b><order-payment (endProgres)="endProgress($event)" [order]="order"></order-payment></b></p>
         <button *ngIf="order.payment.canStartNewPayment" class="btn btn-primary" (click)="onOrderPay(order)">Opłać zamówienie</button>
+        <p *ngIf="order.payment.description" [innerHTML]="order.payment.description"></p>
     </ng-container>
     <div *ngFor="let event of events">
         <order-element-list [event]="event" [basketItems]="order.items"></order-element-list>
