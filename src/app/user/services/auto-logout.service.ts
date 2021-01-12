@@ -52,7 +52,7 @@ export class AutoLogoutService {
     this.ngZone.run(() => {
       if (isTimeout && this.userService.token) {
         const message = `Nastąpiło automatyczne wylogowanie z aplikacji po ${environment.autoLogOutTimeout} minutach.`;
-        this.messageService.sendMessage(message, MessageType.WARNING);
+        this.messageService.sendMessage(message, MessageType.INFO);
         this.userService.logoutSession()
       }
     });
