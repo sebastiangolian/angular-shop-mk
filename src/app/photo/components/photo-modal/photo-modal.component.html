@@ -9,7 +9,7 @@
         <app-messages></app-messages>   
         <div class="row">
             <div class="col-12 col-lg-6 text-center mb-2">
-                <photo-modal-image [photo]="photo"></photo-modal-image>
+                <photo-modal-image [photo]="photo" [src]="src$ | async"></photo-modal-image>
             </div>
             <div class="col-12 col-lg-6">
                 <offer-list [photo]="photo" [event]="event" [offers]="offers$ | async"></offer-list>

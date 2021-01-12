@@ -1,4 +1,6 @@
-<ng-container *ngIf="photo">
-    <img class="img-fluid img-thumbnail rounded hand" [width]="photo.width" [height]="photo.height" 
-        [attr.data-src]="src" [isBlob]="true" lazyLoadingImage>
+<ng-container *ngIf="photo && src">
+    <img class="img-fluid img-thumbnail rounded hand" [width]="photo.width" [height]="photo.height" [src]="src | safe: 'url'">
+</ng-container>
+<ng-container *ngIf="photo && !src">
+    <img class="img-fluid img-thumbnail rounded hand" [width]="photo.width" [height]="photo.height">
 </ng-container>

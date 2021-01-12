@@ -1,5 +1,4 @@
-import { PhotoService } from 'src/app/photo/services/photo.service';
-import { Component, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Photo } from '../../interfaces/photo.interface';
 
 @Component({
@@ -8,14 +7,9 @@ import { Photo } from '../../interfaces/photo.interface';
   styleUrls: ['./photo-modal-image.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PhotoModalImageComponent implements OnChanges {
+export class PhotoModalImageComponent {
 
   @Input() photo: Photo;
-  src: string;
-  constructor(private photoService: PhotoService) { }
-
-  ngOnChanges(): void {
-    this.src = this.photoService.getFileUrl(this.photo);
-  }
-
+  @Input() src: string;
+  constructor() { }
 }

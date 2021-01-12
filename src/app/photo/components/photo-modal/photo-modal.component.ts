@@ -1,12 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { PhotoExternalService } from './../../../shared/services/photo-external.service';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
+import { map } from 'rxjs/operators';
 import { Event } from 'src/app/event/interfaces/event.interface';
 import { Offer } from 'src/app/offer/interfaces/offer.interface';
 import { OfferService } from 'src/app/offer/services/offer.service';
 import { Photo } from '../../interfaces/photo.interface';
+import { PhotoService } from '../../services/photo.service';
 
 @Component({
   selector: 'photo-modal',
@@ -21,15 +25,18 @@ export class PhotoModalComponent implements OnInit {
   subject: Subject<Photo>;
   offers$: Observable<Offer[]>;
   currentIndex: number;
+  src$: Observable<string>
 
-  constructor(private bsModalRef: BsModalRef, private offerService: OfferService, private router: Router) { }
+  constructor(private bsModalRef: BsModalRef, private offerService: OfferService, private router: Router, private http: HttpClient,
+    private photoService: PhotoService, private photoExternalService: PhotoExternalService) { }
 
   ngOnInit(): void {
     this.offers$ = this.getOffers();
+    this.src$ = this.photoExternalService.getBlobUrl(this.photoService.getFileUrl(this.photo))
   }
 
   private getOffers(): Observable<Offer[]> {
-    const filters = {idPhoto: this.photo.idPhoto};
+    const filters = { idPhoto: this.photo.idPhoto };
     return this.offerService.get(0, 0, null, null, filters);
   }
 
