@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 import { Message } from 'src/app/shared/interfaces/message.interface';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { MessageType } from 'src/app/shared/enums/message-type.enum';
-import { MessageModel } from 'src/app/shared/models/message.model';
 import { Subscription } from 'rxjs';
 
 @Injectable()
@@ -23,50 +22,41 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         catchError((error: HttpErrorResponse) => {
           let message: Message;
           if (error.error instanceof ErrorEvent) {
-            message = this.clientSideError(error.error);
+            this.clientSideError(error.error);
           } else {
-            message = this.serverSideError(error);
+            this.serverSideError(error, request);
           }
-          this.messageService.sendMessageByObject(message);
           return throwError(message.text);
         })
       );
   }
 
-  clientSideError(error: ErrorEvent): Message {
-    let message: Message = new MessageModel();
-    message.text = error.error.message;
-    message.type = MessageType.ERROR;
-    return message;
+  clientSideError(error: ErrorEvent): void {
+    this.messageService.sendMessage(error.error.message, MessageType.ERROR)
   }
 
-  serverSideError(error: HttpErrorResponse): Message {
-    let message = new MessageModel();
+  serverSideError(error: HttpErrorResponse, request: HttpRequest<any>): void {
     switch (error.status) {
       case 401: {
-        message.text = 'Twoja sesja wygasła. Zaloguj się ponownie';
-        message.type = MessageType.INFO;
+        if (request.url.includes("/user/login")) break;
+        this.messageService.sendMessage('Twoja sesja wygasła. Zaloguj się ponownie', MessageType.INFO)
         break;
       }
       case 403: {
-        message.text = 'Nie masz uprawnień do tego zasobu';
-        message.type = MessageType.WARNING;
+        this.messageService.sendMessage('Nie masz uprawnień do tego zasobu', MessageType.WARNING)
         break;
       }
       case 404: {
-        message.text = 'Podany zasób nie istnieje';
-        message.type = MessageType.INFO;
+        if (request.url.includes("/api/photo") && request.url.includes("/image")) break;
+        this.messageService.sendMessage('Podany zasób nie istnieje', MessageType.INFO)
         break;
       }
       default: {
-        message.text = 'Wystąpił nieoczekiwany problem. Pracujemy nad rozwiązaniem. Proszę spróbuj ponownie za chwilę.';
-        message.type = MessageType.ERROR;
+        this.messageService.sendMessage('Wystąpił nieoczekiwany problem. Pracujemy nad rozwiązaniem. Proszę spróbuj ponownie za chwilę.', MessageType.ERROR)
         this.sendLog(error);
         break;
       }
     }
-
-    return message;
   }
 
   private sendLog(error: HttpErrorResponse): void {
