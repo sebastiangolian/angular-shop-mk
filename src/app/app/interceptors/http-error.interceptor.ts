@@ -1,15 +1,18 @@
-import { UserService } from 'src/app/user/services/user.service';
-import { Injectable, OnDestroy } from '@angular/core';
+import { LogService } from './../../log/services/log.service';
+import { UserService } from './../../user/services/user.service';
+import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subscription, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { MessageService } from 'src/app/shared/services/message.service';
 import { Message } from 'src/app/shared/interfaces/message.interface';
-import { LogService } from 'src/app/log/services/log.service';
+import { MessageService } from 'src/app/shared/services/message.service';
+import { MessageType } from 'src/app/shared/enums/message-type.enum';
+import { MessageModel } from 'src/app/shared/models/message.model';
+import { Subscription } from 'rxjs';
 
 @Injectable()
-export class HttpErrorInterceptor implements HttpInterceptor, OnDestroy {
+export class HttpErrorInterceptor implements HttpInterceptor {
   private subscription: Subscription = new Subscription();
   constructor(private messageService: MessageService, private userService: UserService, private logService: LogService) { }
 
@@ -17,46 +20,53 @@ export class HttpErrorInterceptor implements HttpInterceptor, OnDestroy {
     return next.handle(request)
       .pipe(
         retry(environment.httpRetry),
-        catchError((error) => {
-          switch (error.status) {
-            case 401: {
-              this.messageService.sendMessage('Twoja sesja wygasła. Zostałeś wylogowany automatycznie.', 'info')
-              this.userService.logoutSession()
-              break;
-            }
-            case 403: {
-              this.messageService.sendMessage("Nie masz uprawnień do wykonanie tego polecenia", 'warning')
-              break;
-            }
-            case 404: {
-              let showError: boolean = true
-              if (request.url.includes("/api/photo") && request.url.includes("/image")) showError = false
-              if (showError) this.messageService.sendMessage("Strona, której szukasz, nie istnieje", 'info')
-              break;
-            }
-            default: {
-              this.catchOther(error)
-              this.sendLog(error);
-            }
+        catchError((error: HttpErrorResponse) => {
+          let message: Message;
+          if (error.error instanceof ErrorEvent) {
+            message = this.clientSideError(error.error);
+          } else {
+            message = this.serverSideError(error);
           }
-
-          return throwError(error);
+          this.messageService.sendMessageByObject(message);
+          return throwError(message.text);
         })
       );
   }
 
-  catchOther(error: any) {
-    let messages: Message[] = [];
+  clientSideError(error: ErrorEvent): Message {
+    let message: Message = new MessageModel();
+    message.text = error.error.message;
+    message.type = MessageType.ERROR;
+    return message;
+  }
 
-    if (error.error instanceof ErrorEvent) {
-      messages.push({ text: error.error.message, type: 'danger' });
-    } else {
-      messages.push({ text: `(${error.status}) ${error.message}`, type: 'danger' });
+  serverSideError(error: HttpErrorResponse): Message {
+    let message = new MessageModel();
+    switch (error.status) {
+      case 401: {
+        message.text = 'Twoja sesja wygasła. Zaloguj się ponownie';
+        message.type = MessageType.INFO;
+        break;
+      }
+      case 403: {
+        message.text = 'Nie masz uprawnień do tego zasobu';
+        message.type = MessageType.WARNING;
+        break;
+      }
+      case 404: {
+        message.text = 'Podany zasób nie istnieje';
+        message.type = MessageType.INFO;
+        break;
+      }
+      default: {
+        message.text = 'Wystąpił nieoczekiwany problem. Pracujemy nad rozwiązaniem. Proszę spróbuj ponownie za chwilę.';
+        message.type = MessageType.ERROR;
+        this.sendLog(error);
+        break;
+      }
     }
 
-    messages.forEach(message => {
-      this.messageService.sendMessage(message.text, message.type);
-    });
+    return message;
   }
 
   private sendLog(error: HttpErrorResponse): void {

@@ -1,6 +1,8 @@
+import { MessageType } from './../enums/message-type.enum';
 export interface Message {
     text: string;
-    type: string;
-    dismissible?: boolean;
-    timeout?: number;
+    type: MessageType;
+    dismissible: boolean;
+    timeout: number;
+    datetime?: string;
 }

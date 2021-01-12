@@ -3,6 +3,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'src/app/shared/services/message.service';
+import { MessageType } from 'src/app/shared/enums/message-type.enum';
 
 const CHECK_INTERVALL = 10000;
 const STORE_KEY = 'lastAction';
@@ -51,7 +52,7 @@ export class AutoLogoutService {
     this.ngZone.run(() => {
       if (isTimeout && this.userService.token) {
         const message = `Nastąpiło automatyczne wylogowanie z aplikacji po ${environment.autoLogOutTimeout} minutach.`;
-        this.messageService.sendMessage(message, 'warning');
+        this.messageService.sendMessage(message, MessageType.WARNING);
         this.userService.logoutSession()
       }
     });

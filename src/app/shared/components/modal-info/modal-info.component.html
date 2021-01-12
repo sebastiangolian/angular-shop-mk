@@ -1,0 +1,19 @@
+<div class="modal fade" [style.z-index]="1051" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static', show: true}" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-static-name" *ngIf="active">
+    <div class="modal-dialog modal-lg" [style.z-index]="1041">
+        <div class="modal-content">
+            <div [class]="headerClass">
+                <h4 id="dialog-static-name" class="modal-title pull-left">
+                    <ng-content select=".header"></ng-content>
+                </h4>
+                <button *ngIf="isCloseVisible" type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ng-content select=".body"></ng-content>
+                <button type="button" class="btn btn-primary float-right mt-2" (click)="onClose()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

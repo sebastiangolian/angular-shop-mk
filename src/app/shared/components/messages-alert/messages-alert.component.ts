@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../interfaces/message.interface';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css'],
+  selector: 'messages-alert',
+  templateUrl: './messages-alert.component.html',
+  styleUrls: ['./messages-alert.component.css'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class MessagesComponent implements OnInit, OnDestroy {
+export class MessagesAlertComponent implements OnInit, OnDestroy {
 
   messages: Message[] = [];
   private subscription: Subscription = new Subscription();
@@ -30,7 +30,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 

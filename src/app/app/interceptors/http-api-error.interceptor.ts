@@ -1,3 +1,4 @@
+import { MessageType } from './../../shared/enums/message-type.enum';
 import { UserService } from 'src/app/user/services/user.service';
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse } from '@angular/common/http';
@@ -6,6 +7,7 @@ import { tap } from 'rxjs/operators';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { Message } from 'src/app/shared/interfaces/message.interface';
 import { ApiMessage } from 'src/app/shared/interfaces/api-message.interface';
+import { MessageModel } from 'src/app/shared/models/message.model';
 
 @Injectable()
 export class HttpApiErrorInterceptor implements HttpInterceptor {
@@ -22,7 +24,7 @@ export class HttpApiErrorInterceptor implements HttpInterceptor {
                 if (response.body.hasOwnProperty('messages')) {
                   let messages = this.formatServerError(response.body.messages)
                   messages.forEach(message => {
-                    this.messageService.sendMessage(message.text, message.type);
+                    this.messageService.sendMessageByObject(message);
                   });
                 }
               }
@@ -36,11 +38,17 @@ export class HttpApiErrorInterceptor implements HttpInterceptor {
     const messages: Message[] = [];
 
     apiMessage.errors.forEach(apiError => {
-      messages.push({ text: `(${apiError.code}) ${apiError.message}`, type: 'danger' });
+      let message = new MessageModel();
+      message.text = `(${apiError.code}) ${apiError.message}`
+      message.type = MessageType.ERROR
+      messages.push(message);
     });
 
     apiMessage.notifications.forEach(apiNotification => {
-      messages.push({ text: apiNotification.message, type: 'warning' });
+      let message = new MessageModel();
+      message.text = apiNotification.message
+      message.type = MessageType.WARNING
+      messages.push(message);
     });
 
     return messages;

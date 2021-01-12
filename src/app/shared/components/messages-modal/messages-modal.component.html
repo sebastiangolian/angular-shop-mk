@@ -1,0 +1,4 @@
+<modal-info *ngIf="message" [headerClass]="headerClass" [datetime]="datetime" [timeout]="message.timeout">
+    <div class="header" [innerHTML]="headerText"></div>
+    <div class="body" [innerHtml]="message.text"></div>
+</modal-info>

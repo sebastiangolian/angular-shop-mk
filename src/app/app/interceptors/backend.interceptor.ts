@@ -260,7 +260,11 @@ export class BackendInterceptor implements HttpInterceptor {
 
                 case (method === 'GET' && url.includes('/api/order')): {
                     const item = db.order.find(order => order.idOrder.toString() === getIdFromUrl());
-                    return response200({ item });
+
+                    if (item)
+                        return response200({ item });
+                    else
+                        return responseError(500, "Podane zamówienie nie istnieje")
                 }
 
                 case (method === 'POST' && url.includes('/api/order/mock')): {
