@@ -9,11 +9,12 @@ import { Message } from 'src/app/shared/interfaces/message.interface';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { MessageType } from 'src/app/shared/enums/message-type.enum';
 import { Subscription } from 'rxjs';
+import { LogoutMessageService } from 'src/app/user/services/logout-message.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
   private subscription: Subscription = new Subscription();
-  constructor(private messageService: MessageService, private userService: UserService, private logService: LogService) { }
+  constructor(private messageService: MessageService, private userService: UserService, private logService: LogService, private logoutMessageService: LogoutMessageService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
@@ -39,7 +40,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     switch (error.status) {
       case 401: {
         if (request.url.includes("/user/login")) break;
-        this.messageService.sendMessage('Twoja sesja wygasła. Zaloguj się ponownie', MessageType.INFO)
+        this.userService.logoutSession()
+        this.logoutMessageService.message = 'Twoja sesja wygasła. Zaloguj się ponownie'
+        location.reload()
         break;
       }
       case 403: {
