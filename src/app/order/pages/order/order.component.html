@@ -1,6 +1,6 @@
-<div class="row" *ngIf="order$ | async as order">
+<div class="row" *ngIf="{ user: currentUser$ | async, order: order$ | async} as con">
     <div class="col-12">
-        <order-item [order]="order"></order-item>
-        <button class="btn btn-primary mt-3" routerLink="/order">Przejdź do moich zamówień</button>
+        <order-item [order]="con.order"></order-item>
+        <button *ngIf="con.user.isIndividual" class="btn btn-primary mt-3" routerLink="/order">Przejdź do moich zamówień</button>
     </div>
 </div>

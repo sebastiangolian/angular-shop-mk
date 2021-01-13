@@ -5,6 +5,7 @@ import { mergeMap } from 'rxjs/operators';
 import { Order } from '../../interfaces/order.interface';
 import { OrderService } from '../../services/order.service';
 import { User } from 'src/app/user/interfaces/user.interface';
+import { UserService } from 'src/app/user/services/user.service';
 
 @Component({
   templateUrl: './order.component.html',
@@ -16,9 +17,10 @@ export class OrderComponent implements OnInit {
   activeIdOrder: string;
   currentUser$: Observable<User>;
 
-  constructor(private orderService: OrderService, private route: ActivatedRoute) { }
+  constructor(private orderService: OrderService, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.currentUser$ = this.userService.currentUser
     this.order$ = this.getOrder();
   }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from 'src/app/user/interfaces/user.interface';
@@ -17,7 +16,7 @@ export class OrdersComponent implements OnInit {
   activeIdOrder: string;
   currentUser$: Observable<User>;
 
-  constructor(private orderService: OrderService, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private orderService: OrderService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.currentUser$ = this.userService.currentUser.pipe(
