@@ -11,22 +11,11 @@ import { OrderService } from '../../services/order.service';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-
   orders$: Observable<Order[]>;
-  activeIdOrder: string;
-  currentUser$: Observable<User>;
 
   constructor(private orderService: OrderService, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.currentUser$ = this.userService.currentUser.pipe(
-      tap(user => {
-        if (user.isIndividual) {
-          this.orders$ = this.orderService.get();
-        } else {
-          this.orders$ = of(null);
-        }
-      })
-    );
+    this.orders$ = this.orderService.get();
   }
 }

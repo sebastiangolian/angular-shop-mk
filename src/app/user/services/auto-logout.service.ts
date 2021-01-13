@@ -9,7 +9,7 @@ const STORAGE_LAST_ACTION_KEY = 'autoLogoutLastAction';
 @Injectable({ providedIn: 'root' })
 export class AutoLogoutService {
 
-  private autoLogOutTimeout = environment.autoLogOutTimeout * 60 * 100
+  private autoLogOutTimeout = environment.autoLogOutTimeout * 60 * 1000
   constructor(private userService: UserService, private ngZone: NgZone, private logoutMessageService: LogoutMessageService) {
     this.check();
     this.initListener();

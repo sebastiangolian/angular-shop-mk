@@ -1,4 +1,4 @@
-<accordion-group>
+<accordion-group class="mb-2">
     <div *ngIf="order" accordion-heading (click)="active = !active">
         <div class="row text-white">
             <div class="col-12 col-md-6">
@@ -11,5 +11,5 @@
             </div>
         </div>
     </div>
-    <order-item [order]="order"></order-item>
+    <order-item [order]="order" [active]="active"></order-item>
 </accordion-group>

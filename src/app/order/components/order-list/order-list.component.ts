@@ -12,7 +12,6 @@ export class OrderListComponent implements OnInit {
   closeOthers: boolean = true
   class: string = 'list-group sticky-100';
   @Input() orders: Order[];
-  @Input() activeIdOrder: string = null;
 
   constructor() { }
 

@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
 export class OrderItemComponent implements OnChanges, OnDestroy {
 
   @Input() order!: Order;
+  @Input() active: boolean = true;
   mockPayment: boolean = false;
   isDisabled: boolean = false
   events: Event[] = [];
