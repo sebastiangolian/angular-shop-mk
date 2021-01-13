@@ -1,0 +1,8 @@
+<div class="row" *ngIf="{ user: currentUser$ | async, orders: orders$ | async} as con">
+    <div class="col-12" *ngIf="con.orders">
+        <order-list [orders]="con.orders" [activeIdOrder]="activeIdOrder"></order-list>
+    </div>
+    <div class="col-12" *ngIf="!con.order && !con.orders">
+        <h1>Brak dostępnych zamówień</h1>
+    </div>
+</div>

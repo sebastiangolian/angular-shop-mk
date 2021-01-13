@@ -1,11 +1,6 @@
-<div class="row" *ngIf="{ user: currentUser$ | async, orders: orders$ | async, order: order$ | async } as con">
-    <div class="col-12 col-md-3 col-xl-2 text-center text-md-left" *ngIf="con.orders">
-        <order-list [orders]="con.orders" [activeIdOrder]="activeIdOrder"></order-list>
-    </div>
-    <div class="col-12 col-md-9 col-xl-10" *ngIf="con.order">
-        <order-item [order]="con.order"></order-item>
-    </div>
-    <div class="col-12" *ngIf="!con.order && !con.orders">
-        <h1>Brak dostępnych zamówień</h1>
+<div class="row" *ngIf="order$ | async as order">
+    <div class="col-12">
+        <order-item [order]="order"></order-item>
+        <button class="btn btn-primary mt-3" routerLink="/order">Przejdź do moich zamówień</button>
     </div>
 </div>

@@ -264,7 +264,7 @@ export class BackendInterceptor implements HttpInterceptor {
                     if (item)
                         return response200({ item });
                     else
-                        return responseError(500, "Podane zamówienie nie istnieje")
+                        return responseError(404, "Podane zamówienie nie istnieje")
                 }
 
                 case (method === 'POST' && url.includes('/api/order/mock')): {

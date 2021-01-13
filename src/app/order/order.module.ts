@@ -11,6 +11,7 @@ import { OrderCreateComponent } from './pages/order-create/order-create.componen
 import { OrderComponent } from './pages/order/order.component';
 import { OrderListItemComponent } from './components/order-list-item/order-list-item.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { OrderItemComponent } from './components/order-item/order-item.component
     OrderListComponent,
     OrderComponent,
     OrderListItemComponent,
-    OrderItemComponent
+    OrderItemComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,
