@@ -1,0 +1,16 @@
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" routerLink="event" routerLinkActive="active underline">Wydarzenia</a>
+    </li>
+    <ng-container *ngIf="user != null">
+        <li class="nav-item" *ngIf="user?.isIndividual">
+            <a class="nav-link" routerLink="order" routerLinkActive="active underline">Moje zamówienia</a>
+        </li>
+    </ng-container>
+    <li class="nav-item">
+        <a class="nav-link" [href]="'http://' + host + '/kontakt/'">Kontakt</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [href]="'http://' + host + '/blog/'">Blog</a>
+    </li>
+</ul>

@@ -20,6 +20,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { LogModule } from '../log/log.module';
 import { HttpTokenRegenerationInterceptor } from './interceptors/http-token-regeneration.interceptor';
 import { HttpApiErrorInterceptor } from './interceptors/http-api-error.interceptor';
+import { MenuUserComponent } from './components/menu-user/menu-user.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 const providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
@@ -35,7 +37,9 @@ if (environment.name === 'prod' || environment.name === 'test') {
 @NgModule({
   declarations: [
     AppComponent,
-    CookieBarComponent
+    CookieBarComponent,
+    MenuUserComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

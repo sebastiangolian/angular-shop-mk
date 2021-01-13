@@ -12,39 +12,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <ng-container *ngIf="user && !isCollapsed">
+                <menu-user [user]="user" (logout)="onLogOut()"></menu-user>
+             </ng-container>
+
             <div [collapse]=isCollapsed class="navbar-collapse" id="navbar-content">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="event" routerLinkActive="active underline">Wydarzenia</a>
-                    </li>
-                    <ng-container *ngIf="user != null">
-                        <li class="nav-item" *ngIf="user?.isIndividual">
-                            <a class="nav-link" routerLink="order" routerLinkActive="active underline">Moje zamówienia</a>
-                        </li>
-                    </ng-container>
-                    <li class="nav-item">
-                        <a class="nav-link" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [href]="'http://' + environments.host + '/blog/'">Blog</a>
-                    </li>
-                </ul>
+                <menu [user]="user" [host]="environments.host"></menu>
             </div>
 
-            <ng-container *ngIf="(userService.currentUser | async) as currentUser">
-                <div class="pr-3 text-dark hand no-outline" [routerLink]="'/basket'">
-                    <basket-widget></basket-widget>
-                </div>
-                <button class="btn btn-outline-primary" type="button" (click)="onLogOut()">
-                    <ng-container *ngIf="currentUser.firstName && currentUser.lastName;else loginBlock">
-                        {{currentUser.firstName}} {{currentUser.lastName}}
-                    </ng-container>
-                    <ng-template #loginBlock>
-                        {{currentUser.login}}
-                    </ng-template>
-                    <br />
-                    <span class="font-weight-light">Wyloguj</span>
-                </button>
+            <ng-container *ngIf="user && isCollapsed">
+               <menu-user [user]="user" (logout)="onLogOut()"></menu-user>
             </ng-container>
         </div>
     </nav>

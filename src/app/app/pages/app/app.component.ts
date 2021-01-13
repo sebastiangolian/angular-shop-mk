@@ -24,7 +24,7 @@ export class AppComponent implements OnDestroy {
 
   constructor(public userService: UserService, private router: Router,
     private basketService: BasketService) {
-    this.subscription.add(this.displayFooter());
+    this.subscription.add(this.delayFooter());
     this.subscription.add(this.getUser());
   }
 
@@ -39,7 +39,7 @@ export class AppComponent implements OnDestroy {
     });
   }
 
-  private displayFooter(): Subscription {
+  private delayFooter(): Subscription {
     return this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.init = false;

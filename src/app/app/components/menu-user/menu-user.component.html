@@ -1,0 +1,17 @@
+<div class="d-flex">
+    <div class="text-dark hand no-outline" [routerLink]="'/basket'">
+        <basket-widget></basket-widget>
+    </div>
+
+    <button class="btn btn-outline-primary ml-4" type="button" (click)="onLogOut()">
+        <ng-container *ngIf="user.firstName && user.lastName;else loginBlock">
+            {{user.firstName}} {{user.lastName}}
+        </ng-container>
+        <ng-template #loginBlock>
+            {{user.login}}
+        </ng-template>
+        <br />
+        <span class="font-weight-light">Wyloguj</span>
+    </button>
+</div>
+
