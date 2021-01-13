@@ -24,7 +24,7 @@ export class OrderItemComponent implements OnChanges, OnDestroy {
   constructor(private orderService: OrderService) { }
 
   ngOnChanges(): void {
-    this.events = this.filterEvent(this.order.items);
+    if (this.order) this.events = this.filterEvent(this.order.items);
   }
 
   onOrderPay(order: Order): void {

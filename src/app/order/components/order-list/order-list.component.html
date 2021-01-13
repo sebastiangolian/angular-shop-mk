@@ -1,4 +1,4 @@
-<p>Moje zamówienia</p>
-<ul [class]="class">
+<h2>Moje zamówienia</h2>
+<accordion [isAnimated]="false" [closeOthers]="true">
     <order-list-item *ngFor="let order of orders" [activeIdOrder]="activeIdOrder" [order]="order"></order-list-item>
-</ul>
+</accordion>

@@ -12,6 +12,7 @@ import { OrderComponent } from './pages/order/order.component';
 import { OrderListItemComponent } from './components/order-list-item/order-list-item.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { OrdersComponent } from './pages/orders/orders.component';
     CommonModule,
     OrderRoutingModule,
     FormsModule,
+    AccordionModule.forRoot(),
     SharedModule
   ],
   exports: [

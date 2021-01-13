@@ -1,13 +1,15 @@
-<li *ngIf="order" class="list-group-item p-1 mb-1 hand" [class.active]="activeIdOrder === order.idOrder"
-    [routerLink]="'/order/' + order.idOrder">
-    <div class="row">
-        <div class="col-6">
-            <div class="p-0 m-0">Numer zamówienia: <b>{{ order.orderNumber }}</b></div>
-            <div>Status: <b>{{order.status}}</b></div>
-        </div>
-        <div class="col-6 text-right">
-            <div class="p-0 m-0 font-size-0-7">{{order.orderDate | date:'yyyy-MM-dd HH:mm:ss' }}</div>
-            <div class="mt-2" *ngIf="order.isPaid">Zapłacono</div>
+<accordion-group>
+    <div *ngIf="order" accordion-heading (click)="active = !active">
+        <div class="row text-white">
+            <div class="col-12 col-md-6">
+                <div class="p-0 m-0">Nr zamówienia: {{ order.orderNumber }}</div>
+                <div>Status: {{order.status}}</div>
+            </div>
+            <div class="col-12 col-md-6 text-right">
+                <div class="p-0 m-0 font-size-0-7">{{order.orderDate | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+                <div class="mt-2" *ngIf="order.isPaid">Zapłacono</div>
+            </div>
         </div>
     </div>
-</li>
+    <order-item [order]="order"></order-item>
+</accordion-group>

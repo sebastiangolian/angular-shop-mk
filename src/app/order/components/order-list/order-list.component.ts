@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, HostListener } from '@angular/core';
 import { Order } from '../../interfaces/order.interface';
 
 @Component({
@@ -9,13 +9,14 @@ import { Order } from '../../interfaces/order.interface';
 })
 export class OrderListComponent implements OnInit {
 
-  class = 'list-group sticky-100';
+  closeOthers: boolean = true
+  class: string = 'list-group sticky-100';
   @Input() orders: Order[];
   @Input() activeIdOrder: string = null;
 
   constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   @HostListener('window:scroll', ['$event'])
   scrollHandler(event) {
