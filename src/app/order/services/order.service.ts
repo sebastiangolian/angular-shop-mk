@@ -85,8 +85,7 @@ export class OrderService extends AbstractService<Order> {
     );
   }
 
-  mock(item: Order): Observable<Api<Order>> {
-    item = this.trimItem(item);
-    return this.http.post<Api<Order>>(this.url + '/mock', item);
+  mock(idOrder: string): Observable<Api<Order>> {
+    return this.http.get<Api<Order>>(this.url + '/' + idOrder + '/mock');
   }
 }

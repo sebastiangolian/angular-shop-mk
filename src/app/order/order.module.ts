@@ -13,6 +13,7 @@ import { OrderListItemComponent } from './components/order-list-item/order-list-
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { OrderPaymentMockComponent } from './pages/order-payment-mock/order-payment-mock.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     OrderComponent,
     OrderListItemComponent,
     OrderItemComponent,
-    OrdersComponent
+    OrdersComponent,
+    OrderPaymentMockComponent
   ],
   imports: [
     CommonModule,

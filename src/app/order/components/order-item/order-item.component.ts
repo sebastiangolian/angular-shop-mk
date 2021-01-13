@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OrderPayment } from './../../interfaces/order-payment.interface';
 import { environment } from './../../../../environments/environment';
 import { Component, ChangeDetectionStrategy, Input, OnChanges, OnDestroy } from '@angular/core';
@@ -18,11 +19,10 @@ export class OrderItemComponent implements OnChanges, OnDestroy {
 
   @Input() order!: Order;
   @Input() active: boolean = true;
-  mockPayment: boolean = false;
   isDisabled: boolean = false
   events: Event[] = [];
   private subscription: Subscription = new Subscription();
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private router: Router) { }
 
   ngOnChanges(): void {
     if (this.order) this.events = this.filterEvent(this.order.items);
@@ -30,11 +30,7 @@ export class OrderItemComponent implements OnChanges, OnDestroy {
 
   onOrderPay(order: Order): void {
     if (environment.name == "dev" || environment.name == "ghpages") {
-      this.mockPayment = true;
-      this.subscription.add(this.orderService.mock(order).pipe(map(api => api.item)).subscribe(result => this.order = result));
-      setTimeout(() => {
-        this.mockPayment = false;
-      }, 3000);
+      this.router.navigate(['order/payment-mock', order.idOrder])
     } else {
       this.subscription.add(
         this.orderService.postPayment(order.idOrder).subscribe((orderPayment: OrderPayment) => {

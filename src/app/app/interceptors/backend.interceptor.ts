@@ -258,17 +258,10 @@ export class BackendInterceptor implements HttpInterceptor {
                     return response200(response);
                 }
 
-                case (method === 'GET' && url.includes('/api/order')): {
-                    const item = db.order.find(order => order.idOrder.toString() === getIdFromUrl());
-
-                    if (item)
-                        return response200({ item });
-                    else
-                        return responseError(404, "Podane zamówienie nie istnieje")
-                }
-
-                case (method === 'POST' && url.includes('/api/order/mock')): {
-                    const indexOrder = db.order.findIndex(order => order.idOrder.toString() === body.idOrder);
+                case (method === 'GET' && url.includes('/api/order') && url.includes('/mock')): {
+                    const copyUrl = url.replace('/mock', '');
+                    const idOrder = copyUrl.substring(copyUrl.lastIndexOf('/') + 1);
+                    const indexOrder = db.order.findIndex(order => order.idOrder.toString() === idOrder);
                     db.order[indexOrder].isPaid = true;
                     saveStorage(db);
                     if (db.order[indexOrder].payment.isProgress === false) {
@@ -284,6 +277,15 @@ export class BackendInterceptor implements HttpInterceptor {
                         }, 10000);
                     }
                     return response200({ item: db.order[indexOrder] });
+                }
+
+                case (method === 'GET' && url.includes('/api/order')): {
+                    const item = db.order.find(order => order.idOrder.toString() === getIdFromUrl());
+
+                    if (item)
+                        return response200({ item });
+                    else
+                        return responseError(404, "Podane zamówienie nie istnieje")
                 }
 
                 case (method === 'POST' && url.includes('/api/order')): {
