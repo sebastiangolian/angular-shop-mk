@@ -1,6 +1,6 @@
 <ng-container *ngIf="photo && src">
-    <img class="img-fluid img-thumbnail rounded hand" [width]="photo.width" [height]="photo.height" [src]="src | safe: 'url'">
+    <img class="img-thumbnail rounded hand" [height]="photo.height" [src]="src | safe: 'url'">
 </ng-container>
 <ng-container *ngIf="photo && !src">
-    <img class="img-fluid img-thumbnail rounded hand" [width]="photo.width" [height]="photo.height">
+    <img class="img-thumbnail rounded hand" [height]="photo.height">
 </ng-container>

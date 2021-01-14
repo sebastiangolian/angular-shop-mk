@@ -16,7 +16,7 @@ export class PhotoService extends AbstractService<Photo> {
 
   getFileUrl(photo: Photo): string {
     if (environment.name === "ghpages" || environment.name === "dev") {
-      return "https://picsum.photos/id/" + photo.idPhoto + "/300/200"
+      return `https://picsum.photos/id/${photo.idPhoto}/${photo.width}/${photo.height}`
     } else {
       return this.url + '/' + photo.idPhoto + '/image'
     }
