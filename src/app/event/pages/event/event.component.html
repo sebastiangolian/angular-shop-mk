@@ -1,8 +1,8 @@
 <div class="row" *ngIf="(events$ | async) as events">
-    <div *ngIf="isEventList" class="text-center text-md-left col-4 col-md-3 col-xl-2">
+    <div *ngIf="isEventList" class="text-center text-md-left col-12 col-md-3 col-xl-2">
         <event-list [events]="events" [activeIdEvent]="idEvent" (itemSelected)="onEventSelected($event)"></event-list>
     </div>
-    <div [class]="isEventList ? 'col-8 col-md-9 col-xl-10' : 'col-12'">
+    <div [class]="isEventList ? 'col-12 col-md-9 col-xl-10' : 'col-12'">
         <photo-list *ngIf="(event$ | async) as event" class="row" [photos]="photos$ | async" [event]="event" (itemSelected)="onPhotoSelected($event)"></photo-list>
         <event-photo-list class="row" *ngIf="!photos$" [events]="events"></event-photo-list>
     </div>
