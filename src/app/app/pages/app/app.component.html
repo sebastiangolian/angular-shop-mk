@@ -13,7 +13,7 @@
             </button>
 
             <div [collapse]=isCollapsed class="navbar-collapse" id="navbar-content">
-                <menu class="pl-0" [user]="user" [host]="environments.host"></menu>
+                <menu class="pl-0" [user]="user"></menu>
             </div>
 
             <ng-container *ngIf="user && isCollapsed">
@@ -33,11 +33,11 @@
             <div class="container-xl">
                 <div class="row p-3 text-center">
                     <div class="col-md-8 text-md-left">
-                        <a class="text-light text-decoration-none" [href]="'http://' + environments.host">Wydarzenia</a> | 
-                        <a class="text-light text-decoration-none" [href]="'http://' + environments.host + '/kontakt/'">Kontakt</a> |
-                        <a class="text-light text-decoration-none" [href]="'http://' + environments.host + '/blog/'">Blog</a> |
-                        <a class="text-light text-decoration-none" [href]="'https://sklep.' + environments.host + '/resource/sklep.regulamin.pdf'">Regulamin</a> |
-                        <a class="text-light text-decoration-none" [href]="'https://sklep.' + environments.host + '/resource/sklep.polityka.prywatnosci.pdf'">Polityka prywatności</a>
+                        <a class="text-light text-decoration-none" routerLink="event">Wydarzenia</a> | 
+                        <a class="text-light text-decoration-none" [href]="environments.urlContact">Kontakt</a> |
+                        <a class="text-light text-decoration-none" [href]="environments.urlBlog">Blog</a> |
+                        <a class="text-light text-decoration-none" [href]="environments.urlRegulation">Regulamin</a> |
+                        <a class="text-light text-decoration-none" [href]="environments.urlPolicy">Polityka prywatności</a>
                     </div>
                     <div class="col-md-4 text-md-right">
                         <a class="text-light text-decoration-none" [href]="'mailto:' + environments.email">Copyright © {{environments.host}} {{environments.version}}</a>

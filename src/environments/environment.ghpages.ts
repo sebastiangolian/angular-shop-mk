@@ -1,7 +1,6 @@
 declare var require: any;
 export const environment = {
   name: 'ghpages',
-  host: 'mk.pl',
   email: 'info@mk.pl',
   version: require('../../package.json').version,
   production: true,
@@ -19,4 +18,8 @@ export const environment = {
   messageAnotherTimeout: 1000 * 60,
   allowedDomains: ["localhost"],
   disallowedRoutes: [],
+  urlContact: '#',
+  urlBlog: '#',
+  urlRegulation: '#',
+  urlPolicy: '#'
 };

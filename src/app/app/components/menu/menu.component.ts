@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { User } from 'src/app/user/interfaces/user.interface';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'menu',
@@ -10,7 +11,8 @@ import { User } from 'src/app/user/interfaces/user.interface';
 export class MenuComponent implements OnInit {
 
   @Input() user!: User;
-  @Input() host: string = '';
+
+  environments: any = environment;
   constructor() { }
 
   ngOnInit(): void {
