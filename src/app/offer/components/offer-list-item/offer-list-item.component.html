@@ -1,10 +1,23 @@
-<accordion-group [heading]="offer.name | uppercase" (isOpenChange)="isOpenChange($event)" class="p-0">
-    <div accordion-heading class="float-right pull-right mr-2 mt-2">
-        <svg [class]="iconClass" width="22" height="22" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="white"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-                d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
-        </svg>
+<accordion-group (isOpenChange)="isOpenChange($event)" class="p-0">
+    <div class="row text-white font-size-1 p-2" accordion-heading>
+        <div class="col-10">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    {{offer.name | uppercase}}
+                </div>
+                <div *ngIf="offerAmountsSum > 0" class="col-12 col-sm-6">
+                    (wybrano {{offerAmountsSum}} szt.)
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2 text-right">
+            <svg [class]="iconClass" width="22" height="22" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="white"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+            </svg>
+        </div>
     </div>
-    <product-list [photo]="photo" [products]="offer.products" [event]="event"></product-list>
+    <product-list [photo]="photo" [products]="offer.products" [event]="event" (productChange)="onProductChange($event)"></product-list>
 </accordion-group>

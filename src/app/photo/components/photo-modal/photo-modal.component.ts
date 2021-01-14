@@ -1,6 +1,6 @@
+import { BasketItem } from './../../../basket/interfaces/basket-item.interface';
 import { PhotoExternalService } from './../../../shared/services/photo-external.service';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
@@ -11,6 +11,7 @@ import { Offer } from 'src/app/offer/interfaces/offer.interface';
 import { OfferService } from 'src/app/offer/services/offer.service';
 import { Photo } from '../../interfaces/photo.interface';
 import { PhotoService } from '../../services/photo.service';
+import { BasketService } from 'src/app/basket/services/basket.service';
 
 @Component({
   selector: 'photo-modal',
@@ -27,11 +28,17 @@ export class PhotoModalComponent implements OnInit {
   currentIndex: number;
   src$: Observable<string>
 
-  constructor(private bsModalRef: BsModalRef, private offerService: OfferService, private router: Router, private http: HttpClient,
+  constructor(private bsModalRef: BsModalRef, private offerService: OfferService, private router: Router, private basketService: BasketService,
     private photoService: PhotoService, private photoExternalService: PhotoExternalService) { }
 
   ngOnInit(): void {
-    this.offers$ = this.getOffers();
+    this.offers$ = this.getOffers().pipe(
+      map(offers => {
+        let retOffers: Offer[] = offers
+        retOffers.forEach(offer => this.basketService.updateOfferAmount(offer, this.event))
+        return retOffers
+      })
+    );
     this.src$ = this.photoExternalService.getBlobUrl(this.photoService.getFileUrl(this.photo))
   }
 

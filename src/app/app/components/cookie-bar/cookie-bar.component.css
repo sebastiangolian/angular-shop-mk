@@ -8,6 +8,7 @@ cookie-bar {
     width: 100%;
     z-index: 3;
 }
+
 cookie-bar .alert {
     margin-bottom: 0px!important;
     background: #333;
@@ -15,11 +16,14 @@ cookie-bar .alert {
     border: none;
     border-radius: 0;
     text-align: center;
+    height: 100px;
 }
-cookie-bar .alert a{
+
+cookie-bar .alert a {
     color: white;
     text-decoration: underline;
 }
+
 cookie-bar .close span {
     color: silver;
     border: none;

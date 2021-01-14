@@ -17,7 +17,7 @@
              </ng-container>
 
             <div [collapse]=isCollapsed class="navbar-collapse" id="navbar-content">
-                <menu [user]="user" [host]="environments.host"></menu>
+                <menu class="pl-0" [user]="user" [host]="environments.host"></menu>
             </div>
 
             <ng-container *ngIf="user && isCollapsed">

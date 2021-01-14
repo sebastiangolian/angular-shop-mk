@@ -1,3 +1,5 @@
+import { Event } from 'src/app/event/interfaces/event.interface';
+import { Offer } from './../../offer/interfaces/offer.interface';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BasketItem } from '../interfaces/basket-item.interface';
@@ -40,7 +42,7 @@ export class BasketService {
       sumAmount += item.amount;
       sumPrice += item.amount * item.price;
     });
-    return {sumPrice, sumAmount};
+    return { sumPrice, sumAmount };
   }
 
   clear(): void {
@@ -48,6 +50,18 @@ export class BasketService {
     this.subjectItems.next([]);
     this.subjectSummary.next(null);
     localStorage.removeItem('basket');
+  }
+
+  updateOfferAmount(offer: Offer, event: Event): Offer {
+    let retOffer: Offer = offer
+    offer.products.forEach((product, productIndex) => {
+      this.items.forEach(item => {
+        if (product.idProduct === item.product.idProduct && event.idEvent === item.event.idEvent) {
+          retOffer.products[productIndex].amount = item.amount
+        }
+      })
+    })
+    return retOffer
   }
 
   private findIndex(item: BasketItem): number {

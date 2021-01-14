@@ -1,8 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { BasketItem } from 'src/app/basket/interfaces/basket-item.interface';
 import { BasketService } from 'src/app/basket/services/basket.service';
 import { Event } from 'src/app/event/interfaces/event.interface';
-import { Offer } from 'src/app/offer/interfaces/offer.interface';
 import { Photo } from 'src/app/photo/interfaces/photo.interface';
 import { Product } from '../../interfaces/product.interface';
 
@@ -17,6 +16,7 @@ export class ProductListComponent implements OnInit {
   @Input() products: Product[];
   @Input() photo: Photo;
   @Input() event: Event;
+  @Output() productChange: EventEmitter<Product> = new EventEmitter<Product>();
   constructor(private basketService: BasketService) { }
 
   ngOnInit(): void {
@@ -31,6 +31,8 @@ export class ProductListComponent implements OnInit {
       product,
       event: this.event
     };
+    product.amount = amount
+    this.productChange.emit(product)
     this.basketService.update(basketItem);
   }
 
