@@ -12,10 +12,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <ng-container *ngIf="user && !isCollapsed">
-                <menu-user [user]="user" (logout)="onLogOut()"></menu-user>
-             </ng-container>
-
             <div [collapse]=isCollapsed class="navbar-collapse" id="navbar-content">
                 <menu class="pl-0" [user]="user" [host]="environments.host"></menu>
             </div>
