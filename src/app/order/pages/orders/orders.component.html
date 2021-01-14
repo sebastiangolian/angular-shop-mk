@@ -1,8 +1,10 @@
-<div class="row" *ngIf="orders$ | async as orders">
+<div class="row" *ngIf="orders$ | async as orders; else elseBlock">
     <div class="col-12" *ngIf="orders">
+        <h2>Moje zamówienia</h2>
         <order-list [orders]="orders"></order-list>
     </div>
-    <div class="col-12" *ngIf="!orders">
-        <h1>Brak dostępnych zamówień</h1>
-    </div>
 </div>
+
+<ng-template class="col-12" #elseBlock>
+    <h2>Brak dostępnych zamówień</h2>
+</ng-template>
