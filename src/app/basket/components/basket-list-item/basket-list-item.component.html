@@ -5,17 +5,19 @@
     <div class="col-12 col-md-10">
         <table class="table table-borderless">
             <tr *ngFor="let basketItem of basketItems$ | async">
-                <td class="p-1 align-middle" [style.width.%]="33">{{basketItem.product.name}}</td>
-                <td class="p-1 align-middle text-center">
-                    <number-of-items [amount]="basketItem.amount"
-                        (plusClicked)="onChangeAmount(basketItem.product,$event)"
-                        (minusClicked)="onChangeAmount(basketItem.product,$event)"></number-of-items>
-                </td>
-                <td class="p-1 align-middle text-left" [style.width.%]="33">{{basketItem.price*basketItem.amount |
-                    currency:'':''}}zł</td>
-                <td class="p-1 align-middle text-left" [style.width.%]="5">
-                    <icon-b [name]="'trash'" class="hand" (click)="onTrashClick(basketItem)"></icon-b>
-                </td>
+                <ng-container *ngIf="basketItem.amount > 0">
+                    <td class="p-1 align-middle" [style.width.%]="33">{{basketItem.product.name}}</td>
+                    <td class="p-1 align-middle text-center">
+                        <number-of-items [amount]="basketItem.amount"
+                            (plusClicked)="onChangeAmount(basketItem.product,$event)"
+                            (minusClicked)="onChangeAmount(basketItem.product,$event)"></number-of-items>
+                    </td>
+                    <td class="p-1 align-middle text-left" [style.width.%]="33">{{basketItem.price*basketItem.amount |
+                        currency:'':''}}zł</td>
+                    <td class="p-1 align-middle text-left" [style.width.%]="5">
+                        <icon-b [name]="'trash'" class="hand" (click)="onTrashClick(basketItem)"></icon-b>
+                    </td>
+                </ng-container>
             </tr>
         </table>
     </div>
