@@ -6,7 +6,6 @@ export const environment = {
   production: false,
   backendDelay: 50,
   httpRetry: 0,
-  autoLogOutTimeout: 20,
   loggingBackendUrl: true,
   loggingBackendRequestHeaders: false,
   loggingBackendRequest: false,

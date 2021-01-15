@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 import { DateTimeHelper } from 'src/app/shared/helpers/date-time.helper';
 
 
+const X_EXPIRES_AFTER_TIMEOUT: number = 60 * 30
+
 @Injectable()
 export class BackendInterceptor implements HttpInterceptor {
     constructor() { }
@@ -192,7 +194,7 @@ export class BackendInterceptor implements HttpInterceptor {
                 case (method === 'POST' && url.includes('/api/user/login')): {
                     const user = db.user.find(item => item.login === body.login && item.password === body.password);
                     if (user) {
-                        const httpHeaders = new HttpHeaders({ Authorization: `Bearer ${body.login}` });
+                        const httpHeaders = new HttpHeaders({ 'Authorization': `Bearer ${body.login}` });
                         return response200(null, httpHeaders);
                     }
                     else {
@@ -378,7 +380,8 @@ export class BackendInterceptor implements HttpInterceptor {
             return { total: totalItemFilter, items: ret };
         }
 
-        function response200(responseBody?: any, responseHeaders?: any): Observable<HttpResponse<any>> {
+        function response200(responseBody?: any, responseHeaders: HttpHeaders = new HttpHeaders()): Observable<HttpResponse<any>> {
+            responseHeaders = responseHeaders.append('X-Expires-After', DateTimeHelper.currentDateTimeDiff(X_EXPIRES_AFTER_TIMEOUT).slice(0, 19) + "+01:00")
             const response = { status: 200, body, headers };
             if (responseBody) { response.body = responseBody; }
             if (responseHeaders) { response.headers = responseHeaders; }

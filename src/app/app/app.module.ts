@@ -22,10 +22,12 @@ import { HttpTokenRegenerationInterceptor } from './interceptors/http-token-rege
 import { HttpApiErrorInterceptor } from './interceptors/http-api-error.interceptor';
 import { MenuUserComponent } from './components/menu-user/menu-user.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { XExpiresAfterInterceptor } from './interceptors/x-expires-after.interceptor';
 
 const providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: HttpApiErrorInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: XExpiresAfterInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: HttpTokenRegenerationInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
 ];

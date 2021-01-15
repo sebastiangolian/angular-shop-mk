@@ -15,4 +15,14 @@ export class DateTimeHelper {
     static currentDateTime(): string {
         return new Date().toISOString().slice(0, 10) + ' ' + new Date().toLocaleTimeString();
     }
+
+    static currentDateTimeDiff(seconds: number, operator: string = '+'): string {
+        seconds = seconds * 1000
+        var retDate = new Date();
+        retDate.setTime(new Date().getTime() + seconds)
+        if (operator === '+') retDate.setTime(new Date().getTime() + seconds);
+        if (operator === '-') retDate.setTime(new Date().getTime() - seconds);
+
+        return retDate.toISOString().slice(0, 10) + ' ' + retDate.toLocaleTimeString();
+    }
 }
