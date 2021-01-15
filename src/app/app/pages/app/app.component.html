@@ -32,14 +32,24 @@
         <div class="bg-dark text-light">
             <div class="container-xl">
                 <div class="row p-3 text-center">
-                    <div class="col-md-8 text-md-left">
+                    <div class="col-12 col-md-6 text-md-left mb-1">
                         <a class="text-light text-decoration-none" routerLink="event">Wydarzenia</a> | 
                         <a class="text-light text-decoration-none" [href]="environments.urlContact">Kontakt</a> |
                         <a class="text-light text-decoration-none" [href]="environments.urlBlog">Blog</a> |
                         <a class="text-light text-decoration-none" [href]="environments.urlRegulation">Regulamin</a> |
                         <a class="text-light text-decoration-none" [href]="environments.urlPolicy">Polityka prywatności</a>
+                        
                     </div>
-                    <div class="col-md-4 text-md-right">
+
+                    <div class="col-12 col-md-3 text-md-center mb-1">
+                        <a class="text-light text-decoration-none mr-2" [href]="environments.urlFacebook">
+                            <icon-b [width]="32" [height]="32" name="facebook"></icon-b> 
+                        </a>
+                        <a class="text-light text-decoration-none" [href]="environments.urlIntagram">
+                            <icon-b [width]="32" [height]="32" name="instagram"></icon-b> 
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-3 text-md-right">
                         <a class="text-light text-decoration-none" [href]="'mailto:' + environments.email">Copyright © {{environments.host}} {{environments.version}}</a>
                     </div>
                 </div>

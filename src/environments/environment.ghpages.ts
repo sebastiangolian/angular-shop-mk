@@ -21,5 +21,7 @@ export const environment = {
   urlContact: '#',
   urlBlog: '#',
   urlRegulation: '#',
-  urlPolicy: '#'
+  urlPolicy: '#',
+  urlFacebook: '#',
+  urlInstagram: '#'
 };
