@@ -53,12 +53,16 @@
     <div class="form-group">
       <label [innerHTML]="order.labels.emailConfirmLabel"></label><span class="text-danger"> *</span>
       <input type="text" class="form-control" name="emailConfirm" [(ngModel)]="order.emailConfirm" #emailConfirm="ngModel"
-        [class.is-invalid]="emailConfirm.invalid && !emailConfirm.value"
+        [class.is-invalid]="emailConfirm.invalid && !emailConfirm.value || email.value != emailConfirm.value"
         email required (paste)="$event.preventDefault()">
-      <div *ngIf="emailConfirm.invalid" class="text-danger">
-          <div *ngIf="!!emailConfirm.errors.email">Adres email musi mieć format jankowalski@example.com</div>
-          <div *ngIf="email.value != emailConfirm.value">Adresy email muszą być identyczne</div>
+        
+      <div *ngIf="email.value !== emailConfirm.value" class="text-danger">
+        Adresy email muszą być identyczne
       </div>
+      <div *ngIf="emailConfirm.invalid" class="text-danger">
+        <div *ngIf="!!emailConfirm.errors.email">Adres email musi mieć format jankowalski@example.com</div>
+      </div>
+
     </div>
 
     <div class="form-group">
@@ -97,6 +101,6 @@
   
     <p class="btn-group">
         <button class="btn btn-primary" routerLink="/basket">Wróć</button>
-        <button [disabled]="isDisabled" type="submit" class="btn btn-primary ml-1" [disabled]="!f.valid">Zamawiam z obowiązkiem zapłaty</button>
+        <button [disabled]="isDisabled" type="submit" class="btn btn-primary ml-1" [disabled]="!f.valid || email.value !== emailConfirm.value">Zamawiam z obowiązkiem zapłaty</button>
     </p>
   </form>

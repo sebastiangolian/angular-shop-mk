@@ -138,9 +138,9 @@ offer-list .btn-link, offer-list .btn-link:hover, offer-list .btn-link:focus {
 }
 
 offer-list .panel-heading {
-    background-color: white!important;
+    background-color: #63C6AE!important;
+    color: white;
     padding: 5px;
-    border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
 
 offer-list td, offer-list th {

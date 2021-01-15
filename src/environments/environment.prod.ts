@@ -19,8 +19,8 @@ export const environment = {
   disallowedRoutes: [],
   urlContact: 'http://www.martynaklewinowska.pl/kontakt',
   urlBlog: 'http://www.martynaklewinowska.pl/blog',
-  urlRegulation: 'https://sklep.martynaklewinowska.pl/resource/sklep.regulamin.pdf',
-  urlPolicy: 'https://sklep.martynaklewinowska.pl/resource/sklep.polityka.prywatnosci.pdf',
+  urlRegulation: 'https://www.sklep.martynaklewinowska.pl/resource/sklep.regulamin.pdf',
+  urlPolicy: 'https://www.sklep.martynaklewinowska.pl/resource/sklep.polityka.prywatnosci.pdf',
   urlFacebook: 'https://www.facebook.com/martynaklewinowska',
   urlInstagram: 'https://www.instagram.com/martynaklewinowska/'
 };
