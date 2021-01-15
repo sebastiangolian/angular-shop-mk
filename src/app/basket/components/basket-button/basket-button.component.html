@@ -1,3 +1,5 @@
-<button *ngIf="(basketSummary$ | async) as summary" [class]="class" (click)="onClick()">
-    Przejdź do koszyka ({{summary.sumAmount}}) szt.
-</button>
+<ng-container *ngIf="(basketSummary$ | async) as summary">
+    <button *ngIf="summary.sumAmount > 0" [class]="class" (click)="onClick()">
+        Przejdź do koszyka ({{summary.sumAmount}}) szt.
+    </button>
+</ng-container>

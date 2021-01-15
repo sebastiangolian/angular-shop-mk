@@ -1,12 +1,12 @@
 <table *ngIf="products" class="table p-0 m-0">
     <tr>
-        <th class="border-0">Produkt</th>
+        <th class="border-0 pl-2">Produkt</th>
         <th class="border-0">Cena</th>
         <th class="border-0">Ilość</th>
     </tr>
     <tr *ngFor="let product of products">
-        <td class="align-middle" [innerHTML]="product.name" [style.width.%]="45"></td>
-        <td class="align-middle" [innerHTML]="product.price | currency:'':''"></td>
+        <td class="align-middle pl-2 font-size-0-9" [innerHTML]="product.name" [style.width.%]="45"></td>
+        <td class="align-middle font-size-0-9" [innerHTML]="product.price | currency:'':''"></td>
         <td class="align-middle" [style.width.%]="33">
             <number-of-items [amount]="product.amount" (plusClicked)="onChangeAmount(product,$event)"
                 (minusClicked)="onChangeAmount(product,$event)"></number-of-items>

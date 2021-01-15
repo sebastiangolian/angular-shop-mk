@@ -113,6 +113,7 @@ body {
 }
 
 offer-list .card {
+    color: #2c2c2c!important;
     margin-bottom: 1px;
     font-size: 10px;
 }
@@ -137,7 +138,9 @@ offer-list .btn-link, offer-list .btn-link:hover, offer-list .btn-link:focus {
 }
 
 offer-list .panel-heading {
+    background-color: white!important;
     padding: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
 
 offer-list td, offer-list th {
