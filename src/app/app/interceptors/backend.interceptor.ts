@@ -63,7 +63,7 @@ export class BackendInterceptor implements HttpInterceptor {
                         titlePhoto: { idPhoto: '300', idEvent: '3', name: 'photo 3', width: 600, height: 400 }
                     },
                     {
-                        idEvent: '4', name: 'Wesele Marii i Nikodema 2020-01-01', description: '<h2 class=\'text-warning\'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.',
+                        idEvent: '4', name: 'Wesele Marii i Nikodema 2020-01-01 -----------------------------------------', description: '<h2 class=\'text-warning\'>Wesele Marii i Nikodema 2020-01-01</h2>dolor sit amet consectetur adipisicing elit. Alias vel molestiae rem illo optio voluptatem iste assumenda molestias neque. Reprehenderit quia dolor aut debitis corporis cum cupiditate eum, eveniet nulla.',
                         titlePhoto: { idPhoto: '400', idEvent: '4', name: 'photo 4', width: 600, height: 400 }
                     },
                 ],
