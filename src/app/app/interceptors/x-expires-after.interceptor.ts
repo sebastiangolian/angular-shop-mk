@@ -14,7 +14,6 @@ export class XExpiresAfterInterceptor implements HttpInterceptor {
       const xExpiresAfter = headers.get('X-Expires-After');
       if (xExpiresAfter) {
         let dateExpires = new Date(xExpiresAfter)
-        console.log(dateExpires)
         this.autoLogoutService.setTimeout(dateExpires.getTime())
       }
     }

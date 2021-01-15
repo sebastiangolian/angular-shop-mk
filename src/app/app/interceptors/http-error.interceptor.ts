@@ -41,7 +41,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       case 401: {
         if (request.url.includes("/user/login")) break;
         this.userService.logoutSession()
-        this.logoutMessageService.message = 'Twoja sesja wygasła. Zaloguj się ponownie'
+        this.logoutMessageService.message = 'Twoja sesja jest nieaktualna. Zaloguj się ponownie'
         location.reload()
         break;
       }
