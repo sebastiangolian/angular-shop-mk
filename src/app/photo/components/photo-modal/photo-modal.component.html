@@ -5,7 +5,7 @@
     <div class="modal-text"> 
         <div class="row">
             <div class="col-12 col-lg-6 text-center mb-2">
-                <photo-modal-image [photo]="photo" [src]="src$ | async"></photo-modal-image>
+                <photo-modal-image [photo]="photo" [src]="src$ | async" [arrowEnabled]="photos.length > 0" (prev)="onPrev()" (next)="onNext()"></photo-modal-image>
             </div>
             <div class="col-12 col-lg-6">
                 <offer-list [photo]="photo" [event]="event" [offers]="offers$ | async"></offer-list>
@@ -15,9 +15,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div *ngIf="photos.length > 1" class="modal-footer justify-content-between border-0 p-0">
-        <icon-b class="float-left hand" width=40 height=40 name="arrow-left" (click)="onPrev()"></icon-b>
-        <icon-b class="float-right hand" width=40 height=40 name="arrow-right" (click)="onNext()"></icon-b>
     </div>
 </div>

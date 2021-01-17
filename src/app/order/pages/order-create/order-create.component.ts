@@ -73,9 +73,13 @@ export class OrderCreateComponent implements OnInit, OnDestroy {
   }
 
   private postSubscription(): Subscription {
-    return this.orderService.post(this.confirmOrder).subscribe((result: Api<Order>) => {
-      this.basketService.clear();
-      this.router.navigate(['order/', result.item.idOrder]);
+    return this.orderService.post(this.confirmOrder).subscribe({
+      next: (result: Api<Order>) => {
+        this.router.navigate(['order/', result.item.idOrder]);
+      },
+      complete: () => {
+        this.basketService.clear();
+      }
     })
   }
 

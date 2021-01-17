@@ -1,6 +1,12 @@
 <ng-container *ngIf="photo && src">
-    <img class="img-thumbnail rounded hand" [height]="photo.height" [src]="src | safe: 'url'">
+    <icon-b *ngIf="arrowEnabled" class="float-left hand position-absolute background-transparent" 
+        width=40 height=40 [style.top.%]="40" [style.left.px]="leftRight"
+        name="chevron-left" (click)="onPrev()"></icon-b>
+    <img class="img-thumbnail rounded hand" [height]="photo.height" [width]="photo.width" [src]="src | safe: 'url'">
+    <icon-b *ngIf="arrowEnabled" class="float-right hand position-absolute background-transparent"  
+        width=40 height=40 [style.top.%]="40" [style.right.px]="leftRight"
+        name="chevron-right" (click)="onNext()"></icon-b>
 </ng-container>
 <ng-container *ngIf="photo && !src">
-    <img class="img-thumbnail rounded hand" [height]="photo.height">
+    <img class="img-thumbnail rounded hand" [height]="photo.height" [width]="photo.width">
 </ng-container>
