@@ -10,6 +10,7 @@ import { MessageService } from 'src/app/shared/services/message.service';
 import { MessageType } from 'src/app/shared/enums/message-type.enum';
 import { Subscription } from 'rxjs';
 import { LogoutMessageService } from 'src/app/user/services/logout-message.service';
+import { User } from 'src/app/user/interfaces/user.interface';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -55,6 +56,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         break;
       }
       default: {
+        if (request.url.includes("api/log") && request.method == "POST") break;
         this.messageService.sendMessage('Wystąpił nieoczekiwany problem. Pracujemy nad rozwiązaniem. Proszę spróbuj ponownie za chwilę.', MessageType.ERROR)
         this.sendLog(error);
         break;
@@ -64,10 +66,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   private sendLog(error: HttpErrorResponse): void {
     let content: string = error.message
-    let login: string = null
-    this.subscription.add(this.userService.subject.asObservable().subscribe(user => login = user.login));
-    if (login) {
-      content = `(${login})` + content
+    let user: User = this.userService.subject.value
+    if (user) {
+      content = `(${user.login})` + content
     }
     this.subscription.add(this.logService.post({ timestamp: Date.now(), type: error.url, content: content }).subscribe());
   }

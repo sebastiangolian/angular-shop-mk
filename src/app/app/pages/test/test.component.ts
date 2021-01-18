@@ -10,7 +10,8 @@ export class TestComponent implements OnInit {
   constructor(private helloService: HelloService) { }
 
   ngOnInit(): void {
-    this.helloService.getOne().subscribe()
+    this.helloService.get200().subscribe()
+    //this.helloService.get400().subscribe()
   }
 
 }

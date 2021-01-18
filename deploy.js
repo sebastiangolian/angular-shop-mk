@@ -20,10 +20,10 @@ function build() {
     console.info('------ build -------');
     var build = `ng build --c=${environment}`
 
-    if (environment ==="test") {
+    if (environment === "test") {
         build = `ng build --c=testing --progress --aot --optimization --build-optimizer --named-chunks=false --output-hashing=all --source-map=false --vendor-chunk=false`
     }
-    if (environment ==="prod") {
+    if (environment === "prod") {
         build = `ng build --prod`
     }
 
@@ -49,7 +49,7 @@ async function upload() {
         localRoot: __dirname + "/dist",
         remoteRoot: "/",
         include: ["*", "**/*"],
-        deleteRemote: false,
+        deleteRemote: true,
         forcePasv: true
     };
 
