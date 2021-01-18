@@ -1,3 +1,4 @@
+import { ApiMessage } from 'src/app/shared/interfaces/api-message.interface';
 import { LogService } from './../../log/services/log.service';
 import { UserService } from './../../user/services/user.service';
 import { Injectable } from '@angular/core';
@@ -5,7 +6,6 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Message } from 'src/app/shared/interfaces/message.interface';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { MessageType } from 'src/app/shared/enums/message-type.enum';
 import { Subscription } from 'rxjs';
@@ -21,14 +21,20 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         retry(environment.httpRetry),
-        catchError((error: HttpErrorResponse) => {
-          let message: Message;
-          if (error.error instanceof ErrorEvent) {
-            this.clientSideError(error.error);
+        catchError((errorResponse: HttpErrorResponse) => {
+          if (errorResponse.error instanceof ErrorEvent) {
+            this.clientSideError(errorResponse.error);
           } else {
-            this.serverSideError(error, request);
+            if (errorResponse.error === null) {
+              this.serverSideError(errorResponse, request, next);
+            } else {
+              if (errorResponse.error.hasOwnProperty('messages')) {
+                errorResponse.error.messages.forEach((apiMessage: ApiMessage) =>
+                  this.messageService.sendMessage(apiMessage.message, MessageType.ERROR))
+              }
+            }
           }
-          return throwError(message.text);
+          return throwError(errorResponse);
         })
       );
   }
@@ -37,7 +43,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     this.messageService.sendMessage(error.error.message, MessageType.ERROR)
   }
 
-  serverSideError(error: HttpErrorResponse, request: HttpRequest<any>): void {
+  serverSideError(error: HttpErrorResponse, request: HttpRequest<any>, response: HttpHandler): void {
+    if (request.url.includes("api/log") && request.method == "POST") return;
+
     switch (error.status) {
       case 401: {
         if (request.url.includes("/user/login")) break;
@@ -56,7 +64,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         break;
       }
       default: {
-        if (request.url.includes("api/log") && request.method == "POST") break;
         this.messageService.sendMessage('Wystąpił nieoczekiwany problem. Pracujemy nad rozwiązaniem. Proszę spróbuj ponownie za chwilę.', MessageType.ERROR)
         this.sendLog(error);
         break;

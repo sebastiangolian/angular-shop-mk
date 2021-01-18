@@ -1,7 +1,7 @@
-import { ApiError } from './api-error.interface';
+import { ApiMessage } from 'src/app/shared/interfaces/api-message.interface';
 
 export interface ApiList<T> {
     items: T[];
     total: number;
-    messages: ApiError;
+    messages: ApiMessage[];
 }

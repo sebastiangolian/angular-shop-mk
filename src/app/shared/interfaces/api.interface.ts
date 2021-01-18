@@ -1,6 +1,6 @@
-import { ApiError } from './api-error.interface';
+import { ApiMessage } from "./api-message.interface";
 
 export interface Api<T> {
     item: T;
-    messages: ApiError;
+    messages: ApiMessage[];
 }

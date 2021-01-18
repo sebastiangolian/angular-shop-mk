@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HelloService } from '../../services/hello.service';
 
 @Component({
   templateUrl: './test.component.html',
@@ -7,11 +6,8 @@ import { HelloService } from '../../services/hello.service';
 })
 export class TestComponent implements OnInit {
 
-  constructor(private helloService: HelloService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.helloService.get200().subscribe()
-    //this.helloService.get400().subscribe()
-  }
+  ngOnInit(): void { }
 
 }

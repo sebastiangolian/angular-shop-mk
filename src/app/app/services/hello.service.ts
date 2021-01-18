@@ -11,11 +11,7 @@ export class HelloService extends AbstractService<any> {
     this.url += '/hello';
   }
 
-  get200(): Observable<any> {
-    return this.http.get<any>(this.url + '?name=200');
-  }
-
-  get400(): Observable<any> {
-    return this.http.get<any>(this.url + '?name=400');
+  getByName(name: string): Observable<any> {
+    return this.http.get<any>(this.url + '?name=' + name);
   }
 }

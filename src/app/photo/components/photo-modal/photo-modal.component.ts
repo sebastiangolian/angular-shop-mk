@@ -1,6 +1,6 @@
 import { BasketItem } from './../../../basket/interfaces/basket-item.interface';
 import { PhotoExternalService } from './../../../shared/services/photo-external.service';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
@@ -45,6 +45,12 @@ export class PhotoModalComponent implements OnInit {
   private getOffers(): Observable<Offer[]> {
     const filters = { idPhoto: this.photo.idPhoto };
     return this.offerService.get(0, 0, null, null, filters);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === "ArrowLeft") this.onPrev()
+    if (event.key === "ArrowRight") this.onNext()
   }
 
   onPrev() {

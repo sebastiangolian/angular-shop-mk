@@ -19,15 +19,16 @@ import { environment } from 'src/environments/environment';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { LogModule } from '../log/log.module';
 import { HttpTokenRegenerationInterceptor } from './interceptors/http-token-regeneration.interceptor';
-import { HttpApiErrorInterceptor } from './interceptors/http-api-error.interceptor';
+import { HttpResponseApiMessagesInterceptor } from './interceptors/http-response-api-messages.interceptor';
 import { MenuUserComponent } from './components/menu-user/menu-user.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { XExpiresAfterInterceptor } from './interceptors/x-expires-after.interceptor';
 import { TestComponent } from './pages/test/test.component';
+import { HelloComponent } from './pages/hello/hello.component';
 
 const providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: HttpApiErrorInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: HttpResponseApiMessagesInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: XExpiresAfterInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: HttpTokenRegenerationInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true }
@@ -43,7 +44,8 @@ if (environment.name === 'prod' || environment.name === 'test') {
     CookieBarComponent,
     MenuUserComponent,
     MenuComponent,
-    TestComponent
+    TestComponent,
+    HelloComponent
   ],
   imports: [
     BrowserModule,
