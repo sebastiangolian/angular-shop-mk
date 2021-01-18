@@ -1,10 +1,10 @@
 <ng-container *ngIf="photo && src">
     <icon-b *ngIf="arrowEnabled" class="float-left hand position-absolute background-transparent" 
-        width=40 height=40 [style.top.%]="40" [style.left.px]="leftRight"
+        width=40 height=40 [style.top.px]="top" [style.left.px]="left"
         name="chevron-left" (click)="onPrev()"></icon-b>
     <img class="img-thumbnail rounded hand" [height]="photo.height" [width]="photo.width" [src]="src | safe: 'url'">
     <icon-b *ngIf="arrowEnabled" class="float-right hand position-absolute background-transparent"  
-        width=40 height=40 [style.top.%]="40" [style.right.px]="leftRight"
+        width=40 height=40 [style.top.px]="top" [style.right.px]="right"
         name="chevron-right" (click)="onNext()"></icon-b>
 </ng-container>
 <ng-container *ngIf="photo && !src">
