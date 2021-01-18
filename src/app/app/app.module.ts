@@ -23,6 +23,7 @@ import { HttpApiErrorInterceptor } from './interceptors/http-api-error.intercept
 import { MenuUserComponent } from './components/menu-user/menu-user.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { XExpiresAfterInterceptor } from './interceptors/x-expires-after.interceptor';
+import { TestComponent } from './pages/test/test.component';
 
 const providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
@@ -41,7 +42,8 @@ if (environment.name === 'prod' || environment.name === 'test') {
     AppComponent,
     CookieBarComponent,
     MenuUserComponent,
-    MenuComponent
+    MenuComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
