@@ -2,30 +2,16 @@ openapi: 3.0.0
 info:
   title: Sklep MK
   description: Sklep MK
-  version: 1.0.20
+  version: 1.0.21
 servers:
   - url: http://api.mk.pl/v1
 components:
   schemas:
+    ApiMessages:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/ApiMessage"
     ApiMessage:
-      type: "object"
-      properties:
-        errors:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/ApiError"
-        notifications:
-          type: "array"
-          items:
-            $ref: "#/components/schemas/ApiNotification"
-    ApiError:
-      type: "object"
-      properties:
-        code:
-          type: "string"
-        message:
-          type: "string"
-    ApiNotification:
       type: "object"
       properties:
         message:
@@ -305,19 +291,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ApiError'
+            $ref: '#/components/schemas/ApiMessages'
     Unauthorized:
       description: "Unauthorized"
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ApiError'
+            $ref: '#/components/schemas/ApiMessages'
     NotFound:
       description: "Not Found"
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ApiError'
+            $ref: '#/components/schemas/ApiMessages'
   parameters:
     SortBy:
       name: sort_by
@@ -380,7 +366,7 @@ paths:
                   total:
                     type: "number"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -410,7 +396,7 @@ paths:
                   item:
                     $ref: "#/components/schemas/Event"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -444,7 +430,7 @@ paths:
                   total:
                     type: "number"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -478,7 +464,7 @@ paths:
                   total:
                     type: "number"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -538,7 +524,7 @@ paths:
                   total:
                     type: "number"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -562,7 +548,7 @@ paths:
                   item:
                     $ref: "#/components/schemas/OrderDefinition"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -592,7 +578,7 @@ paths:
                   item:
                     $ref: "#/components/schemas/Log"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -622,7 +608,7 @@ paths:
                   item:
                     $ref: "#/components/schemas/Order"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -652,7 +638,7 @@ paths:
                   item:
                     $ref: "#/components/schemas/Order"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -686,7 +672,7 @@ paths:
                   total:
                     type: "number"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -716,7 +702,7 @@ paths:
                   item:
                     $ref: "#/components/schemas/OrderPayment"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -739,7 +725,7 @@ paths:
                   item:
                     $ref: '#/components/schemas/OrderPayment'
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400': 
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -775,7 +761,7 @@ paths:
                 type: "object"
                 properties:
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -801,7 +787,7 @@ paths:
                 type: "object"
                 properties:
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -823,7 +809,7 @@ paths:
                   item:
                     $ref: "#/components/schemas/User"
                   messages:
-                    $ref: "#/components/schemas/ApiMessage"
+                    $ref: "#/components/schemas/ApiMessages"
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
