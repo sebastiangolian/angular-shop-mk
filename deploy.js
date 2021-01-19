@@ -5,9 +5,8 @@ var ftpDeploy = new FtpDeploy();
 
 let environment = ""
 let version = ""
-const FTP_HOST = "s55.hekko.pl"
-const FTP_USER = "seba@sklep.martynaklewinowska.online"
-const FTP_PASS = "Jakiestamhaslo2@"
+
+var config = require('./deploy-config.json')
 
 process.argv.forEach(val => {
     if (val.includes("environment")) environment = val.replace("environment=", "")
@@ -41,10 +40,10 @@ function build() {
 }
 
 async function upload() {
-    var config = {
-        user: FTP_USER,
-        password: FTP_PASS,
-        host: FTP_HOST,
+    var ftpConfig = {
+        user: config.user,
+        password: config.pass,
+        host: config.host,
         port: 21,
         localRoot: __dirname + "/dist",
         remoteRoot: "/",
@@ -54,7 +53,7 @@ async function upload() {
     };
 
     ftpDeploy
-        .deploy(config)
+        .deploy(ftpConfig)
         .then(res => {
             console.info("finished:", res)
             deployHttp()

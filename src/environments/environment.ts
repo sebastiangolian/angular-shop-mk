@@ -4,7 +4,7 @@ export const environment = {
   email: 'info@martynaklewinowska.pl',
   version: require('../../package.json').version,
   production: false,
-  backendDelay: 50,
+  backendDelay: 0,
   httpRetry: 0,
   loggingBackendUrl: true,
   loggingBackendRequestHeaders: false,

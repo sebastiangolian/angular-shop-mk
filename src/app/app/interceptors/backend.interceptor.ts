@@ -191,6 +191,14 @@ export class BackendInterceptor implements HttpInterceptor {
 
             switch (true) {
 
+                case (method === 'GET' && url.includes('/api/hello')): {
+                    if (url.includes('200')) {
+                        return responseApiMessage("To jest wiadomość z API");
+                    } else {
+                        return responseApiError(404, "To jest błąd z API");
+                    }
+                }
+
                 case (method === 'POST' && url.includes('/api/user/login')): {
                     const user = db.user.find(item => item.login === body.login && item.password === body.password);
                     if (user) {
@@ -389,15 +397,25 @@ export class BackendInterceptor implements HttpInterceptor {
             return of(new HttpResponse<any>(response));
         }
 
-        function responseApiError(code: number, message: string): Observable<any> {
+        function responseApiMessage(message: string): Observable<any> {
             let response = { status: 200, body, headers };
             response.body = {
-                messages: {
-                    errors: [{ code, message }],
-                    notifications: [{ message }]
-                }
+                messages: [
+                    { message: message }
+                ]
             };
             return of(new HttpResponse<any>(response));
+        }
+
+        function responseApiError(status: number, message: string): Observable<any> {
+            return throwError({
+                status: status,
+                error: {
+                    messages: [
+                        { message: message }
+                    ]
+                }
+            });
         }
 
         function responseError(status: number, message: string): Observable<HttpResponse<any>> {

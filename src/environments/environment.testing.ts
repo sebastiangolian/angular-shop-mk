@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   backendDelay: 0,
   httpRetry: 0,
-  loggingBackendUrl: true,
+  loggingBackendUrl: false,
   loggingBackendRequestHeaders: false,
   loggingBackendRequest: false,
   loggingBackendResponse: false,
@@ -17,7 +17,7 @@ export const environment = {
   messageAnotherTimeout: 1000 * 60,
   allowedDomains: ["www.sklep.martynaklewinowska.online"],
   disallowedRoutes: [],
-  urlContact: 'http://www.martynaklewinowska.pl/kontakt',
+  urlContact: 'http://www.martynaklewinowska.pl/kontakt', // blank: '#'
   urlBlog: 'http://www.martynaklewinowska.pl/blog',
   urlRegulation: 'https://www.sklep.martynaklewinowska.pl/resource/sklep.regulamin.pdf',
   urlPolicy: 'https://www.sklep.martynaklewinowska.pl/resource/sklep.polityka.prywatnosci.pdf',

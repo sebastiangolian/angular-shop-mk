@@ -1,14 +1,15 @@
 {
   "name": "angular-shop-mk",
-  "version": "1.0.0RC",
+  "version": "1.0.0",
   "browserslist": [
     "> 5%"
   ],
   "scripts": {
     "start": "ng serve --o --port=4203",
-    "start-test": "ng serve -o --c=testing  --port=4400",
+    "start-test": "ng serve -o --c=testing --port=4400",
     "build": "ng build",
     "build-ghpages": "ng build --prod --base-href=/angular-shop-mk/ --outputPath=dist/angular-shop-mk",
+    "build-test": "ng build --c=testing",
     "build-prod": "ng build --prod",
     "deploy-test": "node --trace-warnings deploy.js environment=test version=%npm_package_version%",
     "deploy-prod": "node deploy.js environment=prod version=%npm_package_version%",

@@ -34,6 +34,8 @@ export class ProductListComponent implements OnInit {
     product.amount = amount
     this.productChange.emit(product)
     this.basketService.update(basketItem);
+
+    if (amount === 0) { this.basketService.delete(basketItem); }
   }
 
   private updateProductsFromBasket(): void {

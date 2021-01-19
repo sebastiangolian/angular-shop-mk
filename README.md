@@ -1,8 +1,5 @@
 # angular-shop-mk
-Angular MK Shop
-
-## Test app 
-[angular-shop-mk](https://sebastiangolian.github.io/angular-shop-mk)
+MK Shop
 
 ## Getting started
 ```bash
@@ -11,11 +8,18 @@ npm install
 ```bash
 npm run start
 ```
+```bash
+npm run start-test
+```
 
 ## Scripts
 Build project
 ```bash
 npm run build
+```
+Build prod project
+```bash
+npm run build-prod
 ```
 Test project
 ```bash
