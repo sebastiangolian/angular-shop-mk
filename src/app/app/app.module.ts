@@ -25,6 +25,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { XExpiresAfterInterceptor } from './interceptors/x-expires-after.interceptor';
 import { TestComponent } from './pages/test/test.component';
 import { HelloComponent } from './pages/hello/hello.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const providers: Provider[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
@@ -67,7 +68,8 @@ if (environment.name === 'prod' || environment.name === 'test') {
         disallowedRoutes: environment.disallowedRoutes,
       }
     }),
-    LogModule
+    LogModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers,
   bootstrap: [

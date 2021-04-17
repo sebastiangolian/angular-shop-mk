@@ -1,6 +1,9 @@
 # angular-shop-mk
 MK Shop
 
+## Test app 
+[angular-shop-mk](https://sebastiangolian.github.io/angular-shop-mk)
+
 ## Getting started
 ```bash
 npm install
