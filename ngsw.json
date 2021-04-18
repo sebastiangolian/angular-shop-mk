@@ -1,0 +1,106 @@
+{
+  "configVersion": 1,
+  "timestamp": 1618760891935,
+  "index": "/angular-shop-mk/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/angular-shop-mk/5.ce9a5745b428d7ea43c0.js",
+        "/angular-shop-mk/6.49050ae7fdd5de380d24.js",
+        "/angular-shop-mk/7.4c1210949475ea332393.js",
+        "/angular-shop-mk/common.c276d599c019950fa006.js",
+        "/angular-shop-mk/index.html",
+        "/angular-shop-mk/main.cd4602202606d15d136f.js",
+        "/angular-shop-mk/manifest.webmanifest",
+        "/angular-shop-mk/polyfills.4fb6e6d565188c68516e.js",
+        "/angular-shop-mk/runtime.3b3ec20950c008a111fe.js",
+        "/angular-shop-mk/styles.6e9e5bb834c8991c4d1b.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/angular-shop-mk/assets/favicon.ico",
+        "/angular-shop-mk/assets/icons/cart4.svg",
+        "/angular-shop-mk/assets/icons/chevron-left.svg",
+        "/angular-shop-mk/assets/icons/chevron-right.svg",
+        "/angular-shop-mk/assets/icons/facebook.svg",
+        "/angular-shop-mk/assets/icons/icon-128x128.png",
+        "/angular-shop-mk/assets/icons/icon-144x144.png",
+        "/angular-shop-mk/assets/icons/icon-152x152.png",
+        "/angular-shop-mk/assets/icons/icon-192x192.png",
+        "/angular-shop-mk/assets/icons/icon-384x384.png",
+        "/angular-shop-mk/assets/icons/icon-512x512.png",
+        "/angular-shop-mk/assets/icons/icon-72x72.png",
+        "/angular-shop-mk/assets/icons/icon-96x96.png",
+        "/angular-shop-mk/assets/icons/instagram.svg",
+        "/angular-shop-mk/assets/icons/trash.svg",
+        "/angular-shop-mk/assets/icons/x.svg",
+        "/angular-shop-mk/assets/images/banner.jpg",
+        "/angular-shop-mk/assets/images/loading.gif"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/angular-shop-mk/5.ce9a5745b428d7ea43c0.js": "e465c151fdcf5d24b1a445ce563f8af2a2b2aeaf",
+    "/angular-shop-mk/6.49050ae7fdd5de380d24.js": "523f148cccce0b0bc30f4a26b73ec5cb13c9fb68",
+    "/angular-shop-mk/7.4c1210949475ea332393.js": "eb3a72726a60d70b25aaca811594db0e53567d33",
+    "/angular-shop-mk/assets/favicon.ico": "f1840024e742e3b7b4811c48d0f67444e5f69813",
+    "/angular-shop-mk/assets/icons/cart4.svg": "55f2552555ba99cbb18ab9dbbec005c0d6d7a3e9",
+    "/angular-shop-mk/assets/icons/chevron-left.svg": "20fc85290d33feef8749ed6e97a564349762732f",
+    "/angular-shop-mk/assets/icons/chevron-right.svg": "64926cc30a59a89c8e26551aa3af6ee5c0c97fd7",
+    "/angular-shop-mk/assets/icons/facebook.svg": "ac72c49955d77996eb2af5b345bed3c25c52ae75",
+    "/angular-shop-mk/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/angular-shop-mk/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/angular-shop-mk/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/angular-shop-mk/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/angular-shop-mk/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/angular-shop-mk/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/angular-shop-mk/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/angular-shop-mk/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/angular-shop-mk/assets/icons/instagram.svg": "502dd3faed534300a1cdd495ad03ca7313cd7a94",
+    "/angular-shop-mk/assets/icons/trash.svg": "668d212043dc34fa712358da71492630e733f3f3",
+    "/angular-shop-mk/assets/icons/x.svg": "7821533b7a170d5d69f27e154be5eb23c2eb5e73",
+    "/angular-shop-mk/assets/images/banner.jpg": "d39d9fdf3d6db7cf559a14b66f1222177703472d",
+    "/angular-shop-mk/assets/images/loading.gif": "63b7e09be19f49056df56a65dba20173a838653f",
+    "/angular-shop-mk/common.c276d599c019950fa006.js": "cfc62d5ffa1ad67720bc7a9ad86e5f88999710d3",
+    "/angular-shop-mk/index.html": "ea531698d2059c7a04824893a8bf697ad75910ea",
+    "/angular-shop-mk/main.cd4602202606d15d136f.js": "fae6ee8f11d9614278f55b9ca9bd07a3f10d8358",
+    "/angular-shop-mk/manifest.webmanifest": "794453cb6aa35c30515f9c2125d507c4b6abbcac",
+    "/angular-shop-mk/polyfills.4fb6e6d565188c68516e.js": "b48702367c39077f82a521c88b26e98d2811653e",
+    "/angular-shop-mk/runtime.3b3ec20950c008a111fe.js": "d17c71234ea9c2c86b0a400f565ab0aef2345063",
+    "/angular-shop-mk/styles.6e9e5bb834c8991c4d1b.css": "aa737625aa785ad406026c19e60f5d8f37df264b"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
