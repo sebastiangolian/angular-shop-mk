@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1618760891935,
+  "timestamp": 1618761777055,
   "index": "/angular-shop-mk/index.html",
   "assetGroups": [
     {
@@ -16,7 +16,7 @@
         "/angular-shop-mk/7.4c1210949475ea332393.js",
         "/angular-shop-mk/common.c276d599c019950fa006.js",
         "/angular-shop-mk/index.html",
-        "/angular-shop-mk/main.cd4602202606d15d136f.js",
+        "/angular-shop-mk/main.c40997b9408ade939aba.js",
         "/angular-shop-mk/manifest.webmanifest",
         "/angular-shop-mk/polyfills.4fb6e6d565188c68516e.js",
         "/angular-shop-mk/runtime.3b3ec20950c008a111fe.js",
@@ -78,8 +78,8 @@
     "/angular-shop-mk/assets/images/banner.jpg": "d39d9fdf3d6db7cf559a14b66f1222177703472d",
     "/angular-shop-mk/assets/images/loading.gif": "63b7e09be19f49056df56a65dba20173a838653f",
     "/angular-shop-mk/common.c276d599c019950fa006.js": "cfc62d5ffa1ad67720bc7a9ad86e5f88999710d3",
-    "/angular-shop-mk/index.html": "ea531698d2059c7a04824893a8bf697ad75910ea",
-    "/angular-shop-mk/main.cd4602202606d15d136f.js": "fae6ee8f11d9614278f55b9ca9bd07a3f10d8358",
+    "/angular-shop-mk/index.html": "f003a8dc152d82bc5db1258d9e747ad80c4c84fd",
+    "/angular-shop-mk/main.c40997b9408ade939aba.js": "a56e228ed9d4f121d1182dd9434d16116a419514",
     "/angular-shop-mk/manifest.webmanifest": "794453cb6aa35c30515f9c2125d507c4b6abbcac",
     "/angular-shop-mk/polyfills.4fb6e6d565188c68516e.js": "b48702367c39077f82a521c88b26e98d2811653e",
     "/angular-shop-mk/runtime.3b3ec20950c008a111fe.js": "d17c71234ea9c2c86b0a400f565ab0aef2345063",
