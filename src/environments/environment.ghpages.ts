@@ -15,7 +15,7 @@ export const environment = {
   messageSuccessTimeout: 1000 * 10,
   messageInfoTimeout: 1000 * 20,
   messageAnotherTimeout: 1000 * 60,
-  allowedDomains: ["localhost"],
+  allowedDomains: ['localhost'],
   disallowedRoutes: [],
   urlContact: '#',
   urlBlog: '#',
